@@ -1,6 +1,6 @@
 async function generateHashtags() {
   const topic = document.getElementById("keyword").value.trim();
-  const outputBox = document.getElementById("output");
+  const outputBox = document.getElementById("result");
   if (!topic) {
     outputBox.innerHTML = "⚠️ Please enter a topic!";
     return;
