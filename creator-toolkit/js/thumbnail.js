@@ -1,33 +1,23 @@
-function getThumbnail() {
+<div class="container">
 
-    const url =
-        document.getElementById("videoUrl").value;
+<div class="card">
 
-    const videoId =
-        url.split("v=")[1];
+<h2 style="text-align:center;margin-bottom:20px;">
+📥 YouTube Thumbnail Downloader
+</h2>
 
-    if (!videoId) {
-        alert("Invalid URL");
-        return;
-    }
+<input
+type="text"
+id="videoUrl"
+placeholder="Paste YouTube Video URL"
+>
+<div id="thumbnailPreview"></div>
+<button class="format-btn" onclick="getThumbnail()">
+Get Thumbnail
+</button>
 
-    const thumbnail =
-        `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+<div id="thumbnailBox" style="margin-top:20px;text-align:center;"></div>
 
-    document.getElementById(
-        "thumbnailPreview"
-    ).innerHTML = `
-        <img src="${thumbnail}"
-        style="width:100%;
-        max-width:600px;
-        border-radius:10px;">
-        <br><br>
-        <a href="${thumbnail}"
-        download
-        target="_blank">
-        <button class="format-btn">
-        Download Thumbnail
-        </button>
-        </a>
-    `;
-}
+</div>
+
+</div>
