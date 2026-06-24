@@ -12,7 +12,7 @@ async function generateDescription() {
     mix: "Write in Telugu-English mix. Telugu as main, English words naturally mixed."
   };
 
-  const apiKey = "gsk_YOUR_GROQ_KEY";
+  const apiKey = "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";
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
