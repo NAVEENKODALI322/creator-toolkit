@@ -6,7 +6,7 @@ async function generateHashtags() {
     return;
   }
   outputBox.innerHTML = "⏳ Generating AI Hashtags...";
-  const apiKey = "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";
+  const apiKey = "gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -25,7 +25,10 @@ async function generateHashtags() {
       })
     });
     const data = await response.json();
-    if (data.error) { outputBox.innerHTML = "❌ API Error: " + data.error.message; return; }
+    if (data.error) {
+      outputBox.innerHTML = "❌ API Error: " + data.error.message;
+      return;
+    }
     outputBox.innerHTML = data.choices[0].message.content;
   } catch (error) {
     outputBox.innerHTML = "❌ Error: " + error.message;
@@ -33,26 +36,7 @@ async function generateHashtags() {
 }
 
 function copyHashtags() {
-  const text = document.getElementById("output").innerText;
+  const text = document.getElementById("result").innerText;
   navigator.clipboard.writeText(text);
   alert("✅ Hashtags Copied!");
-}
-  outputBox.innerHTML =
-  data.choices[0].message.content;
-
-  } catch (error) {
-
-  outputBox.innerHTML =
-  "❌ Error: " + error.message;
-  }
-  }
-
-function copyHashtags() {
-
-const text =
-document.getElementById("output").innerText;
-
-navigator.clipboard.writeText(text);
-
-alert("✅ Hashtags Copied!");
 }
