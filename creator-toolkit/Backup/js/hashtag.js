@@ -1,4 +1,4 @@
-async function generatetags() {
+async function generateTags() {
   const topic = document.getElementById("keyword").value.trim();
   const outputBox = document.getElementById("result");
   if (!topic) {
@@ -35,7 +35,7 @@ async function generatetags() {
   }
 }
 
-function copytags() {
+function copyTags() {
   const text = document.getElementById("result").innerText;
   navigator.clipboard.writeText(text);
   alert("✅ Hashtags Copied!");
