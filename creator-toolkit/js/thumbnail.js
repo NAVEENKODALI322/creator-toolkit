@@ -33,7 +33,7 @@ function getThumbnail() {
     >
 
     <br><br>
-document.getElementById("getBtn").style.display = "none";
+
     <a href="${thumbnailUrl}" download>
       <button class="format-btn">
         📥 Download HD Thumbnail
@@ -41,3 +41,4 @@ document.getElementById("getBtn").style.display = "none";
     </a>
   `;
 }
+document.getElementById("getBtn").style.display = "none";
