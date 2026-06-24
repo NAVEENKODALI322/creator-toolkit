@@ -9,12 +9,10 @@ function getThumbnail() {
 
   let videoId = "";
 
-  // Normal YouTube URL
   if (url.includes("watch?v=")) {
     videoId = url.split("v=")[1].split("&")[0];
   }
 
-  // Short YouTube URL
   else if (url.includes("youtu.be/")) {
     videoId = url.split("youtu.be/")[1].split("?")[0];
   }
@@ -36,9 +34,9 @@ function getThumbnail() {
 
     <br><br>
 
-    <a href="${thumbnailUrl}" target="_blank">
+    <a href="${thumbnailUrl}" download>
       <button class="format-btn">
-        Download Thumbnail
+        📥 Download HD Thumbnail
       </button>
     </a>
   `;
