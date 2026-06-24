@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Description Generator</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header class="header">
-
-<div class="logo">
-🚀 Creator Toolkit
-</div>
-
+<div class="logo">🚀 Creator Toolkit</div>
 <nav class="main-nav">
 <a href="index.html">Home</a>
 <a href="hashtag-generator.html">Hashtag Generator</a>
@@ -26,62 +17,31 @@
 <a href="tags-generator.html">Tags Generator</a>
 <a href="thumbnail-downloader.html">Thumbnail Downloader</a>
 </nav>
-
 </header>
-
 <div class="container">
-
 <div class="card">
-
-<h2 style="text-align:center;margin-bottom:20px;">
-📄 Description Generator
-</h2>
-
-<input
-type="text"
-id="topic"
-placeholder="Enter Video Topic"
-
->
-
-<input
-type="text"
-id="channel"
-placeholder="Enter Channel Name"
-
->
-
-<input
-type="text"
-id="keywords"
-placeholder="Enter Keywords (comma separated)"
-
->
-
-<button class="format-btn" onclick="generateDescription()">
-Generate Description
-</button>
-
+<h2 style="text-align:center;margin-bottom:20px;">📄 Description Generator</h2>
+<input type="text" id="topic" placeholder="Enter Video Topic">
+<input type="text" id="channel" placeholder="Enter Channel Name">
+<input type="text" id="keywords" placeholder="Enter Keywords (comma separated)">
+<select id="language">
+  <option value="telugu">తెలుగు</option>
+  <option value="english">English</option>
+  <option value="mix">Telugu + English Mix</option>
+</select>
+<button class="format-btn" onclick="generateDescription()">Generate Description</button>
 <div id="output" class="output"></div>
-
-<button
-class="copy-btn"
-style="margin-top:15px;"
-onclick="copyDescription()">
-Copy Description </button>
-
+<button class="copy-btn" style="margin-top:15px;" onclick="copyDescription()">Copy Description</button>
 </div>
-
 </div>
-
-<footer>
-© 2026 Creator Toolkit
-</footer>
-
+<footer>© 2026 Creator Toolkit</footer>
+<script>
 async function generateDescription() {
-  const topic = document.getElementById("keyword").value.trim();
-  const outputBox = document.getElementById("result");
+  const topic = document.getElementById("topic").value.trim();
+  const channel = document.getElementById("channel").value.trim();
+  const keywords = document.getElementById("keywords").value.trim();
   const language = document.getElementById("language").value;
+  const outputBox = document.getElementById("output");
 
   if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
   outputBox.innerHTML = "⏳ Generating...";
@@ -92,7 +52,7 @@ async function generateDescription() {
     mix: "Write in Telugu-English mix. Telugu as main, English words naturally mixed."
   };
 
-  const apiKey = "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";
+  const apiKey = "gsk_YOUR_NEW_GROQ_KEY";
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
@@ -100,43 +60,3 @@ async function generateDescription() {
       headers: {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + apiKey
-      },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: [
-          { role: "system", content: "You are a YouTube SEO expert." },
-          { role: "user", content: `Write a YouTube description for: "${topic}"
-
-Language rule: ${langInstruction[language]}
-
-STRICT RULES:
-- NO markdown like ** or ##
-- NO "Description:" or "Note:" labels
-- NO numbered lists
-- Start directly with content
-- 150-200 words
-- Natural conversational tone
-- End with like, share, subscribe line
-- 10 hashtags at the end, space separated` }
-        ],
-        temperature: 0.8,
-        max_tokens: 800
-      })
-    });
-
-    const data = await response.json();
-    if (data.error) { outputBox.innerHTML = "❌ " + data.error.message; return; }
-    outputBox.innerHTML = data.choices[0].message.content;
-  } catch (error) {
-    outputBox.innerHTML = "❌ Error: " + error.message;
-  }
-}
-
-function copyDescription() {
-  const text = document.getElementById("result").innerText;
-  navigator.clipboard.writeText(text);
-  alert("✅ Copied!");
-}
-
-</body>
-</html>
