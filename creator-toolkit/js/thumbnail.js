@@ -11,12 +11,14 @@ type="text"
 id="videoUrl"
 placeholder="Paste YouTube Video URL"
 >
-<div id="thumbnailPreview"></div>
+
 <button class="format-btn" onclick="getThumbnail()">
 Get Thumbnail
 </button>
 
-<div id="thumbnailBox" style="margin-top:20px;text-align:center;"></div>
+<div id="thumbnailPreview"
+style="margin-top:20px;text-align:center;">
+</div>
 
 </div>
 
