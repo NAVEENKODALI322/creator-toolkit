@@ -60,97 +60,27 @@ Copy Hashtags
 </footer>
 
 <script>
+async function generateTags() {
+  let topic = document.getElementById("keyword").value.trim();
+  if (!topic) { alert("Enter a topic"); return; }
 
-const hashtagDatabase = {
+  document.getElementById("result").innerText = "Generating...";
 
-cricket:[
-"#cricket",
-"#ipl",
-"#viratkohli",
-"#msdhoni",
-"#cricketshorts",
-"#indiancricket",
-"#worldcup",
-"#t20",
-"#odi",
-"#cricketlover"
-],
+  const response = await fetch("/api/hashtags", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic })
+  });
 
-recipe:[
-"#recipe",
-"#food",
-"#cooking",
-"#homemade",
-"#easyrecipe",
-"#foodlover",
-"#foodie",
-"#recipevideo",
-"#yummy",
-"#shorts"
-],
-
-canva:[
-"#canva",
-"#canvatutorial",
-"#graphicdesign",
-"#design",
-"#contentcreator",
-"#branding",
-"#marketing",
-"#socialmedia",
-"#canvatips",
-"#youtubecreator"
-]
-
-};
-
-function generateTags(){
-
-let topic =
-document.getElementById("keyword")
-.value
-.toLowerCase()
-.trim();
-
-if(!topic){
-alert("Enter a topic");
-return;
+  const data = await response.json();
+  document.getElementById("result").innerText = data.hashtags;
 }
 
-let hashtags=[];
-
-if(hashtagDatabase[topic]){
-hashtags=hashtagDatabase[topic];
-}else{
-
-hashtags=[
-"#"+topic.replace(/\s+/g,''),
-"#"+topic.replace(/\s+/g,'')+"shorts",
-"#"+topic.replace(/\s+/g,'')+"tips",
-"#"+topic.replace(/\s+/g,'')+"tutorial",
-"#youtube",
-"#contentcreator"
-];
-
+function copyTags() {
+  let text = document.getElementById("result").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Hashtags Copied!");
 }
-
-document.getElementById("result")
-.innerText=hashtags.join("\n");
-
-}
-
-function copyTags(){
-
-let text=
-document.getElementById("result")
-.innerText;
-
-navigator.clipboard.writeText(text);
-
-alert("Hashtags Copied!");
-
-}
-
 </script>
 
 </body>
