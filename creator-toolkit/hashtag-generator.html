@@ -59,29 +59,6 @@ Copy Hashtags
 © 2026 Creator Toolkit
 </footer>
 
-<script>
-async function generateTags() {
-  let topic = document.getElementById("keyword").value.trim();
-  if (!topic) { alert("Enter a topic"); return; }
-
-  document.getElementById("result").innerText = "Generating...";
-
-  const response = await fetch("/api/hashtags", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ topic })
-  });
-
-  const data = await response.json();
-  document.getElementById("result").innerText = data.hashtags;
-}
-
-function copyTags() {
-  let text = document.getElementById("result").innerText;
-  navigator.clipboard.writeText(text);
-  alert("Hashtags Copied!");
-}
-</script>
-
+<script src="js/hashtag.js"></script>
 </body>
 </html>
