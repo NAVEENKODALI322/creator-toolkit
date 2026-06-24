@@ -6,7 +6,7 @@ async function generateHashtags() {
     return;
   }
   outputBox.innerHTML = "⏳ Generating AI Hashtags...";
-  const apiKey = "gsk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+  const apiKey = "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";
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
