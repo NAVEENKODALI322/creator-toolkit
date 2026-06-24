@@ -1,48 +1,33 @@
 function getThumbnail() {
 
-  const url =
-    document.getElementById("videoUrl").value.trim();
+    const url =
+        document.getElementById("videoUrl").value;
 
-  const result =
-    document.getElementById("thumbResult");
+    const videoId =
+        url.split("v=")[1];
 
-  if (!url) {
-    result.innerHTML =
-      "⚠️ Please enter YouTube URL";
-    return;
-  }
+    if (!videoId) {
+        alert("Invalid URL");
+        return;
+    }
 
-  let videoId = "";
+    const thumbnail =
+        `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 
-  if (url.includes("watch?v=")) {
-    videoId = url.split("watch?v=")[1].split("&")[0];
-  }
-  else if (url.includes("youtu.be/")) {
-    videoId = url.split("youtu.be/")[1].split("?")[0];
-  }
-
-  if (!videoId) {
-    result.innerHTML =
-      "❌ Invalid YouTube URL";
-    return;
-  }
-
-  const thumbUrl =
-    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-
-  result.innerHTML = `
-    <img
-      src="${thumbUrl}"
-      style="max-width:100%;
-      border-radius:10px;
-      margin-top:15px;">
-
-    <br><br>
-
-    <a href="${thumbUrl}"
-       target="_blank"
-       class="copy-btn">
-       Download Thumbnail
-    </a>
-  `;
+    document.getElementById(
+        "thumbnailPreview"
+    ).innerHTML = `
+        <img src="${thumbnail}"
+        style="width:100%;
+        max-width:600px;
+        border-radius:10px;">
+        <br><br>
+        <a href="${thumbnail}"
+        download
+        target="_blank">
+        <button class="format-btn">
+        Download Thumbnail
+        </button>
+        </a>
+    `;
 }
