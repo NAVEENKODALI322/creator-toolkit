@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Description Generator</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+🚀 Creator Toolkit
+</div>
+
+<nav class="main-nav">
+<a href="index.html">Home</a>
+<a href="hashtag-generator.html">Hashtag Generator</a>
+<a href="title-generator.html">Title Generator</a>
+<a href="description-generator.html">Description Generator</a>
+<a href="tags-generator.html">Tags Generator</a>
+<a href="thumbnail-downloader.html">Thumbnail Downloader</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 style="text-align:center;margin-bottom:20px;">
+📄 Description Generator
+</h2>
+
+<input
+type="text"
+id="topic"
+placeholder="Enter Video Topic"
+
+>
+
+<input
+type="text"
+id="channel"
+placeholder="Enter Channel Name"
+
+>
+
+<input
+type="text"
+id="keywords"
+placeholder="Enter Keywords (comma separated)"
+
+>
+
+<button class="format-btn" onclick="generateDescription()">
+Generate Description
+</button>
+
+<div id="output" class="output"></div>
+
+<button
+class="copy-btn"
+style="margin-top:15px;"
+onclick="copyDescription()">
+Copy Description </button>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Creator Toolkit
+</footer>
+
+<script src="js/description.js"></script>
+
+</body>
+</html>

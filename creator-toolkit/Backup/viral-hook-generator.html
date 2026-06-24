@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viral Hook Generator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">🚀 Creator Toolkit</div>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>🔥 Viral Hook Generator</h2>
+    <p>Enter your topic and get viral hooks instantly</p>
+
+    <input type="text" id="topicInput" placeholder="Enter topic...">
+    <button onclick="generateHooks()">Generate Hooks</button>
+
+    <!-- ONLY ONE OUTPUT BOX -->
+    <div class="output" id="outputBox">
+      Your hooks will appear here...
+    </div>
+
+    <button class="copy-btn" onclick="copyHooks()">
+      Copy All
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+function generateHooks() {
+
+  const topic = document.getElementById("topicInput").value.toLowerCase();
+  const outputBox = document.getElementById("outputBox");
+
+  if (!topic) {
+    outputBox.innerHTML = "⚠️ Please enter a topic!";
+    return;
+  }
+
+  let hooks = [];
+
+  if (topic.includes("canva")) {
+    hooks = [
+      "Canva tho money earn cheyyadam ela?",
+      "Beginners Canva lo chese biggest mistake enti?",
+      "Nenu Canva tho first income ela earn chesanu?",
+      "Canva lo ee secret trick teliste shock avtharu!",
+      "Canva nerchukunte nijanga money vasthundha?"
+    ];
+  }
+
+  else {
+    hooks = [
+      `${topic} lo beginners chese biggest mistake enti?`,
+      `${topic} gurinchi ee secret chala mandiki teliyadu!`,
+      `${topic} tho success avvalante ee step compulsory!`,
+      `${topic} lo ee trick follow chesthe results vastayi!`
+    ];
+  }
+
+  outputBox.innerHTML = hooks.join("<br><br>");
+}
+
+function copyHooks() {
+  const text = document.getElementById("outputBox").innerText;
+  navigator.clipboard.writeText(text);
+  alert("Hooks copied!");
+}
+</script>
+</script>
+
+</body>
+</html>

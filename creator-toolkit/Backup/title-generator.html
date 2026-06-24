@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Title Generator</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+🚀 Creator Toolkit
+</div>
+
+<nav class="main-nav">
+<a href="index.html">Home</a>
+<a href="hashtag-generator.html">Hashtag Generator</a>
+<a href="title-generator.html">Title Generator</a>
+<a href="description-generator.html">Description Generator</a>
+<a href="tags-generator.html">Tags Generator</a>
+<a href="thumbnail-downloader.html">Thumbnail Downloader</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 style="text-align:center;margin-bottom:20px;">
+📝 Title Generator
+</h2>
+
+<input
+type="text"
+id="keyword"
+placeholder="Enter your topic..."
+
+>
+
+<button class="format-btn" onclick="generateTitles()">
+Generate Titles
+</button>
+
+<div id="output" class="output"></div>
+
+<button
+class="copy-btn"
+style="margin-top:15px;"
+onclick="copyTitles()">
+Copy Titles </button>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Creator Toolkit
+</footer>
+
+<script>
+
+function generateTitles(){
+
+const keyword =
+document.getElementById("keyword")
+.value
+.trim();
+
+if(keyword===""){
+alert("Please enter a topic");
+return;
+}
+
+const titles = [
+
+"How To " + keyword + " (Step By Step Guide)",
+
+keyword + " For Beginners",
+
+"Top 10 " + keyword + " Tips You Need To Know",
+
+"Best " + keyword + " Tutorial",
+
+keyword + " Made Easy",
+
+"Learn " + keyword + " In 10 Minutes",
+
+keyword + " Explained Simply",
+
+"The Ultimate " + keyword + " Guide",
+
+keyword + " Mistakes To Avoid",
+
+"Everything About " + keyword,
+
+"Why Everyone Is Talking About " + keyword,
+
+keyword + " Tips And Tricks",
+
+"Beginner To Pro: " + keyword,
+
+"Watch This Before Starting " + keyword,
+
+keyword + " Full Tutorial"
+
+];
+
+document.getElementById("output")
+.innerText = titles.join("\n\n");
+
+}
+
+function copyTitles(){
+
+const text =
+document.getElementById("output")
+.innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("Titles Copied!");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tags Generator</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+🚀 Creator Toolkit
+</div>
+
+<nav class="main-nav">
+<a href="index.html">Home</a>
+<a href="hashtag-generator.html">Hashtag Generator</a>
+<a href="title-generator.html">Title Generator</a>
+<a href="description-generator.html">Description Generator</a>
+<a href="tags-generator.html">Tags Generator</a>
+<a href="thumbnail-downloader.html">Thumbnail Downloader</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 style="text-align:center;margin-bottom:20px;">
+🏷️ Tags Generator
+</h2>
+
+<input
+type="text"
+id="keyword"
+placeholder="Enter your topic..."
+
+>
+
+<button class="format-btn" onclick="generateTags()">
+Generate Tags
+</button>
+
+<div id="output" class="output"></div>
+
+<button
+class="copy-btn"
+style="margin-top:15px;"
+onclick="copyTags()">
+Copy Tags </button>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Creator Toolkit
+</footer>
+
+<script src="js/tags.js"></script>
+
+</body>
+</html>

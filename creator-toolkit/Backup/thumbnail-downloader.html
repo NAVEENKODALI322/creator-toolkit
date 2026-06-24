@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbnail Downloader</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+🚀 Creator Toolkit
+</div>
+
+<nav class="main-nav">
+<a href="index.html">Home</a>
+<a href="hashtag-generator.html">Hashtag Generator</a>
+<a href="title-generator.html">Title Generator</a>
+<a href="description-generator.html">Description Generator</a>
+<a href="tags-generator.html">Tags Generator</a>
+<a href="thumbnail-downloader.html">Thumbnail Downloader</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 style="text-align:center;margin-bottom:20px;">
+📥 YouTube Thumbnail Downloader
+</h2>
+
+<input
+type="text"
+id="videoUrl"
+placeholder="Paste YouTube Video URL"
+>
+
+<button class="format-btn" onclick="getThumbnail()">
+Get Thumbnail
+</button>
+
+<div id="thumbnailBox" style="margin-top:20px;text-align:center;"></div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Creator Toolkit
+</footer>
+
+<script>
+
+function getThumbnail(){
+
+const url =
+document.getElementById("videoUrl")
+.value.trim();
+
+if(url===""){
+alert("Please enter a YouTube URL");
+return;
+}
+
+let videoId = "";
+
+if(url.includes("watch?v=")){
+videoId = url.split("watch?v=")[1].split("&")[0];
+}
+else if(url.includes("youtu.be/")){
+videoId = url.split("youtu.be/")[1].split("?")[0];
+}
+else{
+alert("Invalid YouTube URL");
+return;
+}
+
+const thumbnailUrl =
+`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+document.getElementById("thumbnailBox").innerHTML = `
+
+<img
+src="${thumbnailUrl}"
+style="max-width:100%;border-radius:10px;"
+>
+
+<br><br>
+
+<a
+href="${thumbnailUrl}"
+target="_blank"
+class="format-btn"
+style="
+padding:12px 20px;
+text-decoration:none;
+display:inline-block;
+color:white;
+border-radius:8px;
+"
+>
+Open HD Thumbnail
+</a>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>

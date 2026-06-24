@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hashtag Generator</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+🚀 Creator Toolkit
+</div>
+
+<nav class="main-nav">
+<a href="index.html">Home</a>
+<a href="hashtag-generator.html">Hashtag Generator</a>
+<a href="title-generator.html">Title Generator</a>
+<a href="description-generator.html">Description Generator</a>
+<a href="tags-generator.html">Tags Generator</a>
+<a href="thumbnail-downloader.html">Thumbnail Downloader</a>
+</nav>
+
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 style="text-align:center;margin-bottom:20px;">
+🏷️ Hashtag Generator
+</h2>
+
+<input
+type="text"
+id="keyword"
+placeholder="Enter video topic">
+
+<button class="format-btn" onclick="generateTags()">
+Generate Hashtags
+</button>
+
+<div class="output" id="result"></div>
+
+<button class="copy-btn" onclick="copyTags()">
+Copy Hashtags
+</button>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Creator Toolkit
+</footer>
+
+<script>
+
+const hashtagDatabase = {
+
+cricket:[
+"#cricket",
+"#ipl",
+"#viratkohli",
+"#msdhoni",
+"#cricketshorts",
+"#indiancricket",
+"#worldcup",
+"#t20",
+"#odi",
+"#cricketlover"
+],
+
+recipe:[
+"#recipe",
+"#food",
+"#cooking",
+"#homemade",
+"#easyrecipe",
+"#foodlover",
+"#foodie",
+"#recipevideo",
+"#yummy",
+"#shorts"
+],
+
+canva:[
+"#canva",
+"#canvatutorial",
+"#graphicdesign",
+"#design",
+"#contentcreator",
+"#branding",
+"#marketing",
+"#socialmedia",
+"#canvatips",
+"#youtubecreator"
+]
+
+};
+
+function generateTags(){
+
+let topic =
+document.getElementById("keyword")
+.value
+.toLowerCase()
+.trim();
+
+if(!topic){
+alert("Enter a topic");
+return;
+}
+
+let hashtags=[];
+
+if(hashtagDatabase[topic]){
+hashtags=hashtagDatabase[topic];
+}else{
+
+hashtags=[
+"#"+topic.replace(/\s+/g,''),
+"#"+topic.replace(/\s+/g,'')+"shorts",
+"#"+topic.replace(/\s+/g,'')+"tips",
+"#"+topic.replace(/\s+/g,'')+"tutorial",
+"#youtube",
+"#contentcreator"
+];
+
+}
+
+document.getElementById("result")
+.innerText=hashtags.join("\n");
+
+}
+
+function copyTags(){
+
+let text=
+document.getElementById("result")
+.innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("Hashtags Copied!");
+
+}
+
+</script>
+
+</body>
+</html>
