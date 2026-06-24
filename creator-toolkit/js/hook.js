@@ -10,7 +10,7 @@ return;
 
 outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
-const apiKey = "YOUR_GROQ_API_KEY";
+const apiKey = "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";
 
 try {
 
