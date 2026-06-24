@@ -1,90 +1,59 @@
 async function generateDescription() {
+  const topic = document.getElementById("keyword").value.trim();
+  const outputBox = document.getElementById("result");
+  const language = document.getElementById("language").value;
 
-  const topic = document.getElementById("topic").value.trim();
-  const channel = document.getElementById("channel").value.trim();
-  const keywords = document.getElementById("keywords").value.trim();
+  if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
+  outputBox.innerHTML = "⏳ Generating...";
 
-  const outputBox = document.getElementById("output");
+  const langInstruction = {
+    telugu: "Write ONLY in Telugu language. No English at all.",
+    english: "Write ONLY in English language. No Telugu at all.",
+    mix: "Write in Telugu-English mix. Telugu as main, English words naturally mixed."
+  };
 
-  if (!topic) {
-    outputBox.innerHTML = "⚠️ Please enter a topic!";
-    return;
-  }
-
-  outputBox.innerHTML = "⏳ Generating AI Description...";
-
-  const apiKey = "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";
+  const apiKey = "gsk_YOUR_GROQ_KEY";
 
   try {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + apiKey
+      },
+      body: JSON.stringify({
+        model: "llama-3.1-8b-instant",
+        messages: [
+          { role: "system", content: "You are a YouTube SEO expert." },
+          { role: "user", content: `Write a YouTube description for: "${topic}"
 
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + apiKey
-        },
-        body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
-          messages: [
-            {
-              role: "system",
-              content: "You are a professional YouTube SEO expert."
-            },
-            {
-              role: "user",
-              content: `
-Generate a YouTube description.
+Language rule: ${langInstruction[language]}
 
-Topic: ${topic}
-Channel: ${channel}
-Keywords: ${keywords}
-
-Requirements:
-- SEO optimized
-- Mix Telugu and English naturally
-- Include engaging intro
-- Include CTA to Like, Share and Subscribe
-- Include keywords naturally
-- Include 10 relevant hashtags at the end
-`
-            }
-          ],
-          temperature: 0.8,
-          max_tokens: 1000
-        })
-      }
-    );
+STRICT RULES:
+- NO markdown like ** or ##
+- NO "Description:" or "Note:" labels
+- NO numbered lists
+- Start directly with content
+- 150-200 words
+- Natural conversational tone
+- End with like, share, subscribe line
+- 10 hashtags at the end, space separated` }
+        ],
+        temperature: 0.8,
+        max_tokens: 800
+      })
+    });
 
     const data = await response.json();
-
-    console.log(data);
-
-    if (data.error) {
-      outputBox.innerHTML =
-        "❌ API Error: " + data.error.message;
-      return;
-    }
-
-    outputBox.innerHTML =
-      data.choices[0].message.content.replace(/\n/g, "<br>");
-
+    if (data.error) { outputBox.innerHTML = "❌ " + data.error.message; return; }
+    outputBox.innerHTML = data.choices[0].message.content;
   } catch (error) {
-
-    console.error(error);
-
-    outputBox.innerHTML =
-      "❌ Error: " + error.message;
+    outputBox.innerHTML = "❌ Error: " + error.message;
   }
 }
 
 function copyDescription() {
-
-  const text =
-    document.getElementById("output").innerText;
-
+  const text = document.getElementById("result").innerText;
   navigator.clipboard.writeText(text);
-
-  alert("✅ Description Copied!");
+  alert("✅ Copied!");
 }
