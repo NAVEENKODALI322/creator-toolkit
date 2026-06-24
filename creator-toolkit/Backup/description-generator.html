@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Description Generator</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
 <header class="header">
-
-<div class="logo">
-🚀 Creator Toolkit
-</div>
-
+<div class="logo">🚀 Creator Toolkit</div>
 <nav class="main-nav">
 <a href="index.html">Home</a>
 <a href="hashtag-generator.html">Hashtag Generator</a>
@@ -26,125 +17,46 @@
 <a href="tags-generator.html">Tags Generator</a>
 <a href="thumbnail-downloader.html">Thumbnail Downloader</a>
 </nav>
-
 </header>
-
 <div class="container">
-
 <div class="card">
-
-<h2 style="text-align:center;margin-bottom:20px;">
-📄 Description Generator
-</h2>
-
-<input
-type="text"
-id="topic"
-placeholder="Enter Video Topic"
+<h2 style="text-align:center;margin-bottom:20px;">📄 Description Generator</h2>
+<input type="text" id="topic" placeholder="Enter Video Topic">
+<input type="text" id="channel" placeholder="Enter Channel Name">
+<input type="text" id="keywords" placeholder="Enter Keywords (comma separated)">
 <select id="language">
   <option value="telugu">తెలుగు</option>
   <option value="english">English</option>
   <option value="mix">Telugu + English Mix</option>
 </select>
->
-
-<input
-type="text"
-id="channel"
-placeholder="Enter Channel Name"
-
->
-
-<input
-type="text"
-id="keywords"
-placeholder="Enter Keywords (comma separated)"
-
->
-
-<button class="format-btn" onclick="generateDescription()">
-Generate Description
-</button>
-
+<button class="format-btn" onclick="generateDescription()">Generate Description</button>
 <div id="output" class="output"></div>
-
-<button
-class="copy-btn"
-style="margin-top:15px;"
-onclick="copyDescription()">
-Copy Description </button>
-
+<button class="copy-btn" style="margin-top:15px;" onclick="copyDescription()">Copy Description</button>
 </div>
-
 </div>
-
-<footer>
-© 2026 Creator Toolkit
-</footer>
-
+<footer>© 2026 Creator Toolkit</footer>
 <script>
+async function generateDescription() {
+  const topic = document.getElementById("topic").value.trim();
+  const channel = document.getElementById("channel").value.trim();
+  const keywords = document.getElementById("keywords").value.trim();
+  const language = document.getElementById("language").value;
+  const outputBox = document.getElementById("output");
 
-function generateDescription(){
+  if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
+  outputBox.innerHTML = "⏳ Generating...";
 
-const topic =
-document.getElementById("topic")
-.value.trim();
+  const langInstruction = {
+    telugu: "Write ONLY in Telugu language. No English at all.",
+    english: "Write ONLY in English language. No Telugu at all.",
+    mix: "Write in Telugu-English mix. Telugu as main, English words naturally mixed."
+  };
 
-const channel =
-document.getElementById("channel")
-.value.trim();
+  const apiKey = "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";
 
-const keywords =
-document.getElementById("keywords")
-.value.trim();
-
-if(topic===""){
-alert("Please enter a topic");
-return;
-}
-
-const hashtag =
-topic
-.toLowerCase()
-.replace(/[^a-z0-9 ]/g,"")
-.replace(/\s+/g,"");
-
-const description =
-
-`Welcome to ${channel || "our channel"}!
-
-In this video, we will show you ${topic} in a simple and easy-to-follow way.
-
-Whether you are a beginner or looking to improve your skills, this video will help you learn faster and get better results.
-
-If you enjoyed this video, don't forget to Like, Share and Subscribe for more helpful content.
-
-Keywords:
-${keywords}
-
-#${hashtag}
-#youtubeshorts
-#contentcreator
-#viralvideo`;
-
-document.getElementById("output")
-.innerText = description;
-
-}
-
-function copyDescription(){
-
-const text =
-document.getElementById("output")
-.innerText;
-
-navigator.clipboard.writeText(text);
-
-alert("Description Copied!");
-
-}
-
-</script>
-
-</body>
-</html>
+  try {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + apiKey
