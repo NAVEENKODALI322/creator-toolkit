@@ -40,5 +40,6 @@ function getThumbnail() {
       </button>
     </a>
   `;
+  document.getElementById("getBtn").style.display = "none";
 }
-document.getElementById("getBtn").style.display = "none";
+
