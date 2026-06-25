@@ -12,7 +12,15 @@ async function generateHashtags() {
         model: "llama-3.1-8b-instant",
         messages: [
           { role: "system", content: "You are a social media growth expert." },
-          { role: "user", content: `Generate 30 viral hashtags for "${topic}". Only hashtags, space separated, no numbering, no explanations.` }
+          { role: "user", content: Generate 30 relevant social media hashtags for the topic "${topic}".
+
+Rules:
+- Use only real and commonly used hashtags.
+- Mix broad, niche and trending hashtags.
+- Do not create fancy or made-up hashtags.
+- Output hashtags only.
+- One line separated by spaces.
+- Start every hashtag with #. }
         ],
         temperature: 0.8,
         max_tokens: 500
