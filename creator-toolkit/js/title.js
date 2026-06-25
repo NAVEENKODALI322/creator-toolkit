@@ -10,7 +10,7 @@ const outputBox = document.getElementById("output");
 
   outputBox.innerHTML = "⏳ Generating AI Titles...";
 
-  const apiKey = "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";
+  const apiKey = "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";
 
   try {
 
