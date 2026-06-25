@@ -261,6 +261,7 @@ button:hover {
   background: #0f172a;
 }
 
+/* TOOLS GRID */
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -268,45 +269,63 @@ button:hover {
   margin-top: 30px;
 }
 
+.tool-link {
+  display: flex;
+  text-decoration: none;
+}
+
 .tool-card {
   background: #111827;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-
-  min-height: 180px;
-
   padding: 20px;
-
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   transition: all 0.3s ease;
 }
 
 .tool-card:hover {
   transform: translateY(-5px);
+  border-color: #22c55e;
 }
 
 .tool-card h3 {
-  margin: 0 0 12px;
-  font-size: 22px;
-  min-height: 55px;
-
+  margin: 0 0 10px;
+  font-size: 16px;
+  min-height: 48px;
   display: flex;
   align-items: center;
+  color: #f1f5f9;
+  line-height: 1.4;
 }
 
 .tool-card p {
   margin: 0;
   line-height: 1.6;
   color: #9ca3af;
+  font-size: 13px;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
   .tools-grid {
     grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .main-nav a {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
   }
 }
 
@@ -318,4 +337,14 @@ footer {
   font-size: 14px;
   margin-top: 20px;
   border-top: 1px solid #1e293b;
+}
+
+footer a {
+  color: #22c55e;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
