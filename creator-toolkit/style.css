@@ -286,6 +286,11 @@ button:hover {
   transition: all 0.3s ease;
 }
 
+.tool-link:hover .tool-card {
+  transform: translateY(-5px);
+  border-color: #22c55e;
+}
+
 .tool-card:hover {
   transform: translateY(-5px);
   border-color: #22c55e;
