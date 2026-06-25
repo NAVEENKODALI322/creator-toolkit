@@ -43,7 +43,16 @@ async function generateHashtags() {
         model: "llama-3.1-8b-instant",
         messages: [
           { role: "system", content: "You are a social media growth expert." },
-          { role: "user", content: `Generate 30 viral hashtags for "${topic}". Only hashtags, space separated, no numbering, no explanations.` }
+          { role: "user", Generate 30 highly searched hashtags for "${topic}".
+
+Requirements:
+- Relevant to YouTube, Instagram and Reels.
+- Include broad hashtags.
+- Include niche hashtags.
+- Include trending creator hashtags.
+- No explanations.
+- No numbering.
+- Output hashtags only. }
         ],
         temperature: 0.8,
         max_tokens: 500
