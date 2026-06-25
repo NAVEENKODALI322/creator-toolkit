@@ -11,7 +11,7 @@ async function generateHooks() {
   outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
   // PASTE YOUR NEW GROQ API KEY HERE
-  const apiKey = "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";
+  const apiKey = "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";
 
   try {
 
