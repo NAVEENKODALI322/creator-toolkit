@@ -272,6 +272,8 @@ button:hover {
 .tool-link {
   display: flex;
   text-decoration: none;
+  pointer-events: auto;  /* ← add cheyyi */
+  cursor: pointer;       /* ← add cheyyi */
 }
 
 .tool-card {
