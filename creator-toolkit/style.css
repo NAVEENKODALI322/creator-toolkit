@@ -314,7 +314,24 @@ button:hover {
   color: #9ca3af;
   font-size: 13px;
 }
+.seo-content{
+max-width:900px;
+margin:60px auto;
+line-height:1.8;
+padding:20px;
+}
 
+.seo-content h2{
+margin-bottom:15px;
+}
+
+.seo-content p{
+margin-bottom:20px;
+}
+
+.seo-content ul{
+padding-left:20px;
+}
 /* Mobile */
 @media (max-width: 768px) {
   .tools-grid {
