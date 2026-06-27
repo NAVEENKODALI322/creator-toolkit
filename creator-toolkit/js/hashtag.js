@@ -36,16 +36,16 @@ Generate exactly ${hashtagCount} hashtags for the topic "${topic}".
 Rules:
 
 
-- Return ONLY high-engagement viral hashtags
-- Avoid job/business/consultant type hashtags unless topic explicitly requires it
-- Focus on Instagram/TikTok trending fitness hashtags
-- Remove duplicates strictly
-- Prioritize hashtags used in viral reels
-- Keep mix:
-  40% viral trending
+- Prioritize REAL viral Instagram/TikTok hashtags
+- Include at least 20% high-reach global hashtags like #fyp #viral #reels #explorepage
+- Avoid day-based or repetitive hashtags (like monday/tuesday etc.)
+- Avoid low-engagement compound hashtags
+- Prefer hashtags used in viral reels
+- Ensure mix of:
+  40% viral reach hashtags
   30% niche fitness
-  20% discovery
-  10% general${platform} hashtags
+  20% medium competition
+  10% long-tail${platform} hashtags
 - Use only real and commonly used hashtags
 - Do not generate fake or unrelated hashtags`
           }
