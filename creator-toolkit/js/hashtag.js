@@ -29,7 +29,7 @@ async function generateHashtags() {
           },
           {
             role: "user",
-            content: `You are an expert ${platform} SEO strategist.
+          
 
 content: `Generate exactly ${hashtagCount} hashtags for the topic "${topic}".
 
@@ -53,6 +53,7 @@ Priority:
 - Prefer hashtags used in viral Instagram/TikTok reels
 - Include global reach hashtags when relevant
 - Ensure high engagement potential, not just keyword stuffing`
+
           }
         ],
         temperature: 0.5,
