@@ -52,7 +52,22 @@ body {
 .main-nav a:hover {
   color: #22c55e;
 }
+.platform-selection{
+margin:20px 0;
+}
 
+.platform-selection label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+}
+
+.platform-selection select{
+width:100%;
+padding:12px;
+font-size:16px;
+border-radius:8px;
+}
 /* CONTAINER */
 .container {
   max-width: 800px;
