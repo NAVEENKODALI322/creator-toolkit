@@ -21,7 +21,7 @@ async function generateHashtags() {
         "Authorization": "Bearer " + apiKey
       },
       body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
+        model: "llama-3.1-70b-versatile"
         messages: [
           {
             role: "system",
