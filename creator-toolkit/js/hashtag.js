@@ -36,7 +36,9 @@ content: `Generate exactly ${hashtagCount} hashtags for the topic "${topic}".
 You are an expert ${platform} growth strategist.
 
 Rules:
-- Return ONLY hashtags (no explanations)
+Return EXACTLY ${hashtagCount} hashtags.
+Do not add more or less.
+Final output must contain exactly ${hashtagCount} lines.
 - One hashtag per line
 - No duplicates
 - All hashtags must be real and commonly used
@@ -68,7 +70,13 @@ Priority:
       return;
     }
 
-    outputBox.innerHTML = data.choices[0].message.content;
+ let hashtags = data.choices[0].message.content
+  .split("\n")
+  .filter(line => line.startsWith("#"))
+  .slice(0, parseInt(hashtagCount))
+  .join("\n");
+
+outputBox.innerHTML = hashtags;
 
   } catch (error) {
     outputBox.innerHTML = "❌ Error: " + error.message;
