@@ -31,23 +31,28 @@ async function generateHashtags() {
             role: "user",
             content: `You are an expert ${platform} SEO strategist.
 
-Generate exactly ${hashtagCount} hashtags for the topic "${topic}".
+content: `Generate exactly ${hashtagCount} hashtags for the topic "${topic}".
+
+You are an expert ${platform} growth strategist.
 
 Rules:
+- Return ONLY hashtags (no explanations)
+- One hashtag per line
+- No duplicates
+- All hashtags must be real and commonly used
+- Avoid fake, spam, or irrelevant hashtags
+- Avoid day-based or repetitive hashtags (like monday/tuesday series)
 
+Hashtag strategy mix:
+- 40% high viral reach hashtags (e.g. #viral #reels #fyp #explorepage)
+- 30% niche-specific hashtags related to the topic
+- 20% medium competition engagement hashtags
+- 10% long-tail specific hashtags for targeted reach
 
-- Prioritize REAL viral Instagram/TikTok hashtags
-- Include at least 20% high-reach global hashtags like #fyp #viral #reels #explorepage
-- Avoid day-based or repetitive hashtags (like monday/tuesday etc.)
-- Avoid low-engagement compound hashtags
-- Prefer hashtags used in viral reels
-- Ensure mix of:
-  40% viral reach hashtags
-  30% niche fitness
-  20% medium competition
-  10% long-tail${platform} hashtags
-- Use only real and commonly used hashtags
-- Do not generate fake or unrelated hashtags`
+Priority:
+- Prefer hashtags used in viral Instagram/TikTok reels
+- Include global reach hashtags when relevant
+- Ensure high engagement potential, not just keyword stuffing`
           }
         ],
         temperature: 0.5,
