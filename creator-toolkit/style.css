@@ -352,7 +352,20 @@ padding-left:20px;
     font-size: 28px;
   }
 }
+.faq-section{
+max-width:900px;
+margin:60px auto;
+padding:20px;
+line-height:1.8;
+}
 
+.faq-item{
+margin-bottom:25px;
+}
+
+.faq-item h3{
+margin-bottom:8px;
+}
 /* FOOTER */
 footer {
   text-align: center;
