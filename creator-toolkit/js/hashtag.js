@@ -34,17 +34,18 @@ async function generateHashtags() {
 Generate exactly ${hashtagCount} hashtags for the topic "${topic}".
 
 Rules:
-- Return ONLY hashtags
-- One hashtag per line
-- No numbering
-- No explanations
-- No duplicates
-- Every hashtag must be relevant
-- Mix:
-  30% keyword hashtags
-  30% niche hashtags
-  20% discovery hashtags
-  20% trending ${platform} hashtags
+
+
+- Return ONLY high-engagement viral hashtags
+- Avoid job/business/consultant type hashtags unless topic explicitly requires it
+- Focus on Instagram/TikTok trending fitness hashtags
+- Remove duplicates strictly
+- Prioritize hashtags used in viral reels
+- Keep mix:
+  40% viral trending
+  30% niche fitness
+  20% discovery
+  10% general${platform} hashtags
 - Use only real and commonly used hashtags
 - Do not generate fake or unrelated hashtags`
           }
