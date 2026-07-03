@@ -1,39 +1,24 @@
-async function generateHashtags() {
-  const topic = document.getElementById("keyword").value.trim();
-  const platform = document.getElementById("platform").value;
-  const hashtagCount = document.getElementById("hashtagCount").value;
-  const outputBox = document.getElementById("result");
+export default async function handler(req, res) {
+  const { topic, platform, hashtagCount } = req.body;
 
-  if (!topic) {
-    outputBox.innerHTML = "⚠️ Please enter a topic!";
-    return;
-  }
+  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-oss-20b",
+      messages: [
+        { role: "system", content: "You are a social media growth expert." },
+        {
+          role: "user",
+          content: `Generate exactly ${hashtagCount} hashtags for the topic "${topic}". You are an expert ${platform} growth strategist. Return EXACTLY ${hashtagCount} hashtags, one per line, starting with #. No duplicates. All hashtags must be real and commonly used.`
+        }
+      ]
+    })
+  });
 
-  outputBox.innerHTML = "⏳ Generating AI Hashtags...";
-
-  try {
-    const response = await fetch("/api/hashtags", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic, platform, hashtagCount })
-    });
-
-    const data = await response.json();
-
-    let hashtags = data.hashtags
-      .split("\n")
-      .filter(line => line.startsWith("#"))
-      .slice(0, parseInt(hashtagCount))
-      .join("\n");
-
-    outputBox.innerHTML = hashtags;
-  } catch (error) {
-    outputBox.innerHTML = "❌ Error: " + error.message;
-  }
-}
-
-function copyHashtags() {
-  const text = document.getElementById("result").innerText;
-  navigator.clipboard.writeText(text);
-  alert("✅ Hashtags Copied!");
+  const data = await response.json();
+  res.json({ hashtags: data.choices[0].message.content });
 }
