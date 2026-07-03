@@ -1,21 +1,39 @@
-export default async function handler(req, res) {
-  const { topic } = req.body;
+async function generateHashtags() {
+  const topic = document.getElementById("keyword").value.trim();
+  const platform = document.getElementById("platform").value;
+  const hashtagCount = document.getElementById("hashtagCount").value;
+  const outputBox = document.getElementById("result");
 
-  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: "llama3-8b-8192",
-      messages: [{
-        role: "user",
-        content: `Generate 15 YouTube hashtags for: "${topic}". Only hashtags, one per line, starting with #.`
-      }]
-    })
-  });
+  if (!topic) {
+    outputBox.innerHTML = "⚠️ Please enter a topic!";
+    return;
+  }
 
-  const data = await response.json();
-  res.json({ hashtags: data.choices[0].message.content });
+  outputBox.innerHTML = "⏳ Generating AI Hashtags...";
+
+  try {
+    const response = await fetch("/api/hashtags", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic, platform, hashtagCount })
+    });
+
+    const data = await response.json();
+
+    let hashtags = data.hashtags
+      .split("\n")
+      .filter(line => line.startsWith("#"))
+      .slice(0, parseInt(hashtagCount))
+      .join("\n");
+
+    outputBox.innerHTML = hashtags;
+  } catch (error) {
+    outputBox.innerHTML = "❌ Error: " + error.message;
+  }
+}
+
+function copyHashtags() {
+  const text = document.getElementById("result").innerText;
+  navigator.clipboard.writeText(text);
+  alert("✅ Hashtags Copied!");
 }
