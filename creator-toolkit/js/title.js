@@ -1,75 +1,31 @@
 async function generateTitles() {
-
-const topic = document.getElementById("keyword").value.trim();
-const outputBox = document.getElementById("output");
+  const topic = document.getElementById("keyword").value.trim();
+  const outputBox = document.getElementById("output");
 
   if (!topic) {
     outputBox.innerHTML = "⚠️ Please enter a topic!";
     return;
   }
-
   outputBox.innerHTML = "⏳ Generating AI Titles...";
 
-  const apiKey = "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";
-
   try {
-
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + apiKey
-        },
-        body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are a YouTube SEO expert who creates highly clickable titles."
-            },
-            {
-              role: "user",
-              content: `
-Generate 20 highly clickable YouTube titles about "${topic}".
-
-Rules:
-- Mix Telugu and English naturally
-- Create curiosity
-- Optimize for clicks
-- One title per line
-- Do not number
-- Do not use bullet points
-`
-            }
-          ],
-          temperature: 0.9,
-          max_tokens: 700
-        })
-      }
-    );
+    const response = await fetch("/api/title", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic })
+    });
 
     const data = await response.json();
 
-    console.log(data);
-
-    if (data.error) {
-      outputBox.innerHTML =
-        "❌ API Error: " + data.error.message;
+    if (!response.ok) {
+      outputBox.innerHTML = "❌ API Error: " + (data.error?.message || data.error || "Something went wrong");
       return;
     }
 
-    outputBox.innerHTML =
-      data.choices[0].message.content.replace(/\n/g, "<br><br>");
-
+    outputBox.innerHTML = data.titles.replace(/\n/g, "<br><br>");
   } catch (error) {
-
     console.error(error);
-
-    outputBox.innerHTML =
-      "❌ Error: " + error.message;
+    outputBox.innerHTML = "❌ Error: " + error.message;
   }
 }
 
