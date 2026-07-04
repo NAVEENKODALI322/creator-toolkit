@@ -35,13 +35,18 @@ export default async function handler(req, res) {
               content: `Generate 10 highly viral YouTube hooks about "${topic}".
 
 Rules:
-- Mix Telugu and English naturally
-- Make hooks curiosity-driven
+- Each hook MUST be a natural Telugu-English code-mix sentence (Tenglish) — like how young Telugu YouTubers actually talk, mixing English words into Telugu sentences.
+- Do NOT write pure/formal Telugu only.
+- Do NOT write pure English only.
+- Make hooks curiosity-driven and punchy
 - Make hooks suitable for YouTube videos
 - One hook per line
 - Do not number them
 - Do not use bullet points
-- Keep each hook under 15 words`
+- Do not add quotation marks around hooks
+- Keep each hook under 15 words
+
+Example style: "Ee video chూస్తే mీ life మారిపోతుంది, trust me"`
             }
           ],
           temperature: 0.9,
