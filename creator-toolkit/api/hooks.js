@@ -1,36 +1,70 @@
-async function generateHooks() {
-  const topic = document.getElementById("topicInput").value.trim();
-  const outputBox = document.getElementById("outputBox");
-
-  if (!topic) {
-    outputBox.innerHTML = "⚠️ Please enter a topic!";
-    return;
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method Not Allowed. Use POST." });
   }
-  outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
   try {
-    const response = await fetch("/api/hooks", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic })
-    });
+    const { topic } = req.body || {};
+
+    if (!topic) {
+      return res.status(400).json({ error: "Missing required fields." });
+    }
+
+    if (!process.env.GROQ_API_KEY) {
+      console.error("GROQ_API_KEY is missing in environment variables.");
+      return res.status(500).json({ error: "Server misconfiguration: API key not set." });
+    }
+
+    const response = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "llama-3.1-8b-instant",
+          messages: [
+            {
+              role: "system",
+              content: "You are an expert YouTube growth strategist who creates highly clickable viral hooks."
+            },
+            {
+              role: "user",
+              content: `Generate 10 highly viral YouTube hooks about "${topic}".
+
+Rules:
+- Mix Telugu and English naturally
+- Make hooks curiosity-driven
+- Make hooks suitable for YouTube videos
+- One hook per line
+- Do not number them
+- Do not use bullet points
+- Keep each hook under 15 words`
+            }
+          ],
+          temperature: 0.9,
+          max_tokens: 500
+        })
+      }
+    );
 
     const data = await response.json();
 
+    console.log("Status:", response.status);
+    console.log("Groq Response:", data);
+
     if (!response.ok) {
-      outputBox.innerHTML = "❌ API Error: " + (data.error?.message || data.error || "Something went wrong");
-      return;
+      return res.status(response.status).json(data);
     }
 
-    outputBox.innerHTML = data.hooks.replace(/\n/g, "<br><br>");
-  } catch (error) {
-    console.error(error);
-    outputBox.innerHTML = "❌ Error: " + error.message;
-  }
-}
+    return res.status(200).json({
+      hooks: data.choices[0].message.content
+    });
 
-function copyHooks() {
-  const text = document.getElementById("outputBox").innerText;
-  navigator.clipboard.writeText(text);
-  alert("✅ Hooks copied!");
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: err.message });
+  }
 }
