@@ -49,50 +49,30 @@ async function generateDescription() {
   const keywords = document.getElementById("keywords").value.trim();
   const language = document.getElementById("language").value;
   const outputBox = document.getElementById("output");
+
   if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
   outputBox.innerHTML = "⏳ Generating...";
-  const langInstruction = {
-    telugu: "Write ONLY in Telugu language. No English at all.",
-    english: "Write ONLY in English language. No Telugu at all.",
-    mix: "Write in Telugu-English mix. Telugu as main, English words naturally mixed."
-  };
-  const apiKey = "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";
+
   try {
-    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    const response = await fetch("/api/description", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + apiKey
-      },
-      body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        messages: [
-          { role: "system", content: "You are a YouTube SEO expert." },
-          { role: "user", content: `Write a YouTube description for: "${topic}"
-Channel: ${channel}
-Keywords: ${keywords}
-Language: ${langInstruction[language]}
-STRICT RULES:
-- NO markdown like ** or ##
-- NO labels like "Description:" or "Note:"
-- NO numbered lists
-- Start directly with content
-- 150-200 words
-- Natural conversational tone
-- End with like, share, subscribe line
-- 10 hashtags at the end, space separated` }
-        ],
-        temperature: 0.8,
-        max_tokens: 800
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic, channel, keywords, language })
     });
+
     const data = await response.json();
-    if (data.error) { outputBox.innerHTML = "❌ " + data.error.message; return; }
-    outputBox.innerHTML = data.choices[0].message.content;
+
+    if (!response.ok) {
+      outputBox.innerHTML = "❌ " + (data.error?.message || data.error || "Something went wrong");
+      return;
+    }
+
+    outputBox.innerHTML = data.description;
   } catch (error) {
     outputBox.innerHTML = "❌ Error: " + error.message;
   }
 }
+
 function copyDescription() {
   const text = document.getElementById("output").innerText;
   navigator.clipboard.writeText(text);
