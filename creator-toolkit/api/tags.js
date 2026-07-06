@@ -42,6 +42,10 @@ STRICT RULES:
 - Do NOT build tags by combining the same base phrase with different languages (e.g. "in Hindi", "in Telugu", "in Tamil") — pick at most ONE language variant only if clearly relevant.
 - Do NOT build tags by combining the same base phrase with different festivals/occasions (e.g. "for Diwali", "for Holi", "for Navratri") — pick at most ONE if relevant, otherwise skip.
 - Do NOT repeat the same root phrase with minor word swaps (e.g. "X recipe with milk powder", "X recipe with paneer", "X recipe with curd" all together counts as repetition — pick at most ONE such variant).
+- Do NOT stack quality/rank adjectives on the same root noun (e.g. "best X", "top X", "honest X", "unbiased X", "X of the year", "X of the month" are all the SAME tag with a different label — pick at most ONE adjective variant total across the whole list).
+- Do NOT repeat the same qualifier noun with different prefixes (e.g. "X websites", "best X websites", "X websites India" — pick at most ONE).
+- Do NOT stack recency variants (e.g. "2024", "latest", "new", "of the year", "of the month" attached to the same root — pick at most ONE recency angle total).
+- If the topic itself is broad/generic (like "product review"), prioritize DIFFERENT sub-niches or formats (e.g. tech gadgets, beauty products, unboxing, comparison video, channel growth) over rewording the same 2-word phrase.
 - Every tag must represent a genuinely different search angle, not a template filled with a different word.
 - Mix short broad tags (2-3 words) with long-tail specific tags (4-6 words).
 - Base tags on what people actually type into YouTube search, not keyword permutations.
@@ -76,7 +80,10 @@ STRICT RULES:
       const root = tag
         .toLowerCase()
         .replace(/\b(in|for|with|without)\b.*$/i, "") // cut off after connector words
+        .replace(/\b(best|top|honest|unbiased|latest|new|leading)\b/gi, "") // strip rank/recency adjectives
+        .replace(/\b(2024|2025|2026|of the year|of the month)\b/gi, "") // strip year/recency tags
         .replace(/[^a-z0-9\s]/g, "")
+        .replace(/\s+/g, " ")
         .trim();
 
       if (!root) continue;
