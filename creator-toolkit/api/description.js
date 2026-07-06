@@ -24,9 +24,11 @@ export default async function handler(req, res) {
     }
 
     const langInstruction = {
-      telugu: "Write ONLY in Telugu language. No English at all.",
+      telugu: "Write ONLY in Telugu language (Telugu script). No English at all.",
       english: "Write ONLY in English language. No Telugu at all.",
-      mix: "Write in Telugu-English mix. Telugu as main, English words naturally mixed."
+      mix: `Write in natural Telugu-English mix (Tenglish style), the way Telugu YouTubers actually talk.
+Example of GOOD mix style: "Ee video lo మీకు cricket world cup గురించి full analysis చూపిస్తాను. India team performance ఈసారి నిజంగా shocking గా undi."
+Do NOT repeat the same sentence pattern (like "X ki chala Y ga") again and again - vary sentence structure naturally like real conversation.`
     };
 
     const response = await fetch(
@@ -40,7 +42,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           model: "llama-3.1-8b-instant",
           messages: [
-            { role: "system", content: "You are a YouTube SEO expert." },
+            { role: "system", content: "You are a YouTube SEO expert and a native Telugu speaker who writes natural, engaging video descriptions. You never repeat the same grammar pattern back to back." },
             {
               role: "user",
               content: `Write a YouTube description for: "${topic}"
@@ -48,18 +50,20 @@ Channel: ${channel || ""}
 Keywords: ${keywords || ""}
 Language: ${langInstruction[language] || langInstruction.english}
 STRICT RULES:
+- If the topic has any spelling mistakes, silently correct them in your output (e.g. write "Cricket" correctly even if input has a typo)
 - NO markdown like ** or ##
 - NO labels like "Description:" or "Note:"
 - NO numbered lists
 - Start directly with content
 - 150-200 words
-- Natural conversational tone
+- Natural conversational tone, vary sentence structure - do not reuse the same phrase pattern repeatedly
 - End with like, share, subscribe line
-- 10 hashtags at the end, space separated`
+- 10 hashtags at the end, space separated, spelled correctly`
             }
           ],
           temperature: 0.8,
-          max_tokens: 1500
+          max_tokens: 1500,
+          frequency_penalty: 0.6
         })
       }
     );
