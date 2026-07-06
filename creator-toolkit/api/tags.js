@@ -45,6 +45,8 @@ STRICT RULES:
 - Do NOT stack quality/rank adjectives on the same root noun (e.g. "best X", "top X", "honest X", "unbiased X", "X of the year", "X of the month" are all the SAME tag with a different label — pick at most ONE adjective variant total across the whole list).
 - Do NOT repeat the same qualifier noun with different prefixes (e.g. "X websites", "best X websites", "X websites India" — pick at most ONE).
 - Do NOT stack recency variants (e.g. "2024", "latest", "new", "of the year", "of the month" attached to the same root — pick at most ONE recency angle total).
+- Do NOT repeat the same word twice within a single tag (e.g. "product review review video" is wrong — check each tag before including it).
+- Do NOT include two tags that use the same set of words in a different order (e.g. "product review comparison" and "product review product comparison" are the same tag reordered — pick only ONE).
 - If the topic itself is broad/generic (like "product review"), prioritize DIFFERENT sub-niches or formats (e.g. tech gadgets, beauty products, unboxing, comparison video, channel growth) over rewording the same 2-word phrase.
 - Every tag must represent a genuinely different search angle, not a template filled with a different word.
 - Mix short broad tags (2-3 words) with long-tail specific tags (4-6 words).
@@ -73,12 +75,24 @@ STRICT RULES:
       .filter(Boolean);
 
     const seenRoots = new Set();
+    const seenWordSets = new Set();
     const finalTags = [];
 
     for (const tag of tagList) {
+      const lower = tag.toLowerCase().trim();
+
+      // Skip tags that repeat the same word twice (e.g. "product review review video")
+      const words = lower.replace(/[^a-z0-9\s]/g, "").split(/\s+/).filter(Boolean);
+      const hasRepeatedWord = new Set(words).size !== words.length;
+      if (hasRepeatedWord) continue;
+
+      // Skip tags that are just a reordered set of words already used (e.g.
+      // "product review comparison" vs "product review product comparison")
+      const wordSetKey = [...new Set(words)].sort().join(" ");
+      if (seenWordSets.has(wordSetKey)) continue;
+
       // Normalize: lowercase, strip common variant words to detect near-duplicates
-      const root = tag
-        .toLowerCase()
+      const root = lower
         .replace(/\b(in|for|with|without)\b.*$/i, "") // cut off after connector words
         .replace(/\b(best|top|honest|unbiased|latest|new|leading)\b/gi, "") // strip rank/recency adjectives
         .replace(/\b(2024|2025|2026|of the year|of the month)\b/gi, "") // strip year/recency tags
@@ -90,6 +104,7 @@ STRICT RULES:
       if (seenRoots.has(root)) continue; // skip near-duplicate root
 
       seenRoots.add(root);
+      seenWordSets.add(wordSetKey);
       finalTags.push(tag);
     }
 
