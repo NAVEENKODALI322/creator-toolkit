@@ -59,7 +59,7 @@ STRICT RULES:
             }
           ],
           temperature: 0.8,
-          max_tokens: 800
+          max_tokens: 1500
         })
       }
     );
@@ -67,6 +67,7 @@ STRICT RULES:
     const data = await response.json();
 
     console.log("Status:", response.status);
+    console.log("Finish reason:", data.choices?.[0]?.finish_reason);
     console.log("Groq Response:", data);
 
     if (!response.ok) {
