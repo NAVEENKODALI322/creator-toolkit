@@ -12,7 +12,7 @@ async function generateHashtags() {
   outputBox.innerHTML = "⏳ Generating AI Hashtags...";
 
   try {
-    const response = await fetch("https://creator-toolkit-one.vercel.app/api/hashtags", {
+    const response = await fetch("https://www.creatortoolkits.in/api/hashtags", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic, platform, hashtagCount })
