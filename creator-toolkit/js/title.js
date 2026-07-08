@@ -9,7 +9,7 @@ async function generateTitles() {
   outputBox.innerHTML = "⏳ Generating AI Titles...";
 
   try {
-    const response = await fetch("/api/title", {
+    const response = await fetch("https://creator-toolkit-one.vercel.app/api/title", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic })
