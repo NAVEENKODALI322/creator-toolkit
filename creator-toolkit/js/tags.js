@@ -9,7 +9,7 @@ async function generateTags() {
   outputBox.innerHTML = "⏳ Generating AI Tags...";
 
   try {
-    const response = await fetch("/api/tags", {
+    const response = await fetch("https://creator-toolkit-one.vercel.app/api/tags", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic })
