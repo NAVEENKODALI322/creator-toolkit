@@ -9,7 +9,7 @@ async function generateHooks() {
   outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
   try {
-    const response = await fetch("https://creator-toolkit-one.vercel.app/api/hooks", {
+    const response = await fetch("https://www.creatortoolkits.in/api/hooks", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic })
