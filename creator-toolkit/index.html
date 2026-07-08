@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" class="v2-home">
     <head>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6321499897825735"
      crossorigin="anonymous"></script>
@@ -32,7 +32,7 @@
 
 <link rel="icon" type="image/png" href="images/favicon.png">
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="home-v2.css">
         <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -107,178 +107,253 @@
   }
 }
 </script>
-        
+
 </head>
-<body>
+<body class="v2-home">
 
-<header class="header">
+<div class="app-shell">
 
-<div class="logo">
-<a href="index.html">
-    🚀 Creator Toolkit
-  </a>
-</div>
-
-<nav class="main-nav">
-<a href="index.html">Home</a>
-<a href="hashtag-generator.html">Hashtag Generator</a>
-<a href="title-generator.html">Title Generator</a>
-<a href="description-generator.html">Description Generator</a>
-<a href="tags-generator.html">Tags Generator</a>
-<a href="thumbnail-downloader.html">Thumbnail Downloader</a>
-</nav>
-
-</header>
-
-<div class="container">
-
-<div class="hero">
-
-<h1>🚀 Creator Toolkit</h1>
-
-<p>
-Free AI tools for YouTubers and Content Creators. <br>Generate Hooks, Titles, Descriptions, Tags and Hashtags instantly
-</p>
-
-<div class="hero-buttons">
-<a href="hashtag-generator.html" class="btn">
-Start Creating
-</a>
-</div>
-
-</div>
-<div class="stats-section">
-
-<div class="stat-card">
-<h2>6+</h2>
-<p>Free Tools</p>
-</div>
-
-<div class="stat-card">
-<h2>100%</h2>
-<p>Free To Use</p>
-</div>
-
-<div class="stat-card">
-<h2>24/7</h2>
-<p>Available</p>
-</div>
-
-</div>
-<div class="card">
-
-<h2 style="text-align:center;margin-bottom:20px;">
-Creator Tools
-</h2>
-<section class="seo-content">
-
-<h2>Free AI Tools for YouTube Creators</h2>
-
-<p>
-Creator Toolkit is a free collection of AI-powered tools built for YouTubers,
-content creators and beginners who want to grow their channels faster.
-Generate click-worthy YouTube titles, SEO descriptions, relevant tags,
-viral hooks and hashtags in seconds.
-</p>
-
-<p>
-Whether you are starting your first YouTube channel or already creating
-content consistently, these tools help you save time and improve your
-video SEO. Everything is completely free to use with no sign-up required.
-</p>
-
-<h2>Available Tools</h2>
-
-<ul>
-<li>AI YouTube Title Generator</li>
-<li>AI Description Generator</li>
-<li>AI Tags Generator</li>
-<li>AI Hashtag Generator</li>
-<li>Viral Hook Generator</li>
-<li>YouTube Thumbnail Downloader</li>
-</ul>
-
-</section>
-<div class="tools-grid">
-  <a href="hashtag-generator.html" class="tool-link">
-    <div class="tool-card">
-      <h3>🏷️ Hashtag Generator</h3>
-      <p>Generate SEO-friendly hashtags.</p>
+  <!-- Section 1: Top App Bar -->
+  <header class="topbar">
+    <a href="index.html" class="topbar-logo">
+      <span class="logo-mark">🚀</span> Creator Toolkit
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="notifBtn" aria-label="Tips & notifications">
+        🔔<span class="dot"></span>
+      </button>
+      <button class="avatar-btn" id="avatarBtn" aria-label="Profile and settings">CT</button>
     </div>
-  </a>
-  <a href="title-generator.html" class="tool-link">
-    <div class="tool-card">
-      <h3>📝 Title Generator</h3>
-      <p>Create click-worthy video titles.</p>
-    </div>
-  </a>
-  <a href="description-generator.html" class="tool-link">
-    <div class="tool-card">
-      <h3>📄 Description Generator</h3>
-      <p>Generate SEO descriptions.</p>
-    </div>
-  </a>
-  <a href="tags-generator.html" class="tool-link">
-    <div class="tool-card">
-      <h3>🏷️ Tags Generator</h3>
-      <p>Generate relevant YouTube tags.</p>
-    </div>
-  </a>
-  <a href="thumbnail-downloader.html" class="tool-link">
-    <div class="tool-card">
-      <h3>🖼️ Thumbnail Downloader</h3>
-      <p>Download YouTube thumbnails.</p>
-    </div>
-  </a>
-  <a href="viral-hook-generator.html" class="tool-link">
-    <div class="tool-card">
-      <h3>🔥 Viral Hook Generator</h3>
-      <p>Generate attention-grabbing hooks.</p>
-    </div>
-  </a>
-</div>
-</a>
+  </header>
+
+  <main class="home-scroll">
+
+    <!-- Section 2: Greeting -->
+    <section class="greeting">
+      <h1 id="greetingText">Good Morning 👋</h1>
+      <p>What do you want to create today?</p>
+    </section>
+
+    <!-- Section 3: Search -->
+    <section class="search-wrap">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="toolSearch" placeholder="Search tools..." aria-label="Search tools">
+      </div>
+    </section>
+
+    <!-- Section 4: Quick Actions -->
+    <section class="quick-actions">
+      <h2 class="section-title">Quick Actions</h2>
+      <div class="quick-scroll">
+        <a href="viral-hook-generator.html" class="quick-card" data-g="1" data-tool-id="hook" data-tool-title="Viral Hook Generator">
+          <span class="quick-icon">🔥</span>
+          <span class="quick-title">Viral Hook</span>
+          <span class="quick-sub">Grab attention fast</span>
+        </a>
+        <a href="title-generator.html" class="quick-card" data-g="2" data-tool-id="title" data-tool-title="AI Title Generator">
+          <span class="quick-icon">🎬</span>
+          <span class="quick-title">Title</span>
+          <span class="quick-sub">Click-worthy titles</span>
+        </a>
+        <a href="description-generator.html" class="quick-card" data-g="3" data-tool-id="description" data-tool-title="Description Generator">
+          <span class="quick-icon">📝</span>
+          <span class="quick-title">Description</span>
+          <span class="quick-sub">SEO descriptions</span>
+        </a>
+        <a href="tags-generator.html" class="quick-card" data-g="4" data-tool-id="tags" data-tool-title="Tags Generator">
+          <span class="quick-icon">🏷️</span>
+          <span class="quick-title">Tags</span>
+          <span class="quick-sub">Relevant video tags</span>
+        </a>
+        <a href="hashtag-generator.html" class="quick-card" data-g="5" data-tool-id="hashtags" data-tool-title="Hashtag Generator">
+          <span class="quick-icon">#️⃣</span>
+          <span class="quick-title">Hashtags</span>
+          <span class="quick-sub">Trend-ready tags</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 5: Continue Working -->
+    <section class="continue-section" id="continueSection" hidden>
+      <a href="title-generator.html" class="continue-card" id="continueCard">
+        <div class="continue-text">
+          <span class="continue-label">Continue Working</span>
+          <h3 id="continueTool">AI Title Generator</h3>
+          <span class="continue-cta">Resume →</span>
+        </div>
+        <div class="continue-progress" style="--pct:65%"></div>
+      </a>
+    </section>
+
+    <!-- Section 6: Popular Tools -->
+    <section class="popular-tools">
+      <h2 class="section-title">Popular Tools</h2>
+      <div class="tools-grid-v2" id="toolsGrid">
+
+        <a href="viral-hook-generator.html" class="tool-card-v2" data-g="2" data-tool-id="hook" data-tool-title="Viral Hook Generator" data-name="viral hook generator hook ai writing">
+          <button class="fav-btn" data-tool-id="hook" aria-label="Save to favorites">♥</button>
+          <span class="tool-icon-v2">🔥</span>
+          <h3>Viral Hook Generator</h3>
+          <p>Generate attention-grabbing hooks.</p>
+        </a>
+
+        <a href="title-generator.html" class="tool-card-v2" data-g="1" data-tool-id="title" data-tool-title="AI Title Generator" data-name="title generator ai writing seo">
+          <button class="fav-btn" data-tool-id="title" aria-label="Save to favorites">♥</button>
+          <span class="tool-icon-v2">📝</span>
+          <h3>AI Title Generator</h3>
+          <p>Create click-worthy video titles.</p>
+        </a>
+
+        <a href="description-generator.html" class="tool-card-v2" data-g="3" data-tool-id="description" data-tool-title="Description Generator" data-name="description generator ai writing seo">
+          <button class="fav-btn" data-tool-id="description" aria-label="Save to favorites">♥</button>
+          <span class="tool-icon-v2">📄</span>
+          <h3>Description Generator</h3>
+          <p>Generate SEO descriptions.</p>
+        </a>
+
+        <a href="tags-generator.html" class="tool-card-v2" data-g="4" data-tool-id="tags" data-tool-title="Tags Generator" data-name="tags generator seo">
+          <button class="fav-btn" data-tool-id="tags" aria-label="Save to favorites">♥</button>
+          <span class="tool-icon-v2">🏷️</span>
+          <h3>Tags Generator</h3>
+          <p>Generate relevant YouTube tags.</p>
+        </a>
+
+        <a href="hashtag-generator.html" class="tool-card-v2" data-g="6" data-tool-id="hashtags" data-tool-title="Hashtag Generator" data-name="hashtag generator seo">
+          <button class="fav-btn" data-tool-id="hashtags" aria-label="Save to favorites">♥</button>
+          <span class="tool-icon-v2">#️⃣</span>
+          <h3>Hashtag Generator</h3>
+          <p>Generate SEO-friendly hashtags.</p>
+        </a>
+
+        <a href="thumbnail-downloader.html" class="tool-card-v2" data-g="5" data-tool-id="thumbnail" data-tool-title="Thumbnail Downloader" data-name="thumbnail downloader utilities">
+          <button class="fav-btn" data-tool-id="thumbnail" aria-label="Save to favorites">♥</button>
+          <span class="tool-icon-v2">🖼️</span>
+          <h3>Thumbnail Downloader</h3>
+          <p>Download YouTube thumbnails.</p>
+        </a>
+
+      </div>
+      <div class="empty-state" id="toolsEmpty" style="display:none;">
+        <span class="empty-emoji">🔎</span>
+        <span class="empty-text">No tools match your search.</span>
+      </div>
+    </section>
+
+    <!-- Section 7: Creator Tip -->
+    <section class="tip-card">
+      <span class="tip-icon">💡</span>
+      <div>
+        <h3>Creator Tip</h3>
+        <p id="tipText">Titles under 60 characters usually perform better.</p>
+      </div>
+    </section>
+
+    <!-- Section 8: Categories -->
+    <section class="categories">
+      <h2 class="section-title">Categories</h2>
+      <div class="category-grid">
+        <button class="category-card" data-filter="ai writing">
+          <span class="category-emoji">🤖</span>
+          <span>AI Writing</span>
+        </button>
+        <button class="category-card" data-filter="seo">
+          <span class="category-emoji">📈</span>
+          <span>SEO</span>
+        </button>
+        <button class="category-card" data-filter="thumbnail">
+          <span class="category-emoji">🎨</span>
+          <span>Thumbnail</span>
+        </button>
+        <button class="category-card" data-filter="utilities">
+          <span class="category-emoji">🧰</span>
+          <span>Utilities</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SEO content, preserved for search ranking -->
+    <section class="seo-block">
+      <h2>Free AI Tools for YouTube Creators</h2>
+      <p>
+        Creator Toolkit is a free collection of AI-powered tools built for YouTubers,
+        content creators and beginners who want to grow their channels faster.
+        Generate click-worthy YouTube titles, SEO descriptions, relevant tags,
+        viral hooks and hashtags in seconds.
+      </p>
+      <p>
+        Whether you are starting your first YouTube channel or already creating
+        content consistently, these tools help you save time and improve your
+        video SEO. Everything is completely free to use with no sign-up required.
+      </p>
+      <h2>Available Tools</h2>
+      <p>AI YouTube Title Generator · AI Description Generator · AI Tags Generator · AI Hashtag Generator · Viral Hook Generator · YouTube Thumbnail Downloader</p>
+    </section>
+
+    <!-- FAQ, preserved to match FAQPage schema -->
+    <section class="faq-block">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <div class="faq-item-v2">
+        <button class="faq-q"><span>Is Creator Toolkit free?</span><span class="chev">⌄</span></button>
+        <div class="faq-a"><p>Yes. All Creator Toolkit tools are completely free to use.</p></div>
+      </div>
+
+      <div class="faq-item-v2">
+        <button class="faq-q"><span>Can I generate YouTube titles with AI?</span><span class="chev">⌄</span></button>
+        <div class="faq-a"><p>Yes. Our AI Title Generator creates engaging and SEO-friendly YouTube titles.</p></div>
+      </div>
+
+      <div class="faq-item-v2">
+        <button class="faq-q"><span>Does Creator Toolkit help with YouTube SEO?</span><span class="chev">⌄</span></button>
+        <div class="faq-a"><p>Yes. You can generate titles, descriptions, tags and hashtags to improve your YouTube SEO.</p></div>
+      </div>
+
+      <div class="faq-item-v2">
+        <button class="faq-q"><span>Do I need an account?</span><span class="chev">⌄</span></button>
+        <div class="faq-a"><p>No. You can use all tools without creating an account.</p></div>
+      </div>
+    </section>
+
+    <footer class="home-footer">
+      <p>© 2026 Creator Toolkit</p>
+      <p>
+        <a href="about.html">About</a> ·
+        <a href="contact.html">Contact</a> ·
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-tab="home">
+      <span class="nav-icon">🏠</span><span>Home</span>
+    </button>
+    <button class="nav-item" data-tab="tools">
+      <span class="nav-icon">🧰</span><span>AI Tools</span>
+    </button>
+    <button class="nav-item" data-tab="favorites">
+      <span class="nav-icon">❤️</span><span>Favorites</span>
+    </button>
+    <button class="nav-item" data-tab="settings">
+      <span class="nav-icon">⚙️</span><span>Settings</span>
+    </button>
+  </nav>
 
 </div>
 
+<!-- Settings / profile bottom sheet -->
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="bottom-sheet" id="settingsSheet">
+  <div class="sheet-handle"></div>
+  <h3 class="sheet-title">Settings</h3>
+  <a class="sheet-link" href="about.html"><span>About Creator Toolkit</span><span class="arrow">›</span></a>
+  <a class="sheet-link" href="contact.html"><span>Contact & Feedback</span><span class="arrow">›</span></a>
+  <a class="sheet-link" href="privacy.html"><span>Privacy Policy</span><span class="arrow">›</span></a>
 </div>
 
-</div>
-<section class="faq-section">
-
-<h2>Frequently Asked Questions</h2>
-
-<div class="faq-item">
-<h3>Is Creator Toolkit free?</h3>
-<p>Yes. All Creator Toolkit tools are completely free to use.</p>
-</div>
-
-<div class="faq-item">
-<h3>Can I generate YouTube titles with AI?</h3>
-<p>Yes. Our AI Title Generator creates engaging and SEO-friendly YouTube titles.</p>
-</div>
-
-<div class="faq-item">
-<h3>Does Creator Toolkit help with YouTube SEO?</h3>
-<p>Yes. You can generate titles, descriptions, tags and hashtags to improve your YouTube SEO.</p>
-</div>
-
-<div class="faq-item">
-<h3>Do I need an account?</h3>
-<p>No. You can use all tools without creating an account.</p>
-</div>
-
-</section>
-<footer style="text-align:center;padding:20px;">
-
-<p>© 2026 Creator Toolkit</p>
-
-<p>
-<a href="about.html">About</a> |
-<a href="contact.html">Contact</a> |
-<a href="privacy.html">Privacy Policy</a>
-</p>
-
-</footer>
+<script src="home-v2.js"></script>
 </body>
 </html>
