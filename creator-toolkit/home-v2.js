@@ -56,31 +56,13 @@ const creatorQuotes = [
   });
 
  function setGreeting() {
-    var el = document.getElementById("greetingText");
+    const el = document.getElementById("greetingText");
     if (!el) return;
 
-    var hour = new Date().getHours();
-    var greeting = "";
-
-    if (hour >= 5 && hour < 12) {
-        greeting = "🌅 Good Morning!";
-    } else if (hour >= 12 && hour < 17) {
-        greeting = "☀️ Good Afternoon!";
-    } else if (hour >= 17 && hour < 21) {
-        greeting = "🌇 Good Evening!";
-    } else {
-        greeting = "🌙 Still Creating?";
-    }
-
-    var quote =
+    const randomQuote =
         creatorQuotes[Math.floor(Math.random() * creatorQuotes.length)];
 
-    el.innerHTML = `
-        ${greeting}<br>
-        <span style="font-size:18px;font-weight:500;opacity:.9">
-            ${quote}
-        </span>
-    `;
+    el.textContent = randomQuote;
 }
 
   function setRandomTip() {
