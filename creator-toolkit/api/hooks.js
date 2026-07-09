@@ -18,6 +18,10 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.GROQ_API_KEY;
 
+  if (!apiKey) {
+    return res.status(500).json({ error: { message: "API Key missing in Vercel. Please check Environment Variables." } });
+  }
+
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
@@ -57,20 +61,12 @@ STRICT Rules:
 
     const data = await response.json();
     
-    // 🔥 ఇక్కడే మ్యాజిక్ చేస్తున్నాం:
-    // ఫ్రంటెండ్‌లో ఏ ఫైల్ ఉన్నా సరే, దానికి దొరకాల్సిన 'choices' స్ట్రక్చర్‌ని ఇక్కడే క్రియేట్ చేసి పంపుతున్నాం.
-    // పైగా టెక్స్ట్‌ని ముందే క్లీన్ చేసి ఇక్కడే <br> యాడ్ చేసేస్తున్నాం.
-    if (data.choices && data.choices[0] && data.choices[0].message) {
-      let rawContent = data.choices[0].message.content.trim();
-      let cleanedContent = rawContent.split('\n')
-                                     .map(line => line.trim())
-                                     .filter(line => line.length > 0)
-                                     .join('<br><br>');
-      
-      // పాత ఫ్రంటెండ్ కోడ్ వెతికే లాగనే స్ట్రక్చర్ ని మోడిఫై చేశాను
-      data.choices[0].message.content = cleanedContent;
+    // ఎరర్ వస్తే దాన్ని ఫ్రంటెండ్ కి పంపడం
+    if (response.status !== 200 || data.error) {
+      return res.status(response.status).json(data);
     }
 
+    // డేటాని ఎలాంటి మార్పులు లేకుండా నేరుగా ఫ్రంటెండ్ కి పంపేస్తున్నాం
     return res.status(200).json(data);
 
   } catch (error) {
