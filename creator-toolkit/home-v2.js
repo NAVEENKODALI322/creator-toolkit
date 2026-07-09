@@ -4,6 +4,29 @@
    home dashboard's presentation layer (search filter, favorites,
    "continue working" memory, tips, and the bottom sheet).
    ========================================================================== */
+
+const creatorQuotes = [
+"🚀 Let's build something legendary today!",
+"💥 Ready to create your next viral masterpiece?",
+"🎯 Every upload brings you closer to success.",
+"🔥 Great creators don't wait. They create.",
+"✨ Today is another chance to grow your audience.",
+"📈 Make today count.",
+"🎬 One video can change everything.",
+"⚡ Consistency beats talent every time.",
+"🌟 Let's make the algorithm notice you.",
+"💡 Create. Publish. Repeat.",
+"🚀 Let's blast today!",
+"🔥 Time to dominate YouTube!",
+"💪 Ready to break your own records?",
+"🎯 Let's make something impossible today.",
+"🌍 Your next viral video starts now.",
+"📹 Don't scroll. Create.",
+"💥 Hit publish and shock the algorithm.",
+"🍳 Let's cook some viral content!",
+"👀 The internet is waiting for your idea.",
+"🚀 Today's the day your channel grows."
+];
 (function () {
   "use strict";
 
@@ -262,3 +285,13 @@
     if (grid) grid.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 })();
+const greeting = document.getElementById("greetingText");
+
+if (greeting) {
+
+    const randomQuote =
+        creatorQuotes[Math.floor(Math.random() * creatorQuotes.length)];
+
+    greeting.textContent = randomQuote;
+
+}
