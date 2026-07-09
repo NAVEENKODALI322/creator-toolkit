@@ -5,7 +5,7 @@
    "continue working" memory, tips, and the bottom sheet).
    ========================================================================== */
 
-const motivationalQuotes = [
+const creatorQuotes = [
 "🚀 Let's build something legendary today!",
 "💥 Ready to create your next viral masterpiece?",
 "🎯 Every upload brings you closer to success.",
