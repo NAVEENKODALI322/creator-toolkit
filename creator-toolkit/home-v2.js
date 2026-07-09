@@ -55,16 +55,33 @@ const creatorQuotes = [
     initBottomNav();
   });
 
-  function setGreeting() {
+ function setGreeting() {
     var el = document.getElementById("greetingText");
     if (!el) return;
-    var h = new Date().getHours();
-    var text = "Good Morning";
-    if (h >= 12 && h < 17) text = "Good Afternoon";
-    else if (h >= 17 && h < 21) text = "Good Evening";
-    else if (h >= 21 || h < 5) text = "Still Creating";
-    el.textContent = text + " \uD83D\uDC4B";
-  }
+
+    var hour = new Date().getHours();
+    var greeting = "";
+
+    if (hour >= 5 && hour < 12) {
+        greeting = "🌅 Good Morning!";
+    } else if (hour >= 12 && hour < 17) {
+        greeting = "☀️ Good Afternoon!";
+    } else if (hour >= 17 && hour < 21) {
+        greeting = "🌇 Good Evening!";
+    } else {
+        greeting = "🌙 Still Creating?";
+    }
+
+    var quote =
+        creatorQuotes[Math.floor(Math.random() * creatorQuotes.length)];
+
+    el.innerHTML = `
+        ${greeting}<br>
+        <span style="font-size:18px;font-weight:500;opacity:.9">
+            ${quote}
+        </span>
+    `;
+}
 
   function setRandomTip() {
     var el = document.getElementById("tipText");
