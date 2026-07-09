@@ -1,7 +1,5 @@
-// api/hooks.js లోపల ఉండాల్సిన కరెక్ట్ కోడ్ సెటప్
-
 export default async function handler(req, res) {
-  // CORS Headers (మీ ఆండ్రాయిడ్ యాప్ మరియు వెబ్‌సైట్ రెండు రన్ అవ్వడానికి)
+  // CORS Headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
@@ -18,7 +16,6 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: { message: "Topic is required" } });
   }
 
-  // మీ Groq API Key ఇక్కడే సురక్షితంగా ఉంటుంది
   const apiKey = "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";
 
   try {
@@ -53,12 +50,27 @@ STRICT Rules:
 `
           }
         ],
-        temperature: 0.7, // రిజల్ట్స్ క్వాలిటీ పెంచడానికి తగ్గించాం
+        temperature: 0.7,
         max_tokens: 500
       })
     });
 
     const data = await response.json();
+    
+    // 🔥 ఇక్కడే మ్యాజిక్ చేస్తున్నాం:
+    // ఫ్రంటెండ్‌లో ఏ ఫైల్ ఉన్నా సరే, దానికి దొరకాల్సిన 'choices' స్ట్రక్చర్‌ని ఇక్కడే క్రియేట్ చేసి పంపుతున్నాం.
+    // పైగా టెక్స్ట్‌ని ముందే క్లీన్ చేసి ఇక్కడే <br> యాడ్ చేసేస్తున్నాం.
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      let rawContent = data.choices[0].message.content.trim();
+      let cleanedContent = rawContent.split('\n')
+                                     .map(line => line.trim())
+                                     .filter(line => line.length > 0)
+                                     .join('<br><br>');
+      
+      // పాత ఫ్రంటెండ్ కోడ్ వెతికే లాగనే స్ట్రక్చర్ ని మోడిఫై చేశాను
+      data.choices[0].message.content = cleanedContent;
+    }
+
     return res.status(200).json(data);
 
   } catch (error) {
