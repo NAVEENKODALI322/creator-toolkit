@@ -210,3 +210,18 @@
 /* ---------------- Small helpers ---------------- */
 .mt-6{ margin-top: var(--space-6); }
 .center-text{ text-align:center; }
+
+/* ---------------- Desktop layout ----------------
+   On wide screens the app-shell itself grows (see home-v2.css),
+   but forms and reading content stay at a comfortable width
+   instead of stretching edge-to-edge. */
+@media (min-width: 900px){
+  .page-header{ max-width: 640px; margin-left:auto; margin-right:auto; }
+  .tool-card-form{ max-width: 640px; margin-left:auto; margin-right:auto; }
+  .content-card{ max-width: 640px; margin-left:auto; margin-right:auto; }
+  .seo-block{ max-width: 640px; margin-left:auto; margin-right:auto; }
+  .cta-link-v2{ max-width: 640px; margin-left:auto; margin-right:auto; }
+
+  .related-tools{ max-width: 900px; margin-left:auto; margin-right:auto; }
+  .related-tools .tools-grid-v2{ grid-template-columns: repeat(4, 1fr); }
+}
