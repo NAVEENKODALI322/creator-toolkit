@@ -16,7 +16,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: { message: "Topic is required" } });
   }
 
-  const apiKey = "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";
+  const apiKey = process.env.GROQ_API_KEY;
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
