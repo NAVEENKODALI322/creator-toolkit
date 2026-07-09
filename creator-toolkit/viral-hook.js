@@ -34,20 +34,22 @@ async function generateHooks() {
             {
               role: "user",
               content: `
-Generate 10 highly viral YouTube hooks about "${topic}".
+Generate 7 highly viral YouTube hooks about "${topic}".
 
-Rules:
-- Mix Telugu and English naturally
-- Make hooks curiosity-driven
-- Make hooks suitable for YouTube videos
-- One hook per line
-- Do not number them
-- Do not use bullet points
-- Keep each hook under 15 words
+STRICT Rules:
+- Output MUST be in clear, high-quality professional English.
+- Do NOT mix broken languages, hybrid slang, or mixed fonts.
+- Do NOT use generic text like "trust me" or "this video will change your life".
+- Make hooks highly curiosity-driven, capturing attention in the first 3 seconds.
+- Provide a mix of styles (e.g., Question hooks, Stat-based hooks, Bold claims).
+- One hook per line.
+- Do not number them and do not use bullet points.
+- Keep each hook under 15 words.
+- Output ONLY the hooks. No introduction, no conversational text.
 `
             }
           ],
-          temperature: 0.9,
+          temperature: 0.7, // 0.9 నుండి 0.7 కి తగ్గించాను, దీనివల్ల AI పిచ్చిగా కాకుండా పద్ధతిగా ఆలోచించి ఇస్తుంది
           max_tokens: 500
         })
       }
@@ -69,8 +71,14 @@ Rules:
       return;
     }
 
-    outputBox.innerHTML =
-      data.choices[0].message.content.replace(/\n/g, "<br><br>");
+    // AI ఇచ్చే స్పేస్‌లు, ఖాళీ లైన్లని క్లీన్ గా ఫార్మాట్ చేయడానికి
+    let content = data.choices[0].message.content.trim();
+    let cleanedContent = content.split('\n')
+                                .map(line => line.trim())
+                                .filter(line => line.length > 0)
+                                .join('<br><br>');
+
+    outputBox.innerHTML = cleanedContent;
 
   } catch (error) {
 
@@ -85,6 +93,11 @@ function copyHooks() {
 
   const text =
     document.getElementById("outputBox").innerText;
+
+  if (!text || text.startsWith("⏳") || text.startsWith("⚠️")) {
+    alert("❌ No hooks to copy!");
+    return;
+  }
 
   navigator.clipboard.writeText(text);
 
