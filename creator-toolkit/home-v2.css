@@ -469,3 +469,47 @@ html.v2-home, body.v2-home{
   .quick-card{ width:104px; }
   .greeting h1{ font-size:24px; }
 }
+
+/* ---------------- Desktop layout ----------------
+   Below ~900px this stays the compact mobile-app column.
+   Above it, the shell widens into a real desktop dashboard:
+   more grid columns, breathing room, and a centered bottom nav
+   instead of the edge-to-edge mobile bar. */
+@media (min-width: 900px){
+  .app-shell{
+    max-width: 1180px;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+  .topbar{ padding-left: 0; padding-right: 0; }
+  .topbar-logo{ font-size:18px; }
+
+  .greeting h1{ font-size:32px; }
+  .search-bar{ max-width: 480px; }
+
+  .quick-actions .quick-row{ justify-content:flex-start; gap: var(--space-4); }
+
+  .tools-grid-v2{
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+  .tool-card-v2{ min-height:150px; }
+  .tool-card-v2:hover{ transform: translateY(-4px); }
+
+  .bottom-nav{
+    max-width: 1180px;
+    justify-content:center;
+    gap: 72px;
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+    border-left: 1px solid var(--border-soft);
+    border-right: 1px solid var(--border-soft);
+  }
+  .bottom-sheet{ max-width: 480px; border-radius: var(--r-lg); left:50%; bottom: calc(var(--nav-h) + 16px); transform: translate(-50%, 12px); border-bottom: 1px solid var(--border); }
+  .bottom-sheet.visible{ transform: translate(-50%, 0); }
+  .sheet-overlay{ backdrop-filter: blur(2px); }
+}
+
+@media (min-width: 1300px){
+  .app-shell{ max-width: 1320px; }
+  .bottom-nav{ max-width: 1320px; }
+}
