@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free YouTube Description Generator AI | Creator Toolkit</title>
+<meta name="description" content="Generate SEO-optimized YouTube video descriptions instantly with AI. Boost your video rankings with perfect descriptions. 100% free.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://creator-toolkit-one.vercel.app/description-generator.html">
+<meta property="og:title" content="Free YouTube Description Generator AI | Creator Toolkit">
+<meta property="og:description" content="Generate SEO-optimized YouTube descriptions instantly with AI. Boost video rankings. 100% free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://creator-toolkit-one.vercel.app/description-generator.html">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="home-v2.css">
+<link rel="stylesheet" href="tool-v2.css">
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <header class="topbar">
+    <a href="index.html" class="topbar-logo">
+      <span class="logo-mark">🚀</span> Creator Toolkit
+    </a>
+    <div class="topbar-actions">
+      <button class="avatar-btn" id="avatarBtn" aria-label="Profile and settings">CT</button>
+    </div>
+  </header>
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="index.html" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>📝 Description Generator</h1>
+        <p>SEO-ready descriptions in Telugu or English</p>
+      </div>
+    </section>
+
+    <section class="tool-card-form">
+      <div class="field-group">
+        <label class="field-label" for="topic">Video topic</label>
+        <input class="input-v2" type="text" id="topic" placeholder="Enter Video Topic">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="channel">Channel name</label>
+        <input class="input-v2" type="text" id="channel" placeholder="Enter Channel Name">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="keywords">Keywords</label>
+        <input class="input-v2" type="text" id="keywords" placeholder="Enter Keywords (comma separated)">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="language">Language</label>
+        <select class="select-v2" id="language">
+          <option value="telugu">తెలుగు</option>
+          <option value="english">English</option>
+          <option value="mix">Telugu + English Mix</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" onclick="generateDescription()">✨ Generate Description</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">Generated description</label>
+        <div id="output" class="output-v2" data-placeholder="Your AI-generated description will appear here..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="copyDescription()">📋 Copy Description</button>
+    </section>
+
+
+    <!-- Related tools -->
+    <section class="related-tools">
+      <div class="section-title">Related tools</div>
+      <div class="tools-grid-v2">
+        <a href="hashtag-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">#️⃣</div>
+          <h3>Hashtag Generator</h3>
+          <p>Trending hashtags for reach</p>
+        </a>
+        <a href="title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Catchy, SEO-friendly titles</p>
+        </a>
+        <a href="tags-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🏷️</div>
+          <h3>Tags Generator</h3>
+          <p>AI-powered YouTube tags</p>
+        </a>
+        <a href="thumbnail-downloader.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🖼️</div>
+          <h3>Thumbnail Downloader</h3>
+          <p>Grab thumbnails in HD</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-block">
+      <h2>About the YouTube Description Generator</h2>
+      <p>A well-written description helps YouTube's algorithm and viewers understand your video. Our AI generates SEO-optimized descriptions in Telugu, English, or a mix — tailored to your topic and keywords, completely free.</p>
+    </section>
+
+    <footer class="home-footer">
+      <p>© 2026 Creator Toolkit</p>
+      <p>
+        <a href="about.html">About</a> ·
+        <a href="contact.html">Contact</a> ·
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <a class="nav-item" href="index.html" data-tab="home">
+      <span class="nav-icon">🏠</span><span>Home</span>
+    </a>
+    <a class="nav-item active" href="index.html#toolsGrid" data-tab="tools">
+      <span class="nav-icon">🧰</span><span>AI Tools</span>
+    </a>
+    <a class="nav-item" href="index.html" data-tab="favorites">
+      <span class="nav-icon">❤️</span><span>Favorites</span>
+    </a>
+    <button class="nav-item" data-tab="settings">
+      <span class="nav-icon">⚙️</span><span>Settings</span>
+    </button>
+  </nav>
+
+</div>
+
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="bottom-sheet" id="settingsSheet">
+  <div class="sheet-handle"></div>
+  <h3 class="sheet-title">Settings</h3>
+  <a class="sheet-link" href="about.html"><span>About Creator Toolkit</span><span class="arrow">›</span></a>
+  <a class="sheet-link" href="contact.html"><span>Contact & Feedback</span><span class="arrow">›</span></a>
+  <a class="sheet-link" href="privacy.html"><span>Privacy Policy</span><span class="arrow">›</span></a>
+</div>
+
+<script>
+async function generateDescription() {
+  const topic = document.getElementById("topic").value.trim();
+  const channel = document.getElementById("channel").value.trim();
+  const keywords = document.getElementById("keywords").value.trim();
+  const language = document.getElementById("language").value;
+  const outputBox = document.getElementById("output");
+
+  if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
+  outputBox.innerHTML = "⏳ Generating...";
+
+  try {
+    const response = await fetch("/api/description", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic, channel, keywords, language })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      outputBox.innerHTML = "❌ " + (data.error?.message || data.error || "Something went wrong");
+      return;
+    }
+
+    outputBox.innerHTML = data.description;
+  } catch (error) {
+    outputBox.innerHTML = "❌ Error: " + error.message;
+  }
+}
+
+function copyDescription() {
+  const text = document.getElementById("output").innerText;
+  navigator.clipboard.writeText(text);
+  alert("✅ Copied!");
+}
+</script>
+<script src="nav-v2.js"></script>
+</body>
+</html>
