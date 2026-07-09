@@ -1,5 +1,4 @@
-async function generateHooks() {
-
+ async function generateHooks() {
   const topic = document.getElementById("topicInput").value.trim();
   const outputBox = document.getElementById("outputBox");
 
@@ -10,51 +9,43 @@ async function generateHooks() {
 
   outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
-  // PASTE YOUR NEW GROQ API KEY HERE
-  const apiKey = "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";
-
   try {
+    // మీ Vercel API కి రిక్వెస్ట్ పంపుతున్నాం
+    const response = await fetch("/api/hooks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ topic: topic })
+    });
 
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + apiKey
-        },
-        body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
-          messages: [
-            {
-              role: "system",
-              content:
-                "You are an expert YouTube growth strategist who creates highly clickable viral hooks."
-            },
-            {
-              role: "user",
-              content: `
-Generate 7 highly viral YouTube hooks about "${topic}".
+    const data = await response.json();
 
-STRICT Rules:
-- Output MUST be in clear, high-quality professional English.
-- Do NOT mix broken languages, hybrid slang, or mixed fonts.
-- Do NOT use generic text like "trust me" or "this video will change your life".
-- Make hooks highly curiosity-driven, capturing attention in the first 3 seconds.
-- Provide a mix of styles (e.g., Question hooks, Stat-based hooks, Bold claims).
-- One hook per line.
-- Do not number them and do not use bullet points.
-- Keep each hook under 15 words.
-- Output ONLY the hooks. No introduction, no conversational text.
-`
-            }
-          ],
-          temperature: 0.7, // 0.9 నుండి 0.7 కి తగ్గించాను, దీనివల్ల AI పిచ్చిగా కాకుండా పద్ధతిగా ఆలోచించి ఇస్తుంది
-          max_tokens: 500
-        })
-      }
-    );
+    if (data.error) {
+      outputBox.innerHTML = "❌ API Error: " + data.error.message;
+      return;
+    }
 
+    // ఇక్కడ Groq API నుండి వచ్చే రెస్పాన్స్ ని పక్కాగా చెక్ చేస్తున్నాం
+    if (data.choices && data.choices.length > 0 && data.choices[0].message) {
+      let content = data.choices[0].message.content.trim();
+      
+      // ఖాళీ లైన్లు తీసేసి నీట్ గా <br><br> యాడ్ చేయడం
+      let cleanedContent = content.split('\n')
+                                  .map(line => line.trim())
+                                  .filter(line => line.length > 0)
+                                  .join('<br><br>');
+
+      outputBox.innerHTML = cleanedContent;
+    } else {
+      outputBox.innerHTML = "❌ No hooks generated. Please try again.";
+    }
+
+  } catch (error) {
+    console.error(error);
+    outputBox.innerHTML = "❌ Error: " + error.message;
+  }
+}
     const data = await response.json();
 
     console.log(data);
