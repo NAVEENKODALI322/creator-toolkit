@@ -1,5 +1,4 @@
 async function generateHooks() {
-
   const topic = document.getElementById("topicInput").value.trim();
   const outputBox = document.getElementById("outputBox");
 
@@ -10,63 +9,28 @@ async function generateHooks() {
 
   outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
-  // Groq API Key
-  const apiKey = "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";
-
   try {
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + apiKey
-        },
-        body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
-          messages: [
-            {
-              role: "system",
-              content: "You are an expert YouTube growth strategist who creates highly clickable viral hooks."
-            },
-            {
-              role: "user",
-              content: `
-Generate 7 highly viral YouTube hooks about "${topic}".
-
-STRICT Rules:
-- Output MUST be in clear, high-quality professional English.
-- Do NOT mix broken languages, hybrid slang, or mixed fonts.
-- Do NOT use generic text like "trust me" or "this video will change your life".
-- Make hooks highly curiosity-driven, capturing attention in the first 3 seconds.
-- Provide a mix of styles (e.g., Question hooks, Stat-based hooks, Bold claims).
-- One hook per line.
-- Do not number them and do not use bullet points.
-- Keep each hook under 15 words.
-- Output ONLY the hooks. No introduction, no conversational text.
-`
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 500
-        })
-      }
-    );
+    // 🔥 డైరెక్ట్ గ్రోక్ లింక్ తీసేసి, మీ వర్సెల్ బ్యాకెండ్ ఎండ్ పాయింట్ ఇస్తున్నాం
+    // దీనివల్ల Vercel లో మీరు పెట్టిన కొత్త GROQ_API_KEY రన్ అవుతుంది
+    const response = await fetch("https://creator-toolkit-one.vercel.app/api/hooks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ topic: topic })
+    });
 
     const data = await response.json();
-
-    console.log("API Response:", data);
 
     if (data.error) {
       outputBox.innerHTML = "❌ API Error: " + data.error.message;
       return;
     }
 
-    // 🔥 ఇక్కడ Safe Check చేస్తున్నాం - ఒకవేళ choices లేకపోయినా యాప్ క్రాష్ అవ్వదు
+    // రెస్పాన్స్ ని క్లీన్ గా చెక్ చేసి స్క్రీన్ పై చూపించడం
     if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
       let content = data.choices[0].message.content.trim();
       
-      // నీట్ గా ఖాళీ లైన్లు తీసేసి బ్రేక్స్ యాడ్ చేయడం
       let cleanedContent = content.split('\n')
                                   .map(line => line.trim())
                                   .filter(line => line.length > 0)
@@ -74,7 +38,7 @@ STRICT Rules:
 
       outputBox.innerHTML = cleanedContent;
     } else {
-      outputBox.innerHTML = "❌ Error: Invalid data structure received from AI.";
+      outputBox.innerHTML = "❌ No hooks generated. Please try again.";
     }
 
   } catch (error) {
@@ -85,7 +49,7 @@ STRICT Rules:
 
 function copyHooks() {
   const text = document.getElementById("outputBox").innerText;
-  if (!text || text.startsWith("⏳") || text.startsWith("⚠️")) {
+  if (!text || text.startsWith("⏳") || text.startsWith("⚠️") || text.startsWith("❌")) {
     alert("❌ No hooks to copy!");
     return;
   }
