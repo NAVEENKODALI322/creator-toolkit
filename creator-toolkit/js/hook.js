@@ -10,35 +10,32 @@ async function generateHooks() {
   outputBox.innerHTML = "⏳ Generating Viral Hooks...";
 
   try {
-    // 🔥 డైరెక్ట్ గ్రోక్ లింక్ తీసేసి, మీ వర్సెల్ బ్యాకెండ్ ఎండ్ పాయింట్ ఇస్తున్నాం
-    // దీనివల్ల Vercel లో మీరు పెట్టిన కొత్త GROQ_API_KEY రన్ అవుతుంది
-    const response = await fetch("https://creator-toolkit-one.vercel.app/api/hooks", {
+    const response = await fetch("/api/hooks", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ topic: topic })
+      body: JSON.stringify({ topic }),
     });
 
     const data = await response.json();
 
-    if (data.error) {
-      outputBox.innerHTML = "❌ API Error: " + data.error.message;
+    if (!response.ok) {
+      outputBox.innerHTML =
+        "❌ " + (data.error?.message || data.error || "Failed to generate hooks.");
       return;
     }
 
-    // రెస్పాన్స్ ని క్లీన్ గా చెక్ చేసి స్క్రీన్ పై చూపించడం
-    if (data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-      let content = data.choices[0].message.content.trim();
-      
-      let cleanedContent = content.split('\n')
-                                  .map(line => line.trim())
-                                  .filter(line => line.length > 0)
-                                  .join('<br><br>');
+    if (data.hooks) {
+      const cleanedHooks = data.hooks
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0)
+        .join("<br><br>");
 
-      outputBox.innerHTML = cleanedContent;
+      outputBox.innerHTML = cleanedHooks;
     } else {
-      outputBox.innerHTML = "❌ No hooks generated. Please try again.";
+      outputBox.innerHTML = "❌ No hooks generated.";
     }
 
   } catch (error) {
@@ -49,10 +46,21 @@ async function generateHooks() {
 
 function copyHooks() {
   const text = document.getElementById("outputBox").innerText;
-  if (!text || text.startsWith("⏳") || text.startsWith("⚠️") || text.startsWith("❌")) {
+
+  if (
+    !text ||
+    text.startsWith("⏳") ||
+    text.startsWith("⚠️") ||
+    text.startsWith("❌")
+  ) {
     alert("❌ No hooks to copy!");
     return;
   }
+
   navigator.clipboard.writeText(text);
+
   alert("✅ Hooks copied!");
 }
+
+window.generateHooks = generateHooks;
+window.copyHooks = copyHooks;
