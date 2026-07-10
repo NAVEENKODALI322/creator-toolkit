@@ -504,8 +504,19 @@ html.v2-home, body.v2-home{
     border-left: 1px solid var(--border-soft);
     border-right: 1px solid var(--border-soft);
   }
-  .bottom-sheet{ max-width: 480px; border-radius: var(--r-lg); left:50%; bottom: calc(var(--nav-h) + 16px); transform: translate(-50%, 12px); border-bottom: 1px solid var(--border); }
-  .bottom-sheet.visible{ transform: translate(-50%, 0); }
+  .bottom-sheet{
+    max-width: 480px; border-radius: var(--r-lg); left:50%;
+    bottom: calc(var(--nav-h) + 16px);
+    transform: translate(-50%, 12px);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: transform .28s var(--ease), opacity .2s var(--ease), visibility 0s linear .28s;
+    border-bottom: 1px solid var(--border);
+  }
+  .bottom-sheet.visible{
+    transform: translate(-50%, 0);
+    opacity: 1; visibility: visible; pointer-events: auto;
+    transition: transform .28s var(--ease), opacity .2s var(--ease), visibility 0s linear;
+  }
   .sheet-overlay{ backdrop-filter: blur(2px); }
 }
 
