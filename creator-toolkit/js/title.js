@@ -1,80 +1,48 @@
-export default async function handler(req, res) {
-  // Allow requests from the Android/iOS app and browser
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method Not Allowed. Use POST." });
-  }
-  try {
-    const { topic } = req.body || {};
-    if (!topic) {
-      return res.status(400).json({ error: "Missing required fields." });
+async function generateTitles() {
+    // 1. Inputs and buttons pick cheyadam
+    const topicInput = document.querySelector('input[placeholder="Video topic"]') || document.getElementById('topicInput');
+    const resultBox = document.querySelector('textarea[placeholder*="AI-generated titles"]') || document.getElementById('resultBox');
+    
+    // HTML button structured text check
+    const generateBtn = document.querySelector('button'); 
+
+    if (!topicInput || !topicInput.value.trim()) {
+        alert("Please enter a video topic!");
+        return;
     }
-    if (!process.env.GROQ_API_KEY) {
-      console.error("GROQ_API_KEY is missing in environment variables.");
-      return res.status(500).json({ error: "Server misconfiguration: API key not set." });
-    }
-    const response = await fetch(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
-          messages: [
-            {
-              role: "system",
-              content: "You are a YouTube SEO expert who creates highly clickable titles in both English and Tenglish (Telugu-English mix)."
+
+    const topic = topicInput.value.trim();
+
+    try {
+        // Loading state triggers
+        if (generateBtn) generateBtn.disabled = true;
+        if (resultBox) resultBox.value = "Generating your titles, please wait...";
+
+        // 2. Step 1 lo setup chesina Backend API endpoint ki link cheyadam
+        const response = await fetch('/api/title-generator', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
             },
-            {
-              role: "user",
-              content: `
-Generate 20 highly clickable YouTube titles about "${topic}".
+            body: JSON.stringify({ topic: topic })
+        });
 
-Split exactly like this:
-- First 10 titles: PURE ENGLISH only (no Telugu words at all)
-- Next 10 titles: TENGLISH — Telugu-English mix written ENTIRELY IN ROMAN/LATIN LETTERS (the way Telugu YouTubers type in real captions/comments). NEVER use Telugu script (no Unicode Telugu characters like తెలుగు at all).
+        const data = await response.json();
 
-Correct Tenglish examples (Roman script only, no Telugu unicode anywhere):
-- "Ee Trick Tho YouTube Views Penchukondi 2x Fast"
-- "Nenu Ee Mistake Valla 50 Vela Kolpoya - Meeru Cheyaku"
-- "Idi Chusthe Miku Shock Avuthundi - Real Story"
+        if (response.ok && data.titles) {
+            // UI text data dashboard look dump chesthundi
+            if (resultBox) resultBox.value = data.titles;
+        } else {
+            if (resultBox) resultBox.value = `Error: ${data.error || 'Failed to generate titles'}`;
+        }
 
-Rules:
-- Tenglish titles must use ONLY English alphabet letters (A-Z), spelling Telugu words phonetically in Roman script — like informal Telugu texting/WhatsApp style
-- Do NOT output any Telugu script characters (no తెలుగు unicode) anywhere in the Tenglish titles
-- Keep Telugu words simple, common, and correctly spelled phonetically — do not invent or garble words
-- Create curiosity, use power words, optimize for clicks
-- One title per line
-- Do not number the lines
-- Do not use bullet points
-- Do not add any heading like "English Titles" or "Tenglish Titles" - just the 20 lines, English ones first, then Tenglish ones
-`
-            }
-          ],
-          temperature: 0.9,
-          max_tokens: 800
-        })
-      }
-    );
-    const data = await response.json();
-    console.log("Status:", response.status);
-    console.log("Groq Response:", data);
-    if (!response.ok) {
-      return res.status(response.status).json(data);
+    } catch (error) {
+        console.error("Frontend Error:", error);
+        if (resultBox) resultBox.value = "Something went wrong. Please check console.";
+    } finally {
+        if (generateBtn) generateBtn.disabled = false;
     }
-    return res.status(200).json({
-      titles: data.choices[0].message.content
-    });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: err.message });
-  }
 }
+
+// Global scope initialization button click trigger detect cheyadanki
+window.generateTitles = generateTitles;
