@@ -1,10 +1,10 @@
 async function generateTitles() {
-    // Direct selector using ID
-    const topicInput = document.getElementById('topicInput');
-    const resultBox = document.querySelector('textarea[placeholder*="AI-generated titles"]') || document.querySelector('textarea');
-    const generateBtn = document.querySelector('button'); 
+    // Mee HTML IDs tho correct ga elements ni catch chesthunnam
+    const topicInput = document.getElementById('keyword');
+    const resultBox = document.getElementById('output');
+    const generateBtn = document.querySelector('.btn-primary-v2');
 
-    // Ee condition strict ga dynamic context check chesthundi
+    // Validation Check
     if (!topicInput || !topicInput.value.trim()) {
         alert("Please enter a video topic!");
         return;
@@ -13,9 +13,17 @@ async function generateTitles() {
     const topic = topicInput.value.trim();
 
     try {
-        if (generateBtn) generateBtn.disabled = true;
-        if (resultBox) resultBox.value = "Generating your titles, please wait...";
+        // UI feedback - Loading states
+        if (generateBtn) {
+            generateBtn.disabled = true;
+            generateBtn.innerText = "⏳ Generating...";
+        }
+        if (resultBox) {
+            resultBox.innerText = "Generating your titles, please wait...";
+            resultBox.style.whiteSpace = "pre-line"; // Line breaks break avvakunda undadaniki
+        }
 
+        // Call Vercel/Next API Route
         const response = await fetch('/api/title-generator', { 
             method: 'POST',
             headers: {
@@ -27,20 +35,48 @@ async function generateTitles() {
         const data = await response.json();
 
         if (response.ok && data.titles) {
-            if (resultBox) resultBox.value = data.titles;
+            // Text values update
+            if (resultBox) resultBox.innerText = data.titles;
         } else {
-            if (resultBox) resultBox.value = `Error: ${data.error || 'Failed to generate titles'}`;
+            if (resultBox) resultBox.innerText = `Error: ${data.error || 'Failed to generate titles'}`;
         }
 
     } catch (error) {
         console.error("Frontend Error:", error);
-        if (resultBox) resultBox.value = "Something went wrong. Please check console.";
+        if (resultBox) resultBox.innerText = "Something went wrong. Please check console.";
     } finally {
+        // Reset button state
         if (generateBtn) {
             generateBtn.disabled = false;
+            generateBtn.innerText = "✨ Generate Titles";
         }
     }
 }
 
-// Global hook activation
+// Copy Titles Button Functionality Fix
+async function copyTitles() {
+    const resultBox = document.getElementById('output');
+    const copyBtn = document.querySelector('.btn-secondary-v2');
+    
+    if (!resultBox || !resultBox.innerText || resultBox.innerText.startsWith("Your AI-generated") || resultBox.innerText.startsWith("Generating")) {
+        alert("No titles available to copy!");
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(resultBox.innerText);
+        if (copyBtn) {
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = "✅ Copied!";
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+            }, 2000);
+        }
+    } catch (err) {
+        alert("Failed to copy text. Please select manually.");
+    }
+}
+
+// Global scope initialization global window parameters target
 window.generateTitles = generateTitles;
+window.copyTitles = copyTitles;
