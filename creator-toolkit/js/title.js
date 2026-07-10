@@ -24,7 +24,7 @@ async function generateTitles() {
         }
 
         // Call Vercel/Next API Route
-        const response = await fetch('/api/title-generator', { 
+        const response = await fetch('/api/title', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
