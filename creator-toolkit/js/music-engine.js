@@ -536,7 +536,7 @@ else{
     "square"
     :
     "triangle"
-}
+},
 
             envelope:{
 
