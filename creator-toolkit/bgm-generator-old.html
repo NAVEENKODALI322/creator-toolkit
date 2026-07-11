@@ -1,1 +1,420 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGM Generator — Creator Toolkit</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+<link rel="stylesheet" href="home-v2.css">
+<style>
+  /* Page-scoped additions — reuses home-v2.css tokens, only new bits below */
+  .tool-shell{
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 0 var(--space-5) var(--space-8);
+    position: relative;
+    z-index: 1;
+  }
+  .tool-header{ padding: var(--space-7) 0 var(--space-5); animation: v2fade .5s var(--ease) both; }
+  .tool-header .badge{
+    display:inline-block;
+    font-size:11px; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color: var(--accent);
+    background: rgba(0,212,255,0.10);
+    border:1px solid rgba(0,212,255,0.28);
+    padding:4px 10px; border-radius: var(--r-pill);
+    margin-bottom:14px;
+  }
+  .tool-header h1{ font-size:26px; font-weight:700; color:var(--text); }
+  .tool-header p{ margin-top:8px; font-size:14px; color:var(--text-secondary); line-height:1.6; }
+
+  .gen-card{
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-sm);
+    animation: v2fade .5s .08s var(--ease) both;
+  }
+
+  .dur-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: var(--space-5); }
+  .dur-chip{
+    padding:9px 16px;
+    border-radius: var(--r-pill);
+    border:1px solid var(--border);
+    background: var(--card-hover);
+    color: var(--text-secondary);
+    font-size:13px; font-weight:600;
+    cursor:pointer;
+    transition: all .15s var(--ease);
+  }
+  .dur-chip.active{
+    border-color: transparent;
+    background: var(--grad-1);
+    color: #fff;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .bars{
+    display:flex; align-items:flex-end; justify-content:center;
+    gap:4px; height:56px; margin: 0 auto var(--space-5);
+    width:260px;
+  }
+  .bars span{
+    width:6px; border-radius:2px; height:8px; opacity:0.28;
+    background: var(--grad-1);
+    transition:height 0.12s ease, opacity 0.3s ease;
+  }
+  .bars.active span{ opacity:0.95; }
+
+  .btn-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .btn-gen{
+    font-family:inherit; font-size:13.5px; font-weight:700;
+    padding:13px 24px; border-radius: var(--r-pill);
+    background: var(--grad-1); color:#fff;
+    box-shadow: var(--shadow-glow);
+    transition: transform .15s var(--ease), filter .15s var(--ease);
+  }
+  .btn-gen:hover:not(:disabled){ filter:brightness(1.06); }
+  .btn-gen:active:not(:disabled){ transform: scale(0.97); }
+  .btn-play{
+    font-family:inherit; font-size:13.5px; font-weight:600;
+    padding:13px 22px; border-radius: var(--r-pill);
+    background: var(--card-hover); color: var(--text);
+    border:1px solid var(--border);
+    transition: background .15s var(--ease);
+  }
+  .btn-play:hover:not(:disabled){ background: rgba(255,255,255,0.08); }
+  button:disabled{ opacity:0.35; cursor:not-allowed; }
+
+  .status{ font-size:13px; color: var(--text-secondary); margin-top: var(--space-4); min-height:18px; }
+  audio{ width:100%; margin-top: var(--space-4); display:none; border-radius: var(--r-sm); }
+  a.download{
+    display:none; margin-top: var(--space-3);
+    font-size:13px; font-weight:600; color: var(--accent); text-decoration:none;
+  }
+  a.download:hover{ text-decoration:underline; }
+
+  .foot-note{
+    margin-top: var(--space-6);
+    font-size:11.5px; color: var(--text-faint);
+    text-align:center;
+  }
+</style>
+</head>
+<body class="v2-home">
+
+<div class="app-shell">
+  <div class="topbar">
+    <div class="topbar-logo">
+      <span class="logo-mark">🎬</span>
+      Creator Toolkit
+    </div>
+    <div class="topbar-actions">
+      <a href="index.html" class="icon-btn">←</a>
+    </div>
+  </div>
+
+  <div class="tool-shell">
+    <div class="tool-header">
+      <span class="badge">Original · No Copyright</span>
+      <h1>BGM Generator</h1>
+      <p>Cinematic corporate background music, synthesized live in your browser. Pick a length, generate, download the WAV — free to use anywhere.</p>
+    </div>
+
+    <div class="gen-card">
+      <div class="dur-row" id="durationOpts">
+        <div class="dur-chip" data-dur="15">15s</div>
+        <div class="dur-chip active" data-dur="30">30s</div>
+        <div class="dur-chip" data-dur="60">60s</div>
+        <div class="dur-chip" data-dur="90">90s</div>
+      </div>
+
+      <div class="bars" id="bars">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-gen" id="genBtn">Generate Track</button>
+        <button class="btn-play" id="playBtn" disabled>Preview</button>
+      </div>
+
+      <audio id="player" controls></audio>
+      <a id="dl" class="download" download="bgm_track.wav">Download WAV file →</a>
+
+      <div class="status" id="status">Choose a length and click "Generate Track".</div>
+    </div>
+
+    <div class="foot-note">Creator Toolkit · BGM Generator</div>
+  </div>
+</div>
+
+<script>
+const genBtn = document.getElementById('genBtn');
+const playBtn = document.getElementById('playBtn');
+const player = document.getElementById('player');
+const dl = document.getElementById('dl');
+const statusEl = document.getElementById('status');
+const barsEl = document.getElementById('bars');
+const barSpans = barsEl.querySelectorAll('span');
+const durationOpts = document.getElementById('durationOpts');
+
+let selectedDuration = 30;
+let wavBlobUrl = null;
+let animInterval = null;
+
+durationOpts.addEventListener('click', (e) => {
+  const chip = e.target.closest('.dur-chip');
+  if(!chip) return;
+  durationOpts.querySelectorAll('.dur-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  selectedDuration = parseInt(chip.dataset.dur, 10);
+});
+
+function animateBars(active){
+  if(active){
+    barsEl.classList.add('active');
+    animInterval = setInterval(()=>{
+      barSpans.forEach(s=>{
+        const h = 8 + Math.random()*48;
+        s.style.height = h+'px';
+      });
+    }, 110);
+  } else {
+    clearInterval(animInterval);
+    barsEl.classList.remove('active');
+    barSpans.forEach(s=> s.style.height = '8px');
+  }
+}
+
+function audioBufferToWav(buffer){
+  const numCh = buffer.numberOfChannels;
+  const sampleRate = buffer.sampleRate;
+  const numFrames = buffer.length;
+  const bytesPerSample = 2;
+  const blockAlign = numCh * bytesPerSample;
+  const dataSize = numFrames * blockAlign;
+  const bufferLength = 44 + dataSize;
+  const ab = new ArrayBuffer(bufferLength);
+  const view = new DataView(ab);
+
+  function writeStr(offset, str){
+    for(let i=0;i<str.length;i++) view.setUint8(offset+i, str.charCodeAt(i));
+  }
+
+  writeStr(0, 'RIFF');
+  view.setUint32(4, 36 + dataSize, true);
+  writeStr(8, 'WAVE');
+  writeStr(12, 'fmt ');
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, numCh, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * blockAlign, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, 16, true);
+  writeStr(36, 'data');
+  view.setUint32(40, dataSize, true);
+
+  const channels = [];
+  for(let ch=0; ch<numCh; ch++) channels.push(buffer.getChannelData(ch));
+
+  let offset = 44;
+  for(let i=0; i<numFrames; i++){
+    for(let ch=0; ch<numCh; ch++){
+      let sample = Math.max(-1, Math.min(1, channels[ch][i]));
+      sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+      view.setInt16(offset, sample, true);
+      offset += 2;
+    }
+  }
+  return new Blob([ab], {type:'audio/wav'});
+}
+
+async function renderTrack(DURATION){
+  const BAR = 2.6667; // ~90bpm, 4 beats/bar
+  const MIN_GAP = 0.01; // minimum gap between two events on the same instrument
+
+  const chordCycle = [
+    ['A3','C4','E4'],
+    ['F3','A3','C4'],
+    ['C4','E4','G4'],
+    ['G3','B3','D4']
+  ];
+  const bassRoots = ['A2','F2','C3','G2'];
+  const leadNotes = ['A4','C5','E5','G5'];
+
+  const numBars = Math.ceil(DURATION / BAR);
+  const introEnd = DURATION * 0.25;
+  const buildEnd = DURATION * 0.5;
+  const climaxEnd = DURATION * 0.75;
+
+  const buffer = await Tone.Offline(() => {
+    const reverb = new Tone.JCReverb({ roomSize: 0.65, wet: 0.28 }).toDestination();
+    const comp = new Tone.Compressor({ threshold:-18, ratio:3 }).connect(reverb);
+
+    const strings = new Tone.PolySynth(Tone.Synth, {
+      oscillator: { type:'fatsawtooth', spread:28, count:3 },
+      envelope: { attack:0.9, decay:0.3, sustain:0.85, release:2.2 }
+    }).connect(comp);
+
+    const bass = new Tone.MonoSynth({
+      oscillator:{ type:'sine' },
+      envelope:{ attack:0.04, decay:0.2, sustain:0.6, release:0.5 },
+      filterEnvelope:{ attack:0.02, decay:0.2, sustain:0.4, release:0.5, baseFrequency:200, octaves:2 }
+    }).connect(comp);
+
+    const drums = new Tone.MembraneSynth({
+      pitchDecay:0.045, octaves:4,
+      envelope:{ attack:0.001, decay:0.4, sustain:0 }
+    }).connect(comp);
+
+    const brass = new Tone.PolySynth(Tone.Synth, {
+      oscillator:{ type:'sawtooth' },
+      envelope:{ attack:0.03, decay:0.18, sustain:0.35, release:0.25 }
+    }).connect(comp);
+
+    const cymbal = new Tone.MetalSynth({
+      frequency:220,
+      envelope:{ attack:0.001, decay:1.6, sustain:0 },
+      harmonicity:5.1, modulationIndex:28, resonance:3800, octaves:1.4
+    }).connect(comp);
+
+    const lead = new Tone.Synth({
+      oscillator:{ type:'triangle' },
+      envelope:{ attack:0.02, decay:0.12, sustain:0.3, release:0.35 }
+    }).connect(comp);
+
+    // --- 100% PERFECT SAFE SCHEDULER ---
+    const lastTime = new Map();
+
+    function getAbsoluteSafeTime(key, targetTime) {
+      let nowTime = Tone.now();
+      let t = Math.max(targetTime, nowTime);
+      
+      const prev = lastTime.has(key) ? lastTime.get(key) : -1;
+      if (t <= prev) {
+        t = prev + MIN_GAP;
+      }
+      
+      lastTime.set(key, t);
+      return t;
+    }
+
+    function safeTrigger(synth, notes, dur, time) {
+      if (time >= DURATION) return;
+      const t = getAbsoluteSafeTime(synth, time);
+      if (t >= DURATION) return;
+      synth.triggerAttackRelease(notes, dur, t);
+    }
+
+    function safeSetVolume(synth, value, time) {
+      if (time >= DURATION) return;
+      const t = getAbsoluteSafeTime(synth + '_vol', time);
+      if (t >= DURATION) return;
+      synth.volume.setValueAtTime(value, t);
+    }
+
+    function safeTriggerCymbal(synth, dur, time) {
+      if (time >= DURATION) return;
+      const t = getAbsoluteSafeTime(synth + '_cymbal', time);
+      if (t >= DURATION) return;
+      synth.triggerAttackRelease(dur, t);
+    }
+    // ------------------------------------
+
+    const safeEnd = Math.max(DURATION - 3, BAR);
+    for(let bar=0; bar<numBars; bar++){
+      const t = bar * BAR;
+      if(t >= safeEnd) break;
+      const chord = chordCycle[bar % 4];
+      const root = bassRoots[bar % 4];
+      const section = t < introEnd ? 'intro' : t < buildEnd ? 'build' : t < climaxEnd ? 'climax' : 'outro';
+
+      safeSetVolume(strings, section==='intro' ? -18 : section==='build' ? -12 : section==='climax' ? -6 : -13, t);
+      safeTrigger(strings, chord, BAR*0.95, t);
+
+      if(section === 'intro'){
+        safeSetVolume(bass, -20, t);
+        safeTrigger(bass, root, BAR*0.9, t);
+      } else {
+        safeSetVolume(bass, section==='climax' ? -9 : -14, t);
+        for(let beat=0; beat<4; beat++){
+          safeTrigger(bass, root, 0.28, t + beat*(BAR/4));
+        }
+      }
+
+      if(section === 'build' || section === 'climax'){
+        safeSetVolume(drums, section==='climax' ? -6 : -13, t);
+        const hits = section==='climax' ? [0,0.5,1,1.5,2,2.5,3,3.5] : [0,2];
+        hits.forEach(h => safeTrigger(drums, 'C2', 0.2, t + h*(BAR/4)));
+      }
+
+      if(section === 'climax'){
+        safeSetVolume(brass, -10, t);
+        safeTrigger(brass, chord, 0.2, t + 0.5*(BAR/4));
+        safeTrigger(brass, chord, 0.2, t + 2.5*(BAR/4));
+
+        safeSetVolume(lead, -9, t);
+        safeTrigger(lead, leadNotes[bar % 4], 0.4, t + 1*(BAR/4));
+      }
+    }
+
+    const endT = Math.max(DURATION - 2.5, 0.5);
+    safeSetVolume(cymbal, -12, introEnd);
+    [introEnd, buildEnd, climaxEnd].forEach(tt => {
+      if(tt < DURATION) safeTriggerCymbal(cymbal, '8n', tt);
+    });
+
+    safeSetVolume(drums, -4, endT);
+    safeTrigger(drums, 'C2', 1, endT);
+    safeSetVolume(cymbal, -6, endT);
+    safeTriggerCymbal(cymbal, '2n', endT);
+    safeSetVolume(strings, -4, endT);
+    safeTrigger(strings, ['A3','C4','E4','A4'], 2.2, endT);
+
+  }, DURATION);
+
+  return buffer.get();
+}
+
+genBtn.addEventListener('click', async () => {
+  genBtn.disabled = true;
+  playBtn.disabled = true;
+  statusEl.textContent = 'Rendering ' + selectedDuration + 's composition… (a few seconds)';
+  animateBars(true);
+
+  try{
+    await Tone.start();
+    const nativeBuffer = await renderTrack(selectedDuration);
+    const wavBlob = audioBufferToWav(nativeBuffer);
+    if(wavBlobUrl) URL.revokeObjectURL(wavBlobUrl);
+    wavBlobUrl = URL.createObjectURL(wavBlob);
+
+    player.src = wavBlobUrl;
+    player.style.display = 'block';
+    dl.href = wavBlobUrl;
+    dl.download = 'bgm_' + selectedDuration + 's.wav';
+    dl.style.display = 'inline-block';
+
+    statusEl.textContent = 'Done — preview below, or download the WAV file.';
+    playBtn.disabled = false;
+  } catch(err){
+    statusEl.textContent = 'Something went wrong: ' + err.message;
+  } finally {
+    genBtn.disabled = false;
+    animateBars(false);
+  }
+});
+
+playBtn.addEventListener('click', () => {
+  player.play();
+});
+</script>
+</body>
+</html>
 
