@@ -411,20 +411,118 @@ else{
 
 
 
-        const drums =
-        new Tone.MembraneSynth({
+        let drums;
 
-            pitchDecay:.03,
 
-            envelope:{
+if(mood === "cinematic" || mood === "motivation"){
 
-                attack:.001,
-                decay:.4,
-                sustain:0
 
-            }
+    // Big cinematic hits
 
-        }).connect(compressor);
+    drums =
+    new Tone.MembraneSynth({
+
+        pitchDecay:0.08,
+
+        octaves:5,
+
+        envelope:{
+
+            attack:0.001,
+            decay:0.8,
+            sustain:0
+
+        }
+
+    }).connect(compressor);
+
+
+
+}
+
+
+
+else if(mood === "gaming" || mood === "tech"){
+
+
+    // Electronic punch
+
+    drums =
+    new Tone.MembraneSynth({
+
+        pitchDecay:0.02,
+
+        octaves:3,
+
+        envelope:{
+
+            attack:0.001,
+            decay:0.25,
+            sustain:0
+
+        }
+
+    }).connect(compressor);
+
+
+
+}
+
+
+
+else if(mood === "lofi"){
+
+
+    // Soft relaxed beat
+
+    drums =
+    new Tone.MembraneSynth({
+
+        pitchDecay:0.04,
+
+        octaves:2,
+
+        envelope:{
+
+            attack:0.01,
+            decay:0.5,
+            sustain:0
+
+        }
+
+    }).connect(compressor);
+
+
+
+}
+
+
+
+else{
+
+
+    // Vlog / Cooking / Emotional
+
+    drums =
+    new Tone.MembraneSynth({
+
+        pitchDecay:0.05,
+
+        octaves:3,
+
+        envelope:{
+
+            attack:0.002,
+            decay:0.45,
+            sustain:0
+
+        }
+
+    }).connect(compressor);
+
+
+
+}
 
 
 
