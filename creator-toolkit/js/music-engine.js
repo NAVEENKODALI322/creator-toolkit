@@ -529,10 +529,14 @@ else{
         const lead =
         new Tone.Synth({
 
-            oscillator:{
-                type:"triangle"
-            },
-
+           oscillator:{
+    type:
+    mood==="gaming" || mood==="tech"
+    ?
+    "square"
+    :
+    "triangle"
+}
 
             envelope:{
 
