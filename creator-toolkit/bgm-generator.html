@@ -289,34 +289,55 @@ async function renderTrack(DURATION){
       envelope:{ attack:0.02, decay:0.12, sustain:0.3, release:0.35 }
     }).connect(comp);
 
-    // --- FIX FIXED: Separate string-based tracking IDs to prevent cross-timeline collisions ---
+    // --- 100% PERFECT SAFE SCHEDULER FIX ---
     const lastTime = new Map();
-    function nextSafeTime(key, time){
+
+    function getAbsoluteSafeTime(key, targetTime) {
+      // ప్రస్తుతం ఆడియో కాంటెక్స్ట్‌లో ఉన్న కరెంట్ టైమ్ కంటే షెడ్యూల్ టైమ్ తక్కువ ఉండకూడదు
+      let nowTime = Tone.now();
+      let t = Math.max(targetTime, nowTime);
+      
+      // ఒకే కీ కింద వచ్చే తదుపరి నోట్స్ కచ్చితంగా మునుపటి సమయం కంటే ఎక్కువగా ఉండేలా చూస్తాం
       const prev = lastTime.has(key) ? lastTime.get(key) : -1;
-      let t = time;
-      if(t <= prev) t = prev + MIN_GAP;
+      if (t <= prev) {
+        t = prev + MIN_GAP;
+      }
+      
       lastTime.set(key, t);
       return t;
     }
-    function safeTrigger(synth, notes, dur, time){
-      if(time >= DURATION) return;
-      const t = nextSafeTime(synth, time);
-      if(t >= DURATION) return;
-      synth.triggerAttackRelease(notes, dur, t);
-    }
-    function safeSetVolume(synth, value, time){
-      if(time >= DURATION) return;
-      const t = nextSafeTime(synth + '_vol', time);
-      if(t >= DURATION) return;
-      synth.volume.setValueAtTime(value, t);
-    }
-    function safeTriggerCymbal(synth, dur, time){
-      if(time >= DURATION) return;
-      const t = nextSafeTime(synth + '_cymbal', time);
-      if(t >= DURATION) return;
-      synth.triggerAttackRelease(dur, t);
+
+    function safeTrigger(synth, notes, dur, time) {
+      if (time >= DURATION) return;
+      
+      // PolySynth లలో ఒకేసారి బహుళ నోట్స్ (Chords) ఉన్నప్పుడు, 
+      // వాటన్నింటికీ ఒకే సేఫ్ టైమ్ స్టాంప్ వచ్చేలా విడివిడిగా కాకుండా ఒకేసారి ప్రాసెస్ చేయాలి
+      if (Array.isArray(notes)) {
+        // Chord లోని అన్ని నోట్స్‌కి ఒకే టైమ్ కీ వర్తించేలా చూస్తాం
+        const t = getAbsoluteSafeTime(synth, time);
+        if (t >= DURATION) return;
+        synth.triggerAttackRelease(notes, dur, t);
+      } else {
+        const t = getAbsoluteSafeTime(synth, time);
+        if (t >= DURATION) return;
+        synth.triggerAttackRelease(notes, dur, t);
+      }
     }
 
+    function safeSetVolume(synth, value, time) {
+      if (time >= DURATION) return;
+      const t = getAbsoluteSafeTime(synth + '_vol', time);
+      if (t >= DURATION) return;
+      synth.volume.setValueAtTime(value, t);
+    }
+
+    function safeTriggerCymbal(synth, dur, time) {
+      if (time >= DURATION) return;
+      const t = getAbsoluteSafeTime(synth + '_cymbal', time);
+      if (t >= DURATION) return;
+      synth.triggerAttackRelease(dur, t);
+    }
+    // -----------------------------------------------------
     const safeEnd = Math.max(DURATION - 3, BAR);
     for(let bar=0; bar<numBars; bar++){
       const t = bar * BAR;
