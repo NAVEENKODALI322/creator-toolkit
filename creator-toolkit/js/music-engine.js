@@ -328,7 +328,59 @@ class MusicEngine {
         }
 
 
+           // Add final cinematic ending
+
+        const endingTime = Math.max(
+            duration - 3,
+            1
+        );
+
+
+        pad.triggerAttackRelease(
+            style.chords[0],
+            "2m",
+            endingTime
+        );
+
+
+        if(mood === "trailer"){
+
+            drums.triggerAttackRelease(
+                "C2",
+                "1m",
+                endingTime
+            );
+
+        }
+
+
+
+        // Fade out master
+
+        master.gain.setValueAtTime(
+            0.8,
+            Math.max(duration - 2, 0)
+        );
+
+
+        master.gain.linearRampToValueAtTime(
+            0,
+            duration
+        );
+
+
+
     }
+
+
+}
+
+
+
+// Export engine
+
+window.musicEngine =
+new MusicEngine();
 
 
 }
