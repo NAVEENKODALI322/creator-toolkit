@@ -607,20 +607,69 @@ else{
 
 
             if(
-                mood==="trailer"
-                ||
-                mood==="cinematic"
-            ){
+    mood === "cinematic" ||
+    mood === "motivation"
+){
 
-                drums.triggerAttackRelease(
-                    "C2",
-                    "8n",
-                    time
-                );
+    drums.triggerAttackRelease(
+        "C2",
+        "8n",
+        time
+    );
 
 
-            }
+    drums.triggerAttackRelease(
+        "C2",
+        "8n",
+        time + barTime/2
+    );
 
+}
+
+
+
+else if(
+    mood === "gaming" ||
+    mood === "tech"
+){
+
+    drums.triggerAttackRelease(
+        "C2",
+        "16n",
+        time
+    );
+
+
+}
+
+
+
+else if(
+    mood === "lofi"
+){
+
+    drums.triggerAttackRelease(
+        "C2",
+        "4n",
+        time
+    );
+
+
+}
+
+
+
+else{
+
+
+    drums.triggerAttackRelease(
+        "C2",
+        "8n",
+        time
+    );
+
+
+}
 
 
             if(bar % 2 === 0){
