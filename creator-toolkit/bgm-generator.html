@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BGM Generator — Creator Toolkit</title>
+
+<link rel="stylesheet" href="home-v2.css">
+<link rel="stylesheet" href="css/bgm-generator.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+    <div class="topbar">
+        <div class="topbar-logo">
+            <span class="logo-mark">🎬</span>
+            Creator Toolkit
+        </div>
+
+        <div class="topbar-actions">
+            <a href="index.html" class="icon-btn">←</a>
+        </div>
+    </div>
+
+
+    <main class="tool-shell">
+
+        <section class="tool-header">
+
+            <span class="badge">
+                Original · Procedural Music
+            </span>
+
+            <h1>
+                AI Style BGM Generator
+            </h1>
+
+            <p>
+                Create original background music for YouTube videos,
+                Shorts, Reels and content creation.
+            </p>
+
+        </section>
+
+
+
+        <section class="gen-card">
+
+
+            <label>
+                Music Mood
+            </label>
+
+            <div class="option-grid" id="moodOptions">
+
+                <button class="option active" data-mood="cinematic">
+                    🎬 Cinematic
+                </button>
+
+                <button class="option" data-mood="corporate">
+                    💼 Corporate
+                </button>
+
+                <button class="option" data-mood="lofi">
+                    🌙 Lo-fi
+                </button>
+
+                <button class="option" data-mood="emotional">
+                    💙 Emotional
+                </button>
+
+                <button class="option" data-mood="happy">
+                    ☀️ Happy
+                </button>
+
+                <button class="option" data-mood="trailer">
+                    🔥 Trailer
+                </button>
+
+            </div>
+
+
+
+            <label>
+                Duration
+            </label>
+
+            <div class="duration-row">
+
+                <button class="duration" data-duration="15">
+                    15s
+                </button>
+
+                <button class="duration active" data-duration="30">
+                    30s
+                </button>
+
+                <button class="duration" data-duration="60">
+                    60s
+                </button>
+
+                <button class="duration" data-duration="90">
+                    90s
+                </button>
+
+            </div>
+
+
+
+            <div class="visualizer" id="visualizer">
+
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+
+            <div class="button-row">
+
+                <button id="generateBtn" class="primary-btn">
+                    🎵 Generate BGM
+                </button>
+
+
+                <button id="previewBtn" class="secondary-btn" disabled>
+                    ▶ Preview
+                </button>
+
+            </div>
+
+
+
+            <audio id="audioPlayer" controls></audio>
+
+
+            <a id="downloadBtn" class="download-btn">
+                Download WAV →
+            </a>
+
+
+            <p id="status">
+                Select mood and generate your music.
+            </p>
+
+
+        </section>
+
+
+        <footer>
+            Creator Toolkit · BGM Generator
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+
+<script src="js/wav-export.js"></script>
+<script src="js/music-engine.js"></script>
+<script src="js/bgm-generator.js"></script>
+
+
+</body>
+</html>
