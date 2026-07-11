@@ -382,5 +382,3 @@ class MusicEngine {
 window.musicEngine =
 new MusicEngine();
 
-
-}
