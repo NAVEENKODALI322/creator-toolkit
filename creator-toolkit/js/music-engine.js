@@ -151,29 +151,144 @@ class MusicEngine {
 
 
 
-
-        const pad =
-        new Tone.PolySynth(
-            Tone.Synth,
-            {
-
-                oscillator:{
-                    type:"fatsawtooth"
-                },
+let pad;
 
 
-                envelope:{
 
-                    attack:1,
-                    decay:.3,
-                    sustain:.8,
-                    release:2
+if(mood === "cinematic" || mood === "emotional"){
 
-                }
+
+    // Orchestra style strings
+
+    pad =
+    new Tone.PolySynth(
+        Tone.Synth,
+        {
+
+            oscillator:{
+                type:"fatsawtooth",
+                spread:40
+            },
+
+
+            envelope:{
+
+                attack:1.5,
+                decay:.4,
+                sustain:.9,
+                release:3
 
             }
 
-        ).connect(compressor);
+        }
+
+    ).connect(compressor);
+
+
+
+}
+
+
+
+else if(mood === "lofi"){
+
+
+    // Warm lofi texture
+
+    pad =
+    new Tone.PolySynth(
+        Tone.Synth,
+        {
+
+            oscillator:{
+                type:"triangle"
+            },
+
+
+            envelope:{
+
+                attack:0.8,
+                decay:.5,
+                sustain:.7,
+                release:2
+
+            }
+
+        }
+
+    ).connect(compressor);
+
+
+
+}
+
+
+
+else if(mood === "gaming" || mood === "tech"){
+
+
+    // Digital synth
+
+    pad =
+    new Tone.PolySynth(
+        Tone.Synth,
+        {
+
+            oscillator:{
+                type:"square"
+            },
+
+
+            envelope:{
+
+                attack:.05,
+                decay:.3,
+                sustain:.5,
+                release:1
+
+            }
+
+        }
+
+    ).connect(compressor);
+
+
+
+}
+
+
+
+else{
+
+
+    // Vlog / Cooking / Motivation
+
+    pad =
+    new Tone.PolySynth(
+        Tone.Synth,
+        {
+
+            oscillator:{
+                type:"triangle"
+            },
+
+
+            envelope:{
+
+                attack:.4,
+                decay:.3,
+                sustain:.7,
+                release:1.5
+
+            }
+
+        }
+
+    ).connect(compressor);
+
+
+
+}
 
 
 
