@@ -1,196 +1,444 @@
 <!DOCTYPE html>
 <html lang="en" class="v2-home">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>BGM Generator — Creator Toolkit</title>
-
-<link rel="stylesheet" href="home-v2.css">
-<link rel="stylesheet" href="css/bgm-generator.css">
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.58/Tone.js"></script>
+<link rel="stylesheet" href="home-v2.css">
+<style>
+  .tool-shell{ max-width: 620px; margin: 0 auto; padding: 0 var(--space-5) var(--space-8); position: relative; z-index: 1; }
+  .tool-header{ padding: var(--space-7) 0 var(--space-5); animation: v2fade .5s var(--ease) both; }
+  .tool-header .badge{
+    display:inline-block; font-size:11px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
+    color: var(--accent); background: rgba(0,212,255,0.10); border:1px solid rgba(0,212,255,0.28);
+    padding:4px 10px; border-radius: var(--r-pill); margin-bottom:14px;
+  }
+  .tool-header h1{ font-size:26px; font-weight:700; color:var(--text); }
+  .tool-header p{ margin-top:8px; font-size:14px; color:var(--text-secondary); line-height:1.6; }
 
+  .gen-card{
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--r-xl);
+    padding: var(--space-6); box-shadow: var(--shadow-sm); animation: v2fade .5s .08s var(--ease) both;
+  }
+
+  .field-label{ font-size:12.5px; font-weight:700; color: var(--text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
+
+  .mood-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom: var(--space-6); }
+  .mood-chip{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 14px; border-radius: var(--r-md);
+    border:1px solid var(--border); background: var(--card-hover);
+    color: var(--text-secondary); font-size:13.5px; font-weight:600;
+    cursor:pointer; transition: all .15s var(--ease);
+  }
+  .mood-chip .emoji{ font-size:16px; }
+  .mood-chip.active{ border-color: transparent; background: var(--grad-1); color:#fff; box-shadow: var(--shadow-glow); }
+
+  .dur-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom: var(--space-5); }
+  .dur-chip{
+    padding:9px 16px; border-radius: var(--r-pill); border:1px solid var(--border);
+    background: var(--card-hover); color: var(--text-secondary); font-size:13px; font-weight:600;
+    cursor:pointer; transition: all .15s var(--ease);
+  }
+  .dur-chip.active{ border-color: transparent; background: var(--grad-1); color: #fff; box-shadow: var(--shadow-glow); }
+
+  .bars{ display:flex; align-items:flex-end; justify-content:center; gap:4px; height:56px; margin: 0 auto var(--space-5); width:260px; }
+  .bars span{ width:6px; border-radius:2px; height:8px; opacity:0.28; background: var(--grad-1); transition:height 0.12s ease, opacity 0.3s ease; }
+  .bars.active span{ opacity:0.95; }
+
+  .btn-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .btn-gen{
+    font-family:inherit; font-size:13.5px; font-weight:700; padding:13px 24px; border-radius: var(--r-pill);
+    background: var(--grad-1); color:#fff; box-shadow: var(--shadow-glow);
+    transition: transform .15s var(--ease), filter .15s var(--ease);
+  }
+  .btn-gen:hover:not(:disabled){ filter:brightness(1.06); }
+  .btn-gen:active:not(:disabled){ transform: scale(0.97); }
+  .btn-play{
+    font-family:inherit; font-size:13.5px; font-weight:600; padding:13px 22px; border-radius: var(--r-pill);
+    background: var(--card-hover); color: var(--text); border:1px solid var(--border);
+    transition: background .15s var(--ease);
+  }
+  .btn-play:hover:not(:disabled){ background: rgba(255,255,255,0.08); }
+  button:disabled{ opacity:0.35; cursor:not-allowed; }
+
+  .status{ font-size:13px; color: var(--text-secondary); margin-top: var(--space-4); min-height:18px; }
+  audio{ width:100%; margin-top: var(--space-4); display:none; border-radius: var(--r-sm); }
+  a.download{ display:none; margin-top: var(--space-3); font-size:13px; font-weight:600; color: var(--accent); text-decoration:none; }
+  a.download:hover{ text-decoration:underline; }
+  .foot-note{ margin-top: var(--space-6); font-size:11.5px; color: var(--text-faint); text-align:center; }
+</style>
 </head>
-
 <body class="v2-home">
 
 <div class="app-shell">
+  <div class="topbar">
+    <div class="topbar-logo"><span class="logo-mark">🎬</span> Creator Toolkit</div>
+    <div class="topbar-actions"><a href="index.html" class="icon-btn">←</a></div>
+  </div>
 
-    <div class="topbar">
-        <div class="topbar-logo">
-            <span class="logo-mark">🎬</span>
-            Creator Toolkit
-        </div>
-
-        <div class="topbar-actions">
-            <a href="index.html" class="icon-btn">←</a>
-        </div>
+  <div class="tool-shell">
+    <div class="tool-header">
+      <span class="badge">Original · Procedural Music</span>
+      <h1>AI Style BGM Generator</h1>
+      <p>Create original background music for YouTube videos, Shorts, Reels and content creation.</p>
     </div>
 
+    <div class="gen-card">
+      <div class="field-label">Music Mood</div>
+      <div class="mood-grid" id="moodOpts">
+        <div class="mood-chip active" data-mood="vlog"><span class="emoji">🎒</span>YouTube Vlog</div>
+        <div class="mood-chip" data-mood="cooking"><span class="emoji">🍳</span>Cooking / Food</div>
+        <div class="mood-chip" data-mood="motivation"><span class="emoji">🔥</span>Motivation</div>
+        <div class="mood-chip" data-mood="tech"><span class="emoji">💻</span>Tech Review</div>
+        <div class="mood-chip" data-mood="cinematic"><span class="emoji">🎬</span>Cinematic</div>
+        <div class="mood-chip" data-mood="lofi"><span class="emoji">🌙</span>Lo-Fi</div>
+        <div class="mood-chip" data-mood="emotional"><span class="emoji">💙</span>Emotional Story</div>
+        <div class="mood-chip" data-mood="gaming"><span class="emoji">🎮</span>Gaming</div>
+      </div>
 
-    <main class="tool-shell">
+      <div class="field-label">Duration</div>
+      <div class="dur-row" id="durationOpts">
+        <div class="dur-chip" data-dur="15">15s</div>
+        <div class="dur-chip active" data-dur="30">30s</div>
+        <div class="dur-chip" data-dur="60">60s</div>
+        <div class="dur-chip" data-dur="90">90s</div>
+      </div>
 
-        <section class="tool-header">
+      <div class="bars" id="bars">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
 
-            <span class="badge">
-                Original · Procedural Music
-            </span>
+      <div class="btn-row">
+        <button class="btn-gen" id="genBtn">🎵 Generate BGM</button>
+        <button class="btn-play" id="playBtn" disabled>▶ Preview</button>
+      </div>
 
-            <h1>
-                AI Style BGM Generator
-            </h1>
+      <audio id="player" controls></audio>
+      <a id="dl" class="download" download="bgm_track.wav">Download WAV file →</a>
 
-            <p>
-                Create original background music for YouTube videos,
-                Shorts, Reels and content creation.
-            </p>
+      <div class="status" id="status">Select a mood and click "Generate BGM".</div>
+    </div>
 
-        </section>
-
-
-
-        <section class="gen-card">
-
-
-            <label>
-                Music Mood
-            </label>
-
-            <div class="option-grid" id="moodOptions">
-
-    <button class="option active" data-mood="vlog">
-        🎥 YouTube Vlog
-    </button>
-
-
-    <button class="option" data-mood="cooking">
-        🍳 Cooking / Food
-    </button>
-
-
-    <button class="option" data-mood="motivation">
-        🔥 Motivation
-    </button>
-
-
-    <button class="option" data-mood="tech">
-        💻 Tech Review
-    </button>
-
-
-    <button class="option" data-mood="cinematic">
-        🎬 Cinematic
-    </button>
-
-
-    <button class="option" data-mood="lofi">
-        🌙 Lo-Fi
-    </button>
-
-
-    <button class="option" data-mood="emotional">
-        💙 Emotional Story
-    </button>
-
-
-    <button class="option" data-mood="gaming">
-        🎮 Gaming
-    </button>
-
+    <div class="foot-note">Creator Toolkit · BGM Generator</div>
+  </div>
 </div>
 
+<script>
+const genBtn = document.getElementById('genBtn');
+const playBtn = document.getElementById('playBtn');
+const player = document.getElementById('player');
+const dl = document.getElementById('dl');
+const statusEl = document.getElementById('status');
+const barsEl = document.getElementById('bars');
+const barSpans = barsEl.querySelectorAll('span');
+const durationOpts = document.getElementById('durationOpts');
+const moodOpts = document.getElementById('moodOpts');
 
+let selectedDuration = 30;
+let selectedMood = 'vlog';
+let wavBlobUrl = null;
+let animInterval = null;
 
-            <label>
-                Duration
-            </label>
+durationOpts.addEventListener('click', (e) => {
+  const chip = e.target.closest('.dur-chip');
+  if(!chip) return;
+  durationOpts.querySelectorAll('.dur-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  selectedDuration = parseInt(chip.dataset.dur, 10);
+});
 
-            <div class="duration-row">
+moodOpts.addEventListener('click', (e) => {
+  const chip = e.target.closest('.mood-chip');
+  if(!chip) return;
+  moodOpts.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  selectedMood = chip.dataset.mood;
+});
 
-                <button class="duration" data-duration="15">
-                    15s
-                </button>
+function animateBars(active){
+  if(active){
+    barsEl.classList.add('active');
+    animInterval = setInterval(()=>{
+      barSpans.forEach(s=>{ s.style.height = (8 + Math.random()*48)+'px'; });
+    }, 110);
+  } else {
+    clearInterval(animInterval);
+    barsEl.classList.remove('active');
+    barSpans.forEach(s=> s.style.height = '8px');
+  }
+}
 
-                <button class="duration active" data-duration="30">
-                    30s
-                </button>
+function audioBufferToWav(buffer){
+  const numCh = buffer.numberOfChannels;
+  const sampleRate = buffer.sampleRate;
+  const numFrames = buffer.length;
+  const bytesPerSample = 2;
+  const blockAlign = numCh * bytesPerSample;
+  const dataSize = numFrames * blockAlign;
+  const bufferLength = 44 + dataSize;
+  const ab = new ArrayBuffer(bufferLength);
+  const view = new DataView(ab);
+  function writeStr(offset, str){ for(let i=0;i<str.length;i++) view.setUint8(offset+i, str.charCodeAt(i)); }
+  writeStr(0, 'RIFF'); view.setUint32(4, 36 + dataSize, true); writeStr(8, 'WAVE');
+  writeStr(12, 'fmt '); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+  view.setUint16(22, numCh, true); view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * blockAlign, true); view.setUint16(32, blockAlign, true);
+  view.setUint16(34, 16, true); writeStr(36, 'data'); view.setUint32(40, dataSize, true);
+  const channels = [];
+  for(let ch=0; ch<numCh; ch++) channels.push(buffer.getChannelData(ch));
+  let offset = 44;
+  for(let i=0; i<numFrames; i++){
+    for(let ch=0; ch<numCh; ch++){
+      let sample = Math.max(-1, Math.min(1, channels[ch][i]));
+      sample = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+      view.setInt16(offset, sample, true); offset += 2;
+    }
+  }
+  return new Blob([ab], {type:'audio/wav'});
+}
 
-                <button class="duration" data-duration="60">
-                    60s
-                </button>
+// ---------------------------------------------------------------
+// MOOD CONFIGS — each mood gets its own tempo, 7th-chord voicings,
+// oscillator timbres and mix so the tracks actually sound different
+// and full, instead of one thin generic loop.
+// ---------------------------------------------------------------
+const MOODS = {
+  vlog: {
+    bpm: 112, padOsc:'triangle', bassOsc:'sine', hasArp:true, hasDrums:true, hasNoise:false,
+    chords: [ ['C4','E4','G4','B4'], ['A3','C4','E4','G4'], ['F3','A3','C4','E4'], ['G3','B3','D4','F4'] ],
+    bass: ['C2','A1','F1','G1'], arpNote: ['E5','C5','G4','B4'],
+    reverbWet:0.22, delayWet:0.16
+  },
+  cooking: {
+    bpm: 104, padOsc:'triangle', bassOsc:'sine', hasArp:true, hasDrums:true, hasNoise:false,
+    chords: [ ['F4','A4','C5','E5'], ['C4','E4','G4','B4'], ['D4','F4','A4','C5'], ['G4','B4','D5','F5'] ],
+    bass: ['F2','C2','D2','G1'], arpNote: ['A5','G5','F5','D5'],
+    reverbWet:0.2, delayWet:0.14
+  },
+  motivation: {
+    bpm: 126, padOsc:'sawtooth', bassOsc:'sawtooth', hasArp:false, hasDrums:true, hasNoise:false,
+    chords: [ ['A3','C4','E4','G4'], ['F3','A3','C4','E4'], ['C4','E4','G4','B4'], ['G3','B3','D4','F4'] ],
+    bass: ['A1','F1','C2','G1'], arpNote: null,
+    reverbWet:0.24, delayWet:0.1
+  },
+  tech: {
+    bpm: 100, padOsc:'sine', bassOsc:'sine', hasArp:true, hasDrums:false, hasNoise:false,
+    chords: [ ['D4','G4','A4','C5'], ['C4','F4','G4','B4'], ['A3','D4','E4','G4'], ['G3','C4','D4','F4'] ],
+    bass: ['D2','C2','A1','G1'], arpNote: ['A5','G5','E5','D5'],
+    reverbWet:0.3, delayWet:0.28
+  },
+  cinematic: {
+    bpm: 90, padOsc:'fatsawtooth', bassOsc:'sine', hasArp:false, hasDrums:true, hasBrass:true, hasLead:true, hasNoise:false,
+    chords: [ ['A3','C4','E4','G4'], ['F3','A3','C4','E4'], ['C4','E4','G4','B4'], ['G3','B3','D4','F4'] ],
+    bass: ['A2','F2','C3','G2'], arpNote: null, leadNote: ['A4','C5','E5','G5'],
+    reverbWet:0.32, delayWet:0.1
+  },
+  lofi: {
+    bpm: 76, padOsc:'sine', bassOsc:'sine', hasArp:false, hasDrums:true, hasNoise:true, isEpiano:true,
+    chords: [ ['D4','F4','A4','C5'], ['G3','B3','D4','F4'], ['C4','E4','G4','B4'], ['A3','C4','E4','G4'] ],
+    bass: ['D2','G1','C2','A1'], arpNote: null,
+    reverbWet:0.28, delayWet:0.22
+  },
+  emotional: {
+    bpm: 68, padOsc:'sine', bassOsc:'sine', hasArp:false, hasDrums:false, hasNoise:false,
+    chords: [ ['A3','C4','E4','G4'], ['D4','F4','A4','C5'], ['F3','A3','C4','E4'], ['C4','E4','G4','B4'] ],
+    bass: ['A1','D2','F1','C2'], arpNote: null,
+    reverbWet:0.38, delayWet:0.12
+  },
+  gaming: {
+    bpm: 140, padOsc:'sawtooth', bassOsc:'square', hasArp:true, hasDrums:true, hasNoise:false, arpFast:true,
+    chords: [ ['E4','G4','B4','D5'], ['C4','E4','G4','B4'], ['A3','C4','E4','G4'], ['D4','F4','A4','C5'] ],
+    bass: ['E2','C2','A1','D2'], arpNote: ['B5','G5','E5','D5'],
+    reverbWet:0.18, delayWet:0.24
+  }
+};
 
-                <button class="duration" data-duration="90">
-                    90s
-                </button>
+async function renderTrack(moodKey, DURATION){
+  const MOOD = MOODS[moodKey];
+  const BAR = (60 / MOOD.bpm) * 4; // seconds per bar (4 beats)
+  const MIN_GAP = 0.01;
 
-            </div>
+  const numBars = Math.ceil(DURATION / BAR);
+  const introEnd = DURATION * 0.25;
+  const buildEnd = DURATION * 0.5;
+  const climaxEnd = DURATION * 0.75;
 
+  const buffer = await Tone.Offline(() => {
+    const limiter = new Tone.Limiter(-1).toDestination();
+    const reverb = new Tone.JCReverb({ roomSize: 0.6, wet: MOOD.reverbWet }).connect(limiter);
+    const delay = new Tone.FeedbackDelay({ delayTime: '8n', feedback: 0.25, wet: MOOD.delayWet }).connect(reverb);
+    const comp = new Tone.Compressor({ threshold:-16, ratio:3 }).connect(delay);
+    comp.connect(reverb);
 
+    // --- Pad / chords ---
+    const pad = new Tone.PolySynth(Tone.Synth, {
+      oscillator: { type: MOOD.padOsc, spread: MOOD.padOsc==='fatsawtooth' ? 28 : 0, count: MOOD.padOsc==='fatsawtooth' ? 3 : 1 },
+      envelope: { attack: MOOD.isEpiano ? 0.02 : 0.7, decay: 0.3, sustain: MOOD.isEpiano ? 0.15 : 0.8, release: MOOD.isEpiano ? 0.8 : 2.0 }
+    }).connect(comp);
+    pad.volume.value = -11;
 
-            <div class="visualizer" id="visualizer">
+    // --- Bass ---
+    const bass = new Tone.MonoSynth({
+      oscillator:{ type: MOOD.bassOsc },
+      envelope:{ attack:0.03, decay:0.2, sustain:0.6, release:0.4 },
+      filterEnvelope:{ attack:0.02, decay:0.2, sustain:0.4, release:0.4, baseFrequency:180, octaves:2 }
+    }).connect(comp);
+    bass.volume.value = -13;
 
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+    // --- Drums ---
+    let kick=null, hat=null;
+    if(MOOD.hasDrums){
+      kick = new Tone.MembraneSynth({ pitchDecay:0.04, octaves:4, envelope:{attack:0.001, decay:0.35, sustain:0} }).connect(comp);
+      kick.volume.value = -7;
+      hat = new Tone.MetalSynth({ frequency:280, envelope:{attack:0.001, decay:0.12, sustain:0}, harmonicity:5.1, modulationIndex:24, resonance:3200, octaves:1 }).connect(comp);
+      hat.volume.value = -20;
+    }
 
-            </div>
+    // --- Arp / pluck layer ---
+    let arp = null;
+    if(MOOD.hasArp){
+      arp = new Tone.PolySynth(Tone.Synth, {
+        oscillator:{ type:'triangle' },
+        envelope:{ attack:0.005, decay:0.15, sustain:0, release:0.1 }
+      }).connect(delay);
+      arp.volume.value = -13;
+    }
 
+    // --- Cinematic-only: brass + lead + cymbal ---
+    let brass=null, lead=null, cymbal=null;
+    if(MOOD.hasBrass){
+      brass = new Tone.PolySynth(Tone.Synth, { oscillator:{type:'sawtooth'}, envelope:{attack:0.03, decay:0.18, sustain:0.35, release:0.25} }).connect(comp);
+      brass.volume.value = -11;
+    }
+    if(MOOD.hasLead){
+      lead = new Tone.Synth({ oscillator:{type:'triangle'}, envelope:{attack:0.02, decay:0.12, sustain:0.3, release:0.35} }).connect(comp);
+      lead.volume.value = -10;
+    }
+    if(MOOD.hasBrass || MOOD.hasLead){
+      cymbal = new Tone.MetalSynth({ frequency:220, envelope:{attack:0.001, decay:1.6, sustain:0}, harmonicity:5.1, modulationIndex:28, resonance:3800, octaves:1.4 }).connect(comp);
+      cymbal.volume.value = -12;
+    }
 
+    // --- Lo-Fi only: vinyl crackle bed (one continuous noise, no scheduling risk) ---
+    if(MOOD.hasNoise){
+      const noiseFilter = new Tone.Filter(2200, 'lowpass').connect(comp);
+      const vinyl = new Tone.Noise('pink').connect(noiseFilter);
+      vinyl.volume.value = -32;
+      vinyl.start(0);
+      vinyl.stop(DURATION);
+    }
 
-            <div class="button-row">
+    // --- Safe scheduler: guarantees every note fires at a strictly
+    // increasing time per-instrument, so this can never crash.
+    const lastTime = new Map();
+    function safeTrigger(synth, notes, dur, time, velocity){
+      if(time >= DURATION || !synth) return;
+      const prev = lastTime.has(synth) ? lastTime.get(synth) : -1;
+      let t = time;
+      if(t <= prev) t = prev + MIN_GAP;
+      if(t >= DURATION) return;
+      lastTime.set(synth, t);
+      synth.triggerAttackRelease(notes, dur, t, velocity);
+    }
+    function safeTriggerPerc(synth, dur, time, velocity){
+      if(time >= DURATION || !synth) return;
+      const prev = lastTime.has(synth) ? lastTime.get(synth) : -1;
+      let t = time;
+      if(t <= prev) t = prev + MIN_GAP;
+      if(t >= DURATION) return;
+      lastTime.set(synth, t);
+      synth.triggerAttackRelease(dur, t, velocity);
+    }
 
-                <button id="generateBtn" class="primary-btn">
-                    🎵 Generate BGM
-                </button>
+    const safeEnd = Math.max(DURATION - Math.min(3, BAR*1.2), BAR);
+    for(let bar=0; bar<numBars; bar++){
+      const t = bar * BAR;
+      if(t >= safeEnd) break;
+      const chord = MOOD.chords[bar % 4];
+      const root = MOOD.bass[bar % 4];
+      const section = t < introEnd ? 'intro' : t < buildEnd ? 'build' : t < climaxEnd ? 'climax' : 'outro';
+      const energy = section==='intro' ? 0.32 : section==='build' ? 0.55 : section==='climax' ? 0.9 : 0.55;
 
+      safeTrigger(pad, chord, BAR*0.92, t, energy);
 
-                <button id="previewBtn" class="secondary-btn" disabled>
-                    ▶ Preview
-                </button>
+      if(section === 'intro'){
+        safeTrigger(bass, root, BAR*0.85, t, 0.3);
+      } else {
+        for(let beat=0; beat<4; beat++){
+          safeTrigger(bass, root, 0.28, t + beat*(BAR/4), energy*0.9);
+        }
+      }
 
-            </div>
+      if(kick && (section === 'build' || section === 'climax' || section === 'outro')){
+        const kickHits = section==='climax' ? [0,1,2,3] : [0,2];
+        kickHits.forEach(h => safeTriggerPerc(kick, '8n', t + h*(BAR/4), energy));
+        if(hat && section==='climax'){
+          [0.5,1.5,2.5,3.5].forEach(h => safeTriggerPerc(hat, '32n', t + h*(BAR/4), 0.4));
+        }
+      }
 
+      if(arp && (section === 'build' || section === 'climax')){
+        const steps = MOOD.arpFast ? [0,0.5,1,1.5,2,2.5,3,3.5] : [0,1,2,3];
+        steps.forEach((s,i) => safeTrigger(arp, MOOD.arpNote[i % MOOD.arpNote.length], 0.18, t + s*(BAR/4), energy*0.8));
+      }
 
+      if(brass && section === 'climax'){
+        safeTrigger(brass, chord, 0.2, t + 0.5*(BAR/4), 0.8);
+        safeTrigger(brass, chord, 0.2, t + 2.5*(BAR/4), 0.8);
+      }
+      if(lead && section === 'climax'){
+        safeTrigger(lead, MOOD.leadNote[bar % 4], 0.4, t + 1*(BAR/4), 0.85);
+      }
+    }
 
-            <audio id="audioPlayer" controls></audio>
+    const endT = Math.max(DURATION - 2.2, 0.5);
+    if(cymbal){
+      [introEnd, buildEnd, climaxEnd].forEach(tt => { if(tt < DURATION) safeTriggerPerc(cymbal, '8n', tt, 0.6); });
+      safeTriggerPerc(cymbal, '2n', endT, 0.9);
+    }
+    if(kick) safeTriggerPerc(kick, '4n', endT, 0.9);
+    safeTrigger(pad, MOOD.chords[0].concat([MOOD.chords[0][0]]), 2.0, endT, 0.85);
 
+  }, DURATION);
 
-            <a id="downloadBtn" class="download-btn">
-                Download WAV →
-            </a>
+  return buffer.get();
+}
 
+genBtn.addEventListener('click', async () => {
+  genBtn.disabled = true;
+  playBtn.disabled = true;
+  statusEl.textContent = 'Composing your ' + selectedDuration + 's track… (a few seconds)';
+  animateBars(true);
 
-            <p id="status">
-                Select mood and generate your music.
-            </p>
+  try{
+    await Tone.start();
+    const nativeBuffer = await renderTrack(selectedMood, selectedDuration);
+    const wavBlob = audioBufferToWav(nativeBuffer);
+    if(wavBlobUrl) URL.revokeObjectURL(wavBlobUrl);
+    wavBlobUrl = URL.createObjectURL(wavBlob);
 
+    player.src = wavBlobUrl;
+    player.style.display = 'block';
+    dl.href = wavBlobUrl;
+    dl.download = 'bgm_' + selectedMood + '_' + selectedDuration + 's.wav';
+    dl.style.display = 'inline-block';
 
-        </section>
+    statusEl.textContent = 'Done — preview below, or download the WAV file.';
+    playBtn.disabled = false;
+  } catch(err){
+    statusEl.textContent = 'Something went wrong: ' + err.message;
+  } finally {
+    genBtn.disabled = false;
+    animateBars(false);
+  }
+});
 
-
-        <footer>
-            Creator Toolkit · BGM Generator
-        </footer>
-
-
-    </main>
-
-</div>
-
-
-
-<script src="js/wav-export.js"></script>
-<script src="js/music-engine.js"></script>
-<script src="js/bgm-generator.js"></script>
-
-
+playBtn.addEventListener('click', () => { player.play(); });
+</script>
 </body>
 </html>
