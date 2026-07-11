@@ -280,6 +280,21 @@ class MusicEngine {
             lastTime.set(synth, t);
             synth.triggerAttackRelease(dur, t, velocity);
         }
+        // MembraneSynth (kick) needs (note, duration, time, velocity) —
+        // a different signature than MetalSynth's (duration, time, velocity).
+        // Using the wrong one silently shifts every argument over by one,
+        // which sends the WRONG value in as the scheduling time — that
+        // was the real cause of the "strictly greater than previous
+        // start time" crash.
+        function safeKick(synth, note, dur, time, velocity){
+            if(time >= duration || !synth) return;
+            const prev = lastTime.has(synth) ? lastTime.get(synth) : -1;
+            let t = time;
+            if(t <= prev) t = prev + MIN_GAP;
+            if(t >= duration) return;
+            lastTime.set(synth, t);
+            synth.triggerAttackRelease(note, dur, t, velocity);
+        }
 
         const barTime = 60 / bpm * 4;
         const bars = Math.ceil(duration / barTime);
@@ -301,17 +316,17 @@ class MusicEngine {
             safe(bass, chord[0].replace(/[0-9]/,"2"), barTime*0.45, time, energy*0.9);
 
             if(mood === "cinematic" || mood === "motivation"){
-                safePerc(kick, "8n", time, energy);
-                safePerc(kick, "8n", time + barTime/2, energy*0.8);
+                safeKick(kick, "C2", "8n", time, energy);
+                safeKick(kick, "C2", "8n", time + barTime/2, energy*0.8);
             } else if(mood === "gaming" || mood === "tech"){
-                safePerc(kick, "16n", time, energy);
+                safeKick(kick, "C2", "16n", time, energy);
                 if(section!=="intro") safePerc(hat, "32n", time + barTime/2, 0.4);
             } else if(mood === "lofi"){
-                safePerc(kick, "4n", time, energy*0.8);
+                safeKick(kick, "C2", "4n", time, energy*0.8);
             } else if(mood === "emotional"){
                 // no percussion — stays sparse and intimate
             } else {
-                safePerc(kick, "8n", time, energy*0.85);
+                safeKick(kick, "C2", "8n", time, energy*0.85);
             }
 
             if(arp && section !== "intro"){
@@ -349,7 +364,7 @@ class MusicEngine {
         const endingTime = Math.max(duration - 1.8, safeEnd + MIN_GAP);
         safe(pad, style.chords[0], Math.min(2, duration*0.3), endingTime, 0.8);
         if(mood === "trailer" || mood === "cinematic"){
-            safePerc(kick, "4n", endingTime, 0.9);
+            safeKick(kick, "C2", "4n", endingTime, 0.9);
         }
 
         // Fade out master at the very end (single scheduling — safe)
