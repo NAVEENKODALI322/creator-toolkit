@@ -159,7 +159,12 @@ class MusicEngine {
         const limiter = new Tone.Limiter(-1).toDestination();
         const master = new Tone.Gain(0.85).connect(limiter);
 
-        const reverb = new Tone.Reverb({ decay:2.6, wet:0.3 }).connect(master);
+        // JCReverb is algorithmic (synchronous, instant) — unlike
+        // Tone.Reverb (convolution-based), it doesn't need to
+        // asynchronously generate an impulse response, which was
+        // causing intermittent failures when nested inside our
+        // outer Tone.Offline render.
+        const reverb = new Tone.JCReverb({ roomSize:0.6, wet:0.3 }).connect(master);
         const delay = new Tone.FeedbackDelay({ delayTime:"8n", feedback:0.22, wet:0.18 }).connect(reverb);
         const compressor = new Tone.Compressor({ threshold:-18, ratio:4 }).connect(delay);
         compressor.connect(reverb);
