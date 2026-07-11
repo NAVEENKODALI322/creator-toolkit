@@ -288,9 +288,10 @@ async function renderTrack(DURATION){
       envelope:{ attack:0.02, decay:0.12, sustain:0.3, release:0.35 }
     }).connect(comp);
 
+    const safeEnd = Math.max(DURATION - 3, BAR);
     for(let bar=0; bar<numBars; bar++){
       const t = bar * BAR;
-      if(t >= DURATION) break;
+      if(t >= safeEnd) break;
       const chord = chordCycle[bar % 4];
       const root = bassRoots[bar % 4];
       const section = t < introEnd ? 'intro' : t < buildEnd ? 'build' : t < climaxEnd ? 'climax' : 'outro';
