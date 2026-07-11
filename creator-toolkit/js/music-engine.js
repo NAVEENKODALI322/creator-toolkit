@@ -674,16 +674,122 @@ else{
 
             if(bar % 2 === 0){
 
-                lead.triggerAttackRelease(
 
-                    chord[1],
-                    "4n",
-                    time + barTime/2
+    let melodyNote;
 
-                );
 
-            }
 
+    if(mood === "cinematic"){
+
+
+        const notes = [
+            chord[0],
+            chord[1],
+            chord[2],
+            "A4"
+        ];
+
+        melodyNote =
+        notes[bar % notes.length];
+
+
+
+    }
+
+
+    else if(mood === "lofi"){
+
+
+        const notes = [
+            chord[1],
+            chord[0],
+            chord[2]
+        ];
+
+        melodyNote =
+        notes[bar % notes.length];
+
+
+
+    }
+
+
+    else if(mood === "gaming" || mood === "tech"){
+
+
+        const notes = [
+            chord[2],
+            chord[1],
+            chord[2],
+            "E5"
+        ];
+
+        melodyNote =
+        notes[bar % notes.length];
+
+
+
+    }
+
+
+    else if(mood === "cooking"){
+
+
+        const notes = [
+            chord[2],
+            chord[1],
+            chord[0],
+            "G4"
+        ];
+
+        melodyNote =
+        notes[bar % notes.length];
+
+
+
+    }
+
+
+    else if(mood === "motivation"){
+
+
+        const notes = [
+            chord[0],
+            chord[2],
+            "A4",
+            "C5"
+        ];
+
+        melodyNote =
+        notes[bar % notes.length];
+
+
+
+    }
+
+
+    else{
+
+
+        melodyNote = chord[1];
+
+
+    }
+
+
+
+    lead.triggerAttackRelease(
+
+        melodyNote,
+
+        "4n",
+
+        time + barTime/2
+
+    );
+
+
+}
 
         }
 
