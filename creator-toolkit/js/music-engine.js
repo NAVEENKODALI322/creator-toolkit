@@ -121,7 +121,7 @@ class MusicEngine {
 
 
 
-    createTrack(style,duration,mood){
+    createTrack(style,duration,mood,bpm){
 
 
         const master =
