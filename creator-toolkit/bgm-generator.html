@@ -307,6 +307,12 @@ async function renderTrack(DURATION){
       if(t >= DURATION) return;
       synth.triggerAttackRelease(notes, dur, t);
     }
+    function safeSetVolume(synth, value, time){
+      if(time >= DURATION) return;
+      const t = nextSafeTime(synth.volume, time);
+      if(t >= DURATION) return;
+      synth.volume.setValueAtTime(value, t);
+    }
     function safeTriggerCymbal(synth, dur, time){
       if(time >= DURATION) return;
       const t = nextSafeTime(synth, time);
@@ -322,46 +328,46 @@ async function renderTrack(DURATION){
       const root = bassRoots[bar % 4];
       const section = t < introEnd ? 'intro' : t < buildEnd ? 'build' : t < climaxEnd ? 'climax' : 'outro';
 
-      strings.volume.value = section==='intro' ? -18 : section==='build' ? -12 : section==='climax' ? -6 : -13;
+      safeSetVolume(strings, section==='intro' ? -18 : section==='build' ? -12 : section==='climax' ? -6 : -13, t);
       safeTrigger(strings, chord, BAR*0.95, t);
 
       if(section === 'intro'){
-        bass.volume.value = -20;
+        safeSetVolume(bass, -20, t);
         safeTrigger(bass, root, BAR*0.9, t);
       } else {
-        bass.volume.value = section==='climax' ? -9 : -14;
+        safeSetVolume(bass, section==='climax' ? -9 : -14, t);
         for(let beat=0; beat<4; beat++){
           safeTrigger(bass, root, 0.28, t + beat*(BAR/4));
         }
       }
 
       if(section === 'build' || section === 'climax'){
-        drums.volume.value = section==='climax' ? -6 : -13;
+        safeSetVolume(drums, section==='climax' ? -6 : -13, t);
         const hits = section==='climax' ? [0,0.5,1,1.5,2,2.5,3,3.5] : [0,2];
         hits.forEach(h => safeTrigger(drums, 'C2', 0.2, t + h*(BAR/4)));
       }
 
       if(section === 'climax'){
-        brass.volume.value = -10;
+        safeSetVolume(brass, -10, t);
         safeTrigger(brass, chord, 0.2, t + 0.5*(BAR/4));
         safeTrigger(brass, chord, 0.2, t + 2.5*(BAR/4));
 
-        lead.volume.value = -9;
+        safeSetVolume(lead, -9, t);
         safeTrigger(lead, leadNotes[bar % 4], 0.4, t + 1*(BAR/4));
       }
     }
 
     const endT = Math.max(DURATION - 2.5, 0.5);
-    cymbal.volume.value = -12;
+    safeSetVolume(cymbal, -12, introEnd);
     [introEnd, buildEnd, climaxEnd].forEach(tt => {
       if(tt < DURATION) safeTriggerCymbal(cymbal, '8n', tt);
     });
 
-    drums.volume.value = -4;
+    safeSetVolume(drums, -4, endT);
     safeTrigger(drums, 'C2', 1, endT);
-    cymbal.volume.value = -6;
+    safeSetVolume(cymbal, -6, endT);
     safeTriggerCymbal(cymbal, '2n', endT);
-    strings.volume.value = -4;
+    safeSetVolume(strings, -4, endT);
     safeTrigger(strings, ['A3','C4','E4','A4'], 2.2, endT);
 
   }, DURATION);
