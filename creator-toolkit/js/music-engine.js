@@ -293,24 +293,121 @@ else{
 
 
 
-        const bass =
-        new Tone.MonoSynth({
-
-            oscillator:{
-                type:"sine"
-            },
+        let bass;
 
 
-            envelope:{
+if(mood === "motivation" || mood === "cinematic"){
 
-                attack:.05,
-                decay:.2,
-                sustain:.5,
-                release:.5
+    // Deep cinematic bass
 
-            }
+    bass =
+    new Tone.MonoSynth({
 
-        }).connect(compressor);
+        oscillator:{
+            type:"sawtooth"
+        },
+
+        envelope:{
+            attack:.05,
+            decay:.3,
+            sustain:.7,
+            release:1
+        },
+
+        filterEnvelope:{
+            attack:.01,
+            decay:.2,
+            sustain:.5,
+            release:.8,
+            baseFrequency:80,
+            octaves:3
+        }
+
+    }).connect(compressor);
+
+
+}
+
+
+
+else if(mood === "lofi" || mood === "emotional"){
+
+
+    // Soft warm bass
+
+    bass =
+    new Tone.MonoSynth({
+
+        oscillator:{
+            type:"triangle"
+        },
+
+        envelope:{
+            attack:.1,
+            decay:.4,
+            sustain:.5,
+            release:1
+        }
+
+    }).connect(compressor);
+
+
+
+}
+
+
+
+else if(mood === "gaming" || mood === "tech"){
+
+
+    // Electronic bass
+
+    bass =
+    new Tone.MonoSynth({
+
+        oscillator:{
+            type:"square"
+        },
+
+        envelope:{
+            attack:.02,
+            decay:.2,
+            sustain:.6,
+            release:.5
+        }
+
+    }).connect(compressor);
+
+
+
+}
+
+
+
+else{
+
+
+    // Vlog / Cooking
+
+    bass =
+    new Tone.MonoSynth({
+
+        oscillator:{
+            type:"sine"
+        },
+
+        envelope:{
+            attack:.05,
+            decay:.25,
+            sustain:.5,
+            release:.6
+        }
+
+    }).connect(compressor);
+
+
+
+}
 
 
 
