@@ -103,7 +103,8 @@ class MusicEngine {
                 this.createTrack(
                     style,
                     duration,
-                    mood
+                    mood,
+                    bpm
                 );
 
 
