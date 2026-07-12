@@ -338,6 +338,7 @@ async function renderTrack(moodKey, DURATION){
     const lastTime = new Map();
     function safeTrigger(synth, notes, dur, time, velocity){
       if(time >= DURATION || !synth) return;
+      if(Array.isArray(notes)) notes = [...new Set(notes)];
       const prev = lastTime.has(synth) ? lastTime.get(synth) : -1;
       let t = time;
       if(t <= prev) t = prev + MIN_GAP;
