@@ -364,7 +364,7 @@ async function renderTrack(moodKey, DURATION){
       const section = t < introEnd ? 'intro' : t < buildEnd ? 'build' : t < climaxEnd ? 'climax' : 'outro';
       const energy = section==='intro' ? 0.32 : section==='build' ? 0.55 : section==='climax' ? 0.9 : 0.55;
 
-      safeTrigger(pad, chord, BAR*0.92, t, energy);
+      safeTrigger(pad, MOOD.chords[0], 2.0, endT, 0.85);
 
       if(section === 'intro'){
         safeTrigger(bass, root, BAR*0.85, t, 0.3);
