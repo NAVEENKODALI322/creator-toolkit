@@ -267,6 +267,9 @@ async function renderTrack(moodKey, DURATION){
   const introEnd = DURATION * 0.25;
   const buildEnd = DURATION * 0.5;
   const climaxEnd = DURATION * 0.75;
+  // endT is computed up-front now, so it is safe to use anywhere below,
+  // including inside the bar loop and in the outro block.
+  const endT = Math.max(DURATION - 2.2, 0.5);
 
   const buffer = await Tone.Offline(() => {
     const limiter = new Tone.Limiter(-1).toDestination();
@@ -335,6 +338,8 @@ async function renderTrack(moodKey, DURATION){
 
     // --- Safe scheduler: guarantees every note fires at a strictly
     // increasing time per-instrument, so this can never crash.
+    // Also de-duplicates notes within a single chord so a synth is
+    // never asked to start the same note twice at the same instant.
     const lastTime = new Map();
     function safeTrigger(synth, notes, dur, time, velocity){
       if(time >= DURATION || !synth) return;
@@ -365,7 +370,7 @@ async function renderTrack(moodKey, DURATION){
       const section = t < introEnd ? 'intro' : t < buildEnd ? 'build' : t < climaxEnd ? 'climax' : 'outro';
       const energy = section==='intro' ? 0.32 : section==='build' ? 0.55 : section==='climax' ? 0.9 : 0.55;
 
-      safeTrigger(pad, MOOD.chords[0], 2.0, endT, 0.85);
+      safeTrigger(pad, chord, BAR*0.92, t, energy);
 
       if(section === 'intro'){
         safeTrigger(bass, root, BAR*0.85, t, 0.3);
@@ -397,13 +402,12 @@ async function renderTrack(moodKey, DURATION){
       }
     }
 
-    const endT = Math.max(DURATION - 2.2, 0.5);
     if(cymbal){
       [introEnd, buildEnd, climaxEnd].forEach(tt => { if(tt < DURATION) safeTriggerPerc(cymbal, '8n', tt, 0.6); });
       safeTriggerPerc(cymbal, '2n', endT, 0.9);
     }
     if(kick) safeTriggerPerc(kick, '4n', endT, 0.9);
-    safeTrigger(pad, MOOD.chords[0].concat([MOOD.chords[0][0]]), 2.0, endT, 0.85);
+    safeTrigger(pad, MOOD.chords[0], 2.0, endT, 0.85);
 
   }, DURATION);
 
