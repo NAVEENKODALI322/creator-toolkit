@@ -1,82 +1,366 @@
-.video-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:24px;
-margin-top:30px;
+/* ==============================
+   Creator Toolkit Videos
+   ============================== */
+
+/* Search */
+.search-wrap{
+    margin-bottom:32px;
 }
 
+/* Channel Cards */
+
+.filter.active .quick-icon{
+    transform:scale(1.08);
+}
+
+.filter.active{
+    border:1px solid var(--primary);
+    box-shadow:var(--shadow-glow);
+}
+
+/* Featured */
+
+.continue-card{
+    cursor:pointer;
+}
+
+.continue-card h3{
+    margin-top:8px;
+    line-height:1.35;
+}
+
+.continue-card img{
+    width:100%;
+    border-radius:18px;
+}
+
+/* ======================
+   Video Grid
+====================== */
+
+#videoGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:22px;
+
+margin-top:20px;
+
+}
+
+/* ======================
+   Video Card
+====================== */
+
 .video-card{
-background:#1e293b;
-border:1px solid #334155;
-border-radius:16px;
+
+background:var(--card);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
 overflow:hidden;
-transition:.3s;
+
+transition:.28s var(--ease);
+
+box-shadow:var(--shadow-sm);
+
+display:flex;
+
+flex-direction:column;
+
 }
 
 .video-card:hover{
+
 transform:translateY(-6px);
-border-color:#22c55e;
+
+box-shadow:var(--shadow-md);
+
+border-color:rgba(255,255,255,.16);
+
 }
 
-.video-card img{
+/* Thumbnail */
+
+.video-thumb{
+
+position:relative;
+
+aspect-ratio:16/9;
+
+overflow:hidden;
+
+background:#000;
+
+}
+
+.video-thumb img{
+
 width:100%;
-display:block;
+
+height:100%;
+
+object-fit:cover;
+
+transition:.4s;
+
 }
 
-.video-info{
-padding:18px;
+.video-card:hover img{
+
+transform:scale(1.05);
+
 }
 
-.video-info h3{
-font-size:18px;
-margin-bottom:10px;
+/* Duration */
+
+.video-duration{
+
+position:absolute;
+
+right:12px;
+
+bottom:12px;
+
+padding:5px 9px;
+
+background:rgba(0,0,0,.8);
+
+border-radius:8px;
+
+font-size:12px;
+
+font-weight:600;
+
+}
+
+/* Channel Badge */
+
+.channel-badge{
+
+position:absolute;
+
+top:12px;
+
+left:12px;
+
+padding:6px 10px;
+
+border-radius:999px;
+
+font-size:11px;
+
+font-weight:700;
+
+background:var(--grad-1);
+
 color:#fff;
+
 }
 
-.video-info p{
-color:#94a3b8;
-font-size:14px;
-margin-bottom:18px;
+/* ======================
+   Body
+====================== */
+
+.video-body{
+
+padding:18px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
 }
+
+.video-title{
+
+font-size:18px;
+
+font-weight:700;
+
+line-height:1.4;
+
+color:var(--text);
+
+}
+
+.video-desc{
+
+font-size:14px;
+
+line-height:1.7;
+
+color:var(--text-secondary);
+
+}
+
+/* Meta */
+
+.video-meta{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:13px;
+
+color:var(--text-faint);
+
+margin-top:4px;
+
+}
+
+/* Button */
 
 .watch-btn{
-display:inline-block;
-padding:10px 18px;
-background:#22c55e;
+
+margin-top:14px;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+padding:13px 18px;
+
+border-radius:14px;
+
+background:var(--grad-1);
+
+font-weight:700;
+
+font-size:14px;
+
 color:#fff;
+
+transition:.25s;
+
 text-decoration:none;
-border-radius:8px;
-font-weight:bold;
+
 }
 
 .watch-btn:hover{
-background:#16a34a;
+
+transform:translateY(-2px);
+
+box-shadow:var(--shadow-glow);
+
 }
 
-.filter-row{
-display:flex;
-justify-content:center;
-gap:12px;
-flex-wrap:wrap;
-}
-
-.filter-chip{
-padding:10px 20px;
-background:#111827;
-border:1px solid #334155;
-color:#fff;
-border-radius:999px;
-cursor:pointer;
-width:auto;
-}
-
-.filter-chip.active{
-background:#22c55e;
-border-color:#22c55e;
-}
+/* Empty */
 
 .empty-state{
+
+padding:80px 20px;
+
 text-align:center;
-margin:40px 0;
-color:#94a3b8;
+
+}
+
+.empty-state .empty-emoji{
+
+font-size:58px;
+
+display:block;
+
+margin-bottom:18px;
+
+}
+
+/* Fade */
+
+.video-card{
+
+animation:fadeVideo .45s ease;
+
+}
+
+@keyframes fadeVideo{
+
+from{
+
+opacity:0;
+
+transform:translateY(18px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+/* Desktop */
+
+@media(min-width:1200px){
+
+#videoGrid{
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+}
+
+}
+
+/* Tablet */
+
+@media(max-width:900px){
+
+#videoGrid{
+
+grid-template-columns:
+
+repeat(2,1fr);
+
+}
+
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+#videoGrid{
+
+grid-template-columns:1fr;
+
+}
+
+.video-title{
+
+font-size:17px;
+
+}
+
+.video-body{
+
+padding:16px;
+
+}
+
+.watch-btn{
+
+width:100%;
+
+}
+
 }
