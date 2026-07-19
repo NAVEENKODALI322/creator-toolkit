@@ -51,7 +51,7 @@ return`
 
 <div class="channel-badge">
 
-${video.channel==="kodali"?"Kodali Type":"Sheela Smart Vantalu"}
+${video.channel==="kodali"?"Kodali Type":"canva tutorials"}
 
 </div>
 
