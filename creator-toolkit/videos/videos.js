@@ -11,10 +11,10 @@ date:"2 days ago"
 },
 
 {
-title:"Best Viral Leftover Rice Recipe",
-description:"Crispy & tasty breakfast recipe.",
-thumbnail:"https://i.ytimg.com/vi/YOUR_VIDEO_ID2/hqdefault.jpg",
-url:"https://youtube.com/watch?v=YOUR_VIDEO_ID2",
+title:"How I Earn Money Using Canva",
+description:"This Simple Design Paid Me Dollars 🤑🤑 | Canva | Earn money online",
+thumbnail:"https://i.ytimg.com/vi/8G8uoNNb_PM/hqdefault.jpg",
+url:"https://www.youtube.com/watch?v=8G8uoNNb_PM",
 channel:"sheela",
 duration:"0:45",
 date:"5 days ago"
