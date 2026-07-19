@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Videos — Creator Toolkit</title>
+<meta name="description" content="Latest videos from Kodali Type and Sheela Smart Vantalu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="videos.css">
+</head>
+<body>
+
+<header class="site-bar">
+  <a href="/" class="brand">Creator<span>Toolkit</span></a>
+  <a href="/" class="back-link">← Back to tools</a>
+</header>
+
+<main>
+  <section class="hero">
+    <p class="eyebrow">// on-the-channel</p>
+    <h1>Videos</h1>
+    <p class="hero-sub">Latest uploads from Kodali Type and Sheela Smart Vantalu — tap any thumbnail to watch on YouTube.</p>
+  </section>
+
+  <div class="filter-row" id="filter-row">
+    <button class="filter-chip active" data-channel="all">--all</button>
+    <button class="filter-chip" data-channel="kodali-type">--kodali-type</button>
+    <button class="filter-chip" data-channel="sheela-smart-vantalu">--sheela-smart-vantalu</button>
+  </div>
+
+  <section id="grid" class="video-grid" aria-live="polite"></section>
+
+  <p id="empty-state" class="empty-state" hidden>No videos added yet — check back soon.</p>
+</main>
+
+<footer class="site-footer">
+  <p>Built with Creator Toolkit · <a href="/">creatortoolkits.in</a></p>
+</footer>
+
+<script src="videos.js"></script>
+</body>
+</html>
