@@ -1,0 +1,220 @@
+:root {
+  --bg: #101014;
+  --surface: #1b1c22;
+  --surface-alt: #24252c;
+  --border: #2c2d35;
+  --primary: #7f5af0;
+  --primary-soft: #7f5af022;
+  --accent: #38bdf8;
+  --text-hi: #f2f1f7;
+  --text-lo: #9d9cae;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-hi);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.site-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(16, 16, 20, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+}
+
+.brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.brand span { color: var(--primary); }
+
+.back-link {
+  font-size: 0.85rem;
+  color: var(--text-lo);
+  font-family: 'JetBrains Mono', monospace;
+}
+.back-link:hover { color: var(--accent); }
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.hero { margin-bottom: 48px; }
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin: 0 0 12px;
+  letter-spacing: 0.02em;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.hero-sub {
+  color: var(--text-lo);
+  font-size: 1.05rem;
+  max-width: 56ch;
+  margin: 0;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  display: block;
+}
+
+.post-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.tag-chip {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+.tag-chip::before { content: "--"; opacity: 0.6; }
+
+.post-card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.35rem;
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.post-card p {
+  color: var(--text-lo);
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+}
+
+.card-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-lo);
+}
+.card-meta .dot { margin: 0 6px; opacity: 0.5; }
+
+.empty-state {
+  color: var(--text-lo);
+  font-family: 'JetBrains Mono', monospace;
+  padding: 40px 0;
+}
+
+/* Post page */
+.post-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-lo);
+  margin: 0 0 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.post h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin: 0 0 14px;
+}
+
+.post-body h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  margin-top: 40px;
+  color: var(--text-hi);
+}
+
+.post-body h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.15rem;
+  margin-top: 28px;
+}
+
+.post-body p { color: #d3d2dc; }
+
+.post-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.post-body code {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--surface-alt);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+.post-body pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.post-body blockquote {
+  border-left: 3px solid var(--primary);
+  margin: 24px 0;
+  padding: 4px 20px;
+  color: var(--text-lo);
+  background: var(--primary-soft);
+  border-radius: 0 8px 8px 0;
+}
+
+.post-body ul, .post-body ol { color: #d3d2dc; }
+
+.site-footer {
+  text-align: center;
+  padding: 32px 24px;
+  color: var(--text-lo);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+.site-footer a { color: var(--accent); }
+
+@media (max-width: 600px) {
+  main { padding: 32px 16px 60px; }
+  .post-card { padding: 20px; }
+}
