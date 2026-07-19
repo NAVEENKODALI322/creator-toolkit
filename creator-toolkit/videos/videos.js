@@ -23,8 +23,8 @@ date:"5 days ago"
 {
 title:"Best AI Tools for YouTubers",
 description:"Save hours every week.",
-thumbnail:"https://i.ytimg.com/vi/YOUR_VIDEO_ID3/hqdefault.jpg",
-url:"https://youtube.com/watch?v=YOUR_VIDEO_ID3",
+thumbnail:"https://i.ytimg.com/vi/_JnG-_CVXVU/hqdefault.jpg",
+url:"https://www.youtube.com/watch?v=_JnG-_CVXVU",
 channel:"kodali",
 duration:"8:12",
 date:"1 week ago"
