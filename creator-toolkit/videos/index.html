@@ -1,44 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Videos — Creator Toolkit</title>
-<meta name="description" content="Latest videos from Kodali Type and Sheela Smart Vantalu.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/videos/videos.css">
-</head>
-<body>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<header class="site-bar">
-  <a href="/" class="brand">Creator<span>Toolkit</span></a>
-  <a href="/" class="back-link">← Back to tools</a>
+    <title>Creator Videos | Creator Toolkit</title>
+
+    <meta name="description"
+        content="Watch the latest tutorials, AI tools, YouTube tips and recipes from Creator Toolkit.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Existing Home CSS -->
+    <link rel="stylesheet" href="/home-v2.css">
+
+    <!-- Videos CSS -->
+    <link rel="stylesheet" href="/videos/videos.css">
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+<header class="topbar">
+
+<div class="topbar-logo">
+<div class="logo-mark">🚀</div>
+Creator Toolkit
+</div>
+
+<div class="topbar-actions">
+
+<a href="/" class="icon-btn">
+🏠
+</a>
+
+</div>
+
 </header>
 
-<main>
-  <section class="hero">
-    <p class="eyebrow">// on-the-channel</p>
-    <h1>Videos</h1>
-    <p class="hero-sub">Latest uploads from Kodali Type and Sheela Smart Vantalu — tap any thumbnail to watch on YouTube.</p>
-  </section>
 
-  <div class="filter-row" id="filter-row">
-    <button class="filter-chip active" data-channel="all">--all</button>
-    <button class="filter-chip" data-channel="kodali-type">--kodali-type</button>
-    <button class="filter-chip" data-channel="sheela-smart-vantalu">--sheela-smart-vantalu</button>
-  </div>
+<div class="home-scroll">
 
-  <section id="grid" class="video-grid" aria-live="polite"></section>
+<section class="greeting">
 
-  <p id="empty-state" class="empty-state" hidden>No videos added yet — check back soon.</p>
-</main>
+<h1>🎬 Creator Videos</h1>
 
-<footer class="site-footer">
-  <p>Built with Creator Toolkit · <a href="/">creatortoolkits.in</a></p>
+<p>
+Watch tutorials, YouTube tips, AI tools and recipes from our channels.
+</p>
+
+</section>
+
+
+<div class="search-wrap">
+
+<div class="search-bar">
+
+<span class="search-icon">🔍</span>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search videos...">
+
+</div>
+
+</div>
+
+
+<section class="quick-actions">
+
+<h2 class="section-title">
+
+Browse Channels
+
+</h2>
+
+<div class="quick-scroll">
+
+<button
+class="quick-card filter active"
+data-channel="all">
+
+<div class="quick-icon">
+🎬
+</div>
+
+<div class="quick-title">
+
+All Videos
+
+</div>
+
+<div class="quick-sub">
+
+Everything
+
+</div>
+
+</button>
+
+
+
+<button
+class="quick-card filter"
+data-channel="kodali">
+
+<div class="quick-icon">
+💻
+</div>
+
+<div class="quick-title">
+
+Kodali Type
+
+</div>
+
+<div class="quick-sub">
+
+Creator Tips
+
+</div>
+
+</button>
+
+
+<button
+class="quick-card filter"
+data-channel="sheela">
+
+<div class="quick-icon">
+🍳
+</div>
+
+<div class="quick-title">
+
+Sheela Smart Vantalu
+
+</div>
+
+<div class="quick-sub">
+
+Recipes
+
+</div>
+
+</button>
+
+</div>
+
+</section>
+
+
+<section class="continue-section">
+
+<h2 class="section-title">
+
+⭐ Featured Video
+
+</h2>
+
+<div
+class="continue-card"
+id="featuredVideo">
+
+<div>
+
+<div class="continue-label">
+
+FEATURED
+
+</div>
+
+<h3>
+
+Loading...
+
+</h3>
+
+<a
+href="#"
+class="continue-cta">
+
+Watch →
+
+</a>
+
+</div>
+
+<div class="continue-progress"></div>
+
+</div>
+
+</section>
+
+
+<section class="popular-tools">
+
+<h2 class="section-title">
+
+Latest Videos
+
+</h2>
+
+<div
+id="videoGrid"
+class="tools-grid-v2">
+
+<!-- JS -->
+
+</div>
+
+</section>
+
+
+<div
+id="emptyState"
+class="empty-state"
+style="display:none;">
+
+<span class="empty-emoji">
+📺
+</span>
+
+No videos found.
+
+</div>
+
+
+<section class="tip-card">
+
+<div class="tip-icon">
+
+💡
+
+</div>
+
+<div>
+
+<h3>
+
+Creator Tip
+
+</h3>
+
+<p>
+
+Upload consistently. One great video every week beats uploading randomly.
+
+</p>
+
+</div>
+
+</section>
+
+
+<footer class="home-footer">
+
+<p>
+
+© 2026 Creator Toolkit
+
+</p>
+
+<p>
+
+<a href="/">
+
+Back to Home
+
+</a>
+
+</p>
+
 </footer>
 
+</div>
+
+</div>
+
+
 <script src="/videos/videos.js"></script>
+
 </body>
 </html>
