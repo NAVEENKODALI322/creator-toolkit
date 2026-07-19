@@ -55,7 +55,7 @@
     render();
   });
 
-  fetch('videos.json')
+  fetch('/videos/videos.json')
     .then(res => res.json())
     .then(data => {
       allVideos = data.sort((a, b) => new Date(b.date) - new Date(a.date));
