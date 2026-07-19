@@ -11,7 +11,7 @@
     return tags.map(t => `<span class="tag-chip">${t}</span>`).join('');
   }
 
-  fetch('posts/posts.json')
+  fetch('/blog/posts/posts.json')
     .then(res => res.json())
     .then(posts => {
       posts.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -36,7 +36,7 @@
       return;
     }
     feed.innerHTML = posts.map(p => `
-      <a class="post-card" href="post.html?slug=${encodeURIComponent(p.slug)}">
+      <a class="post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
         <div class="tag-row">${tagChips(p.tags)}</div>
         <h2>${p.title}</h2>
         <p>${p.excerpt}</p>
@@ -64,7 +64,7 @@
     document.getElementById('post-title').textContent = post.title;
     document.getElementById('post-meta').textContent = `${formatDate(post.date)} · ${post.readTime}`;
 
-    fetch('posts/' + post.file)
+    fetch('/blog/posts/' + post.file)
       .then(res => res.text())
       .then(md => {
         document.getElementById('post-body').innerHTML = window.marked.parse(md);
