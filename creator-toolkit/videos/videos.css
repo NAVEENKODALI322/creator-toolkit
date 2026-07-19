@@ -1,91 +1,60 @@
-/* ==========================================================================
-   Videos Page — Aligned with Home Dashboard V2
-   ========================================================================== */
+/* --- Video Gallery Layout --- */
 
-:root {
-  --bg:            #0D1117;
-  --bg-elevated:   #10151C;
-  --card:          #161B22;
-  --border:        rgba(255,255,255,0.07);
-  --border-soft:   rgba(255,255,255,0.04);
-  --primary:       #6C63FF;
-  --accent:        #00D4FF;
-  --text:          #F3F5F7;
-  --text-secondary:#8B93A1;
-  --text-faint:    #5B6472;
-  --r-lg:          24px;
-  --r-md:          20px;
-  --ease:          cubic-bezier(0.22, 1, 0.36, 1);
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
 }
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* Site Bar */
-.site-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  background: rgba(13, 17, 23, 0.85);
-  backdrop-filter: blur(16px);
-  z-index: 10;
-}
-
-.brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; }
-.brand span { color: var(--primary); }
-
-.back-link { font-size: 13px; color: var(--text-secondary); transition: color .2s; }
-.back-link:hover { color: var(--accent); }
-
-/* Main Content */
-main { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; }
-
-.hero { margin-bottom: 40px; }
-.eyebrow { font-size: 12px; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 8px; }
-.hero h1 { font-family: 'Space Grotesk', sans-serif; font-size: 32px; margin: 0 0 12px; }
-.hero-sub { color: var(--text-secondary); font-size: 16px; margin: 0; }
-
-/* Filter Chips */
-.filter-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-.filter-chip {
-  font-size: 13px; color: var(--text-secondary);
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 999px; padding: 8px 16px; cursor: pointer;
-  transition: all 0.2s var(--ease);
-}
-.filter-chip:hover { border-color: var(--primary); color: var(--text); }
-.filter-chip.active { color: #fff; border-color: var(--primary); background: var(--primary); }
-
-/* Video Grid */
-.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
 .video-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: var(--r-lg); overflow: hidden;
-  transition: transform .2s var(--ease), border-color .2s var(--ease);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: transform .18s var(--ease), border-color .18s var(--ease);
 }
-.video-card:hover { border-color: rgba(108,99,255,0.5); transform: translateY(-4px); }
 
-.thumb-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
-.thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.14);
+}
 
-.video-info { padding: 20px; }
-.channel-tag { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 8px; display: block; }
-.video-info h3 { font-family: 'Space Grotesk', sans-serif; font-size: 16px; margin: 0 0 8px; line-height: 1.4; }
-.video-date { font-size: 12px; color: var(--text-faint); }
+/* Aspect Ratio container for video embeds */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  background: #000;
+}
 
-/* Footer */
-.site-footer { text-align: center; padding: 60px 24px; color: var(--text-faint); font-size: 12px; }
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-info {
+  padding: 16px;
+}
+
+.video-info h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.video-info p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
 
 @media (max-width: 600px) {
-  .video-grid { grid-template-columns: 1fr; }
-  .hero h1 { font-size: 26px; }
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
 }
