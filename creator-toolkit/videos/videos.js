@@ -21,8 +21,8 @@ date:"5 days ago"
 },
 
 {
-title:"Best AI Tools for YouTubers",
-description:"Save hours every week.",
+title:"Fiverr Freelancing",
+description:"Fiverr లో Account Create చేస్కొని Money Earn చేయటం ఎలా ?",
 thumbnail:"https://i.ytimg.com/vi/_JnG-_CVXVU/hqdefault.jpg",
 url:"https://www.youtube.com/watch?v=_JnG-_CVXVU",
 channel:"kodali",
