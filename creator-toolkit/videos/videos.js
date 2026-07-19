@@ -3,8 +3,8 @@ const videos = [
 {
 title:"How I Earn Money Using Canva",
 description:"Complete Canva earning tutorial.",
-thumbnail:"https://i.ytimg.com/vi/8G8uoNNb_PM/hqdefault.jpg",
-url:"https://www.youtube.com/watch?v=8G8uoNNb_PM",
+thumbnail:"https://i.ytimg.com/vi/fJGO7Fca9bY/hqdefault.jpg",
+url:"https://www.youtube.com/watch?v=fJGO7Fca9bY",
 channel:"naveenkodali",
 duration:"12:30",
 date:"2 days ago"
