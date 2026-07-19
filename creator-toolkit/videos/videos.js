@@ -1,68 +1,197 @@
-(function () {
-  let allVideos = [];
-  let activeChannel = 'all';
+const videos = [
 
-  function formatDate(iso) {
-    const d = new Date(iso);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-  }
+{
+title:"How I Earn Money Using Canva",
+description:"Complete Canva earning tutorial.",
+thumbnail:"https://i.ytimg.com/vi/YOUR_VIDEO_ID/hqdefault.jpg",
+url:"https://youtube.com/watch?v=YOUR_VIDEO_ID",
+channel:"kodali",
+duration:"12:30",
+date:"2 days ago"
+},
 
-  function thumbUrl(videoId) {
-    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  }
+{
+title:"Best Viral Leftover Rice Recipe",
+description:"Crispy & tasty breakfast recipe.",
+thumbnail:"https://i.ytimg.com/vi/YOUR_VIDEO_ID2/hqdefault.jpg",
+url:"https://youtube.com/watch?v=YOUR_VIDEO_ID2",
+channel:"sheela",
+duration:"0:45",
+date:"5 days ago"
+},
 
-  function channelLabel(channel) {
-    return channel === 'kodali-type' ? 'Kodali Type' : 'Sheela Smart Vantalu';
-  }
+{
+title:"Best AI Tools for YouTubers",
+description:"Save hours every week.",
+thumbnail:"https://i.ytimg.com/vi/YOUR_VIDEO_ID3/hqdefault.jpg",
+url:"https://youtube.com/watch?v=YOUR_VIDEO_ID3",
+channel:"kodali",
+duration:"8:12",
+date:"1 week ago"
+}
 
-  function render() {
-    const grid = document.getElementById('grid');
-    const empty = document.getElementById('empty-state');
-    const list = activeChannel === 'all'
-      ? allVideos
-      : allVideos.filter(v => v.channel === activeChannel);
+];
 
-    if (!list.length) {
-      grid.innerHTML = '';
-      empty.hidden = false;
-      return;
-    }
-    empty.hidden = true;
+const grid=document.getElementById("videoGrid");
+const search=document.getElementById("searchInput");
+const featured=document.getElementById("featuredVideo");
+const empty=document.getElementById("emptyState");
 
-    grid.innerHTML = list.map(v => `
-      <a class="video-card" href="https://www.youtube.com/watch?v=${v.videoId}" target="_blank" rel="noopener">
-        <div class="thumb-wrap">
-          <img src="${thumbUrl(v.videoId)}" alt="${v.title}" loading="lazy">
-          <div class="play-badge">
-            <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-        <div class="video-info">
-          <span class="channel-tag">--${v.channel}</span>
-          <h3>${v.title}</h3>
-          <div class="video-date">${formatDate(v.date)}</div>
-        </div>
-      </a>
-    `).join('');
-  }
+let currentFilter="all";
 
-  document.getElementById('filter-row').addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-chip');
-    if (!btn) return;
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    activeChannel = btn.dataset.channel;
-    render();
-  });
+function createCard(video){
 
-  fetch('/videos/videos.json')
-    .then(res => res.json())
-    .then(data => {
-      allVideos = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-      render();
-    })
-    .catch(err => {
-      console.error('Could not load videos:', err);
-      document.getElementById('empty-state').hidden = false;
-    });
-})();
+return`
+
+<div class="video-card">
+
+<div class="video-thumb">
+
+<img src="${video.thumbnail}" loading="lazy">
+
+<div class="channel-badge">
+
+${video.channel==="kodali"?"Kodali Type":"Sheela Smart Vantalu"}
+
+</div>
+
+<div class="video-duration">
+
+${video.duration}
+
+</div>
+
+</div>
+
+<div class="video-body">
+
+<div class="video-title">
+
+${video.title}
+
+</div>
+
+<div class="video-desc">
+
+${video.description}
+
+</div>
+
+<div class="video-meta">
+
+<span>${video.date}</span>
+
+</div>
+
+<a
+class="watch-btn"
+target="_blank"
+href="${video.url}">
+
+▶ Watch on YouTube
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+function render(){
+
+let keyword=search.value.toLowerCase();
+
+let filtered=videos.filter(video=>{
+
+let matchChannel=currentFilter==="all" || video.channel===currentFilter;
+
+let matchSearch=
+
+video.title.toLowerCase().includes(keyword) ||
+
+video.description.toLowerCase().includes(keyword);
+
+return matchChannel && matchSearch;
+
+});
+
+grid.innerHTML=filtered.map(createCard).join("");
+
+empty.style.display=filtered.length?"none":"block";
+
+}
+
+function loadFeatured(){
+
+let video=videos[0];
+
+featured.innerHTML=`
+
+<div>
+
+<div class="continue-label">
+
+FEATURED
+
+</div>
+
+<h3>
+
+${video.title}
+
+</h3>
+
+<a
+
+class="continue-cta"
+
+target="_blank"
+
+href="${video.url}">
+
+Watch Now →
+
+</a>
+
+</div>
+
+<div class="continue-progress"></div>
+
+`;
+
+featured.onclick=()=>{
+
+window.open(video.url,"_blank");
+
+};
+
+}
+
+document.querySelectorAll(".filter").forEach(btn=>{
+
+btn.onclick=()=>{
+
+document
+
+.querySelectorAll(".filter")
+
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+currentFilter=btn.dataset.channel;
+
+render();
+
+};
+
+});
+
+search.addEventListener("input",render);
+
+loadFeatured();
+
+render();
