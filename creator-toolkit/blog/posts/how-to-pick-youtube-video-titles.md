@@ -46,7 +46,7 @@ Titles get cut off differently across search, suggested, and mobile feed. As a p
 4. Read each aloud. If it sounds like an ad, cut it.
 5. Pick the version that front-loads the keyword *and* leaves one question unanswered.
 
-This is exactly the loop a good title generator should speed up — testing angles fast instead of staring at one line for twenty minutes. That's the idea behind the [Title Generator](https://www.creatortoolkits.in) on Creator Toolkit: put in your topic, get variations built around these same principles, and pick from there instead of starting blank.
+This is exactly the loop a good title generator should speed up — testing angles fast instead of staring at one line for twenty minutes. That's the idea behind the [Title Generator](https://www.creatortoolkits.in/title-generator.html) on Creator Toolkit: put in your topic, get variations built around these same principles, and pick from there instead of starting blank.
 
 ## What not to do
 
