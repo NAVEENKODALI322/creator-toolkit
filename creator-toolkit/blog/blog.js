@@ -30,19 +30,76 @@
 
   function renderFeed(posts) {
     const feed = document.getElementById('feed');
+    const featuredSlot = document.getElementById('featured-slot');
+    const topicsBar = document.getElementById('topics');
     const empty = document.getElementById('empty-state');
+
     if (!posts.length) {
       empty.hidden = false;
       return;
     }
-    feed.innerHTML = posts.map(p => `
-      <a class="post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
-        <div class="tag-row">${tagChips(p.tags)}</div>
-        <h2>${p.title}</h2>
-        <p>${p.excerpt}</p>
-        <div class="card-meta">${formatDate(p.date)}<span class="dot">·</span>${p.readTime}</div>
-      </a>
-    `).join('');
+
+    const [featured, ...rest] = posts;
+
+    // Featured post
+    if (featuredSlot) {
+      featuredSlot.innerHTML = `
+        <a class="featured-card" href="/blog/post.html?slug=${encodeURIComponent(featured.slug)}">
+          <p class="featured-label">Latest</p>
+          <h2>${featured.title}</h2>
+          <p>${featured.excerpt}</p>
+          <div class="tag-row">${tagChips(featured.tags)}</div>
+          <div class="card-meta">${formatDate(featured.date)}<span class="dot">·</span>${featured.readTime}</div>
+        </a>
+      `;
+    }
+
+    // Topic pills — computed from every post's tags
+    const allTags = Array.from(new Set(posts.flatMap(p => p.tags)));
+    if (topicsBar) {
+      topicsBar.innerHTML = [
+        `<button class="topic-pill active" data-topic="all">All topics</button>`,
+        ...allTags.map(t => `<button class="topic-pill" data-topic="${t}">${t}</button>`)
+      ].join('');
+
+      topicsBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.topic-pill');
+        if (!btn) return;
+        topicsBar.querySelectorAll('.topic-pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(btn.dataset.topic);
+      });
+    }
+
+    function renderGrid(list) {
+      if (!list.length) {
+        feed.innerHTML = '';
+        empty.hidden = false;
+        return;
+      }
+      empty.hidden = true;
+      feed.innerHTML = list.map(p => `
+        <a class="post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
+          <div class="tag-row">${tagChips(p.tags)}</div>
+          <h2>${p.title}</h2>
+          <p>${p.excerpt}</p>
+          <div class="card-meta">${formatDate(p.date)}<span class="dot">·</span>${p.readTime}</div>
+        </a>
+      `).join('');
+    }
+
+    function applyFilter(topic) {
+      if (topic === 'all') {
+        featuredSlot.hidden = false;
+        renderGrid(rest);
+        return;
+      }
+      const matchesFeatured = featured.tags.includes(topic);
+      featuredSlot.hidden = !matchesFeatured;
+      renderGrid(posts.filter(p => p !== featured && p.tags.includes(topic)));
+    }
+
+    renderGrid(rest);
   }
 
   function renderPost(posts) {
