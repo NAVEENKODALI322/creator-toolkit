@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Videos — Creator Toolkit</title>
-<meta name="description" content="Latest videos from Kodali Type and Sheela Smart Vantalu.">
+<meta name="description" content="Top videos from the Creator Toolkit YouTube channel on Canva, Freepik, and online money earning — ranked by views.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/videos/videos.css">
 </head>
 <body>
@@ -19,20 +19,18 @@
 
 <main>
   <section class="hero">
-    <p class="eyebrow">// on-the-channel</p>
+    <p class="eyebrow">// top-performing</p>
     <h1>Videos</h1>
-    <p class="hero-sub">Latest uploads from Kodali Type and Sheela Smart Vantalu — tap any thumbnail to watch on YouTube.</p>
+    <p class="hero-sub">Our best videos on Canva, Freepik, and making money online — pulled straight from the channel and ranked by views.</p>
   </section>
 
-  <div class="filter-row" id="filter-row">
-    <button class="filter-chip active" data-channel="all">All</button>
-    <button class="filter-chip" data-channel="kodali-type">Kodali Type</button>
-    <button class="filter-chip" data-channel="sheela-smart-vantalu">Sheela Smart Vantalu</button>
-  </div>
+  <section id="video-grid" class="video-grid" aria-live="polite">
+    <!-- videos injected by videos.js -->
+  </section>
 
-  <section id="grid" class="video-grid" aria-live="polite"></section>
-
-  <p id="empty-state" class="empty-state" hidden>No videos added yet — check back soon.</p>
+  <p id="loading-state" class="state-msg">Loading top videos…</p>
+  <p id="empty-state" class="state-msg" hidden>No matching videos found right now — check back soon.</p>
+  <p id="error-state" class="state-msg" hidden>Couldn't load videos right now. Please try again later.</p>
 </main>
 
 <footer class="site-footer">
