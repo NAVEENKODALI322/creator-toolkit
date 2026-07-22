@@ -1,68 +1,47 @@
 (function () {
-  let allVideos = [];
-  let activeChannel = 'all';
+  const grid = document.getElementById('video-grid');
+  const loading = document.getElementById('loading-state');
+  const empty = document.getElementById('empty-state');
+  const errorMsg = document.getElementById('error-state');
 
-  function formatDate(iso) {
-    const d = new Date(iso);
-    return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  function formatViews(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M views';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K views';
+    return n + ' views';
   }
 
-  function thumbUrl(videoId) {
-    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-  }
+  fetch('/api/videos')
+    .then((res) => res.json())
+    .then((data) => {
+      loading.hidden = true;
 
-  function channelLabel(channel) {
-    return channel === 'kodali-type' ? 'Kodali Type' : 'Sheela Smart Vantalu';
-  }
+      if (!data.videos || !data.videos.length) {
+        empty.hidden = false;
+        return;
+      }
 
-  function render() {
-    const grid = document.getElementById('grid');
-    const empty = document.getElementById('empty-state');
-    const list = activeChannel === 'all'
-      ? allVideos
-      : allVideos.filter(v => v.channel === activeChannel);
-
-    if (!list.length) {
-      grid.innerHTML = '';
-      empty.hidden = false;
-      return;
-    }
-    empty.hidden = true;
-
-    grid.innerHTML = list.map(v => `
-      <a class="video-card" href="https://www.youtube.com/watch?v=${v.videoId}" target="_blank" rel="noopener">
-        <div class="thumb-wrap">
-          <img src="${thumbUrl(v.videoId)}" alt="${v.title}" loading="lazy">
-          <div class="play-badge">
-            <svg viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      grid.innerHTML = data.videos
+        .map(
+          (v, i) => `
+        <a class="video-card" href="${v.url}" target="_blank" rel="noopener">
+          <div class="thumb-wrap">
+            <span class="rank">#${i + 1}</span>
+            <img src="${v.thumbnail}" alt="${v.title}" loading="lazy">
           </div>
-        </div>
-        <div class="video-info">
-          <span class="channel-tag">${channelLabel(v.channel)}</span>
-          <h3>${v.title}</h3>
-          <div class="video-date">${formatDate(v.date)}</div>
-        </div>
-      </a>
-    `).join('');
-  }
-
-  document.getElementById('filter-row').addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-chip');
-    if (!btn) return;
-    document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    activeChannel = btn.dataset.channel;
-    render();
-  });
-
-  fetch('/videos/videos.json')
-    .then(res => res.json())
-    .then(data => {
-      allVideos = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-      render();
+          <div class="video-info">
+            <h2>${v.title}</h2>
+            <div class="video-meta">
+              <span class="views">${formatViews(v.views)}</span>
+            </div>
+          </div>
+        </a>
+      `
+        )
+        .join('');
     })
-    .catch(err => {
+    .catch((err) => {
       console.error('Could not load videos:', err);
-      document.getElementById('empty-state').hidden = false;
+      loading.hidden = true;
+      errorMsg.hidden = false;
     });
 })();
