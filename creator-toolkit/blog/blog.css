@@ -1,9 +1,10 @@
 /* ==========================================================================
    Creator Toolkit — Blog
-   Matches home-v2.css design tokens exactly.
+   Uses the same brand tokens as home-v2.css, but a distinct editorial layout:
+   masthead strip, featured post, topic filter pills, magazine grid.
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root{
   --bg:            #0D1117;
@@ -52,14 +53,27 @@ h1, h2, h3{
   letter-spacing: -0.01em;
 }
 
+/* Masthead accent strip — the first thing that reads "different from the rest of the site" */
+.mast-strip{
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+  background-size: 200% 100%;
+  animation: mast-shift 6s linear infinite;
+}
+@keyframes mast-shift{
+  0%{ background-position: 0% 0; }
+  100%{ background-position: 200% 0; }
+}
+
 body::before{
   content:"";
   position: fixed;
-  top: -120px; left: 50%;
-  width: 480px; height: 320px;
+  top: -160px; left: 50%;
+  width: 640px; height: 380px;
   transform: translateX(-50%);
-  background: radial-gradient(closest-side, rgba(108,99,255,0.18), rgba(0,212,255,0.05) 60%, transparent 80%);
-  filter: blur(10px);
+  background: radial-gradient(closest-side, rgba(0,212,255,0.14), rgba(108,99,255,0.06) 55%, transparent 80%);
+  filter: blur(20px);
   pointer-events: none;
   z-index: 0;
 }
@@ -100,39 +114,135 @@ body::before{
 main{
   position: relative;
   z-index: 1;
-  max-width: 720px;
+  max-width: 920px;
   margin: 0 auto;
-  padding: 40px 24px 80px;
+  padding: 48px 24px 90px;
 }
 
-.hero{ margin-bottom: 40px; }
+/* ---------- Hero / masthead ---------- */
+.hero{ margin-bottom: 36px; max-width: 640px; }
 
 .eyebrow{
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--accent);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin: 0 0 12px;
+  letter-spacing: 0.08em;
+  margin: 0 0 14px;
 }
 
 .hero h1{
-  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-size: clamp(2.1rem, 5vw, 3rem);
   font-weight: 700;
   margin: 0 0 14px;
 }
 
 .hero-sub{
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 1.02rem;
   max-width: 56ch;
   margin: 0;
   line-height: 1.65;
 }
 
-.feed{
+/* ---------- Topic filter pills ---------- */
+.topics{
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.topic-pill{
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: all .16s var(--ease);
+}
+.topic-pill:hover{
+  color: var(--text);
+  border-color: rgba(255,255,255,0.16);
+}
+.topic-pill.active{
+  color: var(--bg);
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---------- Featured post ---------- */
+.featured-card{
+  display: block;
+  position: relative;
+  background: linear-gradient(155deg, var(--card) 0%, var(--bg-elevated) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 36px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform .2s var(--ease), border-color .2s var(--ease);
+}
+.featured-card::after{
+  content:"";
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 220px; height: 220px;
+  background: radial-gradient(closest-side, var(--primary-soft), transparent 75%);
+  pointer-events: none;
+}
+.featured-card:hover{
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.16);
+}
+
+.featured-label{
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.featured-label::before{
+  content:"";
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.featured-card h2{
+  position: relative;
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.25;
+  margin: 0 0 12px;
+  max-width: 34ch;
+}
+
+.featured-card p{
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 0.98rem;
+  max-width: 58ch;
+  margin: 0 0 20px;
+}
+
+/* ---------- Grid feed ---------- */
+.feed{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
@@ -169,13 +279,13 @@ main{
 }
 
 .post-card h2{
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 10px;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
-.post-card p{
+.post-card p, .featured-card p{
   color: var(--text-secondary);
   margin: 0 0 16px;
   font-size: 0.92rem;
@@ -195,6 +305,7 @@ main{
   font-size: 14px;
 }
 
+/* ---------- Individual post page (unchanged structure, kept intact) ---------- */
 .post-meta{
   font-size: 13px;
   color: var(--text-faint);
@@ -268,7 +379,12 @@ main{
 }
 .site-footer a{ color: var(--text-secondary); }
 
+@media (max-width: 720px){
+  .feed{ grid-template-columns: 1fr; }
+  .featured-card{ padding: 26px; }
+}
+
 @media (max-width: 600px){
-  main{ padding: 32px 16px 64px; }
+  main{ padding: 36px 16px 70px; }
   .post-card{ padding: 18px; }
 }
