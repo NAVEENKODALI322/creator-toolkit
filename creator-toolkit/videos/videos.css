@@ -52,7 +52,7 @@ h1, h2, h3{
   letter-spacing: -0.01em;
 }
 
-.site-bar{
+.site-bar {
   position: sticky;
   top: 0;
   z-index: 30;
@@ -60,12 +60,16 @@ h1, h2, h3{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 32px;
   background: rgba(13,17,23,0.72);
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   border-bottom: 1px solid var(--border-soft);
+  width: 100%;
+  box-sizing: border-box;
 }
+
+/* Homepage lo unna container width tho match avvadaniki site-bar lopala max-width kavali ante inner wrapper vadocchu, or like this: */
 
 .brand{
   display: flex;
