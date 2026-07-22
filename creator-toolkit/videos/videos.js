@@ -1,8 +1,6 @@
 (function () {
-  const grid = document.getElementById('video-grid');
-  const loading = document.getElementById('loading-state');
+  const grid = document.getElementById('grid');
   const empty = document.getElementById('empty-state');
-  const errorMsg = document.getElementById('error-state');
 
   function formatViews(n) {
     if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M views';
@@ -10,16 +8,18 @@
     return n + ' views';
   }
 
+  grid.innerHTML = '<p class="empty-state">Loading top videos…</p>';
+
   fetch('/api/videos')
     .then((res) => res.json())
     .then((data) => {
-      loading.hidden = true;
-
       if (!data.videos || !data.videos.length) {
+        grid.innerHTML = '';
         empty.hidden = false;
         return;
       }
 
+      empty.hidden = true;
       grid.innerHTML = data.videos
         .map(
           (v, i) => `
@@ -41,7 +41,8 @@
     })
     .catch((err) => {
       console.error('Could not load videos:', err);
-      loading.hidden = true;
-      errorMsg.hidden = false;
+      grid.innerHTML = '';
+      empty.hidden = false;
+      empty.textContent = "Couldn't load videos right now. Please try again later.";
     });
 })();
