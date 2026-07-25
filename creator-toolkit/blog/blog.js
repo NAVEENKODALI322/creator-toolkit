@@ -160,5 +160,45 @@
         console.error('Could not load post body:', err);
         document.getElementById('post-body').textContent = 'Could not load this post right now.';
       });
+
+    setupLikeButton(post.slug);
+  }
+
+  // ---------- Like button (no login — CounterAPI + localStorage flag) ----------
+  function setupLikeButton(slug) {
+    const btn = document.getElementById('like-btn');
+    if (!btn || typeof Counter === 'undefined') return;
+
+    const counter = new Counter({ workspace: 'creator-toolkit-blog' });
+    const countEl = document.getElementById('like-count');
+    const iconEl = btn.querySelector('.like-icon');
+    const storageKey = 'liked-' + slug;
+
+    function setLikedUI(isLiked) {
+      btn.classList.toggle('liked', isLiked);
+      iconEl.textContent = isLiked ? '♥' : '♡';
+    }
+
+    // Load current count without incrementing
+    counter.get(slug)
+      .then(res => { countEl.textContent = res.value || 0; })
+      .catch(err => console.error('Like count load failed:', err));
+
+    setLikedUI(localStorage.getItem(storageKey) === '1');
+
+    btn.addEventListener('click', () => {
+      const alreadyLiked = localStorage.getItem(storageKey) === '1';
+      btn.disabled = true;
+
+      const action = alreadyLiked ? counter.down(slug) : counter.up(slug);
+      action
+        .then(res => {
+          countEl.textContent = res.value || 0;
+          localStorage.setItem(storageKey, alreadyLiked ? '0' : '1');
+          setLikedUI(!alreadyLiked);
+        })
+        .catch(err => console.error('Like action failed:', err))
+        .finally(() => { btn.disabled = false; });
+    });
   }
 })();
