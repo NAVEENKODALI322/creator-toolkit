@@ -501,6 +501,44 @@ main{
   color: var(--text-secondary);
 }
 
+/* ---------- Like button ---------- */
+.like-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 44px;
+  padding: 10px 18px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  transition: all .18s var(--ease);
+}
+.like-btn:hover{
+  color: var(--text);
+  border-color: rgba(255,255,255,0.18);
+  transform: translateY(-1px);
+}
+.like-btn:disabled{ opacity: 0.7; cursor: default; transform: none; }
+
+.like-btn .like-icon{
+  font-size: 18px;
+  line-height: 1;
+  transition: transform .2s var(--ease);
+}
+.like-btn.liked{
+  color: #FF5C7A;
+  background: rgba(255,92,122,0.1);
+  border-color: rgba(255,92,122,0.3);
+}
+.like-btn.liked .like-icon{
+  transform: scale(1.15);
+}
+
 .site-footer{
   position: relative;
   z-index: 1;
