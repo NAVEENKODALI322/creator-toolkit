@@ -10,31 +10,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/blog/blog.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 </head>
 <body>
-
 <header class="site-bar">
   <a href="/" class="brand">Creator<span>Toolkit</span></a>
   <a href="/blog/" class="back-link">← All posts</a>
 </header>
-
 <main>
   <article id="post-root" class="post">
     <p class="eyebrow" id="post-tags"></p>
     <h1 id="post-title">Loading…</h1>
     <p class="post-meta" id="post-meta"></p>
     <div class="post-body" id="post-body"></div>
+    <button id="like-btn" class="like-btn" aria-label="Like this post">
+      <span class="like-icon">♡</span>
+      <span id="like-count">0</span>
+    </button>
   </article>
-
   <p id="not-found" class="empty-state" hidden>
     Couldn't find that post. <a href="/blog/">Back to all posts →</a>
   </p>
 </main>
-
 <footer class="site-footer">
   <p>Built with Creator Toolkit · <a href="/">creatortoolkits.in</a></p>
 </footer>
-
 <script src="/blog/blog.js" data-mode="post"></script>
 </body>
 </html>
