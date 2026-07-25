@@ -164,24 +164,27 @@
     setupLikeButton(post.slug);
   }
 
-  // ---------- Like button (no login — CounterAPI + localStorage flag) ----------
+  // ---------- Like button (no login — CountAPI + localStorage flag) ----------
+  const LIKE_API = 'https://countapi.mileshilliard.com/api/v1';
+
   function setupLikeButton(slug) {
     const btn = document.getElementById('like-btn');
-    if (!btn || typeof Counter === 'undefined') return;
+    if (!btn) return;
 
-    const counter = new Counter({ workspace: 'creator-toolkit-blog' });
     const countEl = document.getElementById('like-count');
     const iconEl = btn.querySelector('.like-icon');
     const storageKey = 'liked-' + slug;
+    const counterKey = 'creatortoolkit-blog-' + slug + '-likes';
 
     function setLikedUI(isLiked) {
       btn.classList.toggle('liked', isLiked);
       iconEl.textContent = isLiked ? '♥' : '♡';
     }
 
-    // Load current count without incrementing
-    counter.get(slug)
-      .then(res => { countEl.textContent = res.value || 0; })
+    // Load current count without incrementing (404 just means nobody has liked it yet)
+    fetch(`${LIKE_API}/get/${counterKey}`)
+      .then(res => res.ok ? res.json() : { value: 0 })
+      .then(data => { countEl.textContent = data.value || 0; })
       .catch(err => console.error('Like count load failed:', err));
 
     setLikedUI(localStorage.getItem(storageKey) === '1');
@@ -190,15 +193,34 @@
       const alreadyLiked = localStorage.getItem(storageKey) === '1';
       btn.disabled = true;
 
-      const action = alreadyLiked ? counter.down(slug) : counter.up(slug);
-      action
-        .then(res => {
-          countEl.textContent = res.value || 0;
-          localStorage.setItem(storageKey, alreadyLiked ? '0' : '1');
-          setLikedUI(!alreadyLiked);
-        })
-        .catch(err => console.error('Like action failed:', err))
-        .finally(() => { btn.disabled = false; });
+      if (!alreadyLiked) {
+        // Like: increment by 1
+        fetch(`${LIKE_API}/hit/${counterKey}`)
+          .then(res => res.json())
+          .then(data => {
+            countEl.textContent = data.value;
+            localStorage.setItem(storageKey, '1');
+            setLikedUI(true);
+          })
+          .catch(err => console.error('Like action failed:', err))
+          .finally(() => { btn.disabled = false; });
+      } else {
+        // Unlike: read current value, then set it one lower
+        fetch(`${LIKE_API}/get/${counterKey}`)
+          .then(res => res.json())
+          .then(data => {
+            const newValue = Math.max(0, (parseInt(data.value, 10) || 0) - 1);
+            return fetch(`${LIKE_API}/set/${counterKey}?value=${newValue}`);
+          })
+          .then(res => res.json())
+          .then(data => {
+            countEl.textContent = data.value;
+            localStorage.setItem(storageKey, '0');
+            setLikedUI(false);
+          })
+          .catch(err => console.error('Unlike action failed:', err))
+          .finally(() => { btn.disabled = false; });
+      }
     });
   }
 })();
