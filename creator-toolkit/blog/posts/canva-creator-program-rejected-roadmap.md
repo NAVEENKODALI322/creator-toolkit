@@ -134,4 +134,4 @@ And honestly, this principle goes beyond Canva. Whether you're trying to get int
 
 ---
 
-*Want more practical breakdowns like this — no fluff, just what actually works? Subscribe to [Kodali Type on YouTube](https://www.youtube.com/@naveenkodali322) for content on design, creator tools, and building a digital design business from scratch.*
+*Want more practical breakdowns like this — no fluff, just what actually works? Subscribe to [my channel](https://www.youtube.com/@naveenkodali322) for content on design, creator tools, and building a digital design business from scratch.*
