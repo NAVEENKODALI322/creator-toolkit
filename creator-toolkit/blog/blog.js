@@ -7,6 +7,36 @@
     return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
   }
 
+  function timeAgo(iso) {
+    const then = new Date(iso);
+    const now = new Date();
+    const diffMs = now - then;
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHour = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHour / 24);
+
+    if (diffDay < 0) return formatDate(iso); // future-dated post, just show the date
+    if (diffDay === 0) {
+      if (diffHour < 1) return 'Posted just now';
+      if (diffHour === 1) return 'Posted 1 hour ago';
+      if (diffHour < 24) return `Posted ${diffHour} hours ago`;
+    }
+    if (diffDay === 1) return 'Posted 1 day ago';
+    if (diffDay < 7) return `Posted ${diffDay} days ago`;
+
+    const diffWeek = Math.floor(diffDay / 7);
+    if (diffDay < 14) return 'Posted 1 week ago';
+    if (diffDay < 30) return `Posted ${diffWeek} weeks ago`;
+
+    const diffMonth = Math.floor(diffDay / 30);
+    if (diffDay < 60) return 'Posted 1 month ago';
+    if (diffDay < 365) return `Posted ${diffMonth} months ago`;
+
+    // Older than a year — show the actual date instead of a big number
+    return `Posted ${formatDate(iso)}`;
+  }
+
   function tagChips(tags) {
     return tags.map(t => `<span class="tag-chip">${t}</span>`).join('');
   }
@@ -49,7 +79,7 @@
           <h2>${featured.title}</h2>
           <p>${featured.excerpt}</p>
           <div class="tag-row">${tagChips(featured.tags)}</div>
-          <div class="card-meta">${formatDate(featured.date)}<span class="dot">·</span>${featured.readTime}</div>
+          <div class="card-meta">${timeAgo(featured.date)}<span class="dot">·</span>${featured.readTime}</div>
         </a>
       `;
     }
@@ -83,7 +113,7 @@
           <div class="tag-row">${tagChips(p.tags)}</div>
           <h2>${p.title}</h2>
           <p>${p.excerpt}</p>
-          <div class="card-meta">${formatDate(p.date)}<span class="dot">·</span>${p.readTime}</div>
+          <div class="card-meta">${timeAgo(p.date)}<span class="dot">·</span>${p.readTime}</div>
         </a>
       `).join('');
     }
@@ -119,7 +149,7 @@
     document.getElementById('page-desc').setAttribute('content', post.excerpt);
     document.getElementById('post-tags').innerHTML = tagChips(post.tags);
     document.getElementById('post-title').textContent = post.title;
-    document.getElementById('post-meta').textContent = `${formatDate(post.date)} · ${post.readTime}`;
+    document.getElementById('post-meta').textContent = `${timeAgo(post.date)} · ${post.readTime}`;
 
     fetch('/blog/posts/' + post.file)
       .then(res => res.text())
