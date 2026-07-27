@@ -44,4 +44,4 @@ When your title and thumbnail repeat identical information, you've used two oppo
 
 If you're unsure which thumbnail works better, upload with one, and after a few days of real data, compare it against an alternative using YouTube's built-in A/B testing (if available in your region) or simply track click-through rate in YouTube Studio over similar-performing videos.
 
-Pairing a strong thumbnail with a strong title matters more than either alone. If you want quick title variations to test alongside your thumbnail options, our free [YouTube Title Generator](/title-generator) can help you explore a few angles before you commit to one.
+Pairing a strong thumbnail with a strong title matters more than either alone. If you want quick title variations to test alongside your thumbnail options, our free [YouTube Title Generator](https://www.creatortoolkits.in/title-generator.html) can help you explore a few angles before you commit to one.
