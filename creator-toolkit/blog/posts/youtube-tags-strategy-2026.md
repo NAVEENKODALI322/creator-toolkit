@@ -1,13 +1,3 @@
----
-title: "YouTube Tags in 2026: Do They Still Matter, and How to Use Them Right"
-slug: "youtube-tags-strategy-2026"
-date: "2026-07-27"
-excerpt: "Tags aren't the SEO powerhouse they were in 2015, but they're not useless either. Here's what tags actually do today, and a simple approach to using them well."
-tags: ["YouTube SEO", "Tags", "Beginner Guide"]
----
-
-# YouTube Tags in 2026: Do They Still Matter, and How to Use Them Right
-
 Every few years, a new claim spreads that YouTube tags are "dead." The honest answer is more nuanced: tags matter far less than they used to, but they still play a small supporting role — mainly around misspellings, alternate phrasing, and giving YouTube extra context in edge cases.
 
 ## What Tags Actually Do Today
