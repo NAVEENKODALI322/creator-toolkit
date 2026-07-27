@@ -38,4 +38,4 @@ Once you land on a layout, font pairing, and color scheme you're happy with, sav
 
 ## Where This Fits Into Your Workflow
 
-Design doesn't need to be the bottleneck in your content process. Once your layout system is set, most of your time should go back to the actual video — filming, editing, and writing a hook and title that match the thumbnail's energy. If you need quick title options to pair with your new thumbnail, our free [YouTube Title Generator](/title-generator) can help you land on the right wording faster.
+Design doesn't need to be the bottleneck in your content process. Once your layout system is set, most of your time should go back to the actual video — filming, editing, and writing a hook and title that match the thumbnail's energy. If you need quick title options to pair with your new thumbnail, our free [YouTube Title Generator](https://www.creatortoolkits.in/title-generator.html) can help you land on the right wording faster.
