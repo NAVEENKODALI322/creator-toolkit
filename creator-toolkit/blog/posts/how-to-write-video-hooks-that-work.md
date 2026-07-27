@@ -40,4 +40,4 @@ Start in the middle of the action — the result, the mistake, the reaction — 
 
 A simple test: read your hook out loud, alone, with no context. If it doesn't make you want to know what happens next, it won't work on a stranger scrolling past dozens of other videos.
 
-Writing five different hook options for the same video and picking the strongest is a habit worth building — the first version you think of is rarely the best one. If you want a faster way to generate multiple angles before choosing, our free [Viral Hook Generator](/hook-generator) can give you several starting points based on your video's topic, which you can then refine into your own voice.
+Writing five different hook options for the same video and picking the strongest is a habit worth building — the first version you think of is rarely the best one. If you want a faster way to generate multiple angles before choosing, our free [Viral Hook Generator](https://www.creatortoolkits.in/viral-hook-generator.html) can give you several starting points based on your video's topic, which you can then refine into your own voice.
