@@ -48,4 +48,4 @@ Every other skill — SEO, analytics, community management — sits on top of th
 
 ## Getting Started This Week
 
-Pick one skill and practice it on your next single upload — not all three at once. If titles feel like the hardest part, start there and use our free [YouTube Title Generator](/title-generator) to see multiple angles on the same topic, then rewrite the one that sounds most like you. Small, deliberate practice on one skill per video adds up faster than trying to master everything before you post at all.
+Pick one skill and practice it on your next single upload — not all three at once. If titles feel like the hardest part, start there and use our free [YouTube Title Generator](https://www.creatortoolkits.in/title-generator.html) to see multiple angles on the same topic, then rewrite the one that sounds most like you. Small, deliberate practice on one skill per video adds up faster than trying to master everything before you post at all.
