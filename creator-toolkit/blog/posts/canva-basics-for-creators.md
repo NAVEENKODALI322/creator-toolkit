@@ -1,13 +1,3 @@
----
-title: "Canva Basics Every Creator Should Know Before Making Their First Thumbnail"
-slug: "canva-basics-for-creators"
-date: "2026-07-27"
-excerpt: "You don't need Photoshop to make good thumbnails and social posts. Here's a practical starting point in Canva for creators who've never designed anything before."
-tags: ["Design", "Canva", "Beginner Guide"]
----
-
-# Canva Basics Every Creator Should Know Before Making Their First Thumbnail
-
 Design intimidates a lot of new creators before they even open the software. The good news: you don't need design school, and you don't need Photoshop. Canva was built specifically to make this accessible, and a handful of basics will cover almost everything you need for thumbnails, covers, and social posts.
 
 ## Start With Templates, Not a Blank Canvas
