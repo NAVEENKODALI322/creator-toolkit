@@ -1,13 +1,3 @@
----
-title: "The Tree Concept: A Simple Framework for Building a Real Online Income"
-slug: "tree-concept-framework-online-income"
-date: "2026-07-27"
-excerpt: "Most beginner creators chase views before they build a foundation. The Tree Concept breaks online income into four parts: Roots, Trunk, Branches, and Fruits — in that order."
-tags: ["Creator Growth", "Beginner Guide", "Content Strategy"]
----
-
-# The Tree Concept: A Simple Framework for Building a Real Online Income
-
 If you have ever searched "how to make money online," you already know the problem: everyone tells you a different platform, a different app, a different trick. What almost nobody explains is the *order* in which things need to happen. That's what the Tree Concept is for.
 
 Think of a tree. It doesn't start with fruit. It starts underground, where nobody can see it.
