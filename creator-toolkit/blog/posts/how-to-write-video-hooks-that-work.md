@@ -1,13 +1,3 @@
----
-title: "How to Write a Hook That Actually Keeps People Watching"
-slug: "how-to-write-video-hooks-that-work"
-date: "2026-07-27"
-excerpt: "The first five seconds decide whether your video gets watched or scrolled past. Here's a practical breakdown of what makes a hook work, with examples."
-tags: ["Video Editing", "Content Strategy", "Beginner Guide"]
----
-
-# How to Write a Hook That Actually Keeps People Watching
-
 You can have the best content in your video, and it won't matter if nobody makes it past the first five seconds. That's the entire job of a hook: buy you enough time for the rest of the video to do its job.
 
 ## Why the First Few Seconds Decide Everything
