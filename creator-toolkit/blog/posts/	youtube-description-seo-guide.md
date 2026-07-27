@@ -1,13 +1,3 @@
----
-title: "Why Your YouTube Description Matters More Than You Think"
-slug: "youtube-description-seo-guide"
-date: "2026-07-27"
-excerpt: "Most creators write descriptions as an afterthought, or skip them entirely. Here's why that's a missed opportunity, and how to write ones that actually help your video get found."
-tags: ["YouTube SEO", "Content Strategy", "Beginner Guide"]
----
-
-# Why Your YouTube Description Matters More Than You Think
-
 Ask ten creators what makes a video get discovered, and most will say thumbnail, title, and maybe watch time. Almost nobody mentions the description — and that's exactly why it's an underused advantage.
 
 ## What the Description Actually Does
