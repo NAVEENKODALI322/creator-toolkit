@@ -43,4 +43,4 @@ A description that performs well usually follows a simple structure:
 
 Writing a proper description takes two to three extra minutes per upload. Over fifty videos, that's a meaningful, compounding investment in how discoverable your channel is — for a cost lower than almost any other optimization you could make.
 
-If writing from scratch feels slow, our free [YouTube Description Generator](/description-generator) can produce a solid first draft based on your video topic, which you can then personalize with your own voice and specific timestamps.
+If writing from scratch feels slow, our free [YouTube Description Generator](https://www.creatortoolkits.in/description-generator.html) can produce a solid first draft based on your video topic, which you can then personalize with your own voice and specific timestamps.
