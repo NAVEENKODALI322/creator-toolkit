@@ -37,4 +37,4 @@ For a video titled "How I Edit YouTube Shorts in 10 Minutes," weak hashtags woul
 
 It's worth being honest here: hashtags are a minor optimization, not a growth strategy on their own. A great title, a strong hook in the first few seconds, and a thumbnail that earns the click will always matter more. Hashtags are the last five percent — worth doing correctly, not worth obsessing over.
 
-If you want a fast starting point instead of brainstorming from scratch, our free [Hashtag Generator](/hashtag-generator) can suggest relevant options based on your video topic, which you can then narrow down using the principles above.
+If you want a fast starting point instead of brainstorming from scratch, our free [Hashtag Generator](https://www.creatortoolkits.in/hashtag-generator.html) can suggest relevant options based on your video topic, which you can then narrow down using the principles above.
