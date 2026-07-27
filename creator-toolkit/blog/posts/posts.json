@@ -1,27 +1,39 @@
 [
   {
-  "slug": "my-canva-creator-journey",
-  "title": "My Canva Creator Journey: What Nobody Tells You Before You Start",
-  "excerpt": "The honest version — the confusing parts, the mistakes, and what actually changed things, from a designer who's still figuring it out in real time.",
-  "tags": ["canva-creator", "personal", "design-tips"],
-  "date": "2026-07-25",
-  "readTime": "6 min read",
-  "file": "my-canva-creator-journey.md"
-},
+    "slug": "my-canva-creator-journey",
+    "title": "My Canva Creator Journey: What Nobody Tells You Before You Start",
+    "excerpt": "The honest version — the confusing parts, the mistakes, and what actually changed things, from a designer who's still figuring it out in real time.",
+    "tags": [
+      "canva-creator",
+      "personal",
+      "design-tips"
+    ],
+    "date": "2026-07-25",
+    "readTime": "6 min read",
+    "file": "my-canva-creator-journey.md"
+  },
   {
-  "slug": "canva-creator-program-rejected-roadmap",
-  "title": "Canva Creator Program Rejected? Here's the Complete Roadmap to Get Accepted",
-  "excerpt": "Most Canva Creator applications get rejected for the same five reasons, and almost nobody explains what they actually are. Here's the full breakdown and a step-by-step roadmap to fix your application.",
-  "tags": ["canva-creator", "design-tips", "freelancing"],
-  "date": "2026-07-25",
-  "readTime": "9 min read",
-  "file": "canva-creator-program-rejected-roadmap.md"
-},
+    "slug": "canva-creator-program-rejected-roadmap",
+    "title": "Canva Creator Program Rejected? Here's the Complete Roadmap to Get Accepted",
+    "excerpt": "Most Canva Creator applications get rejected for the same five reasons, and almost nobody explains what they actually are. Here's the full breakdown and a step-by-step roadmap to fix your application.",
+    "tags": [
+      "canva-creator",
+      "design-tips",
+      "freelancing"
+    ],
+    "date": "2026-07-25",
+    "readTime": "9 min read",
+    "file": "canva-creator-program-rejected-roadmap.md"
+  },
   {
     "slug": "how-to-pick-youtube-video-titles",
     "title": "How to Pick the Right YouTube Title (SEO + Clickability, Explained Properly)",
     "excerpt": "Why most titles fail at one of two jobs, and a simple process to write titles that get found and get clicked.",
-    "tags": ["youtube-growth", "title-generator", "seo"],
+    "tags": [
+      "youtube-growth",
+      "title-generator",
+      "seo"
+    ],
     "date": "2026-07-22",
     "readTime": "8 min read",
     "file": "how-to-pick-youtube-video-titles.md"
@@ -30,7 +42,10 @@
     "slug": "canva-creator-program-earnings",
     "title": "How the Canva Creator Program Actually Pays You",
     "excerpt": "What royalties look like, how uploads get reviewed, and the small habits that compound into steady passive income.",
-    "tags": ["canva-creator", "passive-income"],
+    "tags": [
+      "canva-creator",
+      "passive-income"
+    ],
     "date": "2026-07-01",
     "readTime": "5 min read",
     "file": "canva-creator-program-earnings.md"
@@ -39,7 +54,10 @@
     "slug": "ai-tools-for-youtube-growth",
     "title": "5 AI Tools That Actually Save Time on YouTube",
     "excerpt": "Titles, tags, descriptions, and hooks — where AI genuinely helps a creator, and where it just adds noise.",
-    "tags": ["ai-tools", "youtube-growth"],
+    "tags": [
+      "ai-tools",
+      "youtube-growth"
+    ],
     "date": "2026-06-20",
     "readTime": "6 min read",
     "file": "ai-tools-for-youtube-growth.md"
@@ -48,9 +66,112 @@
     "slug": "youtube-hashtag-strategy-2026",
     "title": "Hashtags Won't Save a Bad Title — But They Help",
     "excerpt": "A practical hashtag and tag strategy for Telugu creators, and why relevance beats volume every time.",
-    "tags": ["hashtag-generator", "youtube-growth"],
+    "tags": [
+      "hashtag-generator",
+      "youtube-growth"
+    ],
     "date": "2026-06-05",
     "readTime": "4 min read",
     "file": "youtube-hashtag-strategy-2026.md"
+  },
+  {
+    "slug": "tree-concept-framework-online-income",
+    "title": "The Tree Concept: A Simple Framework for Building a Real Online Income",
+    "excerpt": "Most beginner creators chase views before they build a foundation. The Tree Concept breaks online income into four parts: Roots, Trunk, Branches, and Fruits — in that order.",
+    "tags": [
+      "youtube-growth",
+      "creator-mindset",
+      "beginner-guide"
+    ],
+    "date": "2026-07-27",
+    "readTime": "6 min read",
+    "file": "tree-concept-framework-online-income.md"
+  },
+  {
+    "slug": "3-skills-beginner-creators-2026",
+    "title": "3 Skills Every Beginner Creator Needs in 2026 (And How to Learn Them for Free)",
+    "excerpt": "You don't need a film degree to start a channel. You need three specific skills — AI tools, content creation basics, and design — and none of them require paid courses.",
+    "tags": [
+      "ai-tools",
+      "beginner-guide",
+      "design-tips"
+    ],
+    "date": "2026-07-27",
+    "readTime": "5 min read",
+    "file": "3-skills-beginner-creators-2026.md"
+  },
+  {
+    "slug": "youtube-hashtags-guide-2026",
+    "title": "The Beginner's Guide to YouTube Hashtags: What Actually Works in 2026",
+    "excerpt": "Hashtags won't save a weak video, but the wrong hashtags can quietly hurt a good one. Here's what actually matters when tagging your uploads.",
+    "tags": [
+      "hashtag-generator",
+      "youtube-growth",
+      "seo"
+    ],
+    "date": "2026-07-27",
+    "readTime": "5 min read",
+    "file": "youtube-hashtags-guide-2026.md"
+  },
+  {
+    "slug": "youtube-description-seo-guide",
+    "title": "Why Your YouTube Description Matters More Than You Think",
+    "excerpt": "Most creators write descriptions as an afterthought, or skip them entirely. Here's why that's a missed opportunity, and how to write ones that actually help your video get found.",
+    "tags": [
+      "seo",
+      "youtube-growth"
+    ],
+    "date": "2026-07-27",
+    "readTime": "5 min read",
+    "file": "youtube-description-seo-guide.md"
+  },
+  {
+    "slug": "how-to-write-video-hooks-that-work",
+    "title": "How to Write a Hook That Actually Keeps People Watching",
+    "excerpt": "The first five seconds decide whether your video gets watched or scrolled past. Here's a practical breakdown of what makes a hook work, with examples.",
+    "tags": [
+      "youtube-growth",
+      "content-strategy"
+    ],
+    "date": "2026-07-27",
+    "readTime": "5 min read",
+    "file": "how-to-write-video-hooks-that-work.md"
+  },
+  {
+    "slug": "thumbnail-mistakes-click-through-rate",
+    "title": "5 Thumbnail Mistakes That Are Quietly Killing Your Click-Through Rate",
+    "excerpt": "A great video with a weak thumbnail still gets skipped. Here are the most common thumbnail mistakes beginners make, and simple fixes for each one.",
+    "tags": [
+      "design-tips",
+      "youtube-growth"
+    ],
+    "date": "2026-07-27",
+    "readTime": "5 min read",
+    "file": "thumbnail-mistakes-click-through-rate.md"
+  },
+  {
+    "slug": "youtube-tags-strategy-2026",
+    "title": "YouTube Tags in 2026: Do They Still Matter, and How to Use Them Right",
+    "excerpt": "Tags aren't the SEO powerhouse they were in 2015, but they're not useless either. Here's what tags actually do today, and a simple approach to using them well.",
+    "tags": [
+      "seo",
+      "youtube-growth"
+    ],
+    "date": "2026-07-27",
+    "readTime": "4 min read",
+    "file": "youtube-tags-strategy-2026.md"
+  },
+  {
+    "slug": "canva-basics-for-creators",
+    "title": "Canva Basics Every Creator Should Know Before Making Their First Thumbnail",
+    "excerpt": "You don't need Photoshop to make good thumbnails and social posts. Here's a practical starting point in Canva for creators who've never designed anything before.",
+    "tags": [
+      "canva-creator",
+      "design-tips",
+      "beginner-guide"
+    ],
+    "date": "2026-07-27",
+    "readTime": "5 min read",
+    "file": "canva-basics-for-creators.md"
   }
 ]
