@@ -1,12 +1,4 @@
----
-title: "5 Thumbnail Mistakes That Are Quietly Killing Your Click-Through Rate"
-slug: "thumbnail-mistakes-click-through-rate"
-date: "2026-07-27"
-excerpt: "A great video with a weak thumbnail still gets skipped. Here are the most common thumbnail mistakes beginners make, and simple fixes for each one."
-tags: ["Thumbnails", "Design", "Beginner Guide"]
----
 
-# 5 Thumbnail Mistakes That Are Quietly Killing Your Click-Through Rate
 
 Your thumbnail has one job: earn the click. It doesn't need to explain the whole video, and it doesn't need to be a piece of art — it needs to stop a thumb mid-scroll. Most low click-through rates trace back to one of these five mistakes.
 
