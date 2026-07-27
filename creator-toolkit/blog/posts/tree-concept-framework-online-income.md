@@ -51,6 +51,6 @@ The Tree Concept isn't a motivational metaphor — it's a diagnostic tool. If yo
 
 ## Putting It to Work
 
-If you're just getting started, use this framework as a checklist before your next upload. Sharpen one root skill this week — better titles, cleaner thumbnails, or a tighter hook. You can generate quick drafts for both with our free [YouTube Title Generator](/title-generator) and [Viral Hook Generator](/hook-generator) to save time on the writing side while you focus on filming and editing.
+If you're just getting started, use this framework as a checklist before your next upload. Sharpen one root skill this week — better titles, cleaner thumbnails, or a tighter hook. You can generate quick drafts for both with our free [YouTube Title Generator](https://www.creatortoolkits.in/title-generator.html) and [Viral Hook Generator](https://www.creatortoolkits.in/viral-hook-generator.html) to save time on the writing side while you focus on filming and editing.
 
 Growth isn't random. It's a tree — and trees grow from the ground up.
