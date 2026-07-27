@@ -46,4 +46,4 @@ Compare that to a scattered list like `youtube, video, tutorial, iphone, editing
 
 If you only have ten minutes to optimize a video before publishing, spend it on your title and the first two lines of your description first — those carry far more weight than tags do. Tags are the last five percent of the process, worth doing correctly but not worth agonizing over.
 
-If you want a quick starting list based on your video topic, our free [YouTube Tags Generator](/tags-generator) can suggest relevant tags in seconds, which you can then trim down to the focused list this article recommends.
+If you want a quick starting list based on your video topic, our free [YouTube Tags Generator](https://www.creatortoolkits.in/tags-generator.html) can suggest relevant tags in seconds, which you can then trim down to the focused list this article recommends.
