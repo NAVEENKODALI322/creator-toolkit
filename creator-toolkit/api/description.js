@@ -39,7 +39,7 @@ Do NOT repeat the same sentence pattern (like "X ki chala Y ga") again and again
         },
         body: JSON.stringify({
         model: "openai/gpt-oss-20b",
-reasoning_effort: "low",
+         reasoning_effort: "low",
           messages: [
             {
               role: "system",
