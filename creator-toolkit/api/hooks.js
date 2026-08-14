@@ -45,6 +45,7 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           model: "openai/gpt-oss-20b",
+reasoning_effort: "low",
           messages: [
             {
               role: "system",
@@ -70,7 +71,7 @@ Rules:
             }
           ],
           temperature: 0.8,
-          max_tokens: 500
+          max_tokens: 1024
         })
       }
     );
