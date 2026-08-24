@@ -43,10 +43,14 @@ body {
 .main-nav a {
   color: #cbd5e1;
   text-decoration: none;
-  margin-left: 20px;
+  margin-left: 8px;
+  padding: 12px 10px;
   font-size: 14px;
   font-weight: 600;
   transition: 0.2s;
+  display: inline-block;
+  min-height: 44px;
+  line-height: 20px;
 }
 
 .main-nav a:hover {
