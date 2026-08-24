@@ -395,9 +395,10 @@ html.v2-home, body.v2-home{
   z-index: 40;
 }
 .nav-item{
-  display:flex; flex-direction:column; align-items:center; gap:3px;
-  font-size:10.5px; font-weight:600; color: var(--text-faint);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  font-size:12px; font-weight:600; color: var(--text-faint);
   padding: 8px 14px; border-radius: var(--r-md);
+  min-width:48px; min-height:48px;
   transition: color .18s var(--ease), transform .15s var(--ease);
 }
 .nav-item .nav-icon{ font-size:18px; transition: transform .18s var(--ease); }
