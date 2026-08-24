@@ -363,8 +363,10 @@ padding-left:20px;
   }
 
   .main-nav a {
-    margin-left: 10px;
-    font-size: 12px;
+    margin-left: 4px;
+    padding: 12px 8px;
+    font-size: 14px;
+    min-height: 44px;
   }
 
   .hero h1 {
