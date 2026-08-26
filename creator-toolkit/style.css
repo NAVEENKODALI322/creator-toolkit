@@ -406,3 +406,4 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+.faq-a p, .faq-a, .faq-answer, .footer-links, .footer p { font-size: 14px !important; }
