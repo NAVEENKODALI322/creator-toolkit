@@ -152,7 +152,7 @@ html.v2-home, body.v2-home{
   width:38px; height:38px; border-radius:var(--r-pill);
   background: var(--grad-4);
   display:flex; align-items:center; justify-content:center;
-  font-size:12.5px; font-weight:700; color:#fff;
+  font-size:14px; font-weight:700; color:#fff;
   transition: transform .15s var(--ease);
 }
 .avatar-btn:active{ transform: scale(0.92); }
@@ -232,8 +232,8 @@ html.v2-home, body.v2-home{
 .quick-card[data-g="3"] .quick-icon{ background: var(--grad-6); }
 .quick-card[data-g="4"] .quick-icon{ background: var(--grad-4); }
 .quick-card[data-g="5"] .quick-icon{ background: var(--grad-5); }
-.quick-title{ font-size:13.5px; font-weight:600; color:var(--text); line-height:1.2; }
-.quick-sub{ font-size:11.5px; color: var(--text-secondary); line-height:1.3; }
+.quick-title{ font-size:14px; font-weight:600; color:var(--text); line-height:1.2; }
+.quick-sub{ font-size:14px; color: var(--text-secondary); line-height:1.3; }
 
 /* ---------------- Continue Working ---------------- */
 .continue-section{ padding-bottom: var(--space-7); animation: v2fade .5s .12s var(--ease) both; }
@@ -253,9 +253,9 @@ html.v2-home, body.v2-home{
   background: radial-gradient(160px 120px at 90% -10%, rgba(0,212,255,0.28), transparent 70%);
   pointer-events:none;
 }
-.continue-label{ font-size:11.5px; font-weight:600; color: var(--accent); text-transform:uppercase; letter-spacing:.06em; }
+.continue-label{ font-size:14px; font-weight:600; color: var(--accent); text-transform:uppercase; letter-spacing:.06em; }
 .continue-card h3{ font-size:19px; font-weight:700; margin-top:4px; }
-.continue-cta{ display:inline-block; margin-top:8px; font-size:13px; font-weight:600; color: var(--text); }
+.continue-cta{ display:inline-block; margin-top:8px; font-size:14px; font-weight:600; color: var(--text); }
 .continue-progress{
   position:relative; z-index:1;
   width:44px; height:44px; border-radius:50%;
@@ -301,13 +301,13 @@ html.v2-home, body.v2-home{
 .tool-card-v2[data-g="5"] .tool-icon-v2{ background: var(--grad-5); }
 .tool-card-v2[data-g="6"] .tool-icon-v2{ background: var(--grad-6); }
 .tool-card-v2 h3{ font-size:14.5px; font-weight:600; line-height:1.25; }
-.tool-card-v2 p{ margin:0; font-size:12px; color: var(--text-secondary); line-height:1.4; }
+.tool-card-v2 p{ margin:0; font-size:14px; color: var(--text-secondary); line-height:1.4; }
 .fav-btn{
   position:absolute; top:12px; right:12px;
   width:28px; height:28px; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   background: rgba(255,255,255,0.06);
-  font-size:13px; color: var(--text-faint);
+  font-size:14px; color: var(--text-faint);
   transition: transform .15s var(--ease), color .15s var(--ease);
 }
 .fav-btn:active{ transform: scale(0.85); }
@@ -325,7 +325,7 @@ html.v2-home, body.v2-home{
 }
 .tip-icon{ font-size:20px; flex-shrink:0; }
 .tip-card h3{ font-size:14px; font-weight:700; margin-bottom:4px; }
-.tip-card p{ margin:0; font-size:13px; color: var(--text-secondary); line-height:1.5; }
+.tip-card p{ margin:0; font-size:14px; color: var(--text-secondary); line-height:1.5; }
 
 /* ---------------- Categories ---------------- */
 .categories{ padding-bottom: var(--space-8); animation: v2fade .5s .24s var(--ease) both; }
@@ -341,15 +341,15 @@ html.v2-home, body.v2-home{
 .category-card:active{ transform: scale(0.96); }
 .category-card:hover{ border-color: rgba(255,255,255,0.16); }
 .category-emoji{ font-size:22px; }
-.category-card span{ font-size:13.5px; font-weight:600; }
+.category-card span{ font-size:14px; font-weight:600; }
 
 /* ---------------- SEO text (kept for search ranking, styled quietly) ---------------- */
 .seo-block{
   padding-bottom: var(--space-7);
   color: var(--text-secondary);
-  font-size: 12.5px; line-height:1.7;
+  font-size:14px; line-height:1.7;
 }
-.seo-block h2{ font-size:13px; color: var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; font-family:'Inter',sans-serif; font-weight:600; }
+.seo-block h2{ font-size:14px; color: var(--text-faint); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; font-family:'Inter',sans-serif; font-weight:600; }
 .seo-block p{ margin:0 0 10px; }
 
 /* FAQ accordion */
@@ -363,7 +363,7 @@ html.v2-home, body.v2-home{
 }
 .faq-q{
   width:100%; display:flex; align-items:center; justify-content:space-between;
-  padding: 14px 16px; font-size:13.5px; font-weight:600; color: var(--text);
+  padding: 14px 16px; font-size:14px; font-weight:600; color: var(--text);
   text-align:left;
 }
 .faq-q .chev{ transition: transform .2s var(--ease); color: var(--text-secondary); }
@@ -373,10 +373,10 @@ html.v2-home, body.v2-home{
   padding: 0 16px;
 }
 .faq-item-v2.open .faq-a{ max-height:200px; padding-bottom:14px; }
-.faq-a p{ margin:0; font-size:12.5px; color: var(--text-secondary); line-height:1.6; }
+.faq-a p{ margin:0; font-size:14px; color: var(--text-secondary); line-height:1.6; }
 
 /* ---------------- Footer ---------------- */
-.home-footer{ text-align:center; padding-bottom: var(--space-6); color: var(--text-faint); font-size:12px; }
+.home-footer{ text-align:center; padding-bottom: var(--space-6); color: var(--text-faint); font-size:14px; }
 .home-footer a{ color: var(--text-secondary); }
 .home-footer p{ margin:6px 0; }
 
@@ -396,7 +396,7 @@ html.v2-home, body.v2-home{
 }
 .nav-item{
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
-  font-size:12px; font-weight:600; color: var(--text-faint);
+  font-size:14px; font-weight:600; color: var(--text-faint);
   padding: 8px 14px; border-radius: var(--r-md);
   min-width:48px; min-height:48px;
   transition: color .18s var(--ease), transform .15s var(--ease);
@@ -442,7 +442,7 @@ html.v2-home, body.v2-home{
 /* ---------------- Empty state ---------------- */
 .empty-state{
   text-align:center; padding: var(--space-7) var(--space-4);
-  color: var(--text-secondary); font-size:13.5px;
+  color: var(--text-secondary); font-size:14px;
 }
 .empty-state .empty-emoji{ font-size:28px; display:block; margin-bottom:10px; }
 
@@ -538,11 +538,4 @@ html.v2-home, body.v2-home{
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* --- Mobile font-size fix (min 14px for AdSense mobile audit) --- */
-.quick-title, .quick-sub, .continue-label, .continue-cta,
-.tool-card-v2 p, .home-footer, .faq-a p, .faq-q, .seo-block h2, .seo-block p,
-.category-card span, .nav-item, .empty-state, .empty-text {
-  font-size: 14px !important;
 }
