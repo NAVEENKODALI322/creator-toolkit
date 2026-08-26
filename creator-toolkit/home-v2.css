@@ -539,3 +539,10 @@ html.v2-home, body.v2-home{
         transform: translateY(0);
     }
 }
+
+/* --- Mobile font-size fix (min 14px for AdSense mobile audit) --- */
+.quick-title, .quick-sub, .continue-label, .continue-cta,
+.tool-card-v2 p, .home-footer, .faq-a p, .faq-q, .seo-block h2, .seo-block p,
+.category-card span, .nav-item, .empty-state, .empty-text {
+  font-size: 14px !important;
+}
