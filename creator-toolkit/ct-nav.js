@@ -75,6 +75,14 @@
     st.textContent = css;
     document.head.appendChild(st);
     document.body.insertAdjacentHTML('afterbegin', html);
+           // hide old duplicate page headers (our nav replaces them)
+       document.querySelectorAll('header, nav, .topbar').forEach(function (el) {
+         if (el.closest('#ctNav')) return;
+         var t = (el.textContent || '').trim();
+         if (t.length < 120 && t.indexOf('Creator Toolkit') !== -1) {
+           el.style.display = 'none';
+         }
+       });
 
     var burger = document.getElementById('ctBurger');
     var menu = document.getElementById('ctMenu');
