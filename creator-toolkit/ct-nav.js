@@ -68,7 +68,8 @@
       '.ct-dd-menu{position:static;min-width:0;box-shadow:none;border:0;background:rgba(255,255,255,.04);margin:4px 0 6px}' +
       '.ct-menu a.ct-cta{margin:8px 0 0;text-align:center}' +
     '}' +
-    '.topbar{display:none !important}';
+     '.topbar{display:none !important}' +
+   '.back-btn{display:none !important}';
 
   function mount() {
     var st = document.createElement('style');
