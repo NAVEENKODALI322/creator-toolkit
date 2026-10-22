@@ -120,7 +120,23 @@
 
 </head>
 <body class="v2-home">
-
+<nav class="ct-topnav" aria-label="Main navigation">
+  <a href="/index.html" class="ct-brand">🚀 Creator Toolkit</a>
+  <div class="ct-links">
+    <a href="/index.html#toolsGrid">Tools</a>
+    <a href="/blog/index.html">Blog</a>
+    <a href="/videos/index.html">Videos</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+</nav>
+<style>
+  .ct-topnav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:10px 16px;border-bottom:1px solid rgba(128,128,128,.25)}
+  .ct-topnav a{text-decoration:none;color:inherit;font-weight:500}
+  .ct-brand{font-weight:700;font-size:1.05rem}
+  .ct-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.95rem}
+  .ct-links a:hover{text-decoration:underline}
+</style>
 <div class="app-shell">
 
   <!-- Section 1: Top App Bar -->
