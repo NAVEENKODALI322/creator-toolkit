@@ -113,3 +113,36 @@
   if (document.body) mount();
   else document.addEventListener('DOMContentLoaded', mount);
 })();
+
+/* Theme toggle for inner pages */
+(function () {
+  var root = document.documentElement;
+  try { root.setAttribute('data-theme', localStorage.getItem('ct-theme') || 'dark'); }
+  catch (e) { root.setAttribute('data-theme', 'dark'); }
+
+  if (!document.querySelector('link[href*="light-theme.css"]')) {
+    var lk = document.createElement('link');
+    lk.rel = 'stylesheet';
+    lk.href = '/light-theme.css';
+    document.head.appendChild(lk);
+  }
+  if (!document.querySelector('script[src*="theme.js"]')) {
+    var ts = document.createElement('script');
+    ts.src = '/theme.js';
+    document.head.appendChild(ts);
+  }
+
+  function addButton() {
+    var inner = document.querySelector('#ctNav .ct-nav-inner');
+    if (!inner || inner.querySelector('.theme-toggle')) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'theme-toggle';
+    b.setAttribute('aria-label', 'Switch theme');
+    b.textContent = root.getAttribute('data-theme') === 'light' ? '🌙' : '☀️';
+    inner.insertBefore(b, document.getElementById('ctBurger'));
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addButton);
+  else addButton();
+})();
