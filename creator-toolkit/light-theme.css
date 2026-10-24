@@ -58,3 +58,16 @@
 :root[data-theme="light"] .seo-block h2{ color:#475569; }
 :root[data-theme="light"] .home-footer a{ color:#475569; }
 :root[data-theme="light"] .nav-item.active{ color:#4F46E5; }
+
+/* Toggle button (inner pages) */
+.theme-toggle{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:#fff;font-size:18px;line-height:1;cursor:pointer;margin-left:10px;display:inline-flex;align-items:center;justify-content:center}
+.theme-toggle:hover{background:rgba(255,255,255,.14)}
+@media (max-width:860px){.theme-toggle{margin-left:auto;margin-right:8px}}
+
+/* Tools dropdown in light mode */
+:root[data-theme="light"] .ct-dd-btn{ color: rgba(15,23,42,0.75); }
+:root[data-theme="light"] .ct-dd-btn:hover{ background: rgba(15,23,42,0.06); color:#0F172A; }
+:root[data-theme="light"] .ct-menu a.active,
+:root[data-theme="light"] .ct-dd-btn.active{ color:#0F172A; background: rgba(15,23,42,0.08); }
+:root[data-theme="light"] .ct-dd-menu{ background:#FFFFFF; border-color: rgba(15,23,42,0.12); box-shadow:0 18px 40px rgba(15,23,42,0.15); }
+:root[data-theme="light"] .ct-dd-menu a.ct-all{ color:#4F46E5; border-top-color: rgba(15,23,42,0.08); }
