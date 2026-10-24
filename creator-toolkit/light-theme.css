@@ -48,3 +48,13 @@
 @media (max-width:760px){
   :root[data-theme="light"] .ct-menu{ background: rgba(255,255,255,0.98); border-bottom:1px solid rgba(15,23,42,0.08); }
 }
+
+/* Tool pages: inline dark colors ni light ki override */
+:root[data-theme="light"] .faq-section h2{ color:#0F172A !important; }
+:root[data-theme="light"] .faq-section details{ background:#FFFFFF !important; border-color: rgba(15,23,42,0.12) !important; }
+:root[data-theme="light"] .faq-section summary{ color:#4F46E5 !important; }
+:root[data-theme="light"] .faq-section details p{ color:#475569 !important; }
+:root[data-theme="light"] .seo-block a{ color:#4F46E5 !important; }
+:root[data-theme="light"] .seo-block h2{ color:#475569; }
+:root[data-theme="light"] .home-footer a{ color:#475569; }
+:root[data-theme="light"] .nav-item.active{ color:#4F46E5; }
