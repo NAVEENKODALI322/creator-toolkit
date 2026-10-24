@@ -71,3 +71,17 @@
 :root[data-theme="light"] .ct-dd-btn.active{ color:#0F172A; background: rgba(15,23,42,0.08); }
 :root[data-theme="light"] .ct-dd-menu{ background:#FFFFFF; border-color: rgba(15,23,42,0.12); box-shadow:0 18px 40px rgba(15,23,42,0.15); }
 :root[data-theme="light"] .ct-dd-menu a.ct-all{ color:#4F46E5; border-top-color: rgba(15,23,42,0.08); }
+
+/* Blog + shared extra tokens (light) */
+:root[data-theme="light"]{
+  --text-body:#334155;
+  --accent:#0891B2;
+  --accent-soft:rgba(8,145,178,0.12);
+  --shadow-lg:0 16px 48px rgba(15,23,42,0.16);
+}
+:root[data-theme="light"] body::before{ opacity:.5; }
+:root[data-theme="light"] .topic-pill:hover{ border-color: rgba(15,23,42,0.25); }
+:root[data-theme="light"] .post-card:hover,
+:root[data-theme="light"] .featured-card:hover{ border-color: rgba(15,23,42,0.22); }
+:root[data-theme="light"] .like-btn:hover{ border-color: rgba(15,23,42,0.25); }
+:root[data-theme="light"] .post-body a{ text-decoration-color: rgba(8,145,178,0.4); }
