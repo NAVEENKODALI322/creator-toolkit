@@ -561,3 +561,16 @@ main{
   .post-card{ padding: 18px; }
   .post-body{ font-size: 1rem; }
 }
+
+/* Post pages: duplicate brand bar ni hide chesi, "All posts" link matrame unchu */
+body:has(#post-root) .site-bar{
+  height:auto;
+  padding:14px 24px 0;
+  background:none;
+  border:0;
+  justify-content:flex-start;
+  position:static;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+body:has(#post-root) .site-bar .brand{ display:none; }
