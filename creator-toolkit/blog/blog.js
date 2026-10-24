@@ -162,6 +162,44 @@
       });
 
     setupLikeButton(post.slug);
+    
+    // ---------- Previous / Next post ----------
+    (function () {
+      const i = posts.findIndex(p => p.slug === post.slug);
+      if (i === -1 || posts.length < 2) return;
+      const next = posts[(i + 1) % posts.length];
+      const prev = posts[(i - 1 + posts.length) % posts.length];
+
+      const card = (p, label, cls) =>
+        `<a class="pn-card ${cls}" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">` +
+        `<span class="pn-label">${label}</span>` +
+        `<span class="pn-title">${p.title}</span>` +
+        `<span class="pn-meta">${p.readTime}</span></a>`;
+
+      const st = document.createElement('style');
+      st.textContent =
+        '.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:36px 0 10px}' +
+        '.pn-card{display:flex;flex-direction:column;gap:6px;padding:18px 20px;border-radius:16px;' +
+          'background:var(--mg-card,#161B22);border:1px solid var(--mg-line,rgba(255,255,255,.09));' +
+          'text-decoration:none;transition:border-color .2s,transform .2s}' +
+        '.pn-card:hover{border-color:var(--mg-accent,#22d3ee);transform:translateY(-2px)}' +
+        '.pn-next{text-align:right}' +
+        '.pn-label{font-family:var(--mg-mono,monospace);font-size:.72rem;letter-spacing:.08em;' +
+          'text-transform:uppercase;color:var(--mg-accent,#22d3ee)}' +
+        '.pn-title{font-family:var(--mg-head,sans-serif);font-weight:600;font-size:1rem;line-height:1.35;' +
+          'color:var(--mg-ink,#f4f2ec)}' +
+        '.pn-meta{font-size:.78rem;color:var(--mg-muted,#8B93A1)}' +
+        '@media(max-width:640px){.post-nav{grid-template-columns:1fr}.pn-next{text-align:left}}';
+      document.head.appendChild(st);
+
+      const wrap = document.createElement('nav');
+      wrap.className = 'post-nav';
+      wrap.setAttribute('aria-label', 'More posts');
+      wrap.innerHTML = card(prev, '← Previous post', 'pn-prev') + card(next, 'Next post →', 'pn-next');
+
+      const anchor = document.getElementById('like-btn') || document.getElementById('post-body');
+      anchor.insertAdjacentElement('afterend', wrap);
+    })();
   }
 
   // ---------- Like button (no login — CountAPI + localStorage flag) ----------
