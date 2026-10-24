@@ -134,7 +134,8 @@
 
   function renderPost(posts) {
     const params = new URLSearchParams(window.location.search);
-    const slug = params.get('slug');
+       const staticSlug = scriptTag && scriptTag.dataset.slug;
+    const slug = staticSlug || params.get('slug');
     const post = posts.find(p => p.slug === slug);
     const root = document.getElementById('post-root');
     const notFound = document.getElementById('not-found');
