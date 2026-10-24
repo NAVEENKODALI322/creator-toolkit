@@ -1,0 +1,50 @@
+/* Light theme: dark ye default, ivi data-theme="light" unnappudu matrame apply avtayi */
+
+:root[data-theme="dark"]{ color-scheme: dark; }
+
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:            #F4F6FB;
+  --bg-elevated:   #FFFFFF;
+  --card:          #FFFFFF;
+  --card-hover:    #F1F3F9;
+  --border:        rgba(15,23,42,0.10);
+  --border-soft:   rgba(15,23,42,0.06);
+
+  --primary-soft:  rgba(108,99,255,0.12);
+
+  --text:          #0F172A;
+  --text-secondary:#475569;
+  --text-faint:    #64748B;
+
+  --shadow-sm: 0 2px 10px rgba(15,23,42,0.08);
+  --shadow-md: 0 8px 24px rgba(15,23,42,0.12);
+  --shadow-glow: 0 8px 30px rgba(108,99,255,0.18);
+}
+
+/* Home page cards, hover, glow */
+:root[data-theme="light"] .app-shell::before{ opacity:.45; }
+:root[data-theme="light"] .quick-card:hover,
+:root[data-theme="light"] .tool-card-v2:hover,
+:root[data-theme="light"] .category-card:hover{ border-color: rgba(15,23,42,0.20); }
+:root[data-theme="light"] .fav-btn{ background: rgba(15,23,42,0.06); }
+:root[data-theme="light"] .continue-label{ color:#0891B2; }
+:root[data-theme="light"] .continue-progress{ background: conic-gradient(#0891B2 var(--pct,65%), rgba(15,23,42,0.12) 0); }
+:root[data-theme="light"] .bottom-nav{ background: rgba(255,255,255,0.92); }
+:root[data-theme="light"] .topbar{ background: rgba(255,255,255,0.8); }
+:root[data-theme="light"] .footer-social a{ color:#475569 !important; }
+
+/* Top navigation bar */
+:root[data-theme="light"] .ct-nav{ background: rgba(255,255,255,0.85); border-bottom:1px solid rgba(15,23,42,0.08); }
+:root[data-theme="light"] .ct-logo{ color:#0F172A; }
+:root[data-theme="light"] .ct-menu a{ color: rgba(15,23,42,0.75); }
+:root[data-theme="light"] .ct-menu a:hover{ background: rgba(15,23,42,0.06); color:#0F172A; }
+:root[data-theme="light"] .ct-menu a.ct-cta{ color:#fff; }
+:root[data-theme="light"] .ct-burger{ border-color: rgba(15,23,42,0.15); background: rgba(15,23,42,0.05); }
+:root[data-theme="light"] .ct-burger span{ background:#0F172A; }
+:root[data-theme="light"] .theme-toggle{ border-color: rgba(15,23,42,0.15); background: rgba(15,23,42,0.05); color:#0F172A; }
+:root[data-theme="light"] .theme-toggle:hover{ background: rgba(15,23,42,0.1); }
+
+@media (max-width:760px){
+  :root[data-theme="light"] .ct-menu{ background: rgba(255,255,255,0.98); border-bottom:1px solid rgba(15,23,42,0.08); }
+}
