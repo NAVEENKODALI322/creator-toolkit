@@ -74,7 +74,7 @@
     // Featured post
     if (featuredSlot) {
       featuredSlot.innerHTML = `
-        <a class="featured-card" href="/blog/post.html?slug=${encodeURIComponent(featured.slug)}">
+        <a class="featured-card" href="/blog/${encodeURIComponent(featured.slug)}.html"
           <p class="featured-label">Latest</p>
           <h2>${featured.title}</h2>
           <p>${featured.excerpt}</p>
