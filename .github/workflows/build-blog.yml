@@ -1,0 +1,38 @@
+name: Build blog pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'creator-toolkit/blog/posts/**'
+      - 'creator-toolkit/build-blog.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        working-directory: creator-toolkit
+        run: npm install --no-audit --no-fund
+
+      - name: Build blog pages
+        working-directory: creator-toolkit
+        run: node build-blog.js
+
+      - name: Commit generated pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add creator-toolkit/blog/*.html creator-toolkit/sitemap-blog.xml
+          git diff --cached --quiet || git commit -m "Auto-build blog pages"
+          git push
