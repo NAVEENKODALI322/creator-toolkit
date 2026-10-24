@@ -109,7 +109,7 @@
       }
       empty.hidden = true;
       feed.innerHTML = list.map(p => `
-        <a class="post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
+           <a class="post-card" href="/blog/${encodeURIComponent(p.slug)}.html">
           <div class="tag-row">${tagChips(p.tags)}</div>
           <h2>${p.title}</h2>
           <p>${p.excerpt}</p>
