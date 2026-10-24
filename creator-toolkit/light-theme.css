@@ -118,3 +118,14 @@
 :root[data-theme="light"] body::before{ opacity:.5; }
 :root[data-theme="light"] .topic-pill:hover{ border-color: rgba(15,23,42,0.25); }
 :root[data-theme="light"] .like-btn:hover{ border-color: rgba(15,23,42,0.25); }
+
+/* Toggle button: anni pages lo box style (v2-home override ni beat chestundi) */
+.ct-nav .theme-toggle{
+  width:40px;height:40px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06);
+  color:#fff;font-size:18px;line-height:1;cursor:pointer;
+  margin-left:10px;
+  display:inline-flex;align-items:center;justify-content:center;
+}
+.ct-nav .theme-toggle:hover{ background:rgba(255,255,255,.14); }
