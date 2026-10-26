@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Hashtag Generator for YouTube & Instagram | Creator Toolkit</title>
+<meta name="description" content="Generate 20+ relevant hashtags instantly for YouTube, Instagram & TikTok. Free AI-powered hashtag generator for content creators.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/hashtag-generator.html">
+<meta property="og:title" content="Free Hashtag Generator for YouTube & Instagram | Creator Toolkit">
+<meta property="og:description" content="Generate 20+ relevant hashtags instantly for YouTube, Instagram & TikTok. 100% free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/hashtag-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Hashtag Generator for YouTube & Instagram | Creator Toolkit">
+<meta name="twitter:description" content="Generate 20+ relevant hashtags instantly for YouTube, Instagram & TikTok. 100% free.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="home-v2.min.css">
+<link rel="stylesheet" href="tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <header class="topbar">
+    <a href="index.html" class="topbar-logo">
+      <span class="logo-mark">🚀</span> Creator Toolkit
+    </a>
+    <div class="topbar-actions">
+      <button class="avatar-btn" id="avatarBtn" aria-label="Profile and settings">CT</button>
+    </div>
+  </header>
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="index.html" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>#️⃣ Youtube Hashtag Generator</h1>
+        <p>Relevant hashtags for YouTube, Instagram & TikTok</p>
+      </div>
+    </section>
+
+    <section class="tool-card-form">
+      <div class="field-group">
+        <label class="field-label" for="keyword">Video topic</label>
+        <input class="input-v2" type="text" id="keyword" placeholder="Enter video topic">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="platform">Platform</label>
+        <select class="select-v2" id="platform">
+          <option value="YouTube">YouTube</option>
+          <option value="Instagram">Instagram</option>
+          <option value="TikTok">TikTok</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="hashtagCount">Number of hashtags</label>
+        <select class="select-v2" id="hashtagCount">
+          <option value="15">15</option>
+          <option value="20" selected>20</option>
+          <option value="30">30</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" onclick="generateHashtags()">✨ Generate Hashtags</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">Generated hashtags</label>
+        <div id="result" class="output-v2" data-placeholder="Your AI-generated hashtags will appear here..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="copyHashtags()">📋 Copy Hashtags</button>
+    </section>
+
+
+    <!-- Related tools -->
+    <section class="related-tools">
+      <div class="section-title">Related tools</div>
+      <div class="tools-grid-v2">
+        <a href="title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Catchy, SEO-friendly titles</p>
+        </a>
+        <a href="description-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">📝</div>
+          <h3>Description Generator</h3>
+          <p>SEO-ready video descriptions</p>
+        </a>
+        <a href="tags-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🏷️</div>
+          <h3>Tags Generator</h3>
+          <p>AI-powered YouTube tags</p>
+        </a>
+        <a href="thumbnail-downloader.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🖼️</div>
+          <h3>Thumbnail Downloader</h3>
+          <p>Grab thumbnails in HD</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-block">
+  <h2>What is the Youtube Hashtag Generator?</h2>
+  <p>The Youtube Hashtag Generator helps YouTube, Instagram, and social media creators find relevant, high-performing hashtags in seconds. Instead of guessing which tags might work, this free tool analyzes your topic and suggests a mix of popular and niche hashtags that can help your content reach a wider audience. Whether you're posting a Reel, a YouTube Short, or a regular video, the right hashtags make it easier for new viewers to discover your content through search and recommendations.</p>
+
+  <h2>How to Use the Hashtag Generator</h2>
+  <p>Enter your video or post topic, select your platform, and click Generate to get a curated list of hashtags. Copy them and paste directly into your video description, caption, or comment section. The whole process takes less than 30 seconds, and you can regenerate as many times as you like until you find a set that fits your content.</p>
+
+  <h2>Why Hashtags Matter for Creators</h2>
+  <p>Hashtags aren't just decoration — they're a discovery tool. Platforms like YouTube and Instagram use hashtags to categorize content and match it with viewers who are actively searching for or interested in that topic. Using a smart mix of broad hashtags (for reach) and niche hashtags (for targeted, engaged viewers) can meaningfully improve your video's visibility, especially in the first 24–48 hours after posting.</p>
+
+  <h2>Tips for Better Hashtag Results</h2>
+  <ul>
+    <li>Use 3–5 hashtags on YouTube; too many can look spammy.</li>
+    <li>Mix one broad hashtag with two or three specific ones for the best balance of reach and relevance.</li>
+    <li>Avoid repeating the exact same hashtag set on every video — vary them per topic.</li>
+    <li>Check what hashtags top creators in your niche use, and adapt them to your own content.</li>
+  </ul>
+
+  <h2>What Makes a Hashtag Actually Work (Not Just Generic Advice)</h2>
+  <p>Most hashtag generators spit out a random mix of popular tags and call it a day. This one is built differently — it separates hashtags into three tiers based on competition level, because that's how discovery actually works on YouTube and Instagram: broad reach tags (500K+ posts) that get you into a crowded pool, mid-competition tags (50K–500K posts) that are the sweet spot most creators skip, and niche/long-tail tags (under 50K posts) where small channels get their first real traction.</p>
+
+  <h2>A Real Example</h2>
+  <p>Say you upload a video titled "Beginner home workout, no equipment." Run it through this tool and instead of just getting #fitness #workout #gym (all broad, all brutally competitive), you'd get a mix like #fitness #homeworkout (broad), #noequipmentworkout #beginnerfitness (mid-tier), and #homeworkoutforbeginners #fitnessmotivation2026 (niche). The niche tags are the ones doing the real work for a channel that doesn't have an existing audience yet.</p>
+
+  <h2>Where Creators Usually Go Wrong</h2>
+  <ul>
+    <li>Reusing the same 10 hashtags on every video — platforms notice repetitive tag patterns over time and it can flatten reach.</li>
+    <li>Only using broad tags, which means competing against every big creator in that space.</li>
+    <li>Ignoring platform differences — a tag mix that works on Instagram (8–15 tags) will look spammy in a YouTube description (where 3–5 is the norm).</li>
+  </ul>
+
+  <h2>How This Tool Decides What to Suggest</h2>
+  <p>Each hashtag set is generated based on your topic input plus platform-specific conventions — YouTube gets a shorter, more categorization-focused set; Instagram and TikTok get a longer, discovery-focused set with more niche tags mixed in. It's not a static list pulled from a database — it's generated fresh per topic by AI. It does not use live trend data, so check YouTube's or Instagram's own trending pages if you want what is popular today.</p>
+
+
+</section>
+
+    <section class="faq-section" style="max-width:800px;margin:48px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">Frequently Asked Questions</h2>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Is this hashtag generator free for YouTube and Instagram?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes, it's free and works for YouTube, Instagram, and TikTok. No account or sign-up required.</p>
+  </details>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">How many hashtags should I use per post?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">For YouTube, 3-5 highly relevant hashtags work best. For Instagram, 8-15 mixed high and low competition hashtags typically perform well. This tool generates 20+ options so you can pick the most relevant ones.</p>
+  </details>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Do hashtags actually help with reach?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes, relevant hashtags help the platform's algorithm categorize your content and surface it to viewers interested in that topic, improving discoverability alongside your title and description.</p>
+  </details>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Can I generate hashtags in a specific niche?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes, just describe your content topic or niche and the AI will generate hashtags tailored to that specific audience and category.</p>
+  </details>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Should I put hashtags in the title, description, or comments?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">For YouTube, hashtags in the description are what actually get parsed for categorization — the top 3 you use will also display above your video title. For Instagram, hashtags work best in the caption or first comment.</p>
+  </details>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Do more hashtags always mean more reach?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">No — past a certain point, extra hashtags dilute relevance signals rather than adding reach. YouTube's own guidance caps meaningful use at a small handful.</p>
+  </details>
+
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Why do the same hashtags perform differently on different videos?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Hashtag performance is relative to a video's overall watch time and engagement, not just the tag itself. Hashtags help with initial discovery — retention decides whether that discovery turns into sustained reach.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is this hashtag generator free for YouTube and Instagram?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, it's free and works for YouTube, Instagram, and TikTok. No account or sign-up required."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many hashtags should I use per post?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For YouTube, 3-5 highly relevant hashtags work best. For Instagram, 8-15 mixed high and low competition hashtags typically perform well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do hashtags actually help with reach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, relevant hashtags help the platform's algorithm categorize your content and surface it to viewers interested in that topic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate hashtags in a specific niche?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, just describe your content topic or niche and the AI will generate hashtags tailored to that specific audience and category."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I put hashtags in the title, description, or comments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For YouTube, hashtags in the description are what actually get parsed for categorization. For Instagram, hashtags work best in the caption or first comment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do more hashtags always mean more reach?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — past a certain point, extra hashtags dilute relevance signals rather than adding reach."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do the same hashtags perform differently on different videos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Hashtag performance is relative to a video's overall watch time and engagement, not just the tag itself."
+      }
+    }
+  ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/index.html">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/index.html">Blog</a> ·
+    <a href="/videos/index.html">Videos</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <a class="nav-item" href="index.html" data-tab="home">
+      <span class="nav-icon">🏠</span><span>Home</span>
+    </a>
+    <a class="nav-item active" href="index.html#toolsGrid" data-tab="tools">
+      <span class="nav-icon">🧰</span><span>AI Tools</span>
+    </a>
+    <a class="nav-item" href="index.html" data-tab="favorites">
+      <span class="nav-icon">❤️</span><span>Favorites</span>
+    </a>
+    <button class="nav-item" data-tab="settings">
+      <span class="nav-icon">⚙️</span><span>Settings</span>
+    </button>
+  </nav>
+
+</div>
+
+<div class="sheet-overlay" id="sheetOverlay"></div>
+<div class="bottom-sheet" id="settingsSheet">
+  <div class="sheet-handle"></div>
+  <h3 class="sheet-title">Settings</h3>
+  <a class="sheet-link" href="about.html"><span>About Creator Toolkit</span><span class="arrow">›</span></a>
+  <a class="sheet-link" href="contact.html"><span>Contact & Feedback</span><span class="arrow">›</span></a>
+  <a class="sheet-link" href="privacy.html"><span>Privacy Policy</span><span class="arrow">›</span></a>
+</div>
+
+<script>
+async function generateHashtags() {
+  const topic = document.getElementById("keyword").value.trim();
+  const platform = document.getElementById("platform").value;
+  const hashtagCount = document.getElementById("hashtagCount").value;
+  const outputBox = document.getElementById("result");
+
+  if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
+  outputBox.innerHTML = "⏳ Generating AI Hashtags...";
+
+  try {
+    const response = await fetch("/api/hashtags", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic, platform, hashtagCount })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      outputBox.innerHTML = "❌ " + (data.error?.message || data.error || "Something went wrong");
+      return;
+    }
+
+    outputBox.innerHTML = data.hashtags;
+  } catch (error) {
+    outputBox.innerHTML = "❌ Error: " + error.message;
+  }
+}
+
+function copyHashtags() {
+  const text = document.getElementById("result").innerText;
+  navigator.clipboard.writeText(text);
+  alert("✅ Hashtags Copied!");
+}
+</script>
+<script src="nav-v2.js"></script>
+  <script src="js/cookie-consent.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirecting… — Creator Toolkit Blog</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/blog/index.html">
+<noscript><meta http-equiv="refresh" content="0;url=/blog/index.html"></noscript>
+<script>
+  // Old links looked like /blog/post.html?slug=my-post. Every post now has its own page: /blog/my-post.html
+  (function () {
+    var slug = new URLSearchParams(window.location.search).get('slug') || '';
+    var valid = /^[a-z0-9-]+$/.test(slug) && slug !== 'post';
+    window.location.replace(valid ? '/blog/' + slug + '.html' : '/blog/index.html');
+  })();
+</script>
+</head>
+<body>
+<p>Redirecting… If nothing happens, <a href="/blog/index.html">go to the blog</a>.</p>
+</body>
+</html>
