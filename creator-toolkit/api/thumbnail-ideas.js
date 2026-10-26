@@ -1,7 +1,7 @@
 // Vercel serverless route: /api/thumbnail-ideas
 // Uses the same Groq setup as your other tools.
-// If your other api files use "export default", change the last line style to match.
-module.exports = async function handler(req, res) {
+// ES module style (export default). If your other api files use module.exports, tell me.
+export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Use POST' });
 
   var b = req.body || {};
@@ -52,4 +52,4 @@ module.exports = async function handler(req, res) {
   } catch (e) {
     return res.status(500).json({ error: 'Could not generate ideas. Please try again.' });
   }
-};
+}
