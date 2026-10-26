@@ -154,3 +154,43 @@ const sitemap =
 fs.writeFileSync(path.join(ROOT, 'sitemap-blog.xml'), sitemap);
 
 console.log(`Built ${built} blog pages + sitemap-blog.xml`);
+
+
+// ---------- Blog index (blog/index.html): static cards + SEO tags ----------
+{
+  const indexPath = path.join(ROOT, 'blog', 'index.html');
+  let html = fs.readFileSync(indexPath, 'utf8');
+
+  const cards = posts
+    .filter(p => p.slug !== 'index' && p.slug !== 'post' && fs.existsSync(path.join(POSTS_DIR, p.file)))
+    .map(p => `    <a class="post-card" href="/blog/${esc(p.slug)}.html">
+      <div class="tag-row">${p.tags.map(t => `<span class="tag-chip">${esc(t)}</span>`).join('')}</div>
+      <h2>${esc(p.title)}</h2>
+      <p>${esc(p.excerpt)}</p>
+      <div class="card-meta">${fmtDate(p.date)}<span class="dot">·</span>${esc(p.readTime)}</div>
+    </a>`)
+    .join('\n');
+
+  html = html.replace(
+    /(<section id="feed"[^>]*>)[\s\S]*?(<\/section>)/,
+    (m, open, close) => `${open}\n${cards}\n${close}`
+  );
+
+  if (!html.includes('rel="canonical"')) {
+    const url = `${SITE}/blog/index.html`;
+    const seo = `
+<link rel="canonical" href="${url}">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Creator Toolkit">
+<meta property="og:title" content="Blog — Creator Toolkit">
+<meta property="og:description" content="Tips on YouTube growth, Canva Creator Program earnings, and AI tools for content creators.">
+<meta property="og:url" content="${url}">
+<meta property="og:image" content="${SITE}/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">`;
+    html = html.replace(/(<meta name="description"[^>]*>)/, `$1${seo}`);
+  }
+
+  fs.writeFileSync(indexPath, html);
+  console.log('Blog index refreshed with ' + posts.length + ' posts');
+}
