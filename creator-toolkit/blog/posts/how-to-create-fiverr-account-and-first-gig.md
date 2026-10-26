@@ -37,7 +37,7 @@ A gig is the service page that buyers see. These are the parts to get right.
 
 **Category.** I picked Graphics & Design, then the option for social media posts, banners and thumbnail design.
 
-**Search tags.** Fiverr lets you add five tags. Choose words that describe the service you sell, because those are the words a buyer will type into the search box.
+**Search tags.** Fiverr lets you add five tags, and buyers use them to find your gig in search. My five tags were: money, online income, earnmoneyonline, workfromhome and rich.
 
 ## Step 4: Set your price and delivery time
 
