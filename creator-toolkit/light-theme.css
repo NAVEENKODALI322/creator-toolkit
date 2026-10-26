@@ -129,3 +129,12 @@
   display:inline-flex;align-items:center;justify-content:center;
 }
 .ct-nav .theme-toggle:hover{ background:rgba(255,255,255,.14); }
+
+/* Content links visible ga */
+.content-card a,
+.seo-block a:not(.cta-link-v2){
+  color: var(--accent, #00D4FF);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.content-card a:hover{ opacity:.8; }
