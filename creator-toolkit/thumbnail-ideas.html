@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thumbnail Idea Generator for Telugu YouTubers | Creator Toolkits</title>
+<meta name="description" content="Free AI thumbnail idea generator. Get 5 thumbnail concepts with Telugu text, expressions and color palettes for any YouTube video topic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@500;800&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#e9ecf2;--ink:#12131a;--mute:#5b6070;--card:#fff;--line:#cfd4df;--acc:#2f54ff;--accink:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#12131a;--ink:#eef0f6;--mute:#9aa0b4;--card:#1b1d27;--line:#2e3140;--acc:#6f8bff;--accink:#0d0f18}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:'Bricolage Grotesque','Anek Telugu',system-ui,sans-serif;line-height:1.5;padding:24px 16px 64px}
+main{max-width:980px;margin:0 auto}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.05;margin:8px 0 6px;font-weight:800;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:0 0 24px;max-width:56ch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+label{display:block;font-weight:700;font-size:14px;margin-bottom:6px}
+textarea,input,select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{min-height:84px;resize:vertical}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:620px){.row{grid-template-columns:1fr}}
+button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;background:var(--acc);color:var(--accink)}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);padding:8px 12px;font-size:13px}
+button:disabled{opacity:.6;cursor:wait}
+.go{margin-top:16px;width:100%;font-size:17px}
+details{margin-top:14px;font-size:14px;color:var(--mute)}
+summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details .row{margin-top:10px}
+#msg{margin:16px 0 0;min-height:22px;color:var(--mute)}
+#msg.err{color:#d6336c;font-weight:700}
+#out{display:grid;gap:18px;margin-top:20px}
+.concept{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;align-items:start}
+@media(max-width:760px){.concept{grid-template-columns:1fr}}
+.thumb{aspect-ratio:16/9;border-radius:10px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:4% 5%;gap:3%}
+.thumb .tx{font-family:'Anek Telugu',sans-serif;font-weight:800;font-size:clamp(26px,5.4vw,54px);line-height:1.12;max-width:62%;text-shadow:0 3px 0 rgba(0,0,0,.28);word-break:break-word}
+.thumb .fc{font-size:clamp(54px,12vw,120px);line-height:1;filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))}
+.thumb .bar{position:absolute;left:0;bottom:0;height:7%;width:100%}
+.meta h3{margin:0 0 4px;font-size:18px}
+.meta p{margin:6px 0;font-size:14px}
+.meta b{font-weight:700}
+.sw{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}
+.sw span{display:inline-flex;align-items:center;gap:6px;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px}
+.sw i{width:16px;height:16px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.2)}
+.acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<main>
+<h1>Thumbnail Idea Machine</h1>
+<p class="sub">Enter your video topic. Get 5 thumbnail concepts with Telugu text, face expression, colors, and layout.</p>
+
+<section class="panel">
+  <label for="topic">Video topic</label>
+  <textarea id="topic" placeholder="e.g. Canva తో ఇంట్లో కూర్చొని డబ్బు సంపాదించడం ఎలా"></textarea>
+  <div class="row">
+    <div>
+      <label for="niche">Channel type</label>
+      <select id="niche">
+        <option>Earning / Money</option><option>Tech / Tutorial</option><option>Design / Creative</option>
+        <option>Music / Cover songs</option><option>Fitness / Lifestyle</option><option>Vlog / Entertainment</option><option>Business / Product</option>
+      </select>
+    </div>
+    <div>
+      <label for="lang">Thumbnail text language</label>
+      <select id="lang">
+        <option value="Telugu">Telugu (తెలుగు)</option>
+        <option value="Telugu + English mix (Tenglish words in Telugu script)">Telugu + English mix</option>
+        <option value="English">English</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <label for="mood">Mood</label>
+      <select id="mood">
+        <option>Shocking / Curiosity</option><option>Clean / Professional</option><option>Fun / Energetic</option><option>Emotional / Inspiring</option>
+      </select>
+    </div>
+    <div>
+      <label for="face">Face on thumbnail?</label>
+      <select id="face"><option value="yes">Yes, my face</option><option value="no">No face (objects / text only)</option></select>
+    </div>
+  </div>
+  <button class="go" id="go">Generate 5 concepts</button>
+  <p id="msg" role="status" aria-live="polite"></p>
+</section>
+
+<section id="out"></section>
+
+<section class="panel" style="margin-top:28px">
+  <h2 style="margin-top:0">How to use these thumbnail ideas</h2>
+  <p>A good thumbnail has one idea, 2 to 4 big words, and one clear face or object. Pick the concept closest to your video, shoot the expression described, and use the three colors as your base palette in Canva or Photoshop.</p>
+  <h3>Quick tips for Telugu thumbnails</h3>
+  <p>Keep Telugu text short and bold. Use a heavy Telugu font, add a dark outline or shadow, and keep text away from the bottom-right corner where YouTube shows the video time. Test your thumbnail at small size on your phone before uploading.</p>
+  <h3>Why the colors and expressions matter</h3>
+  <p>High contrast between text and background makes viewers stop scrolling. A strong expression such as surprise, excitement, or curiosity tells viewers what feeling to expect from the video.</p>
+</section>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var store={get:function(k){try{return localStorage.getItem(k)||""}catch(e){return ""}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+  var concepts=[];
+
+  function msg(t,err){var m=$('msg');m.textContent=t;m.className=err?'err':''}
+  function hex(c,f){return /^#[0-9a-fA-F]{6}$/.test(c||'')?c:f}
+  function lum(h){var n=parseInt(h.slice(1),16),r=n>>16&255,g=n>>8&255,b=n&255;return (0.299*r+0.587*g+0.114*b)/255}
+  function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML}
+
+  function buildPrompt(){
+    var face=$('face').value==='yes';
+    return 'You are an expert YouTube thumbnail strategist for Indian creators, fluent in Telugu.\n'+
+    'Video topic: '+$('topic').value.trim()+'\n'+
+    'Channel type: '+$('niche').value+'\nMood: '+$('mood').value+'\n'+
+    'Thumbnail text language: '+$('lang').value+'\n'+
+    'Face on thumbnail: '+(face?'yes, creator face is used':'no, use objects/graphics only')+'\n\n'+
+    'Create exactly 5 DIFFERENT thumbnail concepts (different angle, layout and color scheme each).\n'+
+    'Rules: thumbnail text must be 2 to 4 short punchy words, natural spoken Telugu in correct Telugu script (not transliterated English unless the language option says mix). High contrast, readable on a phone.\n'+
+    'Return ONLY a JSON array of 5 objects with these keys: '+
+    '"text" (thumbnail text in the chosen language), "meaning" (English meaning of the text), "emoji" (one emoji that matches the face expression or main object), '+
+    '"expression" (face expression to shoot, or main object if no face), "layout" (where text, face and objects go), "visual" (background and props idea), '+
+    '"bg" (hex), "textColor" (hex), "accent" (hex), "why" (one sentence on why it gets clicks).';
+  }
+
+  function render(){
+    var out=$('out');out.innerHTML='';
+    concepts.forEach(function(c,i){
+      var bg=hex(c.bg,'#1b1d27'),tc=hex(c.textColor,'#ffffff'),ac=hex(c.accent,'#ffd60a');
+      var el=document.createElement('article');el.className='panel concept';
+      el.innerHTML=
+        '<div class="thumb" style="background:linear-gradient(135deg,'+bg+',#000 220%);color:'+tc+'">'+
+          '<div class="tx">'+esc(c.text)+'</div><div class="fc" aria-hidden="true">'+esc(c.emoji||'😮')+'</div>'+
+          '<div class="bar" style="background:'+ac+'"></div></div>'+
+        '<div class="meta"><h3>Concept '+(i+1)+': '+esc(c.meaning)+'</h3>'+
+          '<div class="sw"><span><i style="background:'+bg+'"></i>'+bg+'</span><span><i style="background:'+tc+'"></i>'+tc+'</span><span><i style="background:'+ac+'"></i>'+ac+'</span></div>'+
+          '<p><b>Expression:</b> '+esc(c.expression)+'</p>'+
+          '<p><b>Layout:</b> '+esc(c.layout)+'</p>'+
+          '<p><b>Visual:</b> '+esc(c.visual)+'</p>'+
+          '<p><b>Why it works:</b> '+esc(c.why)+'</p>'+
+          '<div class="acts"><button class="ghost" data-i="'+i+'">Copy brief</button></div></div>';
+      out.appendChild(el);
+    });
+  }
+
+  $('out').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-i]');if(!b)return;
+    var c=concepts[+b.dataset.i];
+    var t='Thumbnail brief\nText: '+c.text+' ('+c.meaning+')\nExpression: '+c.expression+'\nLayout: '+c.layout+'\nVisual: '+c.visual+'\nColors: bg '+c.bg+', text '+c.textColor+', accent '+c.accent;
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy brief'},1400)};
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){msg('Copy blocked by browser. Select the text manually.',true)})}
+    else{msg('Copy not supported in this browser.',true)}
+  });
+
+  $('go').addEventListener('click',function(){
+    var topic=$('topic').value.trim();
+    if(!topic){msg('Enter a video topic first.',true);return}
+    var btn=$('go');btn.disabled=true;msg('Generating concepts...');
+    fetch('/api/thumbnail-ideas',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({topic:topic,niche:$('niche').value,mood:$('mood').value,lang:$('lang').value,face:$('face').value})
+    }).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||('Error '+r.status));return j})})
+    .then(function(j){concepts=j.concepts;render();msg('Done. Tap "Copy brief" on the one you like.')})
+    .catch(function(err){msg(err.message,true)})
+    .then(function(){btn.disabled=false});
+  });
+})();
+</script>
+</body>
+</html>
