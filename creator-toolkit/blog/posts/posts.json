@@ -1,5 +1,18 @@
 [
   {
+    "slug": "how-the-title-generator-works",
+    "title": "How the Title Generator Works: Three Language Modes and the Checks Behind Them",
+    "excerpt": "How the Telugu, English and Mix modes work, which checks every title passes, real example results, and what the tool still cannot do.",
+    "tags": [
+      "title-generator",
+      "youtube-tools",
+      "creator-tips"
+    ],
+    "date": "2026-10-26",
+    "readTime": "4 min read",
+    "file": "how-the-title-generator-works.md"
+  },
+  {
     "slug": "what-my-top-10-videos-taught-me",
     "title": "What My 10 Most-Viewed Videos Taught Me: Fiverr, Canva and Freepik by the Numbers",
     "excerpt": "I put the numbers of my ten most-viewed Telugu videos side by side. Two videos carry two thirds of the views, and the pattern is easy to copy.",
@@ -102,18 +115,6 @@
     "date": "2026-10-05",
     "readTime": "4 min read",
     "file": "telugu-canva-video-39k-views-analytics.md"
-  },
-  {
-    "slug": "ai-tools-for-youtube-growth",
-    "title": "5 AI Tools That Actually Save Time on YouTube",
-    "excerpt": "Titles, tags, descriptions, and hooks — where AI genuinely helps a creator, and where it just adds noise.",
-    "tags": [
-      "ai-tools",
-      "youtube-growth"
-    ],
-    "date": "2026-06-20",
-    "readTime": "6 min read",
-    "file": "ai-tools-for-youtube-growth.md"
   },
   {
     "slug": "youtube-hashtag-strategy-2026",
