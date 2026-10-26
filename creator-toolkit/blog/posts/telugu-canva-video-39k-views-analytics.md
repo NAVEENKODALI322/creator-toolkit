@@ -1,4 +1,4 @@
-In July 2024 I published a Telugu video called "Earn Money with Canva: A Step-by-Step Guide." I did not expect much from it. Today it has about **39,500 views**, and it is by far the best-performing video on my channel. In this post I am sharing the real YouTube Studio numbers, what I think they mean, and what I would copy if I were starting a Canva channel in Telugu today.
+In July 2024 I published a Telugu video called "Earn Money with Canva: A Step-by-Step Guide." I did not expect much from it. Today it has about **39,500 views**, and it is one of the best-performing videos on my channel. In this post I am sharing the real YouTube Studio numbers, what I think they mean, and what I would copy if I were starting a Canva channel in Telugu today.
 
 I am Naveen Kodali, a graphic designer from Andhra Pradesh. I also upload elements to the Canva Creator Program, so this topic is close to my own work.
 
@@ -53,7 +53,7 @@ Good click-through rate gets people in. Good retention keeps them watching. This
 
 I upload to the Canva Creator Program and I teach Canva on YouTube. The two support each other. The channel gives me a reason to learn Canva deeply, and the Creator Program gives me real results to talk about. My Canva videos consistently get better CTR and views than my other topics, and this video is the clearest example.
 
-If you want to read the other side, I wrote about my actual royalty numbers in [My Canva Creator Program Earnings: Real Numbers From 2025 and 2026](/blog/post.html?slug=canva-creator-program-earnings).
+If you want to read the other side, I wrote about my actual royalty numbers in [My Canva Creator Program Earnings: Real Numbers From 2025 and 2026](/blog/canva-creator-program-earnings.html).
 
 ## If you want to start a Canva channel in Telugu
 

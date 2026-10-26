@@ -3,59 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title id="page-title">Post — Creator Toolkit Blog</title>
-<meta id="page-desc" name="description" content="">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/blog/blog.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
-  <script src="/ct-nav.js" defer></script>
-  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<title>Redirecting… — Creator Toolkit Blog</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/blog/index.html">
+<noscript><meta http-equiv="refresh" content="0;url=/blog/index.html"></noscript>
+<script>
+  // Old links looked like /blog/post.html?slug=my-post. Every post now has its own page: /blog/my-post.html
+  (function () {
+    var slug = new URLSearchParams(window.location.search).get('slug') || '';
+    var valid = /^[a-z0-9-]+$/.test(slug) && slug !== 'post';
+    window.location.replace(valid ? '/blog/' + slug + '.html' : '/blog/index.html');
+  })();
+</script>
 </head>
 <body>
-<header class="site-bar">
-  <a href="/" class="brand">Creator<span>Toolkit</span></a>
-  <a href="/blog/" class="back-link">← All posts</a>
-</header>
-<main>
-  <article id="post-root" class="post">
-    <p class="eyebrow" id="post-tags"></p>
-    <h1 id="post-title">Loading…</h1>
-    <p class="post-meta" id="post-meta"></p>
-    <div class="post-body" id="post-body"></div>
-    <button id="like-btn" class="like-btn" aria-label="Like this post">
-      <span class="like-icon">♡</span>
-      <span id="like-count">0</span>
-    </button>
-  </article>
-  <p id="not-found" class="empty-state" hidden>
-    Couldn't find that post. <a href="/blog/">Back to all posts →</a>
-  </p>
-</main>
-<footer class="site-footer ct-foot">
-  <p>© 2026 Creator Toolkit</p>
-  <p>
-    <a href="/about.html">About</a> ·
-    <a href="/blog/index.html">Blog</a> ·
-    <a href="/videos/index.html">Videos</a> ·
-    <a href="/contact.html">Contact</a> ·
-    <a href="/privacy.html">Privacy Policy</a> ·
-    <a href="/terms.html">Terms and Conditions</a>
-  </p>
-  <div class="ct-foot-social">
-    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
-    </a>
-  </div>
-</footer>
-<style>
-  body .site-footer.ct-foot{text-align:center;font-family:'Inter',sans-serif;font-size:14px;padding:28px 22px 40px}
-  body .site-footer.ct-foot p{margin:6px 0}
-  body .site-footer.ct-foot a{color:var(--mg-muted,#8B93A1)}
-  body .site-footer.ct-foot a:hover{color:var(--mg-accent,#22d3ee)}
-  body .site-footer.ct-foot .ct-foot-social{display:flex;justify-content:center;gap:16px;margin-top:14px}
-</style>
-<script src="/blog/blog.js" data-mode="post"></script>
+<p>Redirecting… If nothing happens, <a href="/blog/index.html">go to the blog</a>.</p>
 </body>
 </html>

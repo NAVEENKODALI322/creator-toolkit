@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /Backup/
+Disallow: /bgm-generator-old.html
+
 Sitemap: https://www.creatortoolkits.in/sitemap.xml
+Sitemap: https://www.creatortoolkits.in/sitemap-blog.xml
