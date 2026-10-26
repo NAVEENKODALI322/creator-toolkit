@@ -38,6 +38,18 @@ Before designing a thumbnail, it helps to see what's already working in your nic
 
 The [Thumbnail Downloader](/thumbnail-downloader.html) pulls the full-resolution thumbnail from any public YouTube video so you can study it properly, not squint at a tiny preview.
 
+## Where AI tools help, and where they add noise
+
+These tools all use AI, and AI is not equally useful for every part of a video. This is where I think the line sits.
+
+**It helps with structured, repetitive work.** Titles, tags, descriptions and hook ideas have clear rules: keyword relevance, length limits, no repetition. Getting five or six options in seconds and then editing the best one is faster than staring at a blank field. The value is not the final line the AI gives you. It is the starting points you would not have thought of yourself.
+
+**It adds noise when it needs your voice.** Full scripts from AI tend to sound generic, with no personality and no sign that the creator knows their audience. Editing a bad AI script often takes longer than writing a rough one yourself. Thumbnail text works the same way: two or three words in your channel's tone do not come from a generic prompt.
+
+**A simple filter:** before using an AI tool, ask whether the task is structured and repetitive, or whether it needs your own point of view. Structured and repetitive: let the tool draft it and you edit. Needs your point of view: write it yourself, and use the tool only to bounce ideas.
+
+Whatever a tool gives you, check it before you use it. A title or hook that promises a number, an income or a result your video does not deliver will cost you viewers' trust. If you want to see how the Title Generator guards against that, read [How the Title Generator Works](/blog/how-the-title-generator-works.html).
+
 ## The real point
 
 None of these tools replace a good video idea or good editing. What they do is remove the small, repetitive friction — the blank title field, the empty description box, the "what hashtags do I even use" moment — so you spend your limited time on the part that actually matters: the content itself.
