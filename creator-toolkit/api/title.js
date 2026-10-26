@@ -17,6 +17,24 @@ const EXTRA_ASKED = 4;           // ask for a few more than needed, some get fil
 const MAX_TOPIC_LENGTH = 200;
 const RETRY_ONLY_BEFORE_MS = 4500; // do not start a retry after this much time (serverless time limit)
 const CALL_TIMEOUT_MS = 8000;
+const MAX_RATE_LIMIT_WAIT_MS = 2500; // wait this long at most when the AI service says "try again shortly"
+
+const RATE_LIMIT_MESSAGE = "Too many people are using the AI tools right now. Please wait a minute and try again.";
+const UPSTREAM_MESSAGE = "The AI service is busy or unavailable at the moment. Please try again in a moment.";
+
+// How long the AI service asks us to wait after a 429 (header first, then the text of its message).
+function retryAfterMs(response, data) {
+  const header = response.headers && response.headers.get && response.headers.get("retry-after");
+  if (header && !Number.isNaN(parseFloat(header))) return parseFloat(header) * 1000;
+  const msg = data && data.error && data.error.message ? String(data.error.message) : "";
+  const m = msg.match(/try again in (?:(\d+)m)?\s*([\d.]+)(ms|s)/i);
+  if (!m) return null;
+  const minutes = m[1] ? parseInt(m[1], 10) : 0;
+  const value = parseFloat(m[2]) * (m[3].toLowerCase() === "ms" ? 1 : 1000);
+  return minutes * 60000 + value;
+}
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const LANGUAGES = ["mix", "english", "telugu"]; // anything else (or missing) = "both", the old default
 
@@ -159,6 +177,7 @@ async function callModel(topic, kind, ask, angle) {
     ok: response.ok,
     status: response.status,
     data,
+    retryAfter: response.ok ? null : retryAfterMs(response, data),
     content: choice && choice.message ? choice.message.content : "",
     finish: choice ? choice.finish_reason : null,
   };
@@ -172,8 +191,9 @@ async function runBatch({ kind, target, angle }, topic, startedAt) {
   const kept = [];
   const info = { kind, angle, attempts: [], upstreamError: null };
 
+  let waitedForRateLimit = false;
   for (let attempt = 1; attempt <= 2; attempt++) {
-    if (attempt === 2 && (kept.length >= need || Date.now() - startedAt > RETRY_ONLY_BEFORE_MS)) break;
+    if (attempt === 2 && !waitedForRateLimit && (kept.length >= need || Date.now() - startedAt > RETRY_ONLY_BEFORE_MS)) break;
     let result;
     try {
       result = await callModel(topic, kind, ask, angle);
@@ -184,6 +204,14 @@ async function runBatch({ kind, target, angle }, topic, startedAt) {
     if (!result.ok) {
       info.upstreamError = { status: result.status, data: result.data };
       info.attempts.push({ status: result.status });
+      // Rate limited: if the service asks for a short wait, wait and try once more.
+      if (result.status === 429 && result.retryAfter !== null) {
+        if (result.retryAfter > MAX_RATE_LIMIT_WAIT_MS) break; // asked to wait too long, fail fast
+        if (attempt === 1) {
+          await sleep(result.retryAfter + 100);
+          waitedForRateLimit = true;
+        }
+      }
       continue;
     }
     const accepted = acceptLines(result.content, kind, topic);
@@ -261,7 +289,11 @@ export default async function handler(req, res) {
     if (!titles.length) {
       const upstream = results.map((r) => r.info.upstreamError).find(Boolean);
       if (upstream) {
-        return res.status(upstream.status).json(upstream.data);
+        // Never show the raw message from the AI service (it can contain account details).
+        console.error("title upstream error:", upstream.status);
+        return res
+          .status(upstream.status === 429 ? 429 : 502)
+          .json({ error: upstream.status === 429 ? RATE_LIMIT_MESSAGE : UPSTREAM_MESSAGE });
       }
       return res.status(502).json({ error: "The AI returned no titles. Please try again." });
     }

@@ -25,6 +25,16 @@ function fmtDate(iso) {
   });
 }
 
+// Up to three other posts that share the most tags with this one (newest first on ties).
+function relatedFor(post) {
+  return posts
+    .filter(p => p.slug !== post.slug && p.slug !== 'index' && p.slug !== 'post')
+    .map(p => ({ p, score: p.tags.filter(t => post.tags.includes(t)).length }))
+    .sort((a, b) => b.score - a.score || new Date(b.p.date) - new Date(a.p.date))
+    .slice(0, 3)
+    .map(x => x.p);
+}
+
 function renderPage(post, bodyHtml) {
   const url = `${SITE}/blog/${post.slug}.html`;
   const pageTitle = `${post.title} — Creator Toolkit Blog`;
@@ -44,6 +54,9 @@ function renderPage(post, bodyHtml) {
   };
   const ldJson = JSON.stringify(ld).replace(/</g, '\\u003c');
   const chips = post.tags.map(t => `<span class="tag-chip">${esc(t)}</span>`).join('');
+  const related = relatedFor(post)
+    .map(p => `        <li><a href="/blog/${esc(p.slug)}.html">${esc(p.title)}</a> <span>${esc(p.readTime)}</span></li>`)
+    .join('\n');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -84,8 +97,22 @@ function renderPage(post, bodyHtml) {
   <article id="post-root" class="post">
     <p class="eyebrow" id="post-tags">${chips}</p>
     <h1 id="post-title">${esc(post.title)}</h1>
+    <p class="post-byline">By <a href="/about.html" rel="author">Naveen Kodali</a>, Telugu creator and graphic designer</p>
     <p class="post-meta" id="post-meta">${fmtDate(post.date)} · ${esc(post.readTime)}</p>
     <div class="post-body" id="post-body">${bodyHtml}</div>
+    <aside class="author-box" aria-label="About the author">
+      <div class="author-avatar" aria-hidden="true">NK</div>
+      <div>
+        <p class="author-name">Naveen Kodali</p>
+        <p class="author-bio">Graphic designer and independent developer from Andhra Pradesh, India. He makes Telugu and Indian-themed design elements for Canva, publishes Telugu YouTube tutorials, and built Creator Toolkit. <a href="/about.html">About the author</a> · <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer">YouTube channel</a></p>
+      </div>
+    </aside>
+    <section class="related-posts" aria-label="Related articles">
+      <h2>Keep reading</h2>
+      <ul>
+${related}
+      </ul>
+    </section>
     <button id="like-btn" class="like-btn" aria-label="Like this post">
       <span class="like-icon">♡</span>
       <span id="like-count">0</span>
@@ -112,6 +139,19 @@ function renderPage(post, bodyHtml) {
   </div>
 </footer>
 <style>
+  .post-byline{margin:6px 0 2px;font-size:14px;color:var(--text-secondary,#8B93A1)}
+  .post-byline a{color:var(--accent,#00D4FF);text-decoration:none}
+  .author-box{display:flex;gap:16px;align-items:flex-start;margin:40px 0 20px;padding:20px;border-radius:16px;background:var(--card,#161B22);border:1px solid var(--border,rgba(255,255,255,.09))}
+  .author-avatar{width:52px;height:52px;min-width:52px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;background:linear-gradient(135deg,#6C63FF,#00D4FF)}
+  .author-name{margin:0 0 4px;font-weight:600;color:var(--text,#F3F5F7)}
+  .author-bio{margin:0;font-size:14px;line-height:1.6;color:var(--text-secondary,#8B93A1)}
+  .author-bio a{color:var(--accent,#00D4FF)}
+  .related-posts{margin:28px 0}
+  .related-posts h2{font-size:1.1rem;margin:0 0 10px;color:var(--text,#F3F5F7)}
+  .related-posts ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .related-posts li a{color:var(--accent,#00D4FF);text-decoration:none}
+  .related-posts li span{font-size:13px;color:var(--text-faint,#5B6472);margin-left:6px}
+  @media(max-width:520px){.author-box{flex-direction:column}}
   body .site-footer.ct-foot{text-align:center;font-family:'Inter',sans-serif;font-size:14px;padding:28px 22px 40px}
   body .site-footer.ct-foot p{margin:6px 0}
   body .site-footer.ct-foot a{color:var(--mg-muted,#8B93A1)}

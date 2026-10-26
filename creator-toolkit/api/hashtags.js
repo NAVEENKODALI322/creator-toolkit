@@ -63,7 +63,15 @@ reasoning_effort: "low",
     console.log("Groq Response:", data);
 
     if (!response.ok) {
-      return res.status(response.status).json(data);
+      // Never show the raw message from the AI service (it can contain account details).
+      console.error("AI service error status:", response.status);
+      return res.status(response.status === 429 ? 429 : 502).json({
+        error: {
+          message: response.status === 429
+            ? "Too many people are using the AI tools right now. Please wait a minute and try again."
+            : "The AI service is busy or unavailable at the moment. Please try again in a moment."
+        }
+      });
     }
 
     return res.status(200).json({

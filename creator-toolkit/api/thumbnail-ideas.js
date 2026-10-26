@@ -44,7 +44,7 @@ export default async function handler(req, res) {
       })
     });
     var j = await r.json();
-    if (!r.ok) return res.status(502).json({ error: (j.error && j.error.message) || 'AI error' });
+    if (!r.ok) return res.status(r.status === 429 ? 429 : 502).json({ error: r.status === 429 ? 'Too many people are using the AI tools right now. Please wait a minute and try again.' : 'The AI service is busy or unavailable at the moment. Please try again in a moment.' });
 
     var text = (j.choices && j.choices[0] && j.choices[0].message && j.choices[0].message.content) || '';
     var m = text.match(/\{[\s\S]*\}/);

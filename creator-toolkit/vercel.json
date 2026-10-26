@@ -1,11 +1,33 @@
 {
+  "redirects": [
+    {
+      "source": "/Backup",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/Backup/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/bgm-generator-old.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/youtube-hashtags-guide-2026.html",
+      "destination": "/blog/youtube-hashtag-strategy-2026.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.groq.com https://countapi.mileshilliard.com;"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://cdnjs.cloudflare.com https://pagead2.googlesyndication.com https://partner.googleadservices.com https://tpc.googlesyndication.com https://www.googletagservices.com https://fundingchoicesmessages.google.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://googleads.g.doubleclick.net https://tpc.googlesyndication.com https://*.doubleclick.net https://*.google.com https://fundingchoicesmessages.google.com https://*.adtrafficquality.google https://www.youtube.com https://www.youtube-nocookie.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://api.groq.com https://countapi.mileshilliard.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://fundingchoicesmessages.google.com https://*.adtrafficquality.google;"
         },
         {
           "key": "X-Frame-Options",
@@ -18,6 +40,24 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    },
+    {
+      "source": "/thumbnail-ideas.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/bgm-generator.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
         }
       ]
     }

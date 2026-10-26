@@ -1,13 +1,17 @@
 [
   {
-  "slug": "free-tools-every-small-youtuber-needs-2026",
-  "title": "Free Tools Every Small YouTuber Needs in 2026",
-  "excerpt": "Six free tools that actually save time for small creators — a title generator, description generator, hashtags, tags, hooks, and thumbnail research, with no sign-up required.",
-  "tags": ["youtube-tools", "creator-tips", "seo"],
-  "date": "2026-07-29",
-  "readTime": "5 min read",
-  "file": "free-tools-every-small-youtuber-needs-2026.md"
-},
+    "slug": "free-tools-every-small-youtuber-needs-2026",
+    "title": "Free Tools Every Small YouTuber Needs in 2026",
+    "excerpt": "Six free tools that actually save time for small creators — a title generator, description generator, hashtags, tags, hooks, and thumbnail research, with no sign-up required.",
+    "tags": [
+      "youtube-tools",
+      "creator-tips",
+      "seo"
+    ],
+    "date": "2026-07-29",
+    "readTime": "5 min read",
+    "file": "free-tools-every-small-youtuber-needs-2026.md"
+  },
   {
     "slug": "my-canva-creator-journey",
     "title": "My Canva Creator Journey: What Nobody Tells You Before You Start",
@@ -60,7 +64,7 @@
     "readTime": "4 min read",
     "file": "canva-creator-program-earnings.md"
   },
-{
+  {
     "slug": "telugu-canva-video-39k-views-analytics",
     "title": "How My Telugu Canva Video Reached 39,000 Views (Real YouTube Analytics)",
     "excerpt": "Real YouTube Studio numbers from my best-performing Canva video: 3.5 lakh impressions, 9.1% CTR, and what I would change.",
@@ -73,9 +77,6 @@
     "readTime": "4 min read",
     "file": "telugu-canva-video-39k-views-analytics.md"
   },
-
-
-  
   {
     "slug": "ai-tools-for-youtube-growth",
     "title": "5 AI Tools That Actually Save Time on YouTube",
@@ -94,10 +95,11 @@
     "excerpt": "A practical hashtag and tag strategy for Telugu creators, and why relevance beats volume every time.",
     "tags": [
       "hashtag-generator",
-      "youtube-growth"
+      "youtube-growth",
+      "seo"
     ],
     "date": "2026-06-05",
-    "readTime": "4 min read",
+    "readTime": "5 min read",
     "file": "youtube-hashtag-strategy-2026.md"
   },
   {
@@ -125,19 +127,6 @@
     "date": "2026-07-27",
     "readTime": "5 min read",
     "file": "3-skills-beginner-creators-2026.md"
-  },
-  {
-    "slug": "youtube-hashtags-guide-2026",
-    "title": "The Beginner's Guide to YouTube Hashtags: What Actually Works in 2026",
-    "excerpt": "Hashtags won't save a weak video, but the wrong hashtags can quietly hurt a good one. Here's what actually matters when tagging your uploads.",
-    "tags": [
-      "hashtag-generator",
-      "youtube-growth",
-      "seo"
-    ],
-    "date": "2026-07-27",
-    "readTime": "5 min read",
-    "file": "youtube-hashtags-guide-2026.md"
   },
   {
     "slug": "youtube-description-seo-guide",

@@ -23,7 +23,11 @@ Hashtags placed in your **video title** (like `#Shorts`) behave slightly differe
 
 Stuffing 15 loosely-related hashtags dilutes the signal instead of strengthening it. Three to five hashtags that precisely describe your video's actual topic outperform a long list of generic, high-traffic ones you're hoping to piggyback on.
 
-If your video is a Telugu recipe for pesarattu, `#pesarattu` and `#TeluguRecipes` tell YouTube exactly what it's looking at. `#viral` and `#trending` tell it nothing.
+If your video is a Telugu recipe for pesarattu, `#pesarattu` and `#TeluguRecipes` tell YouTube exactly what it's looking at. `#viral` and `#trending` tell it nothing. The same goes for very broad words like `#video`, `#youtube` and `#content`: thousands of unrelated videos use them, so they say almost nothing about yours.
+
+## Before and after
+
+Take a video titled "How I Edit YouTube Shorts in 10 Minutes." Weak hashtags would be `#youtube #video #shorts`. Stronger ones would be `#ShortsEditing #CapCutEditing #YouTubeShortsTips`, because they are specific enough to match what someone would actually search for.
 
 ## A practical approach for Telugu creators
 
@@ -44,3 +48,5 @@ If your video is a Telugu recipe for pesarattu, `#pesarattu` and `#TeluguRecipes
 Copying a competitor's exact hashtag list rarely works, because it was built around their content, not yours. And chasing "trending" tags unrelated to your video's actual topic risks looking like — and being flagged as — spam, which can suppress reach rather than help it.
 
 Treat hashtags as a small, honest label for what's already in the video. The title and thumbnail still do the heavy lifting — hashtags just make sure YouTube files your video in the right drawer.
+
+If you want a starting point instead of brainstorming from scratch, the free [Hashtag Generator](/hashtag-generator.html) suggests relevant options for your topic. Narrow them down with the checklist above, and remember that it uses no live trend data, so the final choice should always be yours.
