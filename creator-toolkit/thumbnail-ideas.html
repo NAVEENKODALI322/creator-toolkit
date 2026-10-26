@@ -46,6 +46,9 @@ details .row{margin-top:10px}
 .sw span{display:inline-flex;align-items:center;gap:6px;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px 3px 4px}
 .sw i{width:16px;height:16px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.2)}
 .acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.cv{width:100%;height:auto;display:block;border-radius:10px;background:#000}
+.hint{font-size:13px;color:var(--mute);margin:6px 0 0}
+.edit{margin-top:8px}
 </style>
 </head>
 <body>
@@ -85,6 +88,7 @@ details .row{margin-top:10px}
       <select id="face"><option value="yes">Yes, my face</option><option value="no">No face (objects / text only)</option></select>
     </div>
   </div>
+  <div class="row"><div><label for="photo">Your face photo (optional)</label><input type="file" id="photo" accept="image/*"><p class="hint">Best: transparent PNG cut-out (remove background in Canva). Photo stays in your browser.</p></div></div>
   <button class="go" id="go">Generate 5 concepts</button>
   <p id="msg" role="status" aria-live="polite"></p>
 </section>
@@ -133,20 +137,81 @@ details .row{margin-top:10px}
       var bg=hex(c.bg,'#1b1d27'),tc=hex(c.textColor,'#ffffff'),ac=hex(c.accent,'#ffd60a');
       var el=document.createElement('article');el.className='panel concept';
       el.innerHTML=
-        '<div class="thumb" style="background:linear-gradient(135deg,'+bg+',#000 220%);color:'+tc+'">'+
-          '<div class="tx">'+esc(c.text)+'</div><div class="fc" aria-hidden="true">'+esc(c.emoji||'😮')+'</div>'+
-          '<div class="bar" style="background:'+ac+'"></div></div>'+
+        '<div><canvas class="cv" width="1280" height="720"></canvas></div>'+
         '<div class="meta"><h3>Concept '+(i+1)+': '+esc(c.meaning)+'</h3>'+
           '<div class="sw"><span><i style="background:'+bg+'"></i>'+bg+'</span><span><i style="background:'+tc+'"></i>'+tc+'</span><span><i style="background:'+ac+'"></i>'+ac+'</span></div>'+
           '<p><b>Expression:</b> '+esc(c.expression)+'</p>'+
           '<p><b>Layout:</b> '+esc(c.layout)+'</p>'+
           '<p><b>Visual:</b> '+esc(c.visual)+'</p>'+
           '<p><b>Why it works:</b> '+esc(c.why)+'</p>'+
-          '<div class="acts"><button class="ghost" data-i="'+i+'">Copy brief</button></div></div>';
+          '<label class="edit" for="t'+i+'"><b>Edit thumbnail text</b></label><input id="t'+i+'" data-t="'+i+'">'+
+          '<div class="acts"><button data-dl="'+i+'">Download JPG 1280x720</button><button class="ghost" data-i="'+i+'">Copy brief</button></div></div>';
       out.appendChild(el);
+      el.querySelector('[data-t]').value=c.text||'';
     });
+    drawAll();
   }
 
+  var faceImg=null,faceCut=false;
+  function shade(h,a){var n=parseInt(h.slice(1),16),r=n>>16&255,g=n>>8&255,b=n&255,f=1+a;return 'rgb('+Math.round(r*f)+','+Math.round(g*f)+','+Math.round(b*f)+')'}
+  function detectCut(img){var c=document.createElement('canvas');c.width=c.height=40;var x=c.getContext('2d');x.drawImage(img,0,0,40,40);var d=x.getImageData(0,0,40,40).data,n=0;[0,39,1560,1599].forEach(function(p){if(d[p*4+3]<20)n++});return n>=3}
+  function wrap(x,words,tw){var lines=[],cur='';words.forEach(function(w){var t=cur?cur+' '+w:w;if(cur&&x.measureText(t).width>tw){lines.push(cur);cur=w}else cur=t});if(cur)lines.push(cur);return lines}
+  function draw(cv,c,i){
+    var txt=String(c.text||'');
+    var p=document.fonts?document.fonts.load('800 80px "Anek Telugu"',txt):Promise.resolve();
+    p.then(function(){paint(cv,c,i)},function(){paint(cv,c,i)});
+  }
+  function paint(cv,c,i){
+    var x=cv.getContext('2d'),W=1280,H=720;
+    var bg=hex(c.bg,'#1b1d27'),tc=hex(c.textColor,'#ffffff'),ac=hex(c.accent,'#ffd60a');
+    var right=(i%2===0),cx=right?W*0.76:W*0.24,cy=H*0.55;
+    var g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,bg);g.addColorStop(1,shade(bg,-0.6));
+    x.fillStyle=g;x.fillRect(0,0,W,H);
+    x.save();x.translate(cx,cy);
+    for(var k=0;k<16;k++){x.rotate(Math.PI*2/16);x.beginPath();x.moveTo(0,0);x.lineTo(1500,-80);x.lineTo(1500,80);x.closePath();x.fillStyle='rgba(255,255,255,'+(k%2?0.09:0.02)+')';x.fill()}
+    x.restore();
+    var rg=x.createRadialGradient(cx,cy,20,cx,cy,440);rg.addColorStop(0,ac+'d9');rg.addColorStop(1,ac+'00');x.fillStyle=rg;x.fillRect(0,0,W,H);
+    var vg=x.createRadialGradient(W/2,H/2,H*0.45,W/2,H/2,W*0.75);vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,0.5)');x.fillStyle=vg;x.fillRect(0,0,W,H);
+    // subject
+    var sx=right?W-620:20,sw=600;
+    if(faceImg&&faceCut){
+      var s=Math.min(H*0.98/faceImg.height,640/faceImg.width),dw=faceImg.width*s,dh=faceImg.height*s,dx=sx+(sw-dw)/2,dy=H-dh;
+      x.save();x.shadowColor='#fff';x.shadowBlur=26;x.drawImage(faceImg,dx,dy,dw,dh);x.drawImage(faceImg,dx,dy,dw,dh);x.restore();
+      x.save();x.shadowColor='rgba(0,0,0,.55)';x.shadowBlur=30;x.shadowOffsetY=10;x.drawImage(faceImg,dx,dy,dw,dh);x.restore();
+    }else if(faceImg){
+      var bw=520,bh=620,bx=sx+(sw-bw)/2,by=(H-bh)/2,sc=Math.max(bw/faceImg.width,bh/faceImg.height),iw=faceImg.width*sc,ih=faceImg.height*sc;
+      x.save();x.shadowColor='rgba(0,0,0,.6)';x.shadowBlur=36;x.shadowOffsetY=12;x.fillStyle='#fff';x.beginPath();x.roundRect(bx-10,by-10,bw+20,bh+20,34);x.fill();x.restore();
+      x.save();x.beginPath();x.roundRect(bx,by,bw,bh,26);x.clip();x.drawImage(faceImg,bx+(bw-iw)/2,by+(bh-ih)/2,iw,ih);x.restore();
+    }else{
+      x.save();x.font='380px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';x.textAlign='center';x.textBaseline='middle';x.shadowColor='rgba(0,0,0,.5)';x.shadowBlur=30;x.shadowOffsetY=12;x.fillText(c.emoji||'😮',cx,cy);x.restore();
+    }
+    // text
+    var tw=right?700:660,tx=right?60:W-60-tw,ty=H/2;
+    var words=String(c.text||'').trim().split(/\s+/),fs=200,lines,lh;
+    for(;fs>56;fs-=6){x.font='800 '+fs+'px "Anek Telugu",sans-serif';lines=wrap(x,words,tw);lh=fs*1.3;
+      var okw=lines.every(function(l){return x.measureText(l).width<=tw});
+      if(okw&&lines.length*lh<=600)break}
+    x.font='800 '+fs+'px "Anek Telugu",sans-serif';x.textAlign='left';x.textBaseline='alphabetic';x.lineJoin='round';
+    var y0=ty-(lines.length*lh)/2+fs*1.02;
+    lines.forEach(function(l,n){
+      var y=y0+n*lh,col=(lines.length>1&&n===lines.length-1)?ac:tc;
+      x.lineWidth=fs*0.2;x.strokeStyle='rgba(0,0,0,.55)';x.strokeText(l,tx+8,y+10);
+      x.strokeStyle='#000';x.strokeText(l,tx,y);
+      x.fillStyle=col;x.fillText(l,tx,y);
+    });
+  }
+  function drawAll(){var cs=document.querySelectorAll('canvas.cv');for(var k=0;k<cs.length;k++)draw(cs[k],concepts[k],k)}
+  $('photo').addEventListener('change',function(){
+    var f=this.files&&this.files[0];if(!f)return;
+    var img=new Image();img.onload=function(){faceImg=img;try{faceCut=detectCut(img)}catch(e){faceCut=false}drawAll();msg(faceCut?'Cut-out photo detected.':'Photo added as framed picture. Transparent PNG cut-out looks best.')};
+    img.src=URL.createObjectURL(f);
+  });
+  $('out').addEventListener('input',function(e){var t=e.target.closest('[data-t]');if(!t)return;var i=+t.dataset.t;concepts[i].text=t.value;draw(document.querySelectorAll('canvas.cv')[i],concepts[i],i)});
+  $('out').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-dl]');if(!b)return;
+    var i=+b.dataset.dl,cv=document.querySelectorAll('canvas.cv')[i];
+    cv.toBlob(function(bl){var a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='thumbnail-'+(i+1)+'.jpg';document.body.appendChild(a);a.click();a.remove()},'image/jpeg',0.92);
+  });
   $('out').addEventListener('click',function(e){
     var b=e.target.closest('button[data-i]');if(!b)return;
     var c=concepts[+b.dataset.i];
