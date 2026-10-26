@@ -208,10 +208,16 @@
   <main class="home-scroll">
 
     <!-- Section 2: Greeting -->
-    <section class="greeting">
-      <h1 id="greetingText">Good Morning 👋</h1>
-      <p>What do you want to create today?</p>
-    </section>
+  <section class="greeting">
+  <p id="greetingText" class="greeting-line">Good Morning 👋</p>
+  <h1 class="greeting-h1">Free AI Tools for YouTube Creators</h1>
+  <p>What do you want to create today?</p>
+</section>
+<style>
+  .greeting .greeting-line{margin:0 0 6px;font-size:15px;font-weight:600;color:var(--text-secondary)}
+  .greeting .greeting-h1{font-size:28px;font-weight:700;color:var(--text)}
+  @media (min-width:900px){.greeting .greeting-h1{font-size:32px}}
+</style>
 
     <!-- Section 3: Search -->
     <section class="search-wrap">
