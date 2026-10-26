@@ -163,7 +163,7 @@ details .row{margin-top:10px}
     fetch('/api/thumbnail-ideas',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({topic:topic,niche:$('niche').value,mood:$('mood').value,lang:$('lang').value,face:$('face').value})
-    }).then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||('Error '+r.status));return j})})
+    }).then(function(r){return r.text().then(function(x){var j;try{j=JSON.parse(x)}catch(e){throw new Error('Server error ('+r.status+'). Check Vercel function logs.')}if(!r.ok)throw new Error(j.error||('Error '+r.status));return j})})
     .then(function(j){concepts=j.concepts;render();msg('Done. Tap "Copy brief" on the one you like.')})
     .catch(function(err){msg(err.message,true)})
     .then(function(){btn.disabled=false});
