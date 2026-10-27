@@ -31,7 +31,7 @@
           '<div class="ct-dd-menu">' + toolLinks + '<a href="/index.html#toolsGrid" class="ct-all">View all tools →</a></div>' +
         '</div>' +
         '<a href="/blog/index.html"' + cls(path.indexOf('/blog') === 0) + '>Blog</a>' +
-        '<a href="/videos/index.html"' + cls(path.indexOf('/videos') === 0) + '>Videos</a>' +
+        /* Videos temporarily hidden for AdSense approval */
         '<a href="/about.html"' + cls(path === '/about.html') + '>About</a>' +
         '<a href="/contact.html"' + cls(path === '/contact.html') + '>Contact</a>' +
         '<a href="/index.html#toolsGrid" class="ct-cta">Try Free Tools →</a>' +
@@ -76,14 +76,13 @@
     st.textContent = css;
     document.head.appendChild(st);
     document.body.insertAdjacentHTML('afterbegin', html);
-           // hide old duplicate page headers (our nav replaces them)
-       document.querySelectorAll('header, nav, .topbar').forEach(function (el) {
-         if (el.closest('#ctNav')) return;
-         var t = (el.textContent || '').trim();
-         if (t.length < 120 && t.indexOf('Creator Toolkit') !== -1) {
-           el.style.display = 'none';
-         }
-       });
+    document.querySelectorAll('header, nav, .topbar').forEach(function (el) {
+      if (el.closest('#ctNav')) return;
+      var t = (el.textContent || '').trim();
+      if (t.length < 120 && t.indexOf('Creator Toolkit') !== -1) {
+        el.style.display = 'none';
+      }
+    });
 
     var burger = document.getElementById('ctBurger');
     var menu = document.getElementById('ctMenu');
