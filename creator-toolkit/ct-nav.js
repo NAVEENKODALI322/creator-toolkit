@@ -40,6 +40,7 @@
     '</div></header>';
 
   var css =
+    'a[href*="videos"], a[href*="/videos"] { display: none !important; }' +
     '.ct-nav{position:sticky;top:0;z-index:1000;background:rgba(10,12,26,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);font-family:inherit}' +
     '.ct-nav-inner{max-width:1270px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}' +
     '.ct-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:700;font-size:1.1rem}' +
@@ -76,6 +77,14 @@
     st.textContent = css;
     document.head.appendChild(st);
     document.body.insertAdjacentHTML('afterbegin', html);
+
+    document.querySelectorAll('a[href*="videos"], a[href*="/videos"]').forEach(function(el) {
+      el.style.display = 'none';
+      if (el.nextSibling && el.nextSibling.nodeType === 3) {
+        el.nextSibling.textContent = el.nextSibling.textContent.replace(/·|\s/g, '');
+      }
+    });
+
     document.querySelectorAll('header, nav, .topbar').forEach(function (el) {
       if (el.closest('#ctNav')) return;
       var t = (el.textContent || '').trim();
