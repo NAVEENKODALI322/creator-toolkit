@@ -1,6 +1,11 @@
 {
   "redirects": [
         {
+      "source": "/videos/index.html",
+      "destination": "/blog/what-my-top-10-videos-taught-me.html",
+      "permanent": true
+    },
+        {
       "source": "/videos",
       "destination": "/blog/what-my-top-10-videos-taught-me.html",
       "permanent": true
