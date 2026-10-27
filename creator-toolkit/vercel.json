@@ -1,5 +1,15 @@
 {
   "redirects": [
+        {
+      "source": "/videos",
+      "destination": "/blog/what-my-top-10-videos-taught-me.html",
+      "permanent": true
+    },
+    {
+      "source": "/videos/:path*",
+      "destination": "/blog/what-my-top-10-videos-taught-me.html",
+      "permanent": true
+    },
     {
       "source": "/Backup",
       "destination": "/",
