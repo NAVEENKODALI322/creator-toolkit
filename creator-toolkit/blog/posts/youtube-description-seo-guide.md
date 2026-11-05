@@ -8,7 +8,7 @@ Descriptions also help viewers directly. Many people read the first lines before
 
 ## The first two lines are the most valuable space
 
-Roughly the first 100 to 150 characters show without a click. Those lines have to do two jobs at once: tell a human reader what the video is, and tell YouTube the topic in plain words. A channel intro or a link wastes that space. Put links lower down.
+Roughly the first 100 to 150 characters show without a click, and YouTube's own [tips for video descriptions](https://support.google.com/youtube/answer/12948449) also say to use the first few lines to describe the video. Those lines have to do two jobs at once: tell a human reader what the video is, and tell YouTube the topic in plain words. A channel intro or a link wastes that space. Put links lower down.
 
 A strong opening answers one question: what is this video, and why should someone watch it?
 

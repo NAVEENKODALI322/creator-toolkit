@@ -2,7 +2,7 @@ Every few years, a new claim spreads that YouTube tags are "dead." The honest an
 
 ## What Tags Actually Do Today
 
-YouTube's own creator documentation has been clear for years that tags play a minor role in discovery compared to titles, descriptions, and thumbnails. Where tags still help:
+YouTube's own [Help page on adding tags](https://support.google.com/youtube/answer/146402) has been clear for years that tags play a minor role in discovery compared to titles, descriptions, and thumbnails. Where tags still help:
 
 - Catching common misspellings of your main keyword
 - Covering alternate phrasing a viewer might search (e.g., "iphone editing app" vs "iphone video editor")
