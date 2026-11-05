@@ -187,7 +187,7 @@ for (const post of posts) {
     continue;
   }
   const md = fs.readFileSync(mdPath, 'utf8');
-  const bodyHtml = marked.parse(md);
+  const bodyHtml = marked.parse(md).replace(/<a href="(https?:\/\/(?!(?:www\.)?creatortoolkits\.in)[^"]+)"/g, '<a href="$1" target="_blank" rel="noopener noreferrer"');
   fs.writeFileSync(path.join(ROOT, 'blog', `${post.slug}.html`), renderPage(post, bodyHtml));
   sitemapUrls.push({ loc: `${SITE}/blog/${post.slug}.html`, lastmod: post.date });
   built++;
