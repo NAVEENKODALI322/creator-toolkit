@@ -1,11 +1,11 @@
 {
   "redirects": [
-        {
+    {
       "source": "/videos/index.html",
       "destination": "/blog/what-my-top-10-videos-taught-me.html",
       "permanent": true
     },
-        {
+    {
       "source": "/videos",
       "destination": "/blog/what-my-top-10-videos-taught-me.html",
       "permanent": true
@@ -38,6 +38,31 @@
     {
       "source": "/blog/ai-tools-for-youtube-growth.html",
       "destination": "/blog/free-tools-every-small-youtuber-needs-2026.html",
+      "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/free-tools-every-small-youtuber-needs-2026.html",
+      "destination": "/blog/free-tools-every-small-youtuber-needs-2026.html",
+      "permanent": true
+    },
+    {
+      "source": "/how-the-title-generator-works.html",
+      "destination": "/blog/how-the-title-generator-works.html",
+      "permanent": true
+    },
+    {
+      "source": "/telugu-canva-video-39k-views-analytics.html",
+      "destination": "/blog/telugu-canva-video-39k-views-analytics.html",
+      "permanent": true
+    },
+    {
+      "source": "/what-my-top-10-videos-taught-me.html",
+      "destination": "/blog/what-my-top-10-videos-taught-me.html",
       "permanent": true
     }
   ],
