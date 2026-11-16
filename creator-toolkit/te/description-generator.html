@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="te" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube డిస్క్రిప్షన్ జనరేటర్ తెలుగులో (Free AI) | Creator Toolkit</title>
+<meta name="description" content="మీ వీడియో కోసం SEO డిస్క్రిప్షన్ తెలుగు, English లేదా Mix లో. Keywords తో, ఉచితంగా, sign-up లేకుండా.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/te/description-generator.html">
+<link rel="alternate" hreflang="en" href="https://www.creatortoolkits.in/description-generator.html">
+<link rel="alternate" hreflang="te" href="https://www.creatortoolkits.in/te/description-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://www.creatortoolkits.in/description-generator.html">
+<meta property="og:title" content="YouTube డిస్క్రిప్షన్ జనరేటర్ తెలుగులో (Free AI) | Creator Toolkit">
+<meta property="og:description" content="మీ వీడియో కోసం SEO డిస్క్రిప్షన్ తెలుగు, English లేదా Mix లో. Keywords తో, ఉచితంగా, sign-up లేకుండా.">
+<meta property="og:locale" content="te_IN">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/te/description-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og/description-generator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YouTube డిస్క్రిప్షన్ జనరేటర్ తెలుగులో (Free AI) | Creator Toolkit">
+<meta name="twitter:description" content="మీ వీడియో కోసం SEO డిస్క్రిప్షన్ తెలుగు, English లేదా Mix లో. Keywords తో, ఉచితంగా, sign-up లేకుండా.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og/description-generator.jpg">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="stylesheet" href="/home-v2.min.css">
+<link rel="stylesheet" href="/tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="/" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>📝 YouTube డిస్క్రిప్షన్ జనరేటర్</h1>
+        <p>తెలుగు లేదా English లో SEO డిస్క్రిప్షన్స్</p>
+        <p class="ct-lang-switch" style="margin:6px 0 0;font-size:13.5px"><a href="/description-generator.html" lang="en" hreflang="en" style="color:var(--accent)">Read in English →</a></p>
+      </div>
+    </section>
+
+    <section class="tool-card-form">
+      <div class="field-group">
+        <label class="field-label" for="topic">వీడియో టాపిక్</label>
+        <input class="input-v2" type="text" id="topic" placeholder="ఉదా: Canva thumbnail tutorial">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="channel">ఛానల్ పేరు</label>
+        <input class="input-v2" type="text" id="channel" placeholder="మీ ఛానల్ పేరు">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="keywords">Keywords</label>
+        <input class="input-v2" type="text" id="keywords" placeholder="Keywords (comma తో వేరు చేయండి)">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="language">భాష</label>
+        <select class="select-v2" id="language">
+          <option value="telugu">తెలుగు</option>
+          <option value="english">English</option>
+          <option value="mix">తెలుగు + English Mix</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" onclick="generateDescription()">✨ డిస్క్రిప్షన్ తయారు చేయండి</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">మీ డిస్క్రిప్షన్</label>
+        <div id="output" class="output-v2" data-placeholder="మీ డిస్క్రిప్షన్ ఇక్కడ కనిపిస్తుంది..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="copyDescription()">📋 డిస్క్రిప్షన్ కాపీ చేయండి</button>
+    </section>
+
+
+    <!-- Related tools -->
+    <section class="related-tools">
+      <div class="section-title">ఇతర టూల్స్</div>
+      <div class="tools-grid-v2">
+        <a href="/te/hashtag-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">#️⃣</div>
+          <h3>Hashtag Generator</h3>
+          <p>Relevant hashtags for reach</p>
+        </a>
+        <a href="/te/title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Catchy, SEO-friendly titles</p>
+        </a>
+        <a href="/te/tags-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🏷️</div>
+          <h3>Tags Generator</h3>
+          <p>AI-powered YouTube tags</p>
+        </a>
+        <a href="/te/thumbnail-downloader.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🖼️</div>
+          <h3>Thumbnail Downloader</h3>
+          <p>Grab thumbnails in HD</p>
+        </a>
+      </div>
+    </section>
+
+<section class="seo-block" lang="te">
+      <h2>డిస్క్రిప్షన్ ఎందుకు ముఖ్యం?</h2>
+      <p>మీ వీడియో దేని గురించో YouTube అర్థం చేసుకోవడానికి డిస్క్రిప్షన్ సహాయం చేస్తుంది. సరైన keywords ఉంటే search లో, suggested videos లో కనిపించే అవకాశం పెరుగుతుంది. కానీ ప్రతి వీడియోకి కొత్తగా రాయడం టైమ్ తీసుకుంటుంది. ఈ టూల్ కొన్ని సెకన్లలో మంచి draft ఇస్తుంది.</p>
+
+      <h2>ఎలా వాడాలి?</h2>
+      <p>వీడియో టాపిక్, మీ ఛానల్ పేరు, ముఖ్యమైన keywords రాయండి. భాష ఎంచుకుని Generate నొక్కండి. వచ్చిన డిస్క్రిప్షన్ ని చదివి, మీ వీడియోకి సరిపోని వాక్యాలు మార్చండి. తర్వాత YouTube Studio లో paste చేయండి.</p>
+
+      <h2>మంచి డిస్క్రిప్షన్ కోసం చిట్కాలు</h2>
+      <ul>
+        <li>మొదటి ఒకటి రెండు లైన్లలోనే ముఖ్యమైన keyword పెట్టండి. "...more" ముందు అవే కనిపిస్తాయి.</li>
+        <li>వీడియోలో ఏం నేర్చుకుంటారో 2-3 చిన్న పేరాల్లో రాయండి.</li>
+        <li>Chapters (0:00 Intro లాంటివి) జోడించండి. మా <a href="/te/youtube-chapters-generator.html">Chapters Formatter</a> తో సరిచేయవచ్చు.</li>
+        <li>3 నుంచి 5 hashtags చాలు. 15 కంటే ఎక్కువ పెడితే YouTube అన్నింటినీ పట్టించుకోదు.</li>
+      </ul>
+      <p style="font-size:0.9rem;color:#9AA0A6;">రాసింది <a href="/about.html">Naveen Kodali</a>, తెలుగు YouTuber, Creator Toolkit founder.</p>
+    </section>
+
+<section class="faq-section" lang="te" style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">తరచుగా అడిగే ప్రశ్నలు</h2>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">డిస్క్రిప్షన్ తెలుగులో వస్తుందా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">అవును. తెలుగు, English లేదా Mix లో వస్తుంది.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">YouTube డిస్క్రిప్షన్ ఎంత పొడవు ఉండొచ్చు?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">గరిష్ఠం 5,000 characters. కానీ మొదటి లైన్లు అన్నింటికంటే ముఖ్యం.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">వచ్చినది అలాగే వాడొచ్చా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Draft గా వాడండి. చదివి, మీ వీడియోకి తగ్గట్టు మార్చి పెట్టండి.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">ఉచితమా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">అవును, పూర్తిగా ఉచితం.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "డిస్క్రిప్షన్ తెలుగులో వస్తుందా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "అవును. తెలుగు, English లేదా Mix లో వస్తుంది."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "YouTube డిస్క్రిప్షన్ ఎంత పొడవు ఉండొచ్చు?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "గరిష్ఠం 5,000 characters. కానీ మొదటి లైన్లు అన్నింటికంటే ముఖ్యం."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "వచ్చినది అలాగే వాడొచ్చా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Draft గా వాడండి. చదివి, మీ వీడియోకి తగ్గట్టు మార్చి పెట్టండి."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "ఉచితమా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "అవును, పూర్తిగా ఉచితం."
+   }
+  }
+ ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/">Blog</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+</div>
+
+<script>
+async function generateDescription() {
+  const topic = document.getElementById("topic").value.trim();
+  const channel = document.getElementById("channel").value.trim();
+  const keywords = document.getElementById("keywords").value.trim();
+  const language = document.getElementById("language").value;
+  const outputBox = document.getElementById("output");
+
+  if (!topic) { outputBox.innerHTML = "⚠️ Please enter a topic!"; return; }
+  outputBox.innerHTML = "⏳ Generating...";
+
+  try {
+    const response = await fetch("/api/description", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ topic, channel, keywords, language })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      outputBox.innerHTML = "❌ " + (data.error?.message || data.error || "Something went wrong");
+      return;
+    }
+
+    outputBox.innerHTML = data.description;
+  } catch (error) {
+    outputBox.innerHTML = "❌ Error: " + error.message;
+  }
+}
+
+function copyDescription() {
+  const text = document.getElementById("output").innerText;
+  navigator.clipboard.writeText(text);
+  alert("✅ Copied!");
+}
+</script>
+<script src="/nav-v2.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/ct-events.js" defer></script>
+</body>
+</html>

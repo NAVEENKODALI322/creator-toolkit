@@ -125,6 +125,25 @@ Rules:
 ${HONESTY}`;
 }
 
+// Time, money and result claims a video may not deliver (same rule as the title API).
+const INVENTED_NUMBER = /\d\s*-?\s*(?:minutes?|mins?|seconds?|secs?|hours?|days?|weeks?|months?|years?|x|views|subscribers|subs|lakhs?|crores?|k)\b|\d\s*(?:నిమిషా|నిమిష|గంట|రోజు|రోజుల|సెకన)|\d\s*%|[$₹]\s*\d/i;
+
+function graphemeCount(text) {
+  try { return [...new Intl.Segmenter("te", { granularity: "grapheme" }).segment(text)].length; }
+  catch { return [...text].length; }
+}
+
+// Thumbnail text must be short and must not promise times or results the topic does not mention.
+function filterThumbText(text, topic) {
+  const topicHasNumber = /\d/.test(topic);
+  const lines = String(text || "").split("\n")
+    .map((l) => l.replace(/^\s*(?:[-*•]+|\d+[.)])\s*/, "").replace(/^["“”']+|["“”']+$/g, "").trim())
+    .filter(Boolean)
+    .filter((l) => topicHasNumber || !INVENTED_NUMBER.test(l));
+  const short = lines.filter((l) => l.split(/\s+/).length <= 4 && graphemeCount(l) <= 28);
+  return (short.length >= 5 ? short : lines).join("\n");
+}
+
 function cleanOutput(text) {
   return String(text || "")
     .replace(/\*\*/g, "")
@@ -216,7 +235,8 @@ export default async function handler(req, res) {
         .status(result.status === 429 ? 429 : 502)
         .json({ error: result.status === 429 ? RATE_LIMIT_MESSAGE : UPSTREAM_MESSAGE });
     }
-    const text = cleanOutput(result.content);
+    let text = cleanOutput(result.content);
+    if (tool === "thumbtext") text = filterThumbText(text, topic);
     if (text.length <= 40) return res.status(502).json({ error: "The AI returned an empty answer. Please try again." });
 
     return res.status(200).json({ text, tool, language });

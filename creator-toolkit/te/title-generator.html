@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="te" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube టైటిల్ జనరేటర్ తెలుగులో (Free AI) | Creator Toolkit</title>
+<meta name="description" content="మీ వీడియో టాపిక్ ఇస్తే తెలుగు, English లేదా Mix లో క్లిక్ అయ్యే YouTube టైటిల్స్. ఉచితం, sign-up అవసరం లేదు.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/te/title-generator.html">
+<link rel="alternate" hreflang="en" href="https://www.creatortoolkits.in/title-generator.html">
+<link rel="alternate" hreflang="te" href="https://www.creatortoolkits.in/te/title-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://www.creatortoolkits.in/title-generator.html">
+<meta property="og:title" content="YouTube టైటిల్ జనరేటర్ తెలుగులో (Free AI) | Creator Toolkit">
+<meta property="og:description" content="మీ వీడియో టాపిక్ ఇస్తే తెలుగు, English లేదా Mix లో క్లిక్ అయ్యే YouTube టైటిల్స్. ఉచితం, sign-up అవసరం లేదు.">
+<meta property="og:locale" content="te_IN">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/te/title-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og/title-generator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YouTube టైటిల్ జనరేటర్ తెలుగులో (Free AI) | Creator Toolkit">
+<meta name="twitter:description" content="మీ వీడియో టాపిక్ ఇస్తే తెలుగు, English లేదా Mix లో క్లిక్ అయ్యే YouTube టైటిల్స్. ఉచితం, sign-up అవసరం లేదు.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og/title-generator.jpg">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="stylesheet" href="/home-v2.min.css">
+<link rel="stylesheet" href="/tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="/" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>🎬 YouTube టైటిల్ జనరేటర్</h1>
+        <p>తెలుగు, English లేదా Mix లో టైటిల్స్</p>
+        <p class="ct-lang-switch" style="margin:6px 0 0;font-size:13.5px"><a href="/title-generator.html" lang="en" hreflang="en" style="color:var(--accent)">Read in English →</a></p>
+      </div>
+    </section>
+
+    <section class="tool-card-form">
+      <div class="field-group">
+        <label class="field-label" for="keyword">వీడియో టాపిక్</label>
+        <input class="input-v2" type="text" id="keyword" placeholder="ఉదా: Canva లో logo ఎలా చేయాలి">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="language">టైటిల్ భాష</label>
+        <select class="select-v2" id="language">
+          <option value="mix" selected>Mix (తెలుగు + English)</option>
+          <option value="english">English</option>
+          <option value="telugu">తెలుగు</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" onclick="generateTitles()">✨ టైటిల్స్ తయారు చేయండి</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">మీ టైటిల్స్</label>
+        <div id="output" class="output-v2" data-placeholder="మీ టైటిల్స్ ఇక్కడ కనిపిస్తాయి..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="copyTitles()">📋 టైటిల్స్ కాపీ చేయండి</button>
+    </section>
+
+
+    <!-- Related tools -->
+    <section class="related-tools">
+      <div class="section-title">ఇతర టూల్స్</div>
+      <div class="tools-grid-v2">
+        <a href="/te/hashtag-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">#️⃣</div>
+          <h3>Hashtag Generator</h3>
+          <p>Relevant hashtags for reach</p>
+        </a>
+        <a href="/te/description-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">📝</div>
+          <h3>Description Generator</h3>
+          <p>SEO-ready video descriptions</p>
+        </a>
+        <a href="/te/tags-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🏷️</div>
+          <h3>Tags Generator</h3>
+          <p>AI-powered YouTube tags</p>
+        </a>
+        <a href="/te/thumbnail-downloader.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🖼️</div>
+          <h3>Thumbnail Downloader</h3>
+          <p>Grab thumbnails in HD</p>
+        </a>
+      </div>
+    </section>
+
+   <section class="seo-block" lang="te">
+      <h2>ఈ టూల్ ఏం చేస్తుంది?</h2>
+      <p>మీ వీడియో టాపిక్ ఒక లైన్ లో రాయండి, భాష ఎంచుకోండి. టూల్ మీకు చాలా టైటిల్ ఆప్షన్స్ ఇస్తుంది. వాటిలో మీ వీడియోకి సరిపోయేది ఎంచుకోండి, లేదా రెండు మూడు ఐడియాలు కలిపి మీ స్టైల్ లో రాసుకోండి.</p>
+
+      <h2>మూడు భాషా ఆప్షన్స్</h2>
+      <ul>
+        <li><strong>Mix:</strong> తెలుగు పదాలు తెలుగు లిపిలో, Canva, Instagram లాంటి tool పేర్లు English లో. చాలా మంది తెలుగు వ్యూయర్స్ ఇలాగే search చేస్తారు.</li>
+        <li><strong>English:</strong> పూర్తిగా English టైటిల్స్.</li>
+        <li><strong>తెలుగు:</strong> పూర్తిగా తెలుగు లిపిలో, పెద్ద brand పేర్లు మాత్రమే English లో.</li>
+      </ul>
+
+      <h2>మంచి టైటిల్ కోసం చిట్కాలు</h2>
+      <ul>
+        <li>ముఖ్యమైన keyword మొదటి కొన్ని పదాల్లో పెట్టండి. ఫోన్ లో దాదాపు 60 అక్షరాలు మాత్రమే కనిపిస్తాయి.</li>
+        <li>వీడియోలో లేనిది టైటిల్ లో promise చేయకండి. వ్యూయర్స్ త్వరగా వెళ్ళిపోతే reach తగ్గుతుంది.</li>
+        <li>"Telugu" అనే పదం టైటిల్ లో పెడితే, తెలుగు వీడియో కోసం search చేసేవాళ్ళకి కనిపిస్తుంది.</li>
+      </ul>
+
+      <h2>నిజమైన ఉదాహరణ</h2>
+      <p>నా వీడియో "Earn Money with Canva: A Step-by-Step Guide Telugu" కి దాదాపు 39,500 views వచ్చాయి. అందులో 60% views YouTube search నుంచే. టైటిల్ మొదటి పదాల్లోనే ఫలితం (earn money), tool (Canva), format (step-by-step) మరియు భాష (Telugu) ఉన్నాయి. అదే ఈ టూల్ ఫాలో అయ్యే పద్ధతి.</p>
+      <p style="font-size:0.9rem;color:#9AA0A6;">రాసింది <a href="/about.html">Naveen Kodali</a>, తెలుగు YouTuber, Creator Toolkit founder.</p>
+    </section>
+
+<section class="faq-section" lang="te" style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">తరచుగా అడిగే ప్రశ్నలు</h2>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">ఈ టైటిల్ జనరేటర్ ఉచితమా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">అవును. పూర్తిగా ఉచితం, sign-up అవసరం లేదు.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">తెలుగులో టైటిల్స్ వస్తాయా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">అవును. తెలుగు, English లేదా తెలుగు + English Mix లో టైటిల్స్ వస్తాయి.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">YouTube టైటిల్ ఎంత పొడవు ఉండాలి?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">గరిష్ఠం 100 characters. కానీ ఫోన్ లో దాదాపు మొదటి 60 మాత్రమే కనిపిస్తాయి, కాబట్టి ముఖ్యమైన విషయం ముందు పెట్టండి.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Shorts టైటిల్స్ కి కూడా పనిచేస్తుందా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">అవును. మీ Short టాపిక్ రాస్తే చిన్న, పదునైన టైటిల్స్ వస్తాయి.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "ఈ టైటిల్ జనరేటర్ ఉచితమా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "అవును. పూర్తిగా ఉచితం, sign-up అవసరం లేదు."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "తెలుగులో టైటిల్స్ వస్తాయా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "అవును. తెలుగు, English లేదా తెలుగు + English Mix లో టైటిల్స్ వస్తాయి."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "YouTube టైటిల్ ఎంత పొడవు ఉండాలి?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "గరిష్ఠం 100 characters. కానీ ఫోన్ లో దాదాపు మొదటి 60 మాత్రమే కనిపిస్తాయి, కాబట్టి ముఖ్యమైన విషయం ముందు పెట్టండి."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Shorts టైటిల్స్ కి కూడా పనిచేస్తుందా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "అవును. మీ Short టాపిక్ రాస్తే చిన్న, పదునైన టైటిల్స్ వస్తాయి."
+   }
+  }
+ ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/">Blog</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+</div>
+
+<script src="/js/title.js"></script>
+<script src="/nav-v2.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/ct-events.js" defer></script>
+</body>
+</html>

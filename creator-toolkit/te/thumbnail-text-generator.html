@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="te" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thumbnail Text ఐడియాస్ తెలుగులో (Free AI) | Creator Toolkit</title>
+<meta name="description" content="మీ వీడియో thumbnail మీద పెట్టడానికి 2-4 పదాల 10 text ఆప్షన్స్. తెలుగు, English లేదా Mix లో. ఉచితం.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/te/thumbnail-text-generator.html">
+<link rel="alternate" hreflang="en" href="https://www.creatortoolkits.in/thumbnail-text-generator.html">
+<link rel="alternate" hreflang="te" href="https://www.creatortoolkits.in/te/thumbnail-text-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://www.creatortoolkits.in/thumbnail-text-generator.html">
+<meta property="og:title" content="Thumbnail Text ఐడియాస్ తెలుగులో (Free AI) | Creator Toolkit">
+<meta property="og:description" content="మీ వీడియో thumbnail మీద పెట్టడానికి 2-4 పదాల 10 text ఆప్షన్స్. తెలుగు, English లేదా Mix లో. ఉచితం.">
+<meta property="og:locale" content="te_IN">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/te/thumbnail-text-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og/thumbnail-text-generator.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Thumbnail Text ఐడియాస్ తెలుగులో (Free AI) | Creator Toolkit">
+<meta name="twitter:description" content="మీ వీడియో thumbnail మీద పెట్టడానికి 2-4 పదాల 10 text ఆప్షన్స్. తెలుగు, English లేదా Mix లో. ఉచితం.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og/thumbnail-text-generator.jpg">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="stylesheet" href="/home-v2.min.css">
+<link rel="stylesheet" href="/tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "Thumbnail Text Ideas",
+ "url": "https://www.creatortoolkits.in/thumbnail-text-generator.html",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Web",
+ "description": "Get 10 short, readable thumbnail text ideas (2–4 words) for your video in Telugu, English or Telugu + English Mix. Free, no sign-up.",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "INR"
+ },
+ "creator": {
+  "@type": "Person",
+  "name": "Naveen Kodali",
+  "url": "https://www.creatortoolkits.in/about.html"
+ }
+}
+</script>
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="/" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>🖍️ Thumbnail Text ఐడియాస్</h1>
+        <p>క్లిక్ చేయించే చిన్న, బోల్డ్ పదాలు</p>
+        <p class="ct-lang-switch" style="margin:6px 0 0;font-size:13.5px"><a href="/thumbnail-text-generator.html" lang="en" hreflang="en" style="color:var(--accent)">Read in English →</a></p>
+      </div>
+    </section>
+
+    <section class="tool-card-form" data-tool="thumbtext">
+      <div class="field-group">
+        <label class="field-label" for="topic">వీడియో టాపిక్ లేదా టైటిల్</label>
+        <input class="input-v2" type="text" id="topic" maxlength="200" placeholder="ఉదా: Canva లో free logo design">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="language">భాష</label>
+        <select class="select-v2" id="language">
+          <option value="mix" selected>Mix (తెలుగు + English)</option>
+          <option value="english">English</option>
+          <option value="telugu">తెలుగు</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" data-label="🖍️ Thumbnail text ఇవ్వండి" onclick="ctAI.generate()">🖍️ Thumbnail text ఇవ్వండి</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">Thumbnail text ఐడియాస్</label>
+        <div id="output" class="output-v2" data-placeholder="10 చిన్న text ఆప్షన్స్ ఇక్కడ కనిపిస్తాయి..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="ctAI.copy()">📋 ఐడియాస్ కాపీ చేయండి</button>
+    </section>
+
+    <section class="related-tools">
+      <div class="section-title">ఇతర టూల్స్</div>
+      <div class="tools-grid-v2">
+        <a href="/te/title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Titles in Telugu, English or Mix</p>
+        </a>
+        <a href="/te/thumbnail-downloader.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🖼️</div>
+          <h3>Thumbnail Downloader</h3>
+          <p>Study thumbnails in your niche</p>
+        </a>
+        <a href="/te/viral-hook-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🔥</div>
+          <h3>Viral Hook Generator</h3>
+          <p>Lines for the first 5 seconds</p>
+        </a>
+        <a href="/te/title-description-checker.html" class="tool-card-v2">
+          <div class="tool-icon-v2">✅</div>
+          <h3>Title & Description Checker</h3>
+          <p>Length, hashtags, keyword</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-block" lang="te">
+      <h2>Thumbnail text దేనికి?</h2>
+      <p>Thumbnail మీద రాసే 2-4 పెద్ద పదాలే thumbnail text. ఇది రెండో టైటిల్ కాదు. టైటిల్ వీడియో దేని గురించో చెబుతుంది. Thumbnail text క్లిక్ చేయడానికి కారణం ఇస్తుంది: ఫలితం, ఆశ్చర్యం, హెచ్చరిక లేదా ప్రశ్న.</p>
+
+      <h2>చదవగలిగేలా ఉండాలంటే</h2>
+      <ul>
+        <li><strong>2-4 పదాలు మాత్రమే.</strong> ఫోన్ లో thumbnail చాలా చిన్నగా కనిపిస్తుంది.</li>
+        <li><strong>టైటిల్ ని మళ్ళీ రాయకండి.</strong> కొత్త సమాచారం లేదా భావం ఇవ్వండి.</li>
+        <li><strong>ఒక్క ఐడియా.</strong> ఒక ముఖం, ఒక వస్తువు, ఒక చిన్న లైన్ చాలు.</li>
+        <li><strong>High contrast.</strong> మందమైన font, outline లేదా వెనక box పెట్టండి.</li>
+      </ul>
+
+      <h2>తెలుగు text thumbnails మీద</h2>
+      <p>తెలుగు లిపిలో ఎక్కువ వివరాలు ఉంటాయి, కాబట్టి పెద్ద, బోల్డ్ font కావాలి. చాలా మంది mix వాడతారు: భావానికి తెలుగు పదం ("ఇలా చేయండి", "జాగ్రత్త"), tool లేదా ఫలితానికి English పదం ("Canva", "Free Logo"). మీ thumbnail ని ఫోన్ లో చిన్నగా చేసి చూడండి. ఒక్క చూపులో చదవలేకపోతే పదాలు తగ్గించండి.</p>
+      <p style="font-size:0.9rem;color:#9AA0A6;">రాసింది <a href="/about.html">Naveen Kodali</a>, తెలుగు YouTuber, Creator Toolkit founder.</p>
+    </section>
+
+<section class="faq-section" lang="te" style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">తరచుగా అడిగే ప్రశ్నలు</h2>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Thumbnail text లో ఎన్ని పదాలు ఉండాలి?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">2 నుంచి 4 పదాలు.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Thumbnail text టైటిల్ లాగే ఉండాలా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">వద్దు. టైటిల్ టాపిక్ చెబుతుంది, thumbnail text ఆసక్తి లేదా ఫలితం చూపించాలి.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">ఈ టూల్ thumbnail image తయారు చేస్తుందా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">లేదు. Text మాత్రమే ఇస్తుంది. Design Canva లో చేయండి.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">ఉచితమా?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">అవును, పూర్తిగా ఉచితం.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Thumbnail text లో ఎన్ని పదాలు ఉండాలి?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2 నుంచి 4 పదాలు."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Thumbnail text టైటిల్ లాగే ఉండాలా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "వద్దు. టైటిల్ టాపిక్ చెబుతుంది, thumbnail text ఆసక్తి లేదా ఫలితం చూపించాలి."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "ఈ టూల్ thumbnail image తయారు చేస్తుందా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "లేదు. Text మాత్రమే ఇస్తుంది. Design Canva లో చేయండి."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "ఉచితమా?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "అవును, పూర్తిగా ఉచితం."
+   }
+  }
+ ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/">Blog</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+</div>
+
+<script src="/js/ai-tool.js"></script>
+  <script src="/js/cookie-consent.js"></script>
+  <script src="/ct-events.js" defer></script>
+</body>
+</html>
