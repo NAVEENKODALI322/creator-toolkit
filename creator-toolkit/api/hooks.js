@@ -1,3 +1,5 @@
+import { normalizeLanguage, isKnownLanguage, languageBlock, languageName, LANGS } from "../lib/languages.js";
+
 // Hooks API. Response shape is unchanged ({ hooks: "line1\nline2..." }) because the mobile app uses it too.
 //
 // Hooks must not invent facts. The model used to write lines such as "I earned $5,000 a month" or
@@ -33,12 +35,12 @@ function acceptLines(raw, topic) {
   });
 }
 
-function buildPrompt(topic, ask) {
+function buildPrompt(topic, ask, L) {
   return `
 Write ${ask} YouTube video hooks (the first sentence a creator says or shows) about: ${topic}
 
 Rules:
-- Output only English.
+- ${L ? languageBlock(L).split("\n").join("\n  ") : "Output only English."}
 - Create curiosity-driven hooks. Mix these styles: a question, a bold but honest claim, a short story opening, and a "mistake most beginners make" line.
 - Be specific to the topic and honest. A hook may only promise what a normal video on this topic can deliver.
 - Do NOT invent numbers, statistics, percentages, prices, income, view counts or time frames. Use a number only if the topic itself contains one. A plain list number like "3 mistakes" is fine.
@@ -51,7 +53,7 @@ Rules:
 `.trim();
 }
 
-async function callModel(topic, ask) {
+async function callModel(topic, ask, L) {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -67,10 +69,10 @@ async function callModel(topic, ask) {
           content:
             "You are a YouTube growth strategist who writes clickable but honest hooks. You never invent statistics, income or results.",
         },
-        { role: "user", content: buildPrompt(topic, ask) },
+        { role: "user", content: buildPrompt(topic, ask, L) },
       ],
       temperature: 0.8,
-      max_tokens: 1024,
+      max_tokens: L && L.lang !== "english" ? 2500 : 1024,
     }),
   });
   const data = await response.json();
@@ -126,7 +128,7 @@ export default async function handler(req, res) {
     // Up to two attempts: the second one only runs when too few hooks passed the checks.
     for (let attempt = 1; attempt <= 2; attempt++) {
       if (attempt === 2 && (kept.length >= 5 || Date.now() - startedAt > 5000)) break;
-      const result = await callModel(topic, HOOK_COUNT + 3);
+      const result = await callModel(topic, HOOK_COUNT + 3, isKnownLanguage(body.language) ? normalizeLanguage(body.language) : null);
       if (!result.ok) {
         upstreamStatus = result.status;
         // Never show the raw message from the AI service (it can contain account details).

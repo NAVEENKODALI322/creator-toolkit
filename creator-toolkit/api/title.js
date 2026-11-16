@@ -1,9 +1,11 @@
+import { normalizeLanguage, isKnownLanguage, languageBlock as langBlock, matchesLanguage } from "../lib/languages.js";
+
 // Title generator API.
 // Response shape is unchanged ({ titles: "line1\nline2..." }) because the Android/iOS app uses it too.
 // Optional request fields:
-//   language = "mix"     Telugu + English mixed inside every title (Telugu words in Telugu script)
-//              "english" pure English
-//              "telugu"  pure Telugu script (only well-known brand names stay in English)
+//   language = "english" pure English
+//              "<lang>" / "<lang>-mix" for hindi, telugu, tamil, kannada, malayalam, marathi, bengali, gujarati
+//              "mix"     legacy = telugu-mix; "telugu" = pure Telugu (both kept for old pages and the app)
 //              missing   old behaviour used by the mobile app: 10 English + 10 Telugu-English mix
 //   debug    = true  -> adds a small "debug" array (attempt counts, finish reasons) to the response
 //
@@ -36,7 +38,6 @@ function retryAfterMs(response, data) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const LANGUAGES = ["mix", "english", "telugu"]; // anything else (or missing) = "both", the old default
 
 // Phrases that overpromise or leak internal labels into the titles.
 const BANNED = /\b(tenglish|guaranteed?|you won['’]?t believe|10x|100x)\b/i;
@@ -62,16 +63,9 @@ function lengthOf(text) {
   }
 }
 
-// Does this line belong to the requested kind of batch?
-//   english : no Telugu script at all
-//   mix     : Telugu script AND English words in the same title
-//   telugu  : mostly Telugu script (a brand name like "Canva" may stay in English)
+// Does this line belong to the requested language? kind = normalized language object.
 function matchesKind(text, kind) {
-  const te = teluguLetters(text);
-  const la = latinLetters(text);
-  if (kind === "english") return te === 0;
-  if (kind === "mix") return te >= 3 && la >= 3;
-  return te >= 6 && te >= 2 * la; // telugu
+  return matchesLanguage(text, kind);
 }
 
 const ANGLES = {
@@ -81,27 +75,7 @@ const ANGLES = {
 };
 
 function languageBlock(kind) {
-  if (kind === "english") {
-    return "Language: PURE ENGLISH. Do not use any Telugu words or Telugu script.";
-  }
-  if (kind === "telugu") {
-    return `Language: PURE TELUGU, written in TELUGU SCRIPT (తెలుగు లిపి).
-- Write the whole title in Telugu script. Translate the topic keyword into Telugu where it is natural (for example బిర్యానీ, వీడియో ఎడిటింగ్).
-- Only very well-known brand or tool names (YouTube, Instagram, Canva, Android) may stay in English letters.
-- Do not write Telugu words in English letters.
-Examples of the style (other topics, never copy them):
-ఇంట్లోనే పనీర్ బటర్ మసాలా ఇలా చేయండి
-మొబైల్ లో వీడియో ఎడిటింగ్ సులభంగా నేర్చుకోండి
-డబ్బు ఆదా చేయడానికి 5 సులభమైన మార్గాలు`;
-  }
-  return `Language: TELUGU-ENGLISH MIX, the way Telugu YouTubers write titles. Every title mixes Telugu and English words.
-- Write the Telugu words in TELUGU SCRIPT (తెలుగు లిపి). Do not write Telugu words in English letters.
-- Keep the topic keyword and any tool or brand names in English.
-- EVERY title must contain at least three Telugu-script words AND some English words.
-Examples of the style (other topics, never copy them):
-Instagram లో Followers పెంచుకోవడం ఎలా? 5 Easy Tips
-Canva తో Thumbnail ఈజీగా Design చేయండి
-ఇంట్లోనే Paneer Butter Masala ఇలా చేయండి`;
+  return langBlock(kind);
 }
 
 function buildPrompt(topic, kind, ask, angle) {
@@ -168,7 +142,7 @@ async function callModel(topic, kind, ask, angle) {
         { role: "user", content: buildPrompt(topic, kind, ask, angle) },
       ],
       temperature: 0.8,
-      max_tokens: kind === "english" ? 1500 : 3500, // Telugu script uses many more tokens
+      max_tokens: kind.lang === "english" ? 1500 : 3500, // Telugu script uses many more tokens
     }),
   });
   const data = await response.json();
@@ -226,13 +200,13 @@ async function runBatch({ kind, target, angle }, topic, startedAt) {
   }
 
   if (kept.length < need) {
-    console.warn("title batch short:", kind, angle, "kept", kept.length, "of", target);
+    console.warn("title batch short:", kind.value, angle, "kept", kept.length, "of", target);
   }
   return { titles: kept.slice(0, target), info };
 }
 
 function batchesFor(language) {
-  if (language === "english" || language === "telugu" || language === "mix") {
+  if (language) {
     // Two small parallel batches with different styles give 20 varied titles.
     return [
       { kind: language, target: 10, angle: "a" },
@@ -241,8 +215,8 @@ function batchesFor(language) {
   }
   // No language sent (mobile app): the old behaviour, English first and then Telugu-English mix.
   return [
-    { kind: "english", target: 10, angle: "mixed" },
-    { kind: "mix", target: 10, angle: "mixed" },
+    { kind: normalizeLanguage("english"), target: 10, angle: "mixed" },
+    { kind: normalizeLanguage("mix"), target: 10, angle: "mixed" },
   ];
 }
 
@@ -260,7 +234,7 @@ export default async function handler(req, res) {
   try {
     const body = req.body || {};
     const topic = String(body.topic || "").replace(/\s+/g, " ").trim().slice(0, MAX_TOPIC_LENGTH);
-    const language = LANGUAGES.includes(body.language) ? body.language : "both";
+    const language = isKnownLanguage(body.language) ? normalizeLanguage(body.language) : null; // null = old app default
     if (!topic) {
       return res.status(400).json({ error: "Missing required fields." });
     }
@@ -298,7 +272,7 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: "The AI returned no titles. Please try again." });
     }
 
-    const payload = { titles: titles.join("\n"), language };
+    const payload = { titles: titles.join("\n"), language: language ? String(body.language) : "both" };
     if (body.debug === true) {
       payload.debug = results.map((r) => r.info);
     }

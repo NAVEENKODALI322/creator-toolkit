@@ -38,6 +38,7 @@
   <script src="/ct-nav.js" defer></script>
   <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
 <link rel="stylesheet" href="/light-theme.css">
+<link rel="stylesheet" href="/css/site.css">
 </head>
 
 <body class="v2-home">
@@ -49,8 +50,8 @@
     <section class="page-header">
       <a href="/" class="back-btn" aria-label="Back to home">←</a>
       <div class="page-header-text">
-        <h1>📝 YouTube Description Generator</h1>
-        <p>SEO-ready descriptions in Telugu or English</p>
+        <h1><span class="ct-icon" style="--i1:#0ea5e9;--i2:#6366f1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>YouTube Description Generator</h1>
+        <p>SEO-ready descriptions in Hindi, Telugu, Tamil, English and more</p>
         <p class="ct-lang-switch" style="margin:6px 0 0;font-size:13.5px"><a href="/te/description-generator.html" lang="te" hreflang="te" style="color:var(--accent)">తెలుగులో చూడండి →</a></p>
       </div>
     </section>
@@ -73,10 +74,8 @@
 
       <div class="field-group">
         <label class="field-label" for="language">Language</label>
-        <select class="select-v2" id="language">
-          <option value="telugu">తెలుగు</option>
-          <option value="english">English</option>
-          <option value="mix">Telugu + English Mix</option>
+        <select class="select-v2" id="language" data-ct-lang>
+          <option value="english" selected>English</option>
         </select>
       </div>
 
@@ -96,22 +95,22 @@
       <div class="section-title">Related tools</div>
       <div class="tools-grid-v2">
         <a href="hashtag-generator.html" class="tool-card-v2">
-          <div class="tool-icon-v2">#️⃣</div>
+          <span class="ct-icon" style="--i1:#ec4899;--i2:#8b5cf6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9h14M4 15h14M10 3 8 21M16 3l-2 18"/></svg></span>
           <h3>Hashtag Generator</h3>
           <p>Relevant hashtags for reach</p>
         </a>
         <a href="title-generator.html" class="tool-card-v2">
-          <div class="tool-icon-v2">🎬</div>
+          <span class="ct-icon" style="--i1:#6366f1;--i2:#8b5cf6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V5h16v2"/><path d="M12 5v14"/><path d="M9 19h6"/></svg></span>
           <h3>Title Generator</h3>
           <p>Catchy, SEO-friendly titles</p>
         </a>
         <a href="tags-generator.html" class="tool-card-v2">
-          <div class="tool-icon-v2">🏷️</div>
+          <span class="ct-icon" style="--i1:#f59e0b;--i2:#ef4444"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span>
           <h3>Tags Generator</h3>
           <p>AI-powered YouTube tags</p>
         </a>
         <a href="thumbnail-downloader.html" class="tool-card-v2">
-          <div class="tool-icon-v2">🖼️</div>
+          <span class="ct-icon" style="--i1:#14b8a6;--i2:#0ea5e9"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="m3 15 5-5 4 4 3-3 6 6"/><path d="M12 21v-3"/></svg></span>
           <h3>Thumbnail Downloader</h3>
           <p>Grab thumbnails in HD</p>
         </a>
@@ -258,20 +257,19 @@
 }
 </script>
 
-    <footer class="home-footer">
-  <p>© 2026 Creator Toolkit</p>
-  <p>
-    <a href="/">Home</a> ·
-    <a href="/about.html">About</a> ·
-    <a href="/blog/">Blog</a> ·
-    <a href="/contact.html">Contact</a> ·
-    <a href="/privacy.html">Privacy Policy</a> ·
-    <a href="/terms.html">Terms and Conditions</a>
-  </p>
-      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
-    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
-    </a>
+    <footer class="home-footer ct-footer">
+  <div class="ct-footer-grid">
+    <div class="ct-footer-brand">
+      <a class="ct-logo-row" href="/"><svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><defs><linearGradient id="ctgf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><rect width="34" height="34" rx="10" fill="url(#ctgf)"/><path d="M13 10.5v13l11-6.5z" fill="#fff"/></svg>Creator Toolkit</a>
+      <p>Free AI YouTube tools for Indian creators, in Hindi, Telugu, Tamil, Kannada, Malayalam, Marathi, Bengali, Gujarati and English.</p>
+    </div>
+    <div><h3>Popular tools</h3><ul><li><a href="/title-generator.html">Title Generator</a></li><li><a href="/description-generator.html">Description Generator</a></li><li><a href="/shorts-script-generator.html">Shorts Script Generator</a></li><li><a href="/video-ideas-generator.html">Video Ideas Generator</a></li><li><a href="/hashtag-generator.html">Hashtag Generator</a></li><li><a href="/youtube-chapters-generator.html">Chapters Formatter</a></li><li><a href="/#toolsGrid">All tools →</a></li></ul></div>
+    <div><h3>Languages</h3><ul><li><a href="/" lang="en">English</a></li><li><a href="/te/" lang="te">తెలుగు</a></li></ul></div>
+    <div><h3>Company</h3><ul><li><a href="/about.html">About</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/terms.html">Terms and Conditions</a></li></ul></div>
+  </div>
+  <div class="ct-footer-bottom">
+    <span>© 2026 Creator Toolkit · Made in India for creators everywhere.</span>
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg> YouTube</a>
   </div>
 </footer>
 
@@ -317,6 +315,7 @@ function copyDescription() {
 }
 </script>
 <script src="nav-v2.js"></script>
+  <script src="/js/lang.js"></script>
   <script src="js/cookie-consent.js"></script>
   <script src="ct-events.js" defer></script>
 </body>

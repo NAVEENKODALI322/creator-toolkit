@@ -1,3 +1,5 @@
+import { normalizeLanguage, isKnownLanguage, languageBlock, languageName, LANGS } from "../lib/languages.js";
+
 export default async function handler(req, res) {
   // Allow requests from the Android/iOS app and browser
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -19,15 +21,13 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Server misconfiguration: API key not set." });
     }
 
-    const langInstruction = {
-      telugu: `Write ONLY in Telugu language (Telugu script). No English at all.
-Use simple, everyday Telugu that a normal YouTube viewer speaks and understands.
-Do NOT invent new words or reinterpret the topic — describe exactly what the topic says, in clear, grammatically correct Telugu.`,
-      english: "Write ONLY in English language. No Telugu at all.",
-      mix: `Write in natural Telugu-English mix (Tenglish style), the way Telugu YouTubers actually talk.
-Example of GOOD mix style: "Ee video lo మీకు cricket world cup గురించి full analysis చూపిస్తాను. India team performance ఈసారి నిజంగా shocking గా undi."
-Do NOT repeat the same sentence pattern (like "X ki chala Y ga") again and again - vary sentence structure naturally like real conversation.`
-    };
+    // Legacy values "telugu", "english", "mix" (Telugu + English) still work.
+    const L = normalizeLanguage(isKnownLanguage(language) ? language : "english");
+    const langText = L.lang === "telugu" && L.mix
+      ? `Write in natural Telugu-English mix, the way Telugu YouTubers actually talk. Telugu words in Telugu script, English words for tools and common terms.
+Example of GOOD mix style: "ఈ video లో మీకు cricket world cup గురించి full analysis చూపిస్తాను. India team performance ఈసారి నిజంగా shocking గా ఉంది."
+Do NOT repeat the same sentence pattern again and again - vary sentence structure naturally like real conversation.`
+      : languageBlock(L);
 
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
@@ -43,14 +43,14 @@ Do NOT repeat the same sentence pattern (like "X ki chala Y ga") again and again
           messages: [
             {
               role: "system",
-              content: "You are a professional YouTube SEO copywriter and a native Telugu speaker who writes clear, coherent, and grammatically correct video descriptions. Every sentence must logically connect to the one before it. You never invent facts or reinterpret the topic — you describe exactly what is given, in natural flowing language. You never repeat the same sentence pattern back to back."
+              content: `You are a professional YouTube SEO copywriter and a native ${L.lang === "english" ? "English" : LANGS[L.lang].name} speaker who writes clear, coherent, and grammatically correct video descriptions. Every sentence must logically connect to the one before it. You never invent facts or reinterpret the topic — you describe exactly what is given, in natural flowing language. You never repeat the same sentence pattern back to back.`
             },
             {
               role: "user",
               content: `Write a YouTube video description based on this exact topic (do not change its meaning): "${topic}"
 Channel name: ${channel || "the channel"}
 Keywords to naturally include: ${keywords || "none"}
-Language: ${langInstruction[language] || langInstruction.english}
+${langText}
 
 STRUCTURE (follow this order):
 1. One-line hook that clearly states what the video is about (based on the exact topic given)
@@ -71,7 +71,7 @@ STRICT RULES:
             }
           ],
           temperature: 0.6,
-          max_tokens: 1200,
+          max_tokens: L.lang === "english" ? 1200 : 3000,
           frequency_penalty: 0.5
         })
       }

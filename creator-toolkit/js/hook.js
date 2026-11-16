@@ -15,7 +15,7 @@ async function generateHooks() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ topic }),
+      body: JSON.stringify({ topic, language: (document.getElementById("language") || {}).value }),
     });
 
     const data = await response.json();

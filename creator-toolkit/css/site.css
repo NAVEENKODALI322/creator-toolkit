@@ -1,0 +1,59 @@
+/* Creator Toolkit — shared site styles: icons, language switch, footer, theme-aware FAQ. */
+
+/* Tool icon tiles */
+.ct-icon{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;color:#fff;
+  background:linear-gradient(135deg,var(--i1,#6366f1),var(--i2,#8b5cf6));box-shadow:0 6px 16px -6px var(--i1,#6366f1);flex:0 0 auto}
+.ct-icon svg{display:block}
+.tool-card-v2 .ct-icon{margin-bottom:12px}
+.ct-dd-menu .ct-icon{width:28px;height:28px;border-radius:8px;box-shadow:none}
+.ct-dd-menu .ct-icon svg{width:16px;height:16px}
+.page-header-text h1{display:flex;align-items:center;gap:12px}
+.page-header-text h1 .ct-icon{width:40px;height:40px}
+
+/* Logo */
+.ct-logo-mark{background:none!important;box-shadow:none!important;width:34px;height:34px}
+.ct-logo-mark svg{display:block}
+
+/* Language switch in header */
+.ct-lang{position:relative;margin-left:6px}
+.ct-lang-btn{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.06);color:#fff;font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.ct-lang-btn:hover{background:rgba(255,255,255,.14)}
+.ct-lang-menu{display:none;position:absolute;right:0;top:calc(100% + 8px);min-width:170px;padding:6px;border-radius:14px;z-index:1100;
+  background:rgba(14,17,36,.98);border:1px solid rgba(255,255,255,.1);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.ct-lang.open .ct-lang-menu{display:block}
+.ct-lang-menu a{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;border-radius:10px;color:rgba(255,255,255,.85);text-decoration:none;font-size:.93rem}
+.ct-lang-menu a:hover{background:rgba(255,255,255,.08);color:#fff}
+.ct-lang-menu a[aria-current="true"]{color:#a5b4fc;font-weight:700}
+.ct-lang-menu small{opacity:.6}
+
+/* Footer */
+.ct-footer{text-align:left;margin:56px 0 0;padding:36px 0 28px;border-top:1px solid var(--border);color:var(--text-secondary);font-size:14px}
+.ct-footer-grid{display:grid;gap:28px;grid-template-columns:1fr 1fr}
+.ct-footer-brand{grid-column:1/-1}
+.ct-footer-brand p{margin:10px 0 0;line-height:1.6;max-width:42ch}
+.ct-footer h3{margin:0 0 10px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--text)}
+.ct-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ct-footer a{color:var(--text-secondary);text-decoration:none}
+.ct-footer a:hover{color:var(--text)}
+.ct-footer .ct-logo-row{display:flex;align-items:center;gap:10px;color:var(--text);font-weight:700;font-size:1.05rem;text-decoration:none}
+.ct-footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;margin-top:28px;padding-top:18px;border-top:1px solid var(--border);font-size:13px}
+.ct-footer-bottom a{display:inline-flex;align-items:center;gap:6px}
+@media (min-width:760px){
+  .ct-footer-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}
+  .ct-footer-brand{grid-column:auto}
+}
+
+/* FAQ blocks that were written with fixed dark colours: follow the active theme */
+.faq-section h2{color:var(--text)!important}
+.faq-section details{background:var(--card)!important;border-color:var(--border)!important}
+.faq-section summary{color:var(--text)!important}
+.faq-section details p{color:var(--text-secondary)!important}
+.seo-block a{color:var(--accent)}
+:root[data-theme="light"] .ct-lang-btn{color:#0F172A;border-color:rgba(15,23,42,.15);background:rgba(15,23,42,.05)}
+:root[data-theme="light"] .ct-lang-menu{background:#fff;border-color:rgba(15,23,42,.12);box-shadow:0 18px 40px rgba(15,23,42,.18)}
+:root[data-theme="light"] .ct-lang-menu a{color:#334155}
+:root[data-theme="light"] .ct-lang-menu a:hover{background:rgba(15,23,42,.06);color:#0F172A}
+:root[data-theme="light"] .ct-lang-menu a[aria-current="true"]{color:#4f46e5}
+@media (max-width:860px){.ct-lang{margin-left:auto}.ct-lang + .theme-toggle{margin-left:8px}}
+.ct-footer p{text-align:left}

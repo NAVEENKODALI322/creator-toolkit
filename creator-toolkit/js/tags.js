@@ -12,7 +12,7 @@ async function generateTags() {
     const response = await fetch("https://www.creatortoolkits.in/api/tags", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic })
+      body: JSON.stringify({ topic, language: (document.getElementById("language") || {}).value })
     });
 
     const data = await response.json();

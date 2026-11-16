@@ -1,3 +1,15 @@
+import { normalizeLanguage, isKnownLanguage, languageBlock, languageName, LANGS } from "../lib/languages.js";
+
+// Optional "language": the video's audience. Most tags stay in English because that is how
+// Indian viewers usually type searches; a few tags follow the audience language.
+function audienceLine(language) {
+  if (!isKnownLanguage(language)) return "";
+  const L = normalizeLanguage(language);
+  if (L.lang === "english") return "";
+  const info = LANGS[L.lang];
+  return `Audience: ${info.name} viewers. Keep most tags in English, and include 4 to 5 tags the way ${info.name} viewers search: some in ${info.script} script (${info.native}) and some ${info.name} words typed in English letters.`;
+}
+
 export default async function handler(req, res) {
   // Allow requests from the Android/iOS app and browser
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -10,7 +22,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed. Use POST." });
   }
   try {
-    const { topic } = req.body || {};
+    const { topic , language } = req.body || {};
     if (!topic) {
       return res.status(400).json({ error: "Missing required fields." });
     }
@@ -38,6 +50,7 @@ reasoning_effort: "low",
             {
               role: "user",
               content: `Generate 18 highly searched YouTube tags for the topic "${topic}".
+${audienceLine(language)}
 
 STRICT RULES:
 - Do NOT build tags by combining the same base phrase with different languages (e.g. "in Hindi", "in Telugu", "in Tamil") — pick at most ONE language variant only if clearly relevant.
@@ -56,7 +69,7 @@ STRICT RULES:
             }
           ],
           temperature: 0.6,
-          max_tokens: 1024
+          max_tokens: 1800
         })
       }
     );

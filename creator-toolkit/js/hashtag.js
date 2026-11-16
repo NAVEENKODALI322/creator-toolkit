@@ -15,7 +15,7 @@ async function generateHashtags() {
     const response = await fetch("https://www.creatortoolkits.in/api/hashtags", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ topic, platform, hashtagCount })
+      body: JSON.stringify({ topic, platform, hashtagCount, language: (document.getElementById("language") || {}).value })
     });
 
     const data = await response.json();

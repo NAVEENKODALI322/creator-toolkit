@@ -1,3 +1,5 @@
+import { normalizeLanguage, isKnownLanguage, languageBlock as langBlock, LANGS } from "../lib/languages.js";
+
 // Shared AI endpoint for the newer tools, so the site stays within Vercel's function limit.
 // POST { tool: "shorts" | "ideas" | "thumbtext" | "replies", topic, language: "mix" | "english" | "telugu",
 //        seconds?: 30 | 45 | 60 (shorts), context?: video topic (replies), tone?: see TONES (replies) }
@@ -16,7 +18,6 @@ const TONES = {
   answer: "helpful, directly answering the viewer's question in simple steps",
   critical: "calm and respectful, acknowledging fair points in criticism without arguing or getting defensive",
 };
-const LANGUAGES = ["mix", "english", "telugu"];
 
 const RATE_LIMIT_MESSAGE = "Too many people are using the AI tools right now. Please wait a minute and try again.";
 const UPSTREAM_MESSAGE = "The AI service is busy or unavailable at the moment. Please try again in a moment.";
@@ -24,18 +25,7 @@ const UPSTREAM_MESSAGE = "The AI service is busy or unavailable at the moment. P
 const HYPE = /\b(six[- ]?figures?|seven[- ]?figures?|millionaire|get rich|overnight|guaranteed?|you won['’]?t believe|10x|100x|tenglish)\b/gi;
 
 function languageBlock(language) {
-  if (language === "english") {
-    return "Language: simple, natural ENGLISH. Do not use Telugu words or Telugu script.";
-  }
-  if (language === "telugu") {
-    return `Language: natural spoken TELUGU, written in TELUGU SCRIPT (తెలుగు లిపి).
-- Only well-known brand or tool names (YouTube, Instagram, Canva, Android) may stay in English letters.
-- Do not write Telugu words in English letters.`;
-  }
-  return `Language: the TELUGU + ENGLISH MIX that Telugu YouTubers actually speak.
-- Write Telugu words in TELUGU SCRIPT (తెలుగు లిపి), never in English letters.
-- Keep tool names, brand names and common English words (like video, tips, easy, mobile) in English.
-- Every line should mix both languages naturally, for example: "Instagram లో Reels ఎలా edit చేయాలో చూద్దాం".`;
+  return langBlock(language);
 }
 
 const HONESTY = `Honesty rules:
@@ -68,7 +58,7 @@ Rules:
 - Spoken lines must be short and easy to say in one breath.
 - The script must fit ${seconds} seconds at a normal speaking speed.
 - Give real, practical steps or points about the topic, not filler.
-- If the topic names a region, language or culture (for example Telugu, Andhra, Telangana), stay true to it.
+- If the topic names a region, language or culture (for example Telugu, Tamil Nadu, Punjab, Bengal), stay true to it.
 - No markdown, no asterisks, no emojis in the spoken lines.
 
 ${HONESTY}`;
@@ -86,7 +76,7 @@ Why it works: <one sentence on the viewer problem it solves or the search it ans
 Rules:
 - Mix formats: how-to tutorials, beginner mistakes, comparisons, step-by-step guides, myths, and questions people search.
 - Make every idea specific to the topic. No generic ideas that fit any channel.
-- If the topic names a region, language or culture (for example Telugu, Andhra, Telangana), every idea must belong to it. Do not drift to dishes, places or customs from other regions.
+- If the topic names a region, language or culture (for example Telugu, Tamil Nadu, Punjab, Bengal), every idea must belong to it. Do not drift to dishes, places or customs from other regions.
 - Ideas should be things a small creator can actually film with a phone.
 - No markdown, no asterisks, no headings, no intro or closing text.
 
@@ -168,12 +158,12 @@ async function callModel(prompt, language) {
       messages: [
         {
           role: "system",
-          content: "You are an experienced YouTube creator coach for Telugu and Indian creators. You write practical, honest, specific content and never exaggerate.",
+          content: "You are an experienced YouTube creator coach for Indian creators who make videos in many Indian languages. You write practical, honest, specific content and never exaggerate.",
         },
         { role: "user", content: prompt },
       ],
       temperature: 0.8,
-      max_tokens: language === "english" ? 1800 : 4000, // Telugu script uses many more tokens
+      max_tokens: language.lang === "english" ? 1800 : 4000, // Telugu script uses many more tokens
     }),
   });
   const data = await response.json().catch(() => ({}));
@@ -195,7 +185,7 @@ export default async function handler(req, res) {
   try {
     const body = req.body || {};
     const tool = TOOLS.includes(body.tool) ? body.tool : null;
-    const language = LANGUAGES.includes(body.language) ? body.language : "mix";
+    const language = normalizeLanguage(isKnownLanguage(body.language) ? body.language : "english");
     const topic = String(body.topic || "").replace(/\s+/g, " ").trim().slice(0, MAX_TOPIC_LENGTH);
     const seconds = [30, 45, 60].includes(Number(body.seconds)) ? Number(body.seconds) : 60;
 
@@ -239,7 +229,7 @@ export default async function handler(req, res) {
     if (tool === "thumbtext") text = filterThumbText(text, topic);
     if (text.length <= 40) return res.status(502).json({ error: "The AI returned an empty answer. Please try again." });
 
-    return res.status(200).json({ text, tool, language });
+    return res.status(200).json({ text, tool, language: language.value });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Something went wrong. Please try again." });

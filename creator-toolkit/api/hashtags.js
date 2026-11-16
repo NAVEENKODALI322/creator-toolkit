@@ -1,3 +1,13 @@
+import { normalizeLanguage, isKnownLanguage, languageBlock, languageName, LANGS } from "../lib/languages.js";
+
+function hashtagLang(language) {
+  if (!isKnownLanguage(language)) return "";
+  const L = normalizeLanguage(language);
+  if (L.lang === "english") return "";
+  const info = LANGS[L.lang];
+  return `\nThe audience speaks ${info.name}. Keep most hashtags in English, and add 2 to 3 hashtags in ${info.script} script (${info.native}) or ${info.name} words that people really use. No spaces inside a hashtag.`;
+}
+
 export default async function handler(req, res) {
   // Allow requests from the Android/iOS app and browser
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -15,7 +25,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { topic, platform, hashtagCount } = req.body || {};
+    const { topic, platform, hashtagCount, language } = req.body || {};
 
     if (!topic || !platform || !hashtagCount) {
       return res.status(400).json({
@@ -48,7 +58,7 @@ reasoning_effort: "low",
             },
             {
               role: "user",
-              content: `Generate exactly ${hashtagCount} hashtags for "${topic}" on ${platform}. Return only hashtags, one per line.`
+              content: `Generate exactly ${hashtagCount} hashtags for "${topic}" on ${platform}. Return only hashtags, one per line.${hashtagLang(language)}`
             }
           ],
           temperature: 0.8,
