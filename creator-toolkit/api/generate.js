@@ -1,0 +1,178 @@
+// Shared AI endpoint for the newer tools, so the site stays within Vercel's function limit.
+// POST { tool: "shorts" | "ideas", topic, language: "mix" | "english" | "telugu", seconds?: 30 | 45 | 60 }
+// Response: { text: "..." }
+//
+// Like the title and hook APIs, the prompts forbid invented numbers, income claims and hype,
+// because a creator would have to say these lines on camera as their own.
+
+const MAX_TOPIC_LENGTH = 200;
+const CALL_TIMEOUT_MS = 9000;
+const TOOLS = ["shorts", "ideas"];
+const LANGUAGES = ["mix", "english", "telugu"];
+
+const RATE_LIMIT_MESSAGE = "Too many people are using the AI tools right now. Please wait a minute and try again.";
+const UPSTREAM_MESSAGE = "The AI service is busy or unavailable at the moment. Please try again in a moment.";
+
+const HYPE = /\b(six[- ]?figures?|seven[- ]?figures?|millionaire|get rich|overnight|guaranteed?|you won['’]?t believe|10x|100x|tenglish)\b/gi;
+
+function languageBlock(language) {
+  if (language === "english") {
+    return "Language: simple, natural ENGLISH. Do not use Telugu words or Telugu script.";
+  }
+  if (language === "telugu") {
+    return `Language: natural spoken TELUGU, written in TELUGU SCRIPT (తెలుగు లిపి).
+- Only well-known brand or tool names (YouTube, Instagram, Canva, Android) may stay in English letters.
+- Do not write Telugu words in English letters.`;
+  }
+  return `Language: the TELUGU + ENGLISH MIX that Telugu YouTubers actually speak.
+- Write Telugu words in TELUGU SCRIPT (తెలుగు లిపి), never in English letters.
+- Keep tool names, brand names and common English words (like video, tips, easy, mobile) in English.
+- Every line should mix both languages naturally, for example: "Instagram లో Reels ఎలా edit చేయాలో చూద్దాం".`;
+}
+
+const HONESTY = `Honesty rules:
+- Do NOT invent numbers, statistics, prices, income, view counts or results. Use a number only if the topic contains it. A list count like "3 tips" is fine.
+- Do NOT claim the creator earned money or got views. No fake personal stories.
+- Do NOT use hype words like "guaranteed", "overnight", "get rich", "10x" or "you won't believe".
+- Never write the word "Tenglish" and never label the language.`;
+
+function shortsPrompt(topic, language, seconds) {
+  const lines = seconds <= 30 ? "5 to 6" : seconds <= 45 ? "7 to 8" : "9 to 11";
+  return `Write a ${seconds}-second YouTube Shorts / Instagram Reels script about: ${topic}
+
+${languageBlock(language)}
+
+Use exactly this plain-text layout (keep the English section labels as written):
+
+HOOK (0-3 sec):
+<one line the creator says to stop the scroll>
+
+SCRIPT:
+<${lines} short spoken lines, one per line, each starting with its time range like "3-8 sec:">
+
+ON-SCREEN TEXT:
+<3 to 4 very short captions to show on screen, one per line>
+
+CTA:
+<one short closing line asking viewers to follow, comment or watch the full video>
+
+Rules:
+- Spoken lines must be short and easy to say in one breath.
+- The script must fit ${seconds} seconds at a normal speaking speed.
+- Give real, practical steps or points about the topic, not filler.
+- No markdown, no asterisks, no emojis in the spoken lines.
+
+${HONESTY}`;
+}
+
+function ideasPrompt(topic, language) {
+  return `Suggest 10 YouTube video ideas for a channel about: ${topic}
+
+${languageBlock(language)}
+
+For each idea write exactly two lines, then a blank line:
+<number>. <a working video title, under 60 characters>
+Why it works: <one sentence on the viewer problem it solves or the search it answers>
+
+Rules:
+- Mix formats: how-to tutorials, beginner mistakes, comparisons, step-by-step guides, myths, and questions people search.
+- Make every idea specific to the topic. No generic ideas that fit any channel.
+- Ideas should be things a small creator can actually film with a phone.
+- No markdown, no asterisks, no headings, no intro or closing text.
+
+${HONESTY}`;
+}
+
+function cleanOutput(text) {
+  return String(text || "")
+    .replace(/\*\*/g, "")
+    .replace(/^#+\s*/gm, "")
+    .replace(HYPE, "")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+async function callModel(prompt, language) {
+  const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+    },
+    signal: typeof AbortSignal !== "undefined" && AbortSignal.timeout ? AbortSignal.timeout(CALL_TIMEOUT_MS) : undefined,
+    body: JSON.stringify({
+      model: "openai/gpt-oss-20b",
+      reasoning_effort: "low",
+      messages: [
+        {
+          role: "system",
+          content: "You are an experienced YouTube creator coach for Telugu and Indian creators. You write practical, honest, specific content and never exaggerate.",
+        },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.8,
+      max_tokens: language === "english" ? 1800 : 4000, // Telugu script uses many more tokens
+    }),
+  });
+  const data = await response.json().catch(() => ({}));
+  const choice = data && data.choices && data.choices[0];
+  return {
+    ok: response.ok,
+    status: response.status,
+    content: choice && choice.message ? choice.message.content : "",
+  };
+}
+
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") return res.status(200).end();
+  if (req.method !== "POST") return res.status(405).json({ error: "Method Not Allowed. Use POST." });
+
+  try {
+    const body = req.body || {};
+    const tool = TOOLS.includes(body.tool) ? body.tool : null;
+    const language = LANGUAGES.includes(body.language) ? body.language : "mix";
+    const topic = String(body.topic || "").replace(/\s+/g, " ").trim().slice(0, MAX_TOPIC_LENGTH);
+    const seconds = [30, 45, 60].includes(Number(body.seconds)) ? Number(body.seconds) : 60;
+
+    if (!tool) return res.status(400).json({ error: "Unknown tool." });
+    if (!topic) return res.status(400).json({ error: "Please enter a topic." });
+    if (!process.env.GROQ_API_KEY) {
+      console.error("GROQ_API_KEY is missing in environment variables.");
+      return res.status(500).json({ error: "Server misconfiguration: API key not set." });
+    }
+
+    const prompt = tool === "shorts" ? shortsPrompt(topic, language, seconds) : ideasPrompt(topic, language);
+
+    let result = null;
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        result = await callModel(prompt, language);
+      } catch (err) {
+        console.warn("generate call failed:", err && err.message);
+        result = null;
+        continue;
+      }
+      if (result.ok && cleanOutput(result.content).length > 40) break;
+      if (result.status === 429) break; // do not hammer the AI service when it is rate limiting
+    }
+
+    if (!result) return res.status(502).json({ error: UPSTREAM_MESSAGE });
+    if (!result.ok) {
+      console.error("generate upstream error:", result.status);
+      return res
+        .status(result.status === 429 ? 429 : 502)
+        .json({ error: result.status === 429 ? RATE_LIMIT_MESSAGE : UPSTREAM_MESSAGE });
+    }
+    const text = cleanOutput(result.content);
+    if (text.length <= 40) return res.status(502).json({ error: "The AI returned an empty answer. Please try again." });
+
+    return res.status(200).json({ text, tool, language });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Something went wrong. Please try again." });
+  }
+}

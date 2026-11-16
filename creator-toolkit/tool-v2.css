@@ -225,3 +225,21 @@
   .related-tools{ max-width: 900px; margin-left:auto; margin-right:auto; }
   .related-tools .tools-grid-v2{ grid-template-columns: repeat(4, 1fr); }
 }
+
+/* ---- Checker / chapters report (new tools) ---- */
+.ck-report{display:grid;gap:8px;margin-top:4px}
+.ck-report p{margin:0;padding:10px 12px;border-radius:10px;font-size:14px;line-height:1.5;border:1px solid var(--border);background:var(--card)}
+.ck-ok{border-color:rgba(34,197,94,.45)!important}
+.ck-warn{border-color:rgba(245,158,11,.55)!important}
+.ck-info{opacity:.92}
+.ck-count{float:right;font-size:12px;font-weight:600;color:var(--text-faint)}
+.ck-count.over{color:#f59e0b}
+.yt-preview{display:flex;gap:12px;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--card)}
+.yt-thumb{flex:0 0 120px;height:68px;border-radius:8px;background:linear-gradient(135deg,#334155,#1e293b)}
+.yt-meta{min-width:0}
+.yt-title{margin:0 0 4px;font-size:15px;font-weight:600;line-height:1.35;color:var(--text);word-break:break-word}
+.yt-desc{margin:0;font-size:12.5px;line-height:1.45;color:var(--text-secondary);word-break:break-word}
+.btn-row-v2{display:flex;gap:10px;flex-wrap:wrap}
+.btn-row-v2 .btn-secondary-v2{flex:1 1 140px}
+.field-hint{margin:6px 0 0;font-size:12.5px;color:var(--text-faint)}
+@media (max-width:420px){.yt-thumb{flex-basis:96px;height:54px}}

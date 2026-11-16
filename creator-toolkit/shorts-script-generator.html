@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI YouTube Shorts Script Generator in Telugu & English | Creator Toolkit</title>
+<meta name="description" content="Get a ready-to-record 30, 45 or 60 second Shorts or Reels script with hook, timed lines, on-screen text and CTA, in Telugu, English or Mix. Free.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/shorts-script-generator.html">
+<meta property="og:title" content="AI YouTube Shorts Script Generator in Telugu & English | Creator Toolkit">
+<meta property="og:description" content="Get a ready-to-record 30, 45 or 60 second Shorts or Reels script with hook, timed lines, on-screen text and CTA, in Telugu, English or Mix. Free.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/shorts-script-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI YouTube Shorts Script Generator in Telugu & English | Creator Toolkit">
+<meta name="twitter:description" content="Get a ready-to-record 30, 45 or 60 second Shorts or Reels script with hook, timed lines, on-screen text and CTA, in Telugu, English or Mix. Free.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="home-v2.min.css">
+<link rel="stylesheet" href="tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AI Shorts Script Generator",
+ "url": "https://www.creatortoolkits.in/shorts-script-generator.html",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Web",
+ "description": "Get a ready-to-record 30, 45 or 60 second Shorts or Reels script with hook, timed lines, on-screen text and CTA, in Telugu, English or Mix. Free.",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "INR"
+ },
+ "creator": {
+  "@type": "Person",
+  "name": "Naveen Kodali",
+  "url": "https://www.creatortoolkits.in/about.html"
+ }
+}
+</script>
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="/" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>📱 AI Shorts Script Generator</h1>
+        <p>30–60 second scripts for Shorts and Reels</p>
+      </div>
+    </section>
+
+    <section class="tool-card-form" data-tool="shorts">
+      <div class="field-group">
+        <label class="field-label" for="topic">What is your Short about?</label>
+        <input class="input-v2" type="text" id="topic" maxlength="200" placeholder="e.g. Canva lo 1 minute lo thumbnail cheyadam">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="language">Language</label>
+        <select class="select-v2" id="language">
+          <option value="mix" selected>Mix (Telugu + English)</option>
+          <option value="english">English</option>
+          <option value="telugu">Telugu (తెలుగు)</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="seconds">Length</label>
+        <select class="select-v2" id="seconds">
+          <option value="30">30 seconds</option>
+          <option value="45">45 seconds</option>
+          <option value="60" selected>60 seconds</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" data-label="✨ Write My Script" onclick="ctAI.generate()">✨ Write My Script</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">Your script</label>
+        <div id="output" class="output-v2" data-placeholder="Your hook, timed lines, on-screen text and CTA will appear here..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="ctAI.copy()">📋 Copy Script</button>
+    </section>
+
+    <section class="related-tools">
+      <div class="section-title">Related tools</div>
+      <div class="tools-grid-v2">
+        <a href="/viral-hook-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🔥</div>
+          <h3>Viral Hook Generator</h3>
+          <p>Lines for the first 5 seconds</p>
+        </a>
+        <a href="/title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Titles in Telugu, English or Mix</p>
+        </a>
+        <a href="/hashtag-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">#️⃣</div>
+          <h3>Hashtag Generator</h3>
+          <p>Relevant hashtags</p>
+        </a>
+        <a href="/video-ideas-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">💡</div>
+          <h3>Video Ideas Generator</h3>
+          <p>10 ideas for your niche</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-block">
+      <h2>What you get</h2>
+      <p>Describe your Short in one line and choose a length. The tool writes a script in four parts: a <strong>hook</strong> for the first three seconds, <strong>timed spoken lines</strong> that fit the length you chose, short <strong>on-screen captions</strong>, and a closing <strong>call to action</strong>. You can write it in Telugu, English, or the Telugu + English mix most Telugu creators actually speak.</p>
+
+      <h2>Why a script matters for Shorts</h2>
+      <p>A Short has no time for warming up. Viewers decide in the first second or two whether to keep watching or swipe. Without a script it is easy to start with "Hi friends, ee roju manam..." and lose half the audience before the useful part arrives. A script puts the payoff or the question first, keeps every line short enough to say in one breath, and ends before attention runs out.</p>
+
+      <h2>How to turn the script into a Short</h2>
+      <ul>
+        <li><strong>Read it aloud once.</strong> Change any word you would not naturally say. Viewers notice when a line sounds read, not spoken.</li>
+        <li><strong>Record line by line.</strong> Each timed line is roughly one cut. Short clips are easier to re-record and keep the pace up.</li>
+        <li><strong>Add the on-screen text</strong> as large captions. Many people watch Shorts with the sound off.</li>
+        <li><strong>Check the facts.</strong> AI can be wrong. If a step or setting does not match what you show on screen, fix the line.</li>
+      </ul>
+
+      <h2>Choosing a length</h2>
+      <p>30 seconds suits a single tip or one quick result. 45 seconds fits a short process with two or three steps. 60 seconds gives room for a mini tutorial, but every extra second has to earn its place. If you cannot fill 60 seconds with useful steps, choose 30 and keep the energy high.</p>
+
+      <h2>Honest scripts only</h2>
+      <p>The generator is told not to invent numbers, earnings, view counts or results, and not to use hype like "guaranteed" or "overnight". You will be saying these lines as yourself, and a Short that promises more than it shows gets swiped away, which hurts how far YouTube pushes your next one. If your topic includes a real number, such as "3 Canva tips", the script can use it.</p>
+
+      <h2>Pair it with the other tools</h2>
+      <p>Want stronger openers? The <a href="/viral-hook-generator.html">Viral Hook Generator</a> gives several hook options to swap in. For the Short's title, try the <a href="/title-generator.html">Title Generator</a>, and the <a href="/hashtag-generator.html">Hashtag Generator</a> for a few relevant hashtags. Stuck on what to make next? The <a href="/video-ideas-generator.html">Video Ideas Generator</a> suggests ten ideas for your niche.</p>
+      <p style="font-size:0.9rem;color:#9AA0A6;">Written by <a href="/about.html">Naveen Kodali</a>, Telugu YouTuber and founder of Creator Toolkit.</p>
+    </section>
+
+<section class="faq-section" style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">Frequently Asked Questions</h2>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Can it write Shorts scripts in Telugu?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes. Choose Telugu for Telugu script, or Mix for the Telugu + English style most Telugu creators speak.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Does it work for Instagram Reels too?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes. The same script format works for YouTube Shorts, Instagram Reels and other vertical videos.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">How long does it take?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Usually 5 to 15 seconds. Telugu scripts can take a little longer.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Can I use the script as it is?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Use it as a strong first draft. Read it aloud, change words to your own style, and check every fact against what you show.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Is it free?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes, it is free and needs no sign-up.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Can it write Shorts scripts in Telugu?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Choose Telugu for Telugu script, or Mix for the Telugu + English style most Telugu creators speak."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it work for Instagram Reels too?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. The same script format works for YouTube Shorts, Instagram Reels and other vertical videos."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "How long does it take?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Usually 5 to 15 seconds. Telugu scripts can take a little longer."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I use the script as it is?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Use it as a strong first draft. Read it aloud, change words to your own style, and check every fact against what you show."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, it is free and needs no sign-up."
+   }
+  }
+ ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/">Blog</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+</div>
+
+<script src="js/ai-tool.js"></script>
+  <script src="js/cookie-consent.js"></script>
+</body>
+</html>

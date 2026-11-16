@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Chapters & Timestamps Generator (Free) | Creator Toolkit</title>
+<meta name="description" content="Paste your timestamps and get YouTube chapters that follow the rules: first at 0:00, 3+ chapters, 10 seconds each. Free, works in your browser.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/youtube-chapters-generator.html">
+<meta property="og:title" content="YouTube Chapters & Timestamps Generator (Free) | Creator Toolkit">
+<meta property="og:description" content="Paste your timestamps and get YouTube chapters that follow the rules: first at 0:00, 3+ chapters, 10 seconds each. Free, works in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/youtube-chapters-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YouTube Chapters & Timestamps Generator (Free) | Creator Toolkit">
+<meta name="twitter:description" content="Paste your timestamps and get YouTube chapters that follow the rules: first at 0:00, 3+ chapters, 10 seconds each. Free, works in your browser.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="home-v2.min.css">
+<link rel="stylesheet" href="tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "YouTube Chapters & Timestamps Formatter",
+ "url": "https://www.creatortoolkits.in/youtube-chapters-generator.html",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Web",
+ "description": "Paste your timestamps and get YouTube chapters that follow the rules: first at 0:00, 3+ chapters, 10 seconds each. Free, works in your browser.",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "INR"
+ },
+ "creator": {
+  "@type": "Person",
+  "name": "Naveen Kodali",
+  "url": "https://www.creatortoolkits.in/about.html"
+ }
+}
+</script>
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="/" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>⏱️ YouTube Chapters & Timestamps Formatter</h1>
+        <p>Check and format chapters so YouTube shows them</p>
+      </div>
+    </section>
+
+    <section class="tool-card-form">
+      <div class="field-group">
+        <label class="field-label" for="chaptersInput">Your timestamps (one per line)</label>
+        <textarea class="textarea-v2" id="chaptersInput" rows="7" placeholder="0:00 Intro&#10;1:20 Step 1 - Account setup&#10;4:05 Step 2 - Design&#10;9:30 Final result"></textarea>
+        <p class="field-hint">Any order works: "1:20 Setup", "Setup 1:20" or "[1:20] Setup".</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="videoLength">Video length (optional)</label>
+        <input class="input-v2" type="text" id="videoLength" placeholder="e.g. 12:45 or 13">
+      </div>
+
+      <button class="btn-primary-v2" onclick="ctChapters.run()">⏱️ Check &amp; Format Chapters</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">Ready-to-paste chapters</label>
+        <div id="output" class="output-v2" data-placeholder="Formatted chapters will appear here..."></div>
+      </div>
+
+      <div id="report" class="ck-report" aria-live="polite"></div>
+
+      <div class="btn-row-v2 mt-6">
+        <button class="btn-secondary-v2" onclick="ctChapters.copy(this)">📋 Copy Chapters</button>
+        <button class="btn-secondary-v2" onclick="ctChapters.sample()">🧪 Try an example</button>
+      </div>
+    </section>
+
+    <section class="related-tools">
+      <div class="section-title">Related tools</div>
+      <div class="tools-grid-v2">
+        <a href="/title-description-checker.html" class="tool-card-v2">
+          <div class="tool-icon-v2">✅</div>
+          <h3>Title & Description Checker</h3>
+          <p>Length, hashtags, keyword</p>
+        </a>
+        <a href="/description-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">📝</div>
+          <h3>Description Generator</h3>
+          <p>SEO-ready descriptions</p>
+        </a>
+        <a href="/title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Titles in Telugu, English or Mix</p>
+        </a>
+        <a href="/shorts-script-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">📱</div>
+          <h3>Shorts Script Generator</h3>
+          <p>30–60 sec scripts</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-block">
+      <h2>What are YouTube chapters?</h2>
+      <p>Chapters split a video into named sections on the progress bar. Viewers can see what each part covers and jump straight to the step they need. You create them by writing timestamps in your video description. YouTube reads that list and turns it into chapters, but only when the list follows a few rules. If one rule is broken, YouTube quietly ignores the whole list and no chapters appear.</p>
+
+      <h2>The rules this tool checks</h2>
+      <ul>
+        <li>The first timestamp must be <strong>0:00</strong>. This tool adds an "Intro" chapter at 0:00 if yours is missing.</li>
+        <li>You need <strong>at least three</strong> timestamps.</li>
+        <li>Timestamps must be in <strong>ascending order</strong>. The tool sorts them and removes duplicates.</li>
+        <li>Every chapter must be <strong>at least 10 seconds</strong> long. If you add the video length, the last chapter is checked too.</li>
+      </ul>
+      <p>Everything runs in your browser. Your timestamps are not sent to any server.</p>
+
+      <h2>How to use it</h2>
+      <p>While you edit, note the time each new step starts. Paste those notes here, one per line. The tool accepts messy input such as "Setup 1:20" or "[01:20] - Setup", fixes the format, and tells you what is still wrong. Copy the result and paste it into your YouTube description, usually after the first paragraph. Save the video, then refresh the watch page to see the chapters on the progress bar.</p>
+
+      <h2>Why chapters help a tutorial channel</h2>
+      <p>Most Telugu tutorial videos answer one search, such as "Canva lo logo ela cheyali" or "Fiverr account ela create cheyali". Many viewers arrive already knowing part of the process and want only one step. Without chapters they scrub around, give up and leave. With chapters they jump to the step and stay. That keeps viewers on your video instead of sending them back to search.</p>
+      <p>Chapters can also appear in Google search results as "key moments", which gives a tutorial an extra way to be found. YouTube can generate automatic chapters for some videos, but your own chapter names are clearer and use the words your viewers search for.</p>
+
+      <h2>Writing good chapter names</h2>
+      <ul>
+        <li>Name the action, not the order. "Account create cheyadam" is clearer than "Step 1".</li>
+        <li>Keep each name short so it fits on the progress bar on a phone.</li>
+        <li>Use the same mix of Telugu and English you speak in the video. If you say "template select cheyandi", write that.</li>
+        <li>Do not stuff keywords into chapter names. Viewers read them before deciding to stay.</li>
+      </ul>
+
+      <h2>Chapters not showing? Check these</h2>
+      <p>If the list passes every check here but chapters still do not appear, wait a few minutes and refresh. Make sure each timestamp starts its own line and is not inside a link. Remember that YouTube can turn chapters off for some videos, and they are not shown on every surface, for example in some embedded players. Shorts do not support chapters.</p>
+      <p style="font-size:0.9rem;color:#9AA0A6;">Written by <a href="/about.html">Naveen Kodali</a>, Telugu YouTuber and founder of Creator Toolkit.</p>
+    </section>
+
+<section class="faq-section" style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">Frequently Asked Questions</h2>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Why are my YouTube chapters not showing?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Usually one rule is broken: the first timestamp is not 0:00, there are fewer than three timestamps, a chapter is shorter than 10 seconds, or the times are out of order. Paste your list here to find which one.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Where do I paste the chapters?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">In the video description in YouTube Studio. Each chapter goes on its own line, starting with the timestamp.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Can chapter names be in Telugu?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes. Chapter names can be in Telugu script, English, or a mix. Use the words your viewers search for.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Do YouTube Shorts support chapters?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">No. Chapters are for regular long-form videos.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Is my data sent anywhere?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">No. This tool runs entirely in your browser.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Why are my YouTube chapters not showing?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Usually one rule is broken: the first timestamp is not 0:00, there are fewer than three timestamps, a chapter is shorter than 10 seconds, or the times are out of order. Paste your list here to find which one."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Where do I paste the chapters?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "In the video description in YouTube Studio. Each chapter goes on its own line, starting with the timestamp."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can chapter names be in Telugu?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Chapter names can be in Telugu script, English, or a mix. Use the words your viewers search for."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Do YouTube Shorts support chapters?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Chapters are for regular long-form videos."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is my data sent anywhere?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. This tool runs entirely in your browser."
+   }
+  }
+ ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/">Blog</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+</div>
+
+<script src="js/chapters.js"></script>
+  <script src="js/cookie-consent.js"></script>
+</body>
+</html>

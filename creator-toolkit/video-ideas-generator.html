@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" class="v2-home">
+<head>
+  <!-- Google Analytics (GA4) — Paste this inside the <head>...</head> tag of EVERY page (index.html, about.html, title-generator.html, etc.) -->
+<!-- Place it as close to the top of <head> as possible -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-GR9K0R0PMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-GR9K0R0PMW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI YouTube Video Ideas Generator for Telugu Creators | Creator Toolkit</title>
+<meta name="description" content="Type your niche and get 10 specific YouTube video ideas with titles and why each works, in Telugu, English or Telugu + English Mix. Free, no sign-up.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.creatortoolkits.in/video-ideas-generator.html">
+<meta property="og:title" content="AI YouTube Video Ideas Generator for Telugu Creators | Creator Toolkit">
+<meta property="og:description" content="Type your niche and get 10 specific YouTube video ideas with titles and why each works, in Telugu, English or Telugu + English Mix. Free, no sign-up.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.creatortoolkits.in/video-ideas-generator.html">
+<meta property="og:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI YouTube Video Ideas Generator for Telugu Creators | Creator Toolkit">
+<meta name="twitter:description" content="Type your niche and get 10 specific YouTube video ideas with titles and why each works, in Telugu, English or Telugu + English Mix. Free, no sign-up.">
+<meta name="twitter:image" content="https://www.creatortoolkits.in/images/og-image.png">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="home-v2.min.css">
+<link rel="stylesheet" href="tool-v2.css">
+  <script src="/ct-nav.js" defer></script>
+  <script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<link rel="stylesheet" href="/light-theme.css">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "WebApplication",
+ "name": "AI Video Ideas Generator",
+ "url": "https://www.creatortoolkits.in/video-ideas-generator.html",
+ "applicationCategory": "MultimediaApplication",
+ "operatingSystem": "Web",
+ "description": "Type your niche and get 10 specific YouTube video ideas with titles and why each works, in Telugu, English or Telugu + English Mix. Free, no sign-up.",
+ "offers": {
+  "@type": "Offer",
+  "price": "0",
+  "priceCurrency": "INR"
+ },
+ "creator": {
+  "@type": "Person",
+  "name": "Naveen Kodali",
+  "url": "https://www.creatortoolkits.in/about.html"
+ }
+}
+</script>
+</head>
+
+<body class="v2-home">
+
+<div class="app-shell">
+
+  <main class="home-scroll">
+
+    <section class="page-header">
+      <a href="/" class="back-btn" aria-label="Back to home">←</a>
+      <div class="page-header-text">
+        <h1>💡 AI Video Ideas Generator</h1>
+        <p>10 specific ideas for your channel, in your language</p>
+      </div>
+    </section>
+
+    <section class="tool-card-form" data-tool="ideas">
+      <div class="field-group">
+        <label class="field-label" for="topic">Your channel topic or niche</label>
+        <input class="input-v2" type="text" id="topic" maxlength="200" placeholder="e.g. Canva tutorials for beginners, Telugu cooking, mobile editing">
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="language">Language</label>
+        <select class="select-v2" id="language">
+          <option value="mix" selected>Mix (Telugu + English)</option>
+          <option value="english">English</option>
+          <option value="telugu">Telugu (తెలుగు)</option>
+        </select>
+      </div>
+
+      <button class="btn-primary-v2" data-label="💡 Get Video Ideas" onclick="ctAI.generate()">💡 Get Video Ideas</button>
+
+      <div class="field-group mt-6">
+        <label class="field-label">Your ideas</label>
+        <div id="output" class="output-v2" data-placeholder="10 video ideas with a title and why each one works will appear here..."></div>
+      </div>
+
+      <button class="btn-secondary-v2" onclick="ctAI.copy()">📋 Copy Ideas</button>
+    </section>
+
+    <section class="related-tools">
+      <div class="section-title">Related tools</div>
+      <div class="tools-grid-v2">
+        <a href="/title-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🎬</div>
+          <h3>Title Generator</h3>
+          <p>Titles in Telugu, English or Mix</p>
+        </a>
+        <a href="/shorts-script-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">📱</div>
+          <h3>Shorts Script Generator</h3>
+          <p>30–60 sec scripts</p>
+        </a>
+        <a href="/viral-hook-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">🔥</div>
+          <h3>Viral Hook Generator</h3>
+          <p>Lines for the first 5 seconds</p>
+        </a>
+        <a href="/description-generator.html" class="tool-card-v2">
+          <div class="tool-icon-v2">📝</div>
+          <h3>Description Generator</h3>
+          <p>SEO-ready descriptions</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="seo-block">
+      <h2>What this tool does</h2>
+      <p>Type your channel's topic, for example "Canva tutorials" or "Telugu home cooking", and get ten video ideas. Each idea comes with a working title and one line on why it works: the problem it solves for a viewer or the search it answers. Ideas cover different formats, such as how-tos, beginner mistakes, comparisons and common questions, so you are not making the same video ten times.</p>
+
+      <h2>Why idea quality matters more than volume</h2>
+      <p>On a small channel, a few videos usually bring most of the views. When I compared my own ten most-viewed Telugu videos, two of them carried about two thirds of the views, and both answered a specific question people were already searching for. Ideas that solve a clear problem keep getting found long after upload. Generic ideas that could fit any channel rarely do.</p>
+
+      <h2>How to pick from the list</h2>
+      <ul>
+        <li><strong>Search check:</strong> type the idea into YouTube search. If suggestions appear as you type, people are looking for it.</li>
+        <li><strong>Gap check:</strong> look at the top results. Are they old, in another language, or confusing? A clear Telugu version can win.</li>
+        <li><strong>Can you show it?</strong> Prefer ideas you can demonstrate on screen with your phone or laptop, step by step.</li>
+        <li><strong>Can you finish it this week?</strong> Consistency beats one perfect video you never publish.</li>
+      </ul>
+
+      <h2>Turning an idea into a video</h2>
+      <p>Once you pick an idea, refine its title with the <a href="/title-generator.html">Title Generator</a> and write a strong opening line with the <a href="/viral-hook-generator.html">Viral Hook Generator</a>. If the idea is small enough, make it a Short first with the <a href="/shorts-script-generator.html">Shorts Script Generator</a>. If it gets interest, make the full tutorial next. After publishing, add <a href="/youtube-chapters-generator.html">chapters</a> so viewers can jump to the step they need.</p>
+
+      <h2>What the AI can and cannot do</h2>
+      <p>The tool knows common patterns of useful YouTube videos, but it does not see your channel analytics or live search data, and it can be wrong about details. Use the list as a brainstorm, not a plan. The best ideas often come from the comments on your own videos, so read those too. The generator is also told not to invent statistics or income claims, so the titles stay honest.</p>
+      <p style="font-size:0.9rem;color:#9AA0A6;">Written by <a href="/about.html">Naveen Kodali</a>, Telugu YouTuber and founder of Creator Toolkit.</p>
+    </section>
+
+<section class="faq-section" style="max-width:800px;margin:60px auto;padding:0 20px;">
+  <h2 style="color:#fff;font-family:'Space Grotesk',sans-serif;margin-bottom:24px;">Frequently Asked Questions</h2>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Can I get video ideas in Telugu?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes. Choose Telugu, English, or the Telugu + English mix.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Are these ideas based on live YouTube data?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">No. They come from an AI model that knows common patterns of useful videos. Check each idea in YouTube search before you film it.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Can I generate again for different ideas?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes. Each click gives a new set. Try a narrower topic for more specific ideas, such as &#x27;Canva logo design&#x27; instead of &#x27;Canva&#x27;.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Does it work for Shorts ideas?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes. Many ideas can be cut down into a Short. Use the Shorts Script Generator to write it.</p>
+  </details>
+  <details style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
+    <summary style="color:#00D4FF;font-weight:600;cursor:pointer;">Is it free?</summary>
+    <p style="color:#c0c0d0;margin-top:12px;line-height:1.6;">Yes, it is free and needs no sign-up.</p>
+  </details>
+</section>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Can I get video ideas in Telugu?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Choose Telugu, English, or the Telugu + English mix."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are these ideas based on live YouTube data?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. They come from an AI model that knows common patterns of useful videos. Check each idea in YouTube search before you film it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Can I generate again for different ideas?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Each click gives a new set. Try a narrower topic for more specific ideas, such as 'Canva logo design' instead of 'Canva'."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does it work for Shorts ideas?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. Many ideas can be cut down into a Short. Use the Shorts Script Generator to write it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is it free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes, it is free and needs no sign-up."
+   }
+  }
+ ]
+}
+</script>
+
+    <footer class="home-footer">
+  <p>© 2026 Creator Toolkit</p>
+  <p>
+    <a href="/">Home</a> ·
+    <a href="/about.html">About</a> ·
+    <a href="/blog/">Blog</a> ·
+    <a href="/contact.html">Contact</a> ·
+    <a href="/privacy.html">Privacy Policy</a> ·
+    <a href="/terms.html">Terms and Conditions</a>
+  </p>
+      <div class="footer-social" style="display:flex;justify-content:center;gap:16px;margin-top:16px;">
+    <a href="https://www.youtube.com/@naveenkodali322" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style="color:#c0c0d0;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.5V8.5l6.3 3.5-6.3 3.5Z"/></svg>
+    </a>
+  </div>
+</footer>
+
+  </main>
+
+</div>
+
+<script src="js/ai-tool.js"></script>
+  <script src="js/cookie-consent.js"></script>
+</body>
+</html>

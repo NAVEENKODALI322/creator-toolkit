@@ -10,6 +10,10 @@
     ['📝', 'Description Generator', '/description-generator.html'],
     ['🏷️', 'Tags Generator', '/tags-generator.html'],
     ['#️⃣', 'Hashtag Generator', '/hashtag-generator.html'],
+    ['📱', 'Shorts Script Generator', '/shorts-script-generator.html'],
+    ['💡', 'Video Ideas Generator', '/video-ideas-generator.html'],
+    ['⏱️', 'Chapters Formatter', '/youtube-chapters-generator.html'],
+    ['✅', 'Title & Description Checker', '/title-description-checker.html'],
     ['🖼️', 'Thumbnail Downloader', '/thumbnail-downloader.html']
   ];
 
@@ -22,19 +26,19 @@
 
   var html =
     '<header class="ct-nav" id="ctNav"><div class="ct-nav-inner">' +
-      '<a href="/index.html" class="ct-logo" aria-label="Creator Toolkit home">' +
+      '<a href="/" class="ct-logo" aria-label="Creator Toolkit home">' +
         '<span class="ct-logo-mark">🚀</span>' +
         '<span class="ct-logo-text">Creator<span>Toolkit</span></span></a>' +
       '<nav class="ct-menu" id="ctMenu" aria-label="Main navigation">' +
         '<div class="ct-dd" id="ctDd">' +
           '<button type="button" class="ct-dd-btn' + (isToolPage ? ' active' : '') + '" id="ctDdBtn" aria-expanded="false">Tools <i>▾</i></button>' +
-          '<div class="ct-dd-menu">' + toolLinks + '<a href="/index.html#toolsGrid" class="ct-all">View all tools →</a></div>' +
+          '<div class="ct-dd-menu">' + toolLinks + '<a href="/#toolsGrid" class="ct-all">View all tools →</a></div>' +
         '</div>' +
-        '<a href="/blog/index.html"' + cls(path.indexOf('/blog') === 0) + '>Blog</a>' +
+        '<a href="/blog/"' + cls(path.indexOf('/blog') === 0) + '>Blog</a>' +
         /* Videos temporarily hidden for AdSense approval */
         '<a href="/about.html"' + cls(path === '/about.html') + '>About</a>' +
         '<a href="/contact.html"' + cls(path === '/contact.html') + '>Contact</a>' +
-        '<a href="/index.html#toolsGrid" class="ct-cta">Try Free Tools →</a>' +
+        '<a href="/#toolsGrid" class="ct-cta">Try Free Tools →</a>' +
       '</nav>' +
       '<button class="ct-burger" id="ctBurger" aria-label="Open menu" aria-expanded="false" aria-controls="ctMenu"><span></span><span></span><span></span></button>' +
     '</div></header>';
