@@ -55,4 +55,4 @@ If you are starting a similar channel, these are the three things the data point
 - Count your videos per topic before you decide what is working. Fiverr has only three videos here and still holds 41% of the views.
 - Do not read too much into one result. Ten videos from one channel can show a direction, but not a rule.
 
-I wrote about the numbers behind my best-performing Canva video in [How One Telugu Canva Video Reached 39,000 Views](/blog/telugu-canva-video-39k-views-analytics.html). You can browse my videos on the [Videos page](/videos/index.html).
+I wrote about the numbers behind my best-performing Canva video in [How One Telugu Canva Video Reached 39,000 Views](/blog/telugu-canva-video-39k-views-analytics.html). You can watch all of them on [my YouTube channel](https://www.youtube.com/@naveenkodali322).
