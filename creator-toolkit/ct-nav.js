@@ -14,6 +14,8 @@
     ['💡', 'Video Ideas Generator', '/video-ideas-generator.html'],
     ['⏱️', 'Chapters Formatter', '/youtube-chapters-generator.html'],
     ['✅', 'Title & Description Checker', '/title-description-checker.html'],
+    ['🖍️', 'Thumbnail Text Ideas', '/thumbnail-text-generator.html'],
+    ['💬', 'Comment Reply Generator', '/comment-reply-generator.html'],
     ['🖼️', 'Thumbnail Downloader', '/thumbnail-downloader.html']
   ];
 

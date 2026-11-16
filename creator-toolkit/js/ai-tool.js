@@ -18,7 +18,7 @@
 
     var topic = (topicEl.value || '').trim();
     if (!topic) {
-      out.textContent = 'Please type your video topic first.';
+      out.textContent = topicEl.tagName === 'TEXTAREA' ? 'Please paste the comment first.' : 'Please type your video topic first.';
       topicEl.focus();
       return;
     }
@@ -37,7 +37,9 @@
           tool: tool,
           topic: topic,
           language: langEl ? langEl.value : 'mix',
-          seconds: secEl ? Number(secEl.value) : undefined
+          seconds: secEl ? Number(secEl.value) : undefined,
+          context: document.getElementById('context') ? document.getElementById('context').value : undefined,
+          tone: document.getElementById('tone') ? document.getElementById('tone').value : undefined
         })
       });
       var data = {};
@@ -60,7 +62,7 @@
     var out = document.getElementById('output');
     var btn = document.querySelector('.btn-secondary-v2');
     var text = (out.textContent || '').trim();
-    if (!text || /^(Writing|Please type)/.test(text)) { out.textContent = 'Nothing to copy yet. Generate first.'; return; }
+    if (!text || /^(Writing|Please (type|paste))/.test(text)) { out.textContent = 'Nothing to copy yet. Generate first.'; return; }
     try {
       await navigator.clipboard.writeText(text);
       var o = btn.innerHTML; btn.innerHTML = '✅ Copied!'; setTimeout(function () { btn.innerHTML = o; }, 2000);
@@ -69,7 +71,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var t = document.getElementById('topic');
-    if (t) t.addEventListener('keydown', function (e) { if (e.key === 'Enter') generate(); });
+    if (t && t.tagName === 'INPUT') t.addEventListener('keydown', function (e) { if (e.key === 'Enter') generate(); });
   });
 
   window.ctAI = { generate: generate, copy: copy };

@@ -7,9 +7,15 @@
     'title-generator': { name: 'Title Generator', next: ['tags-generator.html', 'Tags Generator', 'Next step: get tags for this video'] },
     'tags-generator': { name: 'Tags Generator', next: ['hashtag-generator.html', 'Hashtag Generator', 'Next step: add hashtags'] },
     'hashtag-generator': { name: 'Hashtag Generator', next: ['description-generator.html', 'Description Generator', 'Next step: write the description'] },
-    'description-generator': { name: 'Description Generator', next: ['viral-hook-generator.html', 'Viral Hook Generator', 'Next step: write a stronger hook'] },
+    'description-generator': { name: 'Description Generator', next: ['youtube-chapters-generator.html', 'Chapters Formatter', 'Next step: add chapters to the description'] },
     'viral-hook-generator': { name: 'Viral Hook Generator', next: ['title-generator.html', 'Title Generator', 'Next step: pick the title'] },
-    'thumbnail-downloader': { name: 'Thumbnail Downloader', next: null }
+    'thumbnail-downloader': { name: 'Thumbnail Downloader', next: ['thumbnail-text-generator.html', 'Thumbnail Text Ideas', 'Next step: write text for your own thumbnail'] },
+    'youtube-chapters-generator': { name: 'Chapters Formatter', next: ['title-description-checker.html', 'Title & Description Checker', 'Next step: check your title and description'] },
+    'shorts-script-generator': { name: 'Shorts Script Generator', next: ['title-generator.html', 'Title Generator', 'Next step: get a title for this Short'] },
+    'video-ideas-generator': { name: 'Video Ideas Generator', next: ['title-generator.html', 'Title Generator', 'Next step: polish the title of your favourite idea'] },
+    'thumbnail-text-generator': { name: 'Thumbnail Text Ideas', next: ['title-generator.html', 'Title Generator', 'Next step: pick a title that pairs with it'] },
+    'comment-reply-generator': { name: 'Comment Reply Generator', next: ['video-ideas-generator.html', 'Video Ideas Generator', 'Next step: turn viewer questions into video ideas'] },
+    'title-description-checker': { name: 'Title & Description Checker', next: null }
   };
   var key = (location.pathname.split('/').pop() || '').replace(/\.html$/, '');
   var tool = TOOLS[key];
@@ -45,7 +51,7 @@
       box.style.cssText = 'display:none;margin-top:14px;padding:14px 16px;border-radius:14px;border:1px solid rgba(108,99,255,.35);background:rgba(108,99,255,.08);font-size:14px;line-height:1.5;';
       var a = document.createElement('a');
       a.className = 'ct-next-link';
-      a.href = tool.next[0];
+      a.href = '/' + tool.next[0];
       a.textContent = tool.next[2] + ' → ' + tool.next[1];
       a.style.cssText = 'color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;';
       box.appendChild(a);

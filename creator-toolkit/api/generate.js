@@ -1,5 +1,6 @@
 // Shared AI endpoint for the newer tools, so the site stays within Vercel's function limit.
-// POST { tool: "shorts" | "ideas", topic, language: "mix" | "english" | "telugu", seconds?: 30 | 45 | 60 }
+// POST { tool: "shorts" | "ideas" | "thumbtext" | "replies", topic, language: "mix" | "english" | "telugu",
+//        seconds?: 30 | 45 | 60 (shorts), context?: video topic (replies), tone?: see TONES (replies) }
 // Response: { text: "..." }
 //
 // Like the title and hook APIs, the prompts forbid invented numbers, income claims and hype,
@@ -7,7 +8,14 @@
 
 const MAX_TOPIC_LENGTH = 200;
 const CALL_TIMEOUT_MS = 9000;
-const TOOLS = ["shorts", "ideas"];
+const TOOLS = ["shorts", "ideas", "thumbtext", "replies"];
+const MAX_COMMENT_LENGTH = 600;
+const TONES = {
+  friendly: "warm and friendly, like talking to a regular viewer",
+  thanks: "grateful, thanking the viewer for watching and commenting",
+  answer: "helpful, directly answering the viewer's question in simple steps",
+  critical: "calm and respectful, acknowledging fair points in criticism without arguing or getting defensive",
+};
 const LANGUAGES = ["mix", "english", "telugu"];
 
 const RATE_LIMIT_MESSAGE = "Too many people are using the AI tools right now. Please wait a minute and try again.";
@@ -85,6 +93,38 @@ Rules:
 ${HONESTY}`;
 }
 
+function thumbTextPrompt(topic, language) {
+  return `Suggest 10 short THUMBNAIL TEXT options (the big words written on a YouTube thumbnail) for a video about: ${topic}
+
+${languageBlock(language)}
+
+Rules:
+- Each option is 2 to 4 words, never more than 25 characters. Thumbnail text must be readable on a small phone screen.
+- Do NOT repeat the video title. Thumbnail text should add curiosity or show the result, while the title explains the topic.
+- Mix styles: the result or outcome, a short question, a before/after contrast, a warning or mistake, and a single bold word.
+- Output exactly 10 lines, one option per line, no numbering, no quotes, no emojis.
+
+${HONESTY}`;
+}
+
+function repliesPrompt(comment, context, language, tone) {
+  return `A viewer left this comment on a YouTube video${context ? ` about "${context}"` : ""}:
+"""${comment}"""
+
+Write 3 different replies the creator could post. Tone: ${TONES[tone] || TONES.friendly}.
+
+${languageBlock(language)}
+
+Rules:
+- Each reply is 1 to 3 short sentences. Sound like a real person, not a brand.
+- Reply to what the viewer actually said. If they asked a question you cannot answer from the comment, say you will help and ask one short follow-up question instead of guessing.
+- Never insult the viewer, argue, or promise things the creator may not do (like "I will make a video tomorrow").
+- If the comment is spam or abusive, write polite short replies or suggest not replying.
+- Output the 3 replies separated by a blank line, each starting with "Reply 1:", "Reply 2:" and "Reply 3:". No markdown.
+
+${HONESTY}`;
+}
+
 function cleanOutput(text) {
   return String(text || "")
     .replace(/\*\*/g, "")
@@ -147,7 +187,14 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Server misconfiguration: API key not set." });
     }
 
-    const prompt = tool === "shorts" ? shortsPrompt(topic, language, seconds) : ideasPrompt(topic, language);
+    const context = String(body.context || "").replace(/\s+/g, " ").trim().slice(0, MAX_TOPIC_LENGTH);
+    const tone = Object.prototype.hasOwnProperty.call(TONES, body.tone) ? body.tone : "friendly";
+    const comment = String(body.topic || "").replace(/\s+/g, " ").trim().slice(0, MAX_COMMENT_LENGTH);
+    const prompt =
+      tool === "shorts" ? shortsPrompt(topic, language, seconds)
+      : tool === "ideas" ? ideasPrompt(topic, language)
+      : tool === "thumbtext" ? thumbTextPrompt(topic, language)
+      : repliesPrompt(comment, context, language, tone);
 
     let result = null;
     for (let attempt = 1; attempt <= 2; attempt++) {
