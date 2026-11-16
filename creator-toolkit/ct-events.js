@@ -51,8 +51,9 @@
       box.style.cssText = 'display:none;margin-top:14px;padding:14px 16px;border-radius:14px;border:1px solid rgba(108,99,255,.35);background:rgba(108,99,255,.08);font-size:14px;line-height:1.5;';
       var a = document.createElement('a');
       a.className = 'ct-next-link';
-      a.href = '/' + tool.next[0];
-      a.textContent = tool.next[2] + ' → ' + tool.next[1];
+      var te = location.pathname.indexOf('/te/') === 0;
+      a.href = (te ? '/te/' : '/') + tool.next[0];
+      a.textContent = (te ? 'తర్వాత: ' + tool.next[1] + ' →' : tool.next[2] + ' → ' + tool.next[1]);
       a.style.cssText = 'color:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;';
       box.appendChild(a);
       copyBtn.parentNode.insertBefore(box, copyBtn.nextSibling);
