@@ -14,9 +14,14 @@
     ['malayalam', 'മലയാളം', 'Malayalam', 'Manglish (Malayalam + English)'],
     ['marathi', 'मराठी', 'Marathi', 'Marathi + English'],
     ['bengali', 'বাংলা', 'Bengali', 'Bengali + English'],
-    ['gujarati', 'ગુજરાતી', 'Gujarati', 'Gujarati + English']
+    ['gujarati', 'ગુજરાતી', 'Gujarati', 'Gujarati + English'],
+    ['punjabi', 'ਪੰਜਾਬੀ', 'Punjabi', 'Punjabi + English'],
+    ['odia', 'ଓଡ଼ିଆ', 'Odia', 'Odia + English'],
+    ['urdu', 'اردو', 'Urdu', 'Urdu + English'],
+    ['assamese', 'অসমীয়া', 'Assamese', 'Assamese + English'],
+    ['bhojpuri', 'भोजपुरी', 'Bhojpuri', 'Bhojpuri + English']
   ];
-  var BROWSER = { hi: 'hindi', te: 'telugu', ta: 'tamil', kn: 'kannada', ml: 'malayalam', mr: 'marathi', bn: 'bengali', gu: 'gujarati' };
+  var BROWSER = { hi: 'hindi', te: 'telugu', ta: 'tamil', kn: 'kannada', ml: 'malayalam', mr: 'marathi', bn: 'bengali', gu: 'gujarati', pa: 'punjabi', or: 'odia', ur: 'urdu', as: 'assamese', bho: 'bhojpuri' };
 
   function valid(v) {
     if (v === 'english') return true;
@@ -35,7 +40,8 @@
   function browserDefault() {
     var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
     for (var i = 0; i < list.length; i++) {
-      var code = String(list[i] || '').slice(0, 2).toLowerCase();
+      var tag = String(list[i] || '').toLowerCase();
+      var code = BROWSER[tag.slice(0, 3)] ? tag.slice(0, 3) : tag.slice(0, 2);
       if (BROWSER[code]) return BROWSER[code] + '-mix';
     }
     return null;

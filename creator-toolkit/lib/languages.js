@@ -3,6 +3,7 @@
 // Request values (the "language" field):
 //   "english"                         pure English
 //   "<lang>"        e.g. "hindi"      pure <lang> in its own script (brand names may stay in English)
+//   languages: hindi telugu tamil kannada malayalam marathi bengali gujarati punjabi odia urdu assamese bhojpuri
 //   "<lang>-mix"    e.g. "hindi-mix"  <lang> + English mixed, the way creators actually talk
 //   "mix"                             legacy value = "telugu-mix" (kept for the website's old pages and the mobile app)
 //   "telugu"                          pure Telugu (legacy value, same meaning as before)
@@ -16,6 +17,14 @@ export const LANGS = {
   marathi:   { name: "Marathi",   native: "मराठी",    script: "Devanagari", range: /[ऀ-ॿ]/g, sample: "Instagram वर Followers कसे वाढवायचे? 5 Easy Tips" },
   bengali:   { name: "Bengali",   native: "বাংলা",    script: "Bengali",    range: /[ঀ-৿]/g, sample: "Instagram-এ Followers কীভাবে বাড়াবেন? 5 Easy Tips" },
   gujarati:  { name: "Gujarati",  native: "ગુજરાતી",  script: "Gujarati",   range: /[઀-૿]/g, sample: "Instagram પર Followers કેવી રીતે વધારવા? 5 Easy Tips" },
+  punjabi:   { name: "Punjabi",   native: "ਪੰਜਾਬੀ",   script: "Gurmukhi",   range: /[਀-੿]/g, sample: "Instagram ਤੇ Followers ਕਿਵੇਂ ਵਧਾਈਏ? 5 Easy Tips" },
+  odia:      { name: "Odia",      native: "ଓଡ଼ିଆ",    script: "Odia",       range: /[଀-୿]/g, sample: "Instagram ରେ Followers କିପରି ବଢ଼ାଇବେ? 5 Easy Tips" },
+  urdu:      { name: "Urdu",      native: "اردو",     script: "Urdu (Perso-Arabic, right to left)", range: /[؀-ۿݐ-ݿ]/g, sample: "Instagram پر Followers کیسے بڑھائیں؟ 5 Easy Tips",
+               note: "Write Urdu in Urdu script, not Hindi in Devanagari." },
+  assamese:  { name: "Assamese",  native: "অসমীয়া",  script: "Assamese (Bengali-Assamese)", range: /[ঀ-৿]/g, sample: "Instagram ত Followers কেনেকৈ বঢ়াব? 5 Easy Tips",
+               note: "Write Assamese, not Bengali: use Assamese words and the letters ৰ and ৱ." },
+  bhojpuri:  { name: "Bhojpuri",  native: "भोजपुरी",  script: "Devanagari", range: /[ऀ-ॿ]/g, sample: "Instagram पर Followers कइसे बढ़ाईं? 5 Easy Tips",
+               note: "Write real Bhojpuri the way Bhojpuri creators speak (for example बा, रहल, कइसे, हमनी), not standard Hindi." },
 };
 
 // Returns { lang: "english" | key of LANGS, mix: boolean, value: canonical string }.
@@ -50,12 +59,12 @@ export function languageBlock(L) {
     return `Language: natural, everyday ${info.name.toUpperCase()}, written in ${info.script} script (${info.native}).
 - Only well-known brand or tool names (YouTube, Instagram, Canva, Android) may stay in English letters.
 - Do not write ${info.name} words in English letters.
-- Use simple words a normal viewer speaks, not formal or bookish ${info.name}.`;
+- Use simple words a normal viewer speaks, not formal or bookish ${info.name}.${info.note ? "\n- " + info.note : ""}`;
   }
   return `Language: the ${info.name.toUpperCase()} + ENGLISH MIX that ${info.name} YouTubers actually speak.
 - Write ${info.name} words in ${info.script} script (${info.native}), never in English letters.
 - Keep tool names, brand names and common English words (video, tips, easy, mobile) in English.
-- Mix both languages naturally in every line. Example of the style (another topic, never copy it): ${info.sample}`;
+- Mix both languages naturally in every line. Example of the style (another topic, never copy it): ${info.sample}${info.note ? "\n- " + info.note : ""}`;
 }
 
 function count(text, re) {
@@ -67,7 +76,7 @@ function count(text, re) {
 export function matchesLanguage(text, L) {
   const latin = count(text, /[A-Za-z]/g);
   if (L.lang === "english") {
-    return !/[ऀ-෿]/.test(text);
+    return !/[؀-ۿऀ-෿]/.test(text);
   }
   const native = count(text, LANGS[L.lang].range);
   if (L.mix) return native >= 3 && latin >= 3;
