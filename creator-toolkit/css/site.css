@@ -148,3 +148,6 @@ a.ct-chip:hover{border-color:var(--brand)!important}
   .theme-toggle{width:38px!important;height:38px!important;margin:0!important}
   .ct-burger{width:38px!important;height:38px!important;padding:0 9px!important}
 }
+h1,h2,h3,h4,.section-title,.faq-section h2,.page-header-text h1,.ct-logo,.ct-logo-text{font-family:"Anek Latin","Anek Devanagari","Anek Telugu",system-ui,sans-serif!important}
+:lang(te) h1,:lang(te) h2,:lang(te) h3,[lang="te"] h2{font-family:"Anek Telugu","Anek Latin",system-ui,sans-serif!important}
+:lang(hi) h1,:lang(hi) h2,:lang(hi) h3,[lang="hi"] h2{font-family:"Anek Devanagari","Anek Latin",system-ui,sans-serif!important}
