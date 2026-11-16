@@ -170,3 +170,6 @@ h1,h2,h3,h4,.section-title,.faq-section h2,.page-header-text h1,.ct-logo,.ct-log
 .tr-copy{margin-top:8px;padding:7px 12px;border-radius:9px;border:1px solid var(--border);background:var(--card);color:var(--text);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
 .tr-copy:hover{border-color:var(--brand)}
 @media (min-width:900px){.tr-results{grid-template-columns:1fr 1fr}}
+button.ct-chip{font:inherit;cursor:pointer}
+button.ct-chip:hover{border-color:var(--brand)!important}
+.ct-chip-note{flex-basis:100%;margin:6px 0 0;font-size:13.5px;color:var(--brand);min-height:1.2em}

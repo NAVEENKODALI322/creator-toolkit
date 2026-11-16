@@ -71,7 +71,37 @@
     select.addEventListener('change', function () { save(select.value); });
   }
 
+  // Homepage language chips: pick the writing language for every tool.
+  function initChips() {
+    var chips = document.querySelectorAll('.ct-chip[data-lang]');
+    if (!chips.length) return;
+    var note = document.getElementById('chipNote');
+    function mark(v) {
+      var base = String(v || '').replace(/-mix$/, '');
+      chips.forEach(function (c) {
+        var on = c.getAttribute('data-lang') === base;
+        c.classList.toggle('on', on);
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    var current = read() || pageDefault() || browserDefault() || 'english';
+    mark(current);
+    chips.forEach(function (c) {
+      c.addEventListener('click', function () {
+        var code = c.getAttribute('data-lang');
+        var v = code === 'english' ? 'english' : code + '-mix';
+        save(v);
+        mark(v);
+        if (note) {
+          var name = c.querySelector('span') ? c.querySelector('span').textContent : code;
+          note.textContent = (note.getAttribute('data-tpl') || '{lang}').split('{lang}').join(name);
+        }
+      });
+    });
+  }
+
   function init() {
+    initChips();
     var selects = document.querySelectorAll('select[data-ct-lang]');
     for (var i = 0; i < selects.length; i++) fill(selects[i]);
   }

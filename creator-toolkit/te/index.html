@@ -136,8 +136,10 @@
 
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&family=Anek+Telugu:wght@400;600;700&display=swap">
+
 <script src="/js/i18n.js"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700&family=Anek+Telugu:wght@400;600;700&display=swap">
 </head>
 <body class="v2-home">
 <div class="app-shell">
@@ -206,7 +208,7 @@ a.ct-chip:hover{border-color:var(--accent)}
     <section class="ct-block ct-langs">
       <h2 class="section-title">మీ భాషలో రాయండి</h2>
       <p class="ct-sub">అన్ని AI టూల్స్ ఈ భాషల్లో, English తో mix లో కూడా రాస్తాయి. ఒకసారి ఎంచుకుంటే సైట్ గుర్తుంచుకుంటుంది.</p>
-      <div class="ct-chips"><a class="ct-chip" href="/"><span>English</span></a><a class="ct-chip" href="/hi/"><span>हिन्दी</span><small>Hindi</small></a><span class="ct-chip on"><span>తెలుగు</span><small>Telugu</small></span><span class="ct-chip"><span>தமிழ்</span><small>Tamil</small></span><span class="ct-chip"><span>ಕನ್ನಡ</span><small>Kannada</small></span><span class="ct-chip"><span>മലയാളം</span><small>Malayalam</small></span><span class="ct-chip"><span>मराठी</span><small>Marathi</small></span><span class="ct-chip"><span>বাংলা</span><small>Bengali</small></span><span class="ct-chip"><span>ગુજરાતી</span><small>Gujarati</small></span><span class="ct-chip"><span>ਪੰਜਾਬੀ</span><small>Punjabi</small></span><span class="ct-chip"><span>ଓଡ଼ିଆ</span><small>Odia</small></span><span class="ct-chip"><span>اردو</span><small>Urdu</small></span><span class="ct-chip"><span>অসমীয়া</span><small>Assamese</small></span><span class="ct-chip"><span>भोजपुरी</span><small>Bhojpuri</small></span></div>
+      <div class="ct-chips"><button type="button" class="ct-chip" data-lang="english" aria-pressed="false"><span>English</span></button><button type="button" class="ct-chip" data-lang="hindi" aria-pressed="false"><span>हिन्दी</span><small>Hindi</small></button><button type="button" class="ct-chip" data-lang="telugu" aria-pressed="false"><span>తెలుగు</span><small>Telugu</small></button><button type="button" class="ct-chip" data-lang="tamil" aria-pressed="false"><span>தமிழ்</span><small>Tamil</small></button><button type="button" class="ct-chip" data-lang="kannada" aria-pressed="false"><span>ಕನ್ನಡ</span><small>Kannada</small></button><button type="button" class="ct-chip" data-lang="malayalam" aria-pressed="false"><span>മലയാളം</span><small>Malayalam</small></button><button type="button" class="ct-chip" data-lang="marathi" aria-pressed="false"><span>मराठी</span><small>Marathi</small></button><button type="button" class="ct-chip" data-lang="bengali" aria-pressed="false"><span>বাংলা</span><small>Bengali</small></button><button type="button" class="ct-chip" data-lang="gujarati" aria-pressed="false"><span>ગુજરાતી</span><small>Gujarati</small></button><button type="button" class="ct-chip" data-lang="punjabi" aria-pressed="false"><span>ਪੰਜਾਬੀ</span><small>Punjabi</small></button><button type="button" class="ct-chip" data-lang="odia" aria-pressed="false"><span>ଓଡ଼ିଆ</span><small>Odia</small></button><button type="button" class="ct-chip" data-lang="urdu" aria-pressed="false"><span>اردو</span><small>Urdu</small></button><button type="button" class="ct-chip" data-lang="assamese" aria-pressed="false"><span>অসমীয়া</span><small>Assamese</small></button><button type="button" class="ct-chip" data-lang="bhojpuri" aria-pressed="false"><span>भोजपुरी</span><small>Bhojpuri</small></button><p class="ct-chip-note" id="chipNote" aria-live="polite" data-tpl="{lang} ఎంచుకున్నారు. ఇకపై అన్ని టూల్స్ {lang} లో రాస్తాయి. ఏ టూల్ లో అయినా మార్చుకోవచ్చు."></p></div>
     </section>
 
     <section class="popular-tools ct-block">
@@ -407,6 +409,7 @@ a.ct-chip:hover{border-color:var(--accent)}
 </div>
 
 <script src="/home-v2.min.js"></script>
+<script src="/js/lang.js"></script>
 <script src="/theme.js" defer></script>
 <script src="/js/cookie-consent.js"></script>
 </body>
