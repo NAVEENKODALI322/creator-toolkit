@@ -10,7 +10,10 @@ import { normalizeLanguage, isKnownLanguage, languageBlock as langBlock, LANGS }
 
 const MAX_TOPIC_LENGTH = 200;
 const CALL_TIMEOUT_MS = 9000;
-const TOOLS = ["shorts", "ideas", "thumbtext", "replies"];
+const TOOLS = ["shorts", "ideas", "thumbtext", "replies", "translate"];
+const MAX_TRANSLATE_LANGS = 6;
+const MAX_TITLE_CHARS = 100;
+const MAX_DESC_CHARS = 2000;
 const MAX_COMMENT_LENGTH = 600;
 const TONES = {
   friendly: "warm and friendly, like talking to a regular viewer",
@@ -144,7 +147,7 @@ function cleanOutput(text) {
     .trim();
 }
 
-async function callModel(prompt, language) {
+async function callModel(prompt, language, system) {
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -158,7 +161,7 @@ async function callModel(prompt, language) {
       messages: [
         {
           role: "system",
-          content: "You are an experienced YouTube creator coach for Indian creators who make videos in many Indian languages. You write practical, honest, specific content and never exaggerate.",
+          content: system || "You are an experienced YouTube creator coach for Indian creators who make videos in many Indian languages. You write practical, honest, specific content and never exaggerate.",
         },
         { role: "user", content: prompt },
       ],
@@ -173,6 +176,66 @@ async function callModel(prompt, language) {
     status: response.status,
     content: choice && choice.message ? choice.message.content : "",
   };
+}
+
+// ---------- Translator: title + description into several languages for YouTube Studio translations ----------
+const TRANSLATE_SYSTEM = "You are a professional translator for YouTube creators in India. You translate naturally, the way a native speaker would write a YouTube title and description, never word by word.";
+
+function translatePrompt(title, description, L) {
+  const info = LANGS[L.lang] || { name: "English", script: "Latin", native: "English" };
+  return `Translate this YouTube video title${description ? " and description" : ""} into ${info.name}${L.lang === "english" ? "" : `, written in ${info.script} script (${info.native})`}.
+
+TITLE:
+${title}
+${description ? `\nDESCRIPTION:\n${description}\n` : ""}
+Rules:
+- Write it the way ${info.name} viewers search and speak. Natural, not word-for-word.${info.note ? "\n- " + info.note : ""}
+- Keep brand, app and product names (YouTube, Canva, Instagram, iPhone) in English.
+- Keep links, @handles, #hashtags, timestamps like 0:00 and emojis exactly as they are.
+- The title must stay under ${MAX_TITLE_CHARS} characters. Keep the main keyword near the start.
+- Do not add anything that is not in the original. Do not add notes or explanations.
+
+Answer in exactly this format:
+TITLE: <translated title>${description ? "\nDESCRIPTION:\n<translated description>" : ""}`;
+}
+
+function parseTranslation(text) {
+  const t = String(text || "").replace(/\*\*/g, "");
+  const m = t.match(/TITLE\s*:\s*(.+)/i);
+  const d = t.match(/DESCRIPTION\s*:\s*\n?([\s\S]*)$/i);
+  return { title: m ? m[1].trim() : "", description: d ? d[1].trim() : "" };
+}
+
+async function handleTranslate(body, res) {
+  const title = String(body.title || "").replace(/\s+/g, " ").trim().slice(0, MAX_TITLE_CHARS);
+  const description = String(body.description || "").trim().slice(0, MAX_DESC_CHARS);
+  const targets = (Array.isArray(body.targets) ? body.targets : [])
+    .map((v) => String(v).toLowerCase())
+    .filter((v, i, a) => (v === "english" || LANGS[v]) && a.indexOf(v) === i)
+    .slice(0, MAX_TRANSLATE_LANGS);
+  if (!title) return res.status(400).json({ error: "Please enter your video title." });
+  if (!targets.length) return res.status(400).json({ error: "Pick at least one language." });
+
+  const results = await Promise.all(targets.map(async (code) => {
+    const L = normalizeLanguage(code);
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const r = await callModel(translatePrompt(title, description, L), L, TRANSLATE_SYSTEM);
+        if (r.status === 429) return { language: code, error: RATE_LIMIT_MESSAGE };
+        if (!r.ok) continue;
+        const p = parseTranslation(r.content);
+        if (p.title) return { language: code, title: p.title.slice(0, 120), description: p.description };
+      } catch (err) {
+        console.warn("translate call failed:", code, err && err.message);
+      }
+    }
+    return { language: code, error: "Could not translate this one. Please try again." };
+  }));
+  if (results.every((r) => r.error)) {
+    const limited = results.some((r) => r.error === RATE_LIMIT_MESSAGE);
+    return res.status(limited ? 429 : 502).json({ error: limited ? RATE_LIMIT_MESSAGE : UPSTREAM_MESSAGE });
+  }
+  return res.status(200).json({ tool: "translate", translations: results });
 }
 
 export default async function handler(req, res) {
@@ -190,6 +253,10 @@ export default async function handler(req, res) {
     const seconds = [30, 45, 60].includes(Number(body.seconds)) ? Number(body.seconds) : 60;
 
     if (!tool) return res.status(400).json({ error: "Unknown tool." });
+    if (tool === "translate") {
+      if (!process.env.GROQ_API_KEY) return res.status(500).json({ error: "Server misconfiguration: API key not set." });
+      return await handleTranslate(body, res);
+    }
     if (!topic) return res.status(400).json({ error: "Please enter a topic." });
     if (!process.env.GROQ_API_KEY) {
       console.error("GROQ_API_KEY is missing in environment variables.");

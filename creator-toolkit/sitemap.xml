@@ -172,4 +172,16 @@
     <xhtml:link rel="alternate" hreflang="te" href="https://www.creatortoolkits.in/te/comment-reply-generator.html"/>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://www.creatortoolkits.in/title-translator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.creatortoolkits.in/title-translator.html"/>
+    <xhtml:link rel="alternate" hreflang="te" href="https://www.creatortoolkits.in/te/title-translator.html"/>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.creatortoolkits.in/te/title-translator.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.creatortoolkits.in/title-translator.html"/>
+    <xhtml:link rel="alternate" hreflang="te" href="https://www.creatortoolkits.in/te/title-translator.html"/>
+    <priority>0.7</priority>
+  </url>
 </urlset>
