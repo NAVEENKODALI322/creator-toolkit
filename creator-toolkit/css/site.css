@@ -57,3 +57,94 @@
 :root[data-theme="light"] .ct-lang-menu a[aria-current="true"]{color:#4f46e5}
 @media (max-width:860px){.ct-lang{margin-left:auto}.ct-lang + .theme-toggle{margin-left:8px}}
 .ct-footer p{text-align:left}
+
+/* ===== Design tokens (loaded last, so they win) =====
+   Light is the default. One brand colour (deep indigo ink), saffron only for small highlights. */
+:root, :root[data-theme="dark"]{
+  --bg:#0F1222; --bg-elevated:#151830; --card:#171A2E; --card-hover:#1D2140;
+  --border:rgba(255,255,255,.09); --border-soft:rgba(255,255,255,.05);
+  --text:#EEF0FA; --text-secondary:#A7ACC6; --text-faint:#7C82A0;
+  --brand:#8B90FF; --brand-ink:#0F1222; --brand-soft:rgba(139,144,255,.14);
+  --saffron:#F7B955;
+  --primary:var(--brand); --accent:var(--brand); --primary-soft:var(--brand-soft);
+  --grad-1:linear-gradient(var(--brand),var(--brand));
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3); --shadow-md:0 6px 20px rgba(0,0,0,.35); --shadow-glow:none;
+}
+:root[data-theme="light"]{
+  --bg:#F6F7FB; --bg-elevated:#FFFFFF; --card:#FFFFFF; --card-hover:#F9FAFD;
+  --border:#E3E6F0; --border-soft:#EEF0F6;
+  --text:#161A33; --text-secondary:#555B76; --text-faint:#7A7F97;
+  --brand:#4338CA; --brand-ink:#FFFFFF; --brand-soft:#EEF0FF;
+  --saffron:#D97706;
+  --primary:var(--brand); --accent:var(--brand); --primary-soft:var(--brand-soft);
+  --grad-1:linear-gradient(var(--brand),var(--brand));
+  --shadow-sm:0 1px 2px rgba(22,26,51,.06); --shadow-md:0 6px 20px rgba(22,26,51,.08); --shadow-glow:none;
+}
+
+/* Type: Anek by Ek Type (Indian foundry) — one family across Latin and Indian scripts */
+html, body, button, input, select, textarea{font-family:"Anek Latin","Anek Devanagari","Anek Telugu",system-ui,-apple-system,"Segoe UI",sans-serif}
+:lang(te), [lang="te"]{font-family:"Anek Telugu","Anek Latin",system-ui,sans-serif}
+:lang(hi), [lang="hi"]{font-family:"Anek Devanagari","Anek Latin",system-ui,sans-serif}
+body{background:var(--bg)!important;color:var(--text);-webkit-font-smoothing:antialiased}
+h1,h2,h3{letter-spacing:-.01em}
+
+/* Quiet the old decorative glow */
+.app-shell::before,.app-shell::after{display:none!important}
+
+/* Buttons: solid brand, no glow */
+.btn-primary-v2{background:var(--brand)!important;color:var(--brand-ink)!important;box-shadow:none!important;border:0}
+.btn-primary-v2:hover{filter:brightness(1.06)}
+.btn-secondary-v2{background:var(--card)!important;border:1px solid var(--border)!important;color:var(--text)!important}
+.ct-btn.primary{background:var(--brand)!important;color:var(--brand-ink)!important}
+.ct-btn.ghost{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--border)!important}
+:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+
+/* Inputs */
+.input-v2,.textarea-v2,.select-v2{background:var(--bg)!important;border:1px solid var(--border)!important;color:var(--text)!important}
+.input-v2:focus,.textarea-v2:focus,.select-v2:focus{border-color:var(--brand)!important;box-shadow:0 0 0 3px var(--brand-soft)!important}
+.tool-card-form,.output-v2{box-shadow:var(--shadow-sm)!important}
+
+/* Cards */
+.tool-card-v2{background:var(--card)!important;border:1px solid var(--border)!important;box-shadow:var(--shadow-sm)!important}
+.tool-card-v2:hover{border-color:var(--brand)!important;transform:none!important}
+.tool-card-v2 p{color:var(--text-secondary)!important}
+
+/* Icons: tinted tile with coloured line icon (calmer than full gradients) */
+.ct-icon{background:color-mix(in srgb,var(--i1) 13%,transparent)!important;color:var(--i1)!important;box-shadow:none!important}
+:root[data-theme="dark"] .ct-icon{background:color-mix(in srgb,var(--i1) 22%,transparent)!important;color:color-mix(in srgb,var(--i1) 70%,#fff)!important}
+
+/* Header */
+.ct-nav{background:color-mix(in srgb,var(--bg) 88%,transparent)!important;border-bottom:1px solid var(--border)!important}
+.ct-logo{color:var(--text)!important}
+.ct-logo-text span{background:none!important;-webkit-text-fill-color:currentColor;color:var(--brand)!important}
+.ct-menu a,.ct-dd-btn{color:var(--text-secondary)!important}
+.ct-menu a:hover,.ct-dd-btn:hover,.ct-menu a.active,.ct-dd-btn.active{color:var(--text)!important;background:var(--brand-soft)!important}
+.ct-menu a.ct-cta{background:var(--brand)!important;color:var(--brand-ink)!important;box-shadow:none!important}
+.ct-dd-menu,.ct-lang-menu{background:var(--card)!important;border:1px solid var(--border)!important;box-shadow:var(--shadow-md)!important}
+.ct-dd-menu a,.ct-lang-menu a{color:var(--text)!important}
+.ct-dd-menu a:hover,.ct-lang-menu a:hover{background:var(--brand-soft)!important}
+.ct-dd-menu a.ct-all,.ct-lang-menu a[aria-current="true"]{color:var(--brand)!important}
+.ct-lang-btn,.theme-toggle,.ct-burger{background:var(--card)!important;border:1px solid var(--border)!important;color:var(--text)!important}
+.ct-burger span{background:var(--text)!important}
+@media (max-width:860px){.ct-menu{background:var(--bg)!important;border-bottom:1px solid var(--border)!important}}
+
+/* Homepage details */
+.ct-hero h1{color:var(--text)}
+.ct-hero .eyebrow{color:var(--saffron)!important;background:transparent!important;border:0!important;padding:0!important;font-weight:700}
+.ct-chip{background:var(--card)!important}
+.ct-chip.on{border-color:var(--saffron)!important;box-shadow:inset 0 -3px 0 var(--saffron)!important}
+a.ct-chip:hover{border-color:var(--brand)!important}
+.tip-card{background:var(--card)!important;border:1px solid var(--border)!important}
+.seo-block h2{color:var(--text)!important;text-transform:none!important;letter-spacing:-.01em!important;font-size:1.25rem!important}
+.section-title{color:var(--text)}
+.faq-section summary,.faq-q{color:var(--text)!important}
+.ck-ok{border-left:3px solid #16a34a!important}
+.ck-warn{border-left:3px solid var(--saffron)!important}
+@media (max-width:440px){
+  .ct-nav-inner{gap:8px!important;padding:10px 14px!important}
+  .ct-logo{font-size:1rem!important;gap:8px!important}
+  .ct-lang{margin-left:auto}
+  .ct-lang-btn{padding:0 9px;height:38px}
+  .theme-toggle{width:38px!important;height:38px!important;margin:0!important}
+  .ct-burger{width:38px!important;height:38px!important;padding:0 9px!important}
+}

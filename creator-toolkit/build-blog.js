@@ -85,7 +85,7 @@ function renderPage(post, bodyHtml) {
 <link rel="stylesheet" href="/blog/blog.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
 <script src="/ct-nav.js" defer></script>
-<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'dark');}catch(e){document.documentElement.setAttribute('data-theme','dark');}})();</script>
+<script>(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('ct-theme')||'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();</script>
 <script type="application/ld+json">${ldJson}</script>
 </head>
 <body>

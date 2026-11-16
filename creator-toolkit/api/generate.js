@@ -116,7 +116,7 @@ ${HONESTY}`;
 }
 
 // Time, money and result claims a video may not deliver (same rule as the title API).
-const INVENTED_NUMBER = /\d\s*-?\s*(?:minutes?|mins?|seconds?|secs?|hours?|days?|weeks?|months?|years?|x|views|subscribers|subs|lakhs?|crores?|k)\b|\d\s*(?:నిమిషా|నిమిష|గంట|రోజు|రోజుల|సెకన)|\d\s*%|[$₹]\s*\d/i;
+const INVENTED_NUMBER = /\d\s*-?\s*(?:minutes?|mins?|seconds?|secs?|hours?|days?|weeks?|months?|years?|x|views|subscribers|subs|lakhs?|crores?|k)\b|\d\s*(?:నిమిషా|నిమిష|గంట|రోజు|రోజుల|సెకన)|\d\s*(?:मिनट|घंटे|घंटा|दिन|सेकंड|நிமிட|மணி|நாள்|నిమిష|గంట|రోజు|ನಿಮಿಷ|ಗಂಟೆ|മിനിറ്റ|মিনিট|મિનિટ)|\d\s*%|[$₹]\s*\d/i;
 
 function graphemeCount(text) {
   try { return [...new Intl.Segmenter("te", { granularity: "grapheme" }).segment(text)].length; }

@@ -42,7 +42,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // Phrases that overpromise or leak internal labels into the titles.
 const BANNED = /\b(tenglish|guaranteed?|you won['’]?t believe|10x|100x)\b/i;
 // Time, money and result claims a video may not deliver. Dropped unless the topic itself has a digit.
-const INVENTED_NUMBER = /\d\s*-?\s*(?:minutes?|mins?|seconds?|secs?|hours?|days?|weeks?|months?|years?|x|views|subscribers|subs|lakhs?|crores?|k)\b|\d\s*%|[$₹]\s*\d/i;
+const INVENTED_NUMBER = /\d\s*-?\s*(?:minutes?|mins?|seconds?|secs?|hours?|days?|weeks?|months?|years?|x|views|subscribers|subs|lakhs?|crores?|k)\b|\d\s*(?:मिनट|घंटे|घंटा|दिन|सेकंड|நிமிட|மணி|நாள்|నిమిష|గంట|రోజు|ನಿಮಿಷ|ಗಂಟೆ|മിനിറ്റ|মিনিট|મિનિટ)|\d\s*%|[$₹]\s*\d/i;
 
 const TELUGU_LETTER = /[\u0C00-\u0C7F]/g;
 const LATIN_LETTER = /[A-Za-z]/g;

@@ -167,8 +167,8 @@
 /* Theme toggle for inner pages */
 (function () {
   var root = document.documentElement;
-  try { root.setAttribute('data-theme', localStorage.getItem('ct-theme') || 'dark'); }
-  catch (e) { root.setAttribute('data-theme', 'dark'); }
+  try { root.setAttribute('data-theme', localStorage.getItem('ct-theme')||'light'); }
+  catch (e) { root.setAttribute('data-theme','light'); }
 
   if (!document.querySelector('link[href*="light-theme.css"]')) {
     var lk = document.createElement('link');

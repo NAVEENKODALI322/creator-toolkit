@@ -1,7 +1,7 @@
 (function () {
   var KEY = 'ct-theme', root = document.documentElement;
 
-  function current() { return root.getAttribute('data-theme') || 'dark'; }
+  function current() { return root.getAttribute('data-theme') || 'light'; }
 
   function apply(t) {
     root.setAttribute('data-theme', t);
