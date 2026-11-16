@@ -60,6 +60,7 @@ Rules:
 - Spoken lines must be short and easy to say in one breath.
 - The script must fit ${seconds} seconds at a normal speaking speed.
 - Give real, practical steps or points about the topic, not filler.
+- If the topic names a region, language or culture (for example Telugu, Andhra, Telangana), stay true to it.
 - No markdown, no asterisks, no emojis in the spoken lines.
 
 ${HONESTY}`;
@@ -77,6 +78,7 @@ Why it works: <one sentence on the viewer problem it solves or the search it ans
 Rules:
 - Mix formats: how-to tutorials, beginner mistakes, comparisons, step-by-step guides, myths, and questions people search.
 - Make every idea specific to the topic. No generic ideas that fit any channel.
+- If the topic names a region, language or culture (for example Telugu, Andhra, Telangana), every idea must belong to it. Do not drift to dishes, places or customs from other regions.
 - Ideas should be things a small creator can actually film with a phone.
 - No markdown, no asterisks, no headings, no intro or closing text.
 
