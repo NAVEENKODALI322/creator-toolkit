@@ -4,6 +4,7 @@
   'use strict';
 
   var busy = false;
+  function t(k, d) { return (window.CT_I18N || {})[k] || d; }
 
   async function generate() {
     if (busy) return;
@@ -18,16 +19,16 @@
 
     var topic = (topicEl.value || '').trim();
     if (!topic) {
-      out.textContent = topicEl.tagName === 'TEXTAREA' ? 'Please paste the comment first.' : 'Please type your video topic first.';
+      out.textContent = topicEl.tagName === 'TEXTAREA' ? t('needComment', 'Please paste the comment first.') : t('needTopic', 'Please type your video topic first.');
       topicEl.focus();
       return;
     }
 
     busy = true;
     btn.disabled = true;
-    btn.innerText = '⏳ Writing... (5–15 sec)';
+    btn.innerText = t('working', '⏳ Writing... (5–15 sec)');
     out.style.whiteSpace = 'pre-wrap';
-    out.textContent = 'Writing, please wait...';
+    out.textContent = t('wait', 'Writing, please wait...');
 
     try {
       var res = await fetch('/api/generate', {
@@ -47,10 +48,10 @@
       if (res.ok && data.text) {
         out.textContent = data.text;
       } else {
-        out.textContent = (data && data.error) ? data.error : 'Something went wrong. Please try again.';
+        out.textContent = (data && data.error) ? data.error : t('fail', 'Something went wrong. Please try again.');
       }
     } catch (err) {
-      out.textContent = 'Could not reach the server. Check your internet connection and try again.';
+      out.textContent = t('offline', 'Could not reach the server. Check your internet connection and try again.');
     } finally {
       busy = false;
       btn.disabled = false;
@@ -62,10 +63,10 @@
     var out = document.getElementById('output');
     var btn = document.querySelector('.btn-secondary-v2');
     var text = (out.textContent || '').trim();
-    if (!text || /^(Writing|Please (type|paste))/.test(text)) { out.textContent = 'Nothing to copy yet. Generate first.'; return; }
+    if (!text || (text === t('wait', 'Writing, please wait...') || text === t('needTopic', 'Please type your video topic first.') || text === t('needComment', 'Please paste the comment first.'))) { out.textContent = t('nothing', 'Nothing to copy yet. Generate first.'); return; }
     try {
       await navigator.clipboard.writeText(text);
-      var o = btn.innerHTML; btn.innerHTML = '✅ Copied!'; setTimeout(function () { btn.innerHTML = o; }, 2000);
+      var o = btn.innerHTML; btn.innerHTML = '✅ ' + t('copied', 'Copied!'); setTimeout(function () { btn.innerHTML = o; }, 2000);
     } catch (e) { alert('Could not copy. Please select the text and copy it.'); }
   }
 

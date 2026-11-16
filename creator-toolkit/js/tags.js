@@ -18,14 +18,14 @@ async function generateTags() {
     const data = await response.json();
 
     if (!response.ok) {
-      outputBox.innerHTML = "❌ API Error: " + (data.error?.message || data.error || "Something went wrong");
+      outputBox.textContent = "❌ API Error: " + (data.error?.message || data.error || "Something went wrong");
       return;
     }
 
-    outputBox.innerHTML = data.tags;
+    outputBox.textContent = data.tags;
   } catch (error) {
     console.error(error);
-    outputBox.innerHTML = "❌ Error: " + error.message;
+    outputBox.textContent = "❌ Error: " + error.message;
   }
 }
 

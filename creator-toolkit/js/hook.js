@@ -21,8 +21,7 @@ async function generateHooks() {
     const data = await response.json();
 
     if (!response.ok) {
-      outputBox.innerHTML =
-        "❌ " + (data.error?.message || data.error || "Failed to generate hooks.");
+      outputBox.textContent = "❌ " + (data.error?.message || data.error || "Failed to generate hooks.");
       return;
     }
 
@@ -31,16 +30,16 @@ async function generateHooks() {
         .split("\n")
         .map((line) => line.trim())
         .filter((line) => line.length > 0)
-        .join("<br><br>");
+        .join("\n\n");
 
-      outputBox.innerHTML = cleanedHooks;
+      outputBox.textContent = cleanedHooks;
     } else {
-      outputBox.innerHTML = "❌ No hooks generated.";
+      outputBox.textContent = "❌ No hooks generated.";
     }
 
   } catch (error) {
     console.error(error);
-    outputBox.innerHTML = "❌ Error: " + error.message;
+    outputBox.textContent = "❌ Error: " + error.message;
   }
 }
 

@@ -67,8 +67,8 @@
         left: 0;
         right: 0;
         z-index: 9999;
-        background: #1a1a2e;
-        border-top: 1px solid #2a2a3e;
+        background: var(--card, #fff);
+        border-top: 1px solid var(--border, #E3E6F0); box-shadow: 0 -6px 24px rgba(22,26,51,.08);
         padding: 16px 20px;
         box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
         animation: ccSlideUp 0.3s ease-out;
@@ -87,7 +87,7 @@
         gap: 16px;
       }
       #cookieConsentBanner .cc-text {
-        color: #c0c0d0;
+        color: var(--text-secondary, #555B76);
         font-size: 14px;
         line-height: 1.5;
         margin: 0;
@@ -95,7 +95,7 @@
         min-width: 240px;
       }
       #cookieConsentBanner .cc-link {
-        color: #00D4FF;
+        color: var(--brand, #4338CA);
         text-decoration: underline;
       }
       #cookieConsentBanner .cc-actions {
@@ -112,13 +112,13 @@
         cursor: pointer;
       }
       #cookieConsentBanner .cc-btn-accept {
-        background: #6C63FF;
-        color: #fff;
+        background: var(--brand, #4338CA);
+        color: var(--brand-ink, #fff);
       }
       #cookieConsentBanner .cc-btn-decline {
         background: transparent;
-        color: #c0c0d0;
-        border: 1px solid #2a2a3e;
+        color: var(--text-secondary, #555B76);
+        border: 1px solid var(--border, #E3E6F0);
       }
       @media (max-width: 480px) {
         #cookieConsentBanner .cc-inner { flex-direction: column; align-items: stretch; }

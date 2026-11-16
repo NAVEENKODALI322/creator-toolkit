@@ -17,6 +17,7 @@ async function generateTitles() {
     try {
         // UI feedback - Loading states
         if (generateBtn) {
+            generateBtn.dataset.label = generateBtn.dataset.label || generateBtn.innerText;
             generateBtn.disabled = true;
             generateBtn.innerText = "⏳ Generating...";
         }
@@ -50,7 +51,7 @@ async function generateTitles() {
         // Reset button state
         if (generateBtn) {
             generateBtn.disabled = false;
-            generateBtn.innerText = "✨ Generate Titles";
+            generateBtn.innerText = generateBtn.dataset.label || "✨ Generate Titles";
         }
     }
 }

@@ -13,8 +13,7 @@
   var DEFAULTS = ['english', 'hindi', 'telugu', 'tamil', 'bengali', 'marathi'];
   var KEY = 'ct-translate-langs';
   var busy = false;
-  var T = window.CT_I18N || {};
-  function t(k, d) { return T[k] || d; }
+  function t(k, d) { return (window.CT_I18N || {})[k] || d; }
 
   function saved() {
     try { var v = JSON.parse(localStorage.getItem(KEY) || 'null'); return Array.isArray(v) && v.length ? v : null; } catch (e) { return null; }

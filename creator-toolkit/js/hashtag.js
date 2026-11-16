@@ -26,9 +26,9 @@ async function generateHashtags() {
       .slice(0, parseInt(hashtagCount))
       .join("\n");
 
-    outputBox.innerHTML = hashtags;
+    outputBox.textContent = hashtags;
   } catch (error) {
-    outputBox.innerHTML = "❌ Error: " + error.message;
+    outputBox.textContent = "❌ Error: " + error.message;
   }
 }
 
