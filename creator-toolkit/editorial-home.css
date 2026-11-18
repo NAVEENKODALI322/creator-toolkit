@@ -1,0 +1,43 @@
+/* Creator Toolkit | Editorial redesign — isolated homepage override.
+   Load AFTER /css/site.css. No changes to application logic. */
+:root[data-theme="light"]{--bg:#FAF9F6;--bg-elevated:#fff;--card:#fff;--card-hover:#F3F8F6;--border:#E1E6E2;--border-soft:#EDF0ED;--text:#142923;--text-secondary:#53635E;--text-faint:#73817B;--brand:#116B58;--accent:#116B58;--primary:#116B58;--brand-ink:#fff;--brand-soft:#E4F3EC;--primary-soft:#E4F3EC;--saffron:#B76D20;--shadow-sm:0 3px 12px rgba(24,49,39,.035);--shadow-md:0 12px 36px rgba(24,49,39,.08)}
+:root[data-theme="dark"]{--bg:#101D19;--bg-elevated:#15251F;--card:#192B24;--card-hover:#20372E;--border:#344A3E;--border-soft:#26392F;--text:#F2F5F0;--text-secondary:#B7C7BC;--text-faint:#93A69B;--brand:#82D4B1;--accent:#82D4B1;--primary:#82D4B1;--brand-ink:#11271E;--brand-soft:#213F32;--primary-soft:#213F32;--saffron:#EEB46B;--shadow-glow:none}
+html.v2-home,body.v2-home{background:var(--bg)!important;color:var(--text)!important}
+.v2-home .app-shell{max-width:1220px!important;padding:0 32px!important;min-height:100vh}
+.v2-home .home-scroll{padding:0!important}
+.v2-home .ct-hero{position:relative;padding:88px 0 68px!important;max-width:100%;border-bottom:1px solid var(--border);display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.7fr);column-gap:clamp(40px,7vw,100px);align-items:center}
+.v2-home .ct-hero>*{grid-column:1}
+.v2-home .ct-hero::after{content:"PLAN  /  CREATE  /  PUBLISH";grid-column:2;grid-row:1 / span 5;align-self:stretch;display:grid;place-items:center;border:1px solid var(--border);border-radius:8px;background:repeating-linear-gradient(0deg,transparent 0 49px,var(--border-soft) 49px 50px),repeating-linear-gradient(90deg,transparent 0 49px,var(--border-soft) 49px 50px),var(--card);font-size:clamp(19px,2vw,29px);font-weight:800;letter-spacing:.10em;text-align:center;line-height:1.6;padding:40px;color:var(--brand);box-shadow:12px 12px 0 var(--brand-soft)}
+.v2-home .ct-hero .eyebrow{font-size:12px!important;letter-spacing:.15em;text-transform:uppercase;color:var(--brand)!important;margin-bottom:20px!important}
+.v2-home .ct-hero h1{font-size:clamp(42px,5.2vw,74px)!important;line-height:1.04!important;max-width:13ch!important;letter-spacing:-.055em!important;margin:0 0 24px!important;font-weight:800!important}
+.v2-home .ct-hero .lead{font-size:clamp(16px,1.5vw,18px)!important;line-height:1.7!important;max-width:56ch!important;margin:0 0 27px!important}
+.v2-home .ct-hero .cta-row{margin-bottom:23px!important}
+.v2-home .ct-btn{min-height:48px;border-radius:7px!important;padding:0 22px!important;font-size:14px!important;transition:transform .18s,background .18s}
+.v2-home .ct-btn:hover{transform:translateY(-2px)}
+.v2-home .search-bar{max-width:560px;border-radius:8px!important;padding:12px 17px!important;box-shadow:none!important;background:var(--card)!important}
+.v2-home .search-bar:focus-within{border-color:var(--brand)!important;box-shadow:0 0 0 3px var(--brand-soft)!important}
+.v2-home .ct-hero .proof{font-size:12.5px!important;letter-spacing:.01em}
+.v2-home .ct-block{margin:0!important;padding:68px 0;border-bottom:1px solid var(--border)}
+.v2-home .ct-langs{padding:34px 0 42px}
+.v2-home .section-title{font-size:clamp(23px,2.1vw,30px)!important;letter-spacing:-.035em!important;margin:0 0 10px!important}
+.v2-home .ct-sub{font-size:15px!important;line-height:1.7!important;margin-bottom:19px!important}
+.v2-home .ct-chips{gap:9px!important}
+.v2-home .ct-chip{border-radius:7px!important;padding:9px 12px!important;font-size:14px!important;transition:border-color .2s,background .2s}
+.v2-home .ct-chip.on{background:var(--brand-soft)!important;box-shadow:none!important;border-color:var(--brand)!important}
+.v2-home .tools-grid-v2{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:17px!important}
+.v2-home .tool-card-v2{position:relative;border-radius:9px!important;padding:24px!important;min-height:188px;box-shadow:none!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;transition:transform .2s,border-color .2s,box-shadow .2s!important}
+.v2-home .tool-card-v2:hover{transform:translateY(-3px)!important;border-color:var(--brand)!important;box-shadow:0 12px 25px rgba(18,44,35,.06)!important}
+.v2-home .tool-card-v2::after{content:"Open tool →";display:block;margin-top:auto;padding-top:16px;color:var(--brand);font-weight:700;font-size:12px}
+.v2-home .tool-card-v2 h3{font-size:18px!important;margin:0 0 8px!important;letter-spacing:-.02em}
+.v2-home .tool-card-v2 p{font-size:14px!important;line-height:1.55!important;margin:0!important}
+.v2-home .ct-icon{border-radius:8px!important;width:44px!important;height:44px!important;margin-bottom:17px!important;background:var(--brand-soft)!important;color:var(--brand)!important}
+.v2-home .home-blog{padding:60px 0!important;margin:0!important}
+.v2-home .home-blog .hb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.v2-home .home-blog .hb-card{border-radius:8px!important;padding:23px!important}
+.v2-home .ct-author,.v2-home .ct-steps li{border-radius:8px!important;box-shadow:none!important}
+.v2-home .ct-nav{background:var(--bg)!important}
+.v2-home .ct-menu a.ct-cta{border-radius:7px!important}
+.v2-home .ct-footer{margin-top:20px}
+@media(max-width:950px){.v2-home .app-shell{padding:0 24px!important}.v2-home .ct-hero{grid-template-columns:1fr;padding:64px 0 54px!important}.v2-home .ct-hero>*{grid-column:1}.v2-home .ct-hero::after{display:none}.v2-home .tools-grid-v2{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:600px){.v2-home .app-shell{padding:0 18px!important}.v2-home .ct-hero{padding:45px 0 39px!important}.v2-home .ct-hero h1{font-size:clamp(38px,10vw,52px)!important}.v2-home .ct-block{padding:40px 0}.v2-home .ct-langs{padding:30px 0}.v2-home .tools-grid-v2,.v2-home .home-blog .hb-grid{grid-template-columns:1fr!important}.v2-home .tool-card-v2{min-height:160px}.v2-home .ct-chip{font-size:13px!important;padding:8px 10px!important}}
+@media(prefers-reduced-motion:reduce){.v2-home .tool-card-v2,.v2-home .ct-btn{transition:none!important}}
